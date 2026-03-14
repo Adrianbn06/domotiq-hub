@@ -217,6 +217,76 @@
     .footer-bottom { flex-direction:column; text-align:center; }
   }
 </style>
+
+<!-- ═══ SCHEMA.ORG JSON-LD ═══════════════════════════════════════════════════
+  Rich snippets para Google: estrellas, precios, breadcrumbs
+  Documentación: https://schema.org
+════════════════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ofertasdomoticas.com/#website",
+      "url": "https://ofertasdomoticas.com",
+      "name": "OfertasDomoticas.com",
+      "description": "Las mejores ofertas y noticias de domótica y hogar inteligente. Actualizado diariamente con inteligencia artificial.",
+      "inLanguage": ["es", "en"],
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://ofertasdomoticas.com/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ofertasdomoticas.com/#organization",
+      "name": "OfertasDomoticas.com",
+      "url": "https://ofertasdomoticas.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ofertasdomoticas.com/og-image.png",
+        "width": 1200,
+        "height": 630
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "casainteligente06@hotmail.com",
+        "contactType": "customer support",
+        "availableLanguage": ["Spanish", "English"]
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ofertasdomoticas.com/#webpage",
+      "url": "https://ofertasdomoticas.com",
+      "name": "OfertasDomoticas.com — Ofertas y noticias de domótica",
+      "description": "Las mejores ofertas de Amazon, eBay y Alibaba en domótica. Noticias diarias de smart home, IoT y hogar inteligente.",
+      "isPartOf": { "@id": "https://ofertasdomoticas.com/#website" },
+      "publisher": { "@id": "https://ofertasdomoticas.com/#organization" },
+      "inLanguage": "es",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://ofertasdomoticas.com"
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" id="schema-dynamic">
+</script>
 </head>
 <body>
 
@@ -555,6 +625,7 @@ async function loadContent() {
 
     renderItems(allItems);
     renderDeals(allItems);
+    updateDynamicSchema(allItems);
 
     // Evento GA4
     gtag('event', 'content_loaded', { news_count: newsCount, promo_count: promoCount });
@@ -710,6 +781,152 @@ function trackClick(type, labelOrPlatform, title) {
 // ═══════════════════════════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── SCHEMA.ORG DINÁMICO ────────────────────────────────────────────────────
+// Genera rich snippets para cada oferta y artículo cargado
+function updateDynamicSchema(items) {
+  if (!items || items.length === 0) return;
+
+  const schemas = [];
+
+  // Schema para ofertas (Product + Offer)
+  const promos = items.filter(i => i.type === 'promo');
+  promos.forEach((item, idx) => {
+    const discount = item.discount ? parseInt(item.discount.replace(/[^0-9]/g,'')) : 0;
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": item.title,
+      "description": item.body,
+      "offers": {
+        "@type": "Offer",
+        "url": item.url || "https://ofertasdomoticas.com",
+        "priceCurrency": "USD",
+        "price": item.price ? item.price.replace(/[^0-9.]/g,'') : "0",
+        "priceValidUntil": new Date(Date.now() + 86400000).toISOString().split('T')[0],
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": item.platform || "Amazon"
+        },
+        ...(item.originalPrice ? {
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": item.originalPrice.replace(/[^0-9.]/g,''),
+            "priceCurrency": "USD"
+          }
+        } : {}),
+        ...(discount > 0 ? { "discount": discount + "%" } : {})
+      },
+      "brand": {
+        "@type": "Brand",
+        "name": item.platform || "Smart Home"
+      },
+      "category": "Smart Home & Domótica"
+    });
+  });
+
+  // Schema para noticias (NewsArticle)
+  const news = items.filter(i => i.type === 'news');
+  news.forEach(item => {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": item.title,
+      "description": item.body,
+      "datePublished": new Date().toISOString(),
+      "dateModified": new Date().toISOString(),
+      "url": item.url && item.url !== '#' ? item.url : "https://ofertasdomoticas.com",
+      "publisher": {
+        "@type": "Organization",
+        "name": "OfertasDomoticas.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://ofertasdomoticas.com/og-image.png"
+        }
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "OfertasDomoticas.com"
+      },
+      "keywords": (item.tags || []).join(', '),
+      "articleSection": "Domótica",
+      "inLanguage": "es"
+    });
+  });
+
+  // Schema para reviews (Review + Rating)
+  const reviews = items.filter(i => i.type === 'review');
+  reviews.forEach(item => {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "name": item.title,
+      "reviewBody": item.body,
+      "datePublished": new Date().toISOString(),
+      "url": item.url || "https://ofertasdomoticas.com",
+      "author": {
+        "@type": "Organization",
+        "name": "OfertasDomoticas.com"
+      },
+      "itemReviewed": {
+        "@type": "Product",
+        "name": item.product || item.title,
+        "brand": {
+          "@type": "Brand",
+          "name": item.brand || "Smart Home"
+        },
+        "category": "Domótica"
+      },
+      ...(item.rating ? {
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": item.rating,
+          "bestRating": 10,
+          "worstRating": 1
+        }
+      } : {})
+    });
+  });
+
+  // Schema para comparativas (Article)
+  const comparativas = items.filter(i => i.type === 'comparativa');
+  comparativas.forEach(item => {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": item.title,
+      "description": item.body.slice(0, 200),
+      "datePublished": new Date().toISOString(),
+      "dateModified": new Date().toISOString(),
+      "author": {
+        "@type": "Organization",
+        "name": "OfertasDomoticas.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "OfertasDomoticas.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://ofertasdomoticas.com/og-image.png"
+        }
+      },
+      "articleSection": "Comparativas Smart Home",
+      "keywords": "comparativa, domótica, smart home",
+      "inLanguage": "es"
+    });
+  });
+
+  // Actualizar el schema dinámico en el <head>
+  const schemaEl = document.getElementById('schema-dynamic');
+  if (schemaEl && schemas.length > 0) {
+    schemaEl.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": schemas
+    }, null, 0);
+  }
+}
+
 applyTranslations();
 loadContent();
 loadArchive();
