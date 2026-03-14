@@ -673,21 +673,31 @@ export async function generateContent() {
 
   console.log(`[${new Date().toISOString()}] 🤖 Generando — Modo: ${mode}`);
 
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': process.env.ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
-      'anthropic-beta': 'web-search-2025-03-05'
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: isLongDay ? 8000 : 4000,
-      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-      messages: [{ role: 'user', content: isLongDay ? PROMPT_LARGO : PROMPT_CORTO }]
-    })
-  });
+  // Timeout de 120 segundos para evitar socket hang up silencioso
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 120000);
+
+  let response;
+  try {
+    response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-beta': 'web-search-2025-03-05'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: isLongDay ? 8000 : 4000,
+        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+        messages: [{ role: 'user', content: isLongDay ? PROMPT_LARGO : PROMPT_CORTO }]
+      })
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!response.ok) {
     const errText = await response.text();
@@ -700,10 +710,39 @@ export async function generateContent() {
     if (block.type === 'text') rawText += block.text;
   }
 
-  const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+  // Parser robusto — limpia el JSON antes de parsear
+  let jsonMatch = rawText.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error(`Sin JSON en respuesta: ${rawText.slice(0, 300)}`);
 
-  const parsed = JSON.parse(jsonMatch[0]);
+  let jsonStr = jsonMatch[0];
+
+  // Limpiar caracteres problemáticos comunes en respuestas de IA
+  jsonStr = jsonStr
+    .replace(/[\u0000-\u001F\u007F-\u009F]/g, ' ') // caracteres de control
+    .replace(/,\s*([}\]])/g, '$1')                    // comas finales
+    .replace(/([{,]\s*)"([^"]+)"\s*:\s*undefined/g, '') // valores undefined
+    .trim();
+
+  // Intentar parsear — si falla, extraer solo los items válidos
+  let parsed;
+  try {
+    parsed = JSON.parse(jsonStr);
+  } catch(parseErr) {
+    console.warn('⚠️  JSON con errores, intentando recuperar items válidos...');
+    // Extraer items individuales que sí sean válidos
+    const itemMatches = jsonStr.match(/\{[^{}]*"type"[^{}]*\}/g) || [];
+    const validItems = [];
+    for (const itemStr of itemMatches) {
+      try {
+        const item = JSON.parse(itemStr);
+        if (item.type && item.title) validItems.push(item);
+      } catch {}
+    }
+    if (validItems.length === 0) throw new Error(`JSON inválido y sin items recuperables: ${parseErr.message}`);
+    console.log(`✅ Recuperados ${validItems.length} items válidos del JSON dañado`);
+    parsed = { items: validItems };
+  }
+
   if (!parsed.items || !Array.isArray(parsed.items)) throw new Error('JSON sin campo items');
 
   // Asegurar que todos los items tienen slug
