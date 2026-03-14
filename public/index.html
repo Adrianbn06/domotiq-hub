@@ -161,6 +161,13 @@
   .tag { display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600; letter-spacing:.4px; font-family:var(--mono); }
   .tag.news { background:#1e3a5f; color:var(--accent2); }
   .tag.promo { background:#3b1f00; color:var(--accent3); }
+  .tag.review { background:#1f1f3b; color:#a78bfa; }
+  .tag.comparativa { background:#1f3b1f; color:#4ade80; }
+  .rating { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--accent3); font-family:var(--mono); font-weight:600; }
+  .verdict { background:rgba(0,212,170,0.06); border-left:3px solid var(--accent); padding:8px 12px; border-radius:0 8px 8px 0; font-size:13px; color:var(--text); margin-top:4px; font-style:italic; }
+  .pros-cons { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+  .pros-list { font-size:12px; color:#4ade80; }
+  .cons-list { font-size:12px; color:#f87171; }
   .tag.platform { background:rgba(255,255,255,.05); color:var(--muted); }
   .tag.featured { background:rgba(0,212,170,.12); color:var(--accent); }
   .card-date { font-size:11px; color:var(--muted); font-family:var(--mono); white-space:nowrap; }
@@ -282,6 +289,8 @@
         <button class="filter-btn" onclick="setFilter('amazon')" id="f-amazon">Amazon</button>
         <button class="filter-btn" onclick="setFilter('ebay')" id="f-ebay">eBay</button>
         <button class="filter-btn" onclick="setFilter('alibaba')" id="f-alibaba">Alibaba</button>
+        <button class="filter-btn" onclick="setFilter('review')" id="f-review">Reviews</button>
+        <button class="filter-btn" onclick="setFilter('comparativa')" id="f-comparativa">Comparativas</button>
       </div>
     </div>
 
@@ -322,6 +331,28 @@
 </div>
 
 <!-- ═══ FOOTER ════════════════════════════════════════════════════════════════ -->
+
+  <!-- ═══ SECCIÓN ARCHIVO HISTÓRICO ═══════════════════════════════════════════ -->
+  <section id="archivo" style="padding:0 0 60px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+      <h2 style="font-size:18px;font-weight:600;">
+        Archivo de Reviews y Comparativas
+        <span style="color:var(--accent);font-family:var(--mono);font-size:14px;margin-left:8px;" id="archive-count-badge"></span>
+      </h2>
+      <div style="display:flex;gap:8px;">
+        <button class="filter-btn active" onclick="setArchiveFilter('all')" id="af-all">Todo</button>
+        <button class="filter-btn" onclick="setArchiveFilter('review')" id="af-review">Reviews</button>
+        <button class="filter-btn" onclick="setArchiveFilter('comparativa')" id="af-comparativa">Comparativas</button>
+      </div>
+    </div>
+    <div class="content-grid" id="archive-grid">
+      <div class="empty-state">
+        <div class="empty-icon">📚</div>
+        <div class="empty-title">Archivo vacío</div>
+        <p style="color:var(--muted);font-size:14px;margin-top:8px;">Las reviews y comparativas se acumulan aquí cada lunes y jueves.</p>
+      </div>
+    </div>
+  </section>
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
@@ -460,6 +491,8 @@ function getFiltered(items) {
   if (currentFilter === 'all')   return items;
   if (currentFilter === 'news')  return items.filter(i => i.type === 'news');
   if (currentFilter === 'promo') return items.filter(i => i.type === 'promo');
+  if (currentFilter === 'review') return items.filter(i => i.type === 'review');
+  if (currentFilter === 'comparativa') return items.filter(i => i.type === 'comparativa');
   return items.filter(i => i.platform && i.platform.toLowerCase() === currentFilter);
 }
 
@@ -567,6 +600,40 @@ function renderItems(items) {
             <span class="read-more">${t.readMore}</span>
           </div>
         </a>`;
+    } else if (item.type === 'review') {
+      return `
+        <a class="card" style="animation-delay:${delay}s"
+           href="${item.url || '#'}" target="_blank" rel="noopener"
+           onclick="trackClick('review', '${item.title.replace(/'/g,"\'")}')">
+          <div class="card-header">
+            <div class="card-tags">
+              <span class="tag review">⭐ Review</span>
+              ${(item.tags||[]).slice(0,1).map(tag=>`<span class="tag platform">${tag}</span>`).join('')}
+            </div>
+            <span class="card-date">${item.date || ''}</span>
+          </div>
+          <div class="card-title">${item.title}</div>
+          <div class="card-body">${item.body.slice(0,220)}...</div>
+          ${item.rating ? `<div class="rating">⭐ ${item.rating}/10</div>` : ''}
+          ${item.verdict ? `<div class="verdict">${item.verdict}</div>` : ''}
+          <div class="card-footer"><span></span><span class="read-more">Ver review</span></div>
+        </a>`;
+    } else if (item.type === 'comparativa') {
+      return `
+        <a class="card" style="animation-delay:${delay}s"
+           href="${item.url || '#'}" target="_blank" rel="noopener"
+           onclick="trackClick('comparativa', '${item.title.replace(/'/g,"\'")}')">
+          <div class="card-header">
+            <div class="card-tags">
+              <span class="tag comparativa">⚖️ Comparativa</span>
+            </div>
+            <span class="card-date">${item.date || ''}</span>
+          </div>
+          <div class="card-title">${item.title}</div>
+          <div class="card-body">${item.body.slice(0,220)}...</div>
+          ${item.winner ? `<div class="verdict">🏆 Ganador: <strong>${item.winner}</strong> — ${item.winner_reason || ''}</div>` : ''}
+          <div class="card-footer"><span></span><span class="read-more">Ver comparativa</span></div>
+        </a>`;
     } else {
       const icon = item.platform === 'Amazon' ? '🛒' : item.platform === 'eBay' ? '🏪' : '🌐';
       return `
@@ -630,9 +697,78 @@ function trackClick(type, labelOrPlatform, title) {
 // ═══════════════════════════════════════════════════════════════════════════════
 applyTranslations();
 loadContent();
+loadArchive();
 
 // Recargar el contenido cada hora (por si el cron actualizó mientras el usuario está en la página)
 setInterval(loadContent, 60 * 60 * 1000);
+
+// ─── ARCHIVO HISTÓRICO ─────────────────────────────────────────────────────
+let archiveItems = [];
+let archiveFilter = 'all';
+
+function setArchiveFilter(f) {
+  archiveFilter = f;
+  ['all','review','comparativa'].forEach(id => {
+    const el = document.getElementById('af-' + id);
+    if (el) el.classList.toggle('active', id === f);
+  });
+  renderArchive(archiveItems);
+}
+
+async function loadArchive() {
+  try {
+    const res = await fetch('/api/archive');
+    if (!res.ok) return;
+    const data = await res.json();
+    archiveItems = data.items || [];
+    renderArchive(archiveItems);
+  } catch {}
+}
+
+function renderArchive(items) {
+  const grid = document.getElementById('archive-grid');
+  if (!grid) return;
+
+  const filtered = archiveFilter === 'all' ? items :
+    items.filter(i => i.type === archiveFilter);
+
+  const badge = document.getElementById('archive-count-badge');
+  if (badge) badge.textContent = '(' + filtered.length + ' items)';
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><div class="empty-title">Sin resultados</div></div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map((item, i) => {
+    const delay = (i * 0.04).toFixed(2);
+    if (item.type === 'review') {
+      return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="noopener">
+        <div class="card-header">
+          <div class="card-tags"><span class="tag review">⭐ Review</span></div>
+          <span class="card-date">${item.archivedAt || item.date || ''}</span>
+        </div>
+        <div class="card-title">${item.title}</div>
+        <div class="card-body">${item.body.slice(0,220)}...</div>
+        ${item.rating ? '<div class="rating">⭐ ' + item.rating + '/10</div>' : ''}
+        ${item.verdict ? '<div class="verdict">' + item.verdict + '</div>' : ''}
+        <div class="card-footer"><span></span><span class="read-more">Ver review</span></div>
+      </a>`;
+    } else {
+      return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="noopener">
+        <div class="card-header">
+          <div class="card-tags"><span class="tag comparativa">⚖️ Comparativa</span></div>
+          <span class="card-date">${item.archivedAt || item.date || ''}</span>
+        </div>
+        <div class="card-title">${item.title}</div>
+        <div class="card-body">${item.body.slice(0,220)}...</div>
+        ${item.winner ? '<div class="verdict">🏆 Ganador: <strong>' + item.winner + '</strong></div>' : ''}
+        <div class="card-footer"><span></span><span class="read-more">Ver comparativa</span></div>
+      </a>`;
+    }
+  }).join('');
+}
+
 </script>
 </body>
 </html>
