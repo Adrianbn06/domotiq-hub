@@ -1,6 +1,6 @@
 {
-  "generated": "2026-03-14T04:09:10.628Z",
-  "generatedHuman": "13/3/2026, 11:09:10 p. m.",
+  "generated": "2026-03-14T04:34:35.431Z",
+  "generatedHuman": "13/3/2026, 11:34:35 p. m.",
   "count": 20,
   "newsCount": 10,
   "promoCount": 10,
@@ -8,272 +8,272 @@
     {
       "id": 1,
       "type": "news",
-      "title": "Revolución de la IA en Hogares Inteligentes: Asistentes Predictivos en 2025",
-      "body": "Los sistemas de IA domésticos están evolucionando hacia una automatización predictiva que anticipa necesidades sin intervención manual. Los termostatos con IA como Nest aprenden patrones de ocupación y reducen el consumo energético hasta un 20%.",
-      "date": "10 Dic 2025",
+      "title": "La inteligencia artificial impulsa la evolución domótica en 2025",
+      "body": "Los hogares inteligentes integran ahora IA predictiva que aprende patrones de comportamiento para automatizar ajustes de temperatura, iluminación y electrodomésticos. La tecnología permite que las casas anticipen necesidades sin intervención manual.",
+      "date": "29 Dec 2025",
       "tags": [
         "IoT",
         "Smart Home",
-        "IA"
+        "AI"
       ],
-      "source": "Tech Times",
+      "source": "Tech in Deep",
       "url": "#"
     },
     {
       "id": 2,
       "type": "news",
-      "title": "Matter 1.5 Unifica Ecosistemas de Apple, Amazon y Google",
-      "body": "El estándar Matter 1.5 ha logrado unificar los ecosistemas fragmentados de smart home. Los dispositivos ahora funcionan seamlessly entre HomeKit, Alexa y Google Home, eliminando las limitaciones de compatibilidad.",
-      "date": "26 Dic 2025",
+      "title": "Matter 1.5 unifica ecosistemas de Apple, Amazon y Google",
+      "body": "El lanzamiento del protocolo Matter 1.5 elimina las barreras entre ecosistemas, permitiendo interoperabilidad completa entre dispositivos de diferentes fabricantes. Los retailers reportan un aumento del 20% en ventas durante las fiestas navideñas.",
+      "date": "26 Dec 2025",
       "tags": [
-        "Matter",
-        "Interoperabilidad",
-        "Smart Home"
+        "Smart Home",
+        "IoT",
+        "Matter"
       ],
-      "source": "Times Online",
+      "source": "Financial Content",
       "url": "#"
     },
     {
       "id": 3,
       "type": "news",
-      "title": "Amazon Lanza Alexa+ con IA Generativa por $19.99/mes",
-      "body": "Alexa+ ofrece interfaz mejorada en dispositivos Echo Show con pantallas adaptativas y contenido personalizado. Es gratuito para miembros Prime pero sacrifica procesamiento local por privacidad.",
-      "date": "23 Ene 2026",
+      "title": "Alexa Plus y Gemini lanzan asistentes conversacionales con IA",
+      "body": "Amazon y Google revolucionan el control por voz con asistentes que mantienen conversaciones naturales y entienden el contexto. Los nuevos sistemas permiten comandos complejos sin memorizar frases específicas.",
+      "date": "02 Oct 2025",
       "tags": [
         "Alexa",
-        "IA Generativa",
-        "Amazon"
+        "Google Home",
+        "AI"
       ],
-      "source": "AddToHomeKit",
+      "source": "Tech Buzz AI",
       "url": "#"
     },
     {
       "id": 4,
       "type": "news",
-      "title": "Mercado de Smart Home Europeo Alcanzará $32.67 Mil Millones en 2030",
-      "body": "El mercado europeo de hogares inteligentes muestra fuerte crecimiento, especialmente en Alemania y España. Las proyecciones indican un crecimiento sustancial hacia espacios más integrados y seguros.",
-      "date": "18 Jul 2025",
-      "tags": [
-        "Mercado",
-        "Europa",
-        "Crecimiento"
-      ],
-      "source": "Agile TV",
-      "url": "#"
-    },
-    {
-      "id": 5,
-      "type": "news",
-      "title": "78% de Usuarios Reportan Mejoras Medibles en Comodidad y Seguridad",
-      "body": "Un estudio revela que 78% de hogares inteligentes experimentan mejoras concretas en al menos tres áreas: comodidad, seguridad y ahorro de costos. Los días de promesas vagas han terminado.",
-      "date": "18 Jun 2025",
-      "tags": [
-        "Estadísticas",
-        "Satisfacción",
-        "Usuarios"
-      ],
-      "source": "IT Daily",
-      "url": "#"
-    },
-    {
-      "id": 6,
-      "type": "news",
-      "title": "Cerraduras Inteligentes Adoptan Tecnología NFC y Ultra-Wideband",
-      "body": "Las nuevas cerraduras smart de 2025 incorporan NFC y UWB para operación por proximidad. Modelos como U-tec Ultraloq Bolt Mission y Schlage Sense Pro mejoran seguridad y conveniencia.",
-      "date": "15 Sep 2025",
-      "tags": [
-        "Cerraduras",
-        "NFC",
-        "UWB"
-      ],
-      "source": "Parks Associates",
-      "url": "#"
-    },
-    {
-      "id": 7,
-      "type": "news",
-      "title": "5G Acelera Automatización Doméstica con Menor Latencia",
-      "body": "La implementación de redes 5G reduce la latencia y mejora la eficiencia de automatización. Samsung SmartThings Hub integra 5G para automatización en tiempo real y mejor conectividad cloud.",
-      "date": "18 Jul 2025",
-      "tags": [
-        "5G",
-        "Automatización",
-        "Samsung"
-      ],
-      "source": "Promwad",
-      "url": "#"
-    },
-    {
-      "id": 8,
-      "type": "news",
-      "title": "Google Presenta Altavoz 'Gemini' con Audio 360 Grados",
-      "body": "Google reveló su próximo altavoz inteligente con codename 'Gemini' en múltiples colores y diseño renovado. Podría ser el sucesor del Nest Audio para mostrar el asistente Gemini AI.",
-      "date": "6 Sep 2025",
-      "tags": [
-        "Google",
-        "Gemini",
-        "Altavoces"
-      ],
-      "source": "TS2 Tech",
-      "url": "#"
-    },
-    {
-      "id": 9,
-      "type": "news",
-      "title": "Automatización del Hogar Crecerá de $20.5B a $193.3B para 2037",
-      "body": "Research Nester proyecta que el mercado de automatización doméstica alcanzará $193.3 mil millones para 2037, registrando un CAGR de 25.2%. La revolución está impulsada por IA e IoT.",
-      "date": "9 Oct 2025",
-      "tags": [
-        "Mercado",
-        "Crecimiento",
-        "Proyecciones"
-      ],
-      "source": "Research Nester",
-      "url": "#"
-    },
-    {
-      "id": 10,
-      "type": "news",
-      "title": "Robots Aspiradores Dominan Mercado con IA Avanzada",
-      "body": "El mercado global de robots domésticos vale $8.6 mil millones y se proyecta superar $22 mil millones para 2029. Los modelos con IA mapean, evitan obstáculos y desechos de mascotas automáticamente.",
+      "title": "El mercado domótico alcanza $147.5 mil millones en 2025",
+      "body": "Fortune Business Insights reporta que el mercado de hogares inteligentes creció a $147.5 mil millones con un CAGR del 23.1%. La gestión energética será el segmento de mayor crecimiento hacia 2027.",
       "date": "30 Jul 2025",
       "tags": [
-        "Robots",
-        "Aspiradoras",
-        "IA"
+        "Smart Home",
+        "IoT",
+        "Market"
       ],
       "source": "IoT Breakthrough",
       "url": "#"
     },
     {
+      "id": 5,
+      "type": "news",
+      "title": "Amazon lanza Echo Dot Max y Echo Show 11 con chip AZ3",
+      "body": "Los nuevos dispositivos integran el chip AZ3 específicamente diseñado para procesamiento local de Matter 1.5. Amazon apuesta por Alexa+ como servicio de pago para controlar todo el hogar.",
+      "date": "Oct 2025",
+      "tags": [
+        "Amazon",
+        "Echo",
+        "Smart Home"
+      ],
+      "source": "Android Central",
+      "url": "#"
+    },
+    {
+      "id": 6,
+      "type": "news",
+      "title": "LG Electronics adquiere la empresa holandesa de hogares inteligentes Athom",
+      "body": "La adquisición fortalece la posición de LG en el sector domótico europeo y expande su ecosistema de dispositivos conectados. Athom es conocida por su plataforma Homey para automatización del hogar.",
+      "date": "2025",
+      "tags": [
+        "Smart Home",
+        "IoT",
+        "Acquisition"
+      ],
+      "source": "IoT World Today",
+      "url": "#"
+    },
+    {
+      "id": 7,
+      "type": "news",
+      "title": "30 mil millones de dispositivos IoT conectados globalmente",
+      "body": "El procesamiento local supera al cloud computing en dispositivos domóticos. La computación en el borde permite respuestas instantáneas y mayor privacidad al mantener datos sensibles localmente.",
+      "date": "29 Dec 2025",
+      "tags": [
+        "IoT",
+        "Edge Computing",
+        "Privacy"
+      ],
+      "source": "Tech in Deep",
+      "url": "#"
+    },
+    {
+      "id": 8,
+      "type": "news",
+      "title": "Home Assistant supera a Alexa y Google en confiabilidad domótica",
+      "body": "La plataforma local de código abierto certifica más socios en 2025 que en años anteriores. Los usuarios prefieren control local sin dependencia de servicios cloud tras problemas con Alexa+ y Gemini.",
+      "date": "20 Jan 2026",
+      "tags": [
+        "Home Assistant",
+        "Smart Home",
+        "Local Control"
+      ],
+      "source": "XDA Developers",
+      "url": "#"
+    },
+    {
+      "id": 9,
+      "type": "news",
+      "title": "Tendencias domóticas españolas priorizan sostenibilidad y ahorro energético",
+      "body": "Los hogares españoles adoptan masivamente termostatos inteligentes y sistemas de detección de ventanas abiertas. La domótica se posiciona como aliada clave para reducir la huella ecológica.",
+      "date": "2025",
+      "tags": [
+        "Domótica",
+        "Sostenibilidad",
+        "Ahorro"
+      ],
+      "source": "Wolly Home",
+      "url": "#"
+    },
+    {
+      "id": 10,
+      "type": "news",
+      "title": "PCWorld destaca los mejores productos domóticos con IA Gemini",
+      "body": "Los videoporteros Nest con Gemini AI permiten búsquedas en lenguaje natural en grabaciones de alta resolución. La nueva tecnología describe y resume automáticamente lo que las cámaras han visto.",
+      "date": "01 Jan 2026",
+      "tags": [
+        "Smart Home",
+        "Gemini AI",
+        "Security"
+      ],
+      "source": "PCWorld",
+      "url": "#"
+    },
+    {
       "id": 11,
       "type": "promo",
-      "title": "Bombilla LED WiFi Philips Hue Color",
-      "body": "Bombilla inteligente con 16 millones de colores, compatible con Alexa, Google y Apple HomeKit. Control remoto y automatización.",
+      "title": "Pack 4 Bombillas Inteligentes RGBW WiFi",
+      "body": "Bombillas LED inteligentes con 16 millones de colores, control por voz con Alexa/Google, sincronización musical y programación horaria. Equivalente a 60W, bajo consumo.",
       "platform": "Amazon",
-      "price": "$34.99",
-      "originalPrice": "$59.99",
+      "price": "$24.99",
+      "originalPrice": "$42.99",
       "discount": "-42%",
-      "date": "13 Mar 2025",
+      "date": "13 Mar 2026",
       "featured": true,
-      "url": "https://www.amazon.com/s?k=philips+hue+color+bulb"
+      "url": "https://www.amazon.com/s?k=bombillas+inteligentes+wifi+alexa&tag=domotiq-20"
     },
     {
       "id": 12,
       "type": "promo",
-      "title": "Enchufe WiFi TP-Link Kasa Smart 4-Pack",
-      "body": "Pack de 4 enchufes inteligentes con control por voz y app. Programación de horarios y monitoreo de consumo energético.",
+      "title": "Set 4 Enchufes Inteligentes WiFi Tapo P100",
+      "body": "Control remoto desde cualquier lugar, programación de horarios, función aleatoria para simular presencia. Compatible con Alexa, Google Home y SmartThings. 10A máximo.",
       "platform": "Amazon",
-      "price": "$24.99",
-      "originalPrice": "$39.99",
+      "price": "$28.99",
+      "originalPrice": "$45.99",
       "discount": "-37%",
-      "date": "13 Mar 2025",
+      "date": "13 Mar 2026",
       "featured": false,
-      "url": "https://www.amazon.com/s?k=tp+link+kasa+smart+plug"
+      "url": "https://www.amazon.com/s?k=enchufe+inteligente+wifi+tapo&tag=domotiq-20"
     },
     {
       "id": 13,
       "type": "promo",
-      "title": "Cámara Seguridad Wyze Cam v3 Pro",
-      "body": "Cámara IP 2K con visión nocturna a color, detección de movimiento IA y grabación local. Resistente a intemperie.",
+      "title": "Termostato Inteligente Nest Learning 3ª Gen",
+      "body": "Aprende automáticamente tus rutinas y ajusta la temperatura. Pantalla LCD de alta resolución, compatible con calderas mixtas y suelos radiantes. Control por voz incluido.",
       "platform": "Amazon",
-      "price": "$45.99",
-      "originalPrice": "$69.99",
-      "discount": "-34%",
-      "date": "13 Mar 2025",
+      "price": "$189.99",
+      "originalPrice": "$249.99",
+      "discount": "-24%",
+      "date": "13 Mar 2026",
       "featured": true,
-      "url": "https://www.amazon.com/s?k=wyze+cam+v3+pro"
+      "url": "https://www.amazon.com/s?k=termostato+inteligente+nest+learning&tag=domotiq-20"
     },
     {
       "id": 14,
       "type": "promo",
-      "title": "Termostato Inteligente Nest Learning",
-      "body": "Termostato que aprende rutinas y ajusta temperatura automáticamente. Compatible con sistemas de calefacción y aire acondicionado.",
+      "title": "Robot Aspiradora Roborock Q7 Max+",
+      "body": "Potencia de succión 4200Pa, navegación LiDAR, base de autovaciado automático, mapeo inteligente multi-piso. Control total desde app móvil con zonas prohibidas.",
       "platform": "Amazon",
-      "price": "$179.99",
-      "originalPrice": "$249.99",
-      "discount": "-28%",
-      "date": "13 Mar 2025",
-      "featured": false,
-      "url": "https://www.amazon.com/s?k=nest+learning+thermostat"
+      "price": "$449.99",
+      "originalPrice": "$699.99",
+      "discount": "-36%",
+      "date": "13 Mar 2026",
+      "featured": true,
+      "url": "https://www.amazon.com/s?k=robot+aspiradora+roborock+lidar&tag=domotiq-20"
     },
     {
       "id": 15,
       "type": "promo",
-      "title": "Sensor Movimiento Zigbee Aqara",
-      "body": "Sensor de movimiento ultra-sensible con 6 meses de batería. Compatible con Apple HomeKit y hubs Zigbee.",
+      "title": "Cámara IP WiFi 2K Exterior TP-Link Tapo C310",
+      "body": "Resolución 2K, visión nocturna de 30 metros, detección de movimiento con alertas push, almacenamiento local y cloud. Resistente al agua IP66.",
       "platform": "eBay",
-      "price": "$18.99",
-      "originalPrice": "$24.99",
-      "discount": "-24%",
-      "date": "13 Mar 2025",
-      "featured": true,
-      "url": "https://www.ebay.com/sch/i.html?_nkw=aqara+motion+sensor"
+      "price": "$39.95",
+      "originalPrice": "$69.99",
+      "discount": "-43%",
+      "date": "13 Mar 2026",
+      "featured": false,
+      "url": "https://www.ebay.com/sch/i.html?_nkw=camara+ip+wifi+exterior+2k"
     },
     {
       "id": 16,
       "type": "promo",
-      "title": "Hub Zigbee SONOFF Bridge Pro",
-      "body": "Gateway inteligente dual-protocol WiFi y Zigbee. Control centralizado para dispositivos smart home de diferentes marcas.",
+      "title": "Termostato Programable WiFi Honeywell T6",
+      "body": "Pantalla táctil, programación 7 días, control remoto via app, geofencing automático. Compatible con sistemas de calefacción/refrigeración convencionales y bombas de calor.",
       "platform": "eBay",
-      "price": "$32.99",
-      "originalPrice": "$49.99",
-      "discount": "-34%",
-      "date": "13 Mar 2025",
+      "price": "$89.99",
+      "originalPrice": "$159.99",
+      "discount": "-44%",
+      "date": "13 Mar 2026",
       "featured": false,
-      "url": "https://www.ebay.com/sch/i.html?_nkw=sonoff+zigbee+bridge"
+      "url": "https://www.ebay.com/sch/i.html?_nkw=termostato+wifi+honeywell+programable"
     },
     {
       "id": 17,
       "type": "promo",
-      "title": "Strip LED WiFi Govee 5m RGB",
-      "body": "Tira LED de 5 metros con control musical, 16 millones de colores y sincronización con cámara. Compatible con Alexa.",
+      "title": "Kit 6 Sensores Puerta/Ventana Zigbee SmartThings",
+      "body": "Detección apertura/cierre instantánea, batería 2 años, compatible con hubs Zigbee. Ideal para automatizaciones de seguridad y ahorro energético.",
       "platform": "eBay",
-      "price": "$28.99",
-      "originalPrice": "$45.99",
-      "discount": "-37%",
-      "date": "13 Mar 2025",
-      "featured": false,
-      "url": "https://www.ebay.com/sch/i.html?_nkw=govee+led+strip+5m"
+      "price": "$64.95",
+      "originalPrice": "$89.99",
+      "discount": "-28%",
+      "date": "13 Mar 2026",
+      "featured": true,
+      "url": "https://www.ebay.com/sch/i.html?_nkw=sensor+puerta+ventana+zigbee+smartthings"
     },
     {
       "id": 18,
       "type": "promo",
-      "title": "Bombilla Inteligente Tuya WiFi E27 9W",
-      "body": "Bombilla LED RGB dimmable con temporizador y control remoto. Compatible con aplicaciones Smart Life y Tuya Smart.",
+      "title": "Hub Zigbee 3.0 Tuya Smart Gateway Multiprotocolo",
+      "body": "Compatible con WiFi, Bluetooth y Zigbee 3.0. Controla hasta 128 dispositivos, app Tuya Smart Life, integración con Alexa/Google. Procesamiento local incluido.",
       "platform": "Alibaba",
-      "price": "$3.99",
-      "originalPrice": "$7.99",
-      "discount": "-50%",
-      "date": "13 Mar 2025",
-      "featured": true,
-      "url": "https://www.alibaba.com/trade/search?SearchText=tuya+smart+bulb"
+      "price": "$25.80",
+      "originalPrice": "$38.90",
+      "discount": "-34%",
+      "date": "13 Mar 2026",
+      "featured": false,
+      "url": "https://www.alibaba.com/trade/search?SearchText=tuya+zigbee+gateway+hub"
     },
     {
       "id": 19,
       "type": "promo",
-      "title": "Auriculares Bluetooth TWS 5.0",
-      "body": "Auriculares inalámbricos con cancelación de ruido y 24 horas de reproducción. Estuche de carga incluido.",
+      "title": "Tira LED Inteligente 5M RGB+W WiFi",
+      "body": "16 millones de colores, sincronización musical, control por segmentos, adhesivo 3M resistente. Compatible con Alexa, Google y apps móviles para efectos personalizados.",
       "platform": "Alibaba",
-      "price": "$12.99",
-      "originalPrice": "$29.99",
-      "discount": "-57%",
-      "date": "13 Mar 2025",
+      "price": "$18.50",
+      "originalPrice": "$31.20",
+      "discount": "-41%",
+      "date": "13 Mar 2026",
       "featured": false,
-      "url": "https://www.alibaba.com/trade/search?SearchText=bluetooth+earbuds+tws"
+      "url": "https://www.alibaba.com/trade/search?SearchText=led+strip+smart+wifi+rgb"
     },
     {
       "id": 20,
       "type": "promo",
-      "title": "Gateway Multi-Modo MOES Zigbee WiFi",
-      "body": "Hub inteligente compatible con Zigbee, Bluetooth Mesh y WiFi. Puente universal para ecosistemas smart home diversos.",
+      "title": "Altavoz Inteligente con Pantalla 10\" y Zigbee Hub",
+      "body": "Pantalla táctil HD, asistente de voz integrado, hub Zigbee incorporado, cámara para videollamadas. Control centralizado de todo el ecosistema domótico desde una sola pantalla.",
       "platform": "Alibaba",
-      "price": "$22.99",
-      "originalPrice": "$38.99",
-      "discount": "-41%",
-      "date": "13 Mar 2025",
-      "featured": false,
-      "url": "https://www.alibaba.com/trade/search?SearchText=moes+smart+gateway+hub"
+      "price": "$89.99",
+      "originalPrice": "$149.99",
+      "discount": "-40%",
+      "date": "13 Mar 2026",
+      "featured": true,
+      "url": "https://www.alibaba.com/trade/search?SearchText=smart+speaker+display+zigbee+hub"
     }
   ]
 }
