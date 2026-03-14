@@ -449,13 +449,13 @@
       <p id="footer-desc">Tu fuente diaria de noticias y ofertas de domótica, impulsada por inteligencia artificial.</p>
     </div>
     <div class="footer-col">
-      <h4 id="footer-links-title">Enlaces</h4>
+      <p id="footer-links-title" style="font-size:14px;font-weight:600;margin-bottom:12px;">Enlaces</p>
       <a href="#noticias" id="footer-news">Noticias</a>
       <a href="#ofertas" id="footer-deals">Ofertas</a>
       <a href="#sobre" id="footer-about">Acerca de</a>
     </div>
     <div class="footer-col">
-      <h4 id="footer-plat-title">Plataformas</h4>
+      <p id="footer-plat-title" style="font-size:14px;font-weight:600;margin-bottom:12px;">Plataformas</p>
       <a href="https://www.amazon.com/s?k=smart+home" target="_blank" rel="noopener">🛒 Amazon</a>
       <a href="https://www.ebay.com/sch/i.html?_nkw=smart+home" target="_blank" rel="noopener">🏪 eBay</a>
       <a href="https://www.alibaba.com/trade/search?SearchText=smart+home" target="_blank" rel="noopener">🌐 Alibaba</a>
@@ -469,7 +469,7 @@
       <span style="color:var(--muted);"> · </span> 
       <a href="/contacto.html" style="color:var(--muted);">Contacto</a>
     </p>
-    <p class="powered">POWERED BY CLAUDE AI + WEB SEARCH</p>
+    <p class="powered" style="color:#64748b;">POWERED BY CLAUDE AI + WEB SEARCH</p>
   </div>
 </footer>
 
@@ -623,9 +623,11 @@ async function loadContent() {
     document.getElementById('stat-promos').textContent = promoCount;
 
     if (data.generated) {
-      const d = new Date(data.generated);
-      document.getElementById('stat-time').textContent =
-        d.toLocaleTimeString('es-EC', { hour:'2-digit', minute:'2-digit', timeZone:'America/Guayaquil' });
+      const statTime = document.getElementById('stat-time');
+      if (statTime) {
+        const d = new Date(data.generated);
+        statTime.textContent = d.toLocaleTimeString('es-EC', { hour:'2-digit', minute:'2-digit', timeZone:'America/Guayaquil' });
+      }
     }
 
     renderItems(allItems);
@@ -641,7 +643,7 @@ async function loadContent() {
       <div class="error-card">
         <h3>⚠ ${TX[lang].errorTitle}</h3>
         <p>${TX[lang].errorSub}</p>
-        <p style="font-size:12px;margin-top:8px;font-family:var(--mono);opacity:.5">${err.message}</p>
+        <p style="font-size:12px;margin-top:8px;font-family:var(--mono);color:#94a3b8;">${err.message}</p>
       </div>`;
   }
 }

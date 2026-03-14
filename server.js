@@ -55,8 +55,7 @@ if (helmet) {
           defaultSrc: ["'self'"],
           scriptSrc: [
             "'self'",
-            `'nonce-${nonce}'`,
-            "'strict-dynamic'",                          // scripts inline con nonce
+            `'nonce-${nonce}'`,                          // scripts inline con nonce
             "https://www.googletagmanager.com",
             "https://pagead2.googlesyndication.com",
             "https://fonts.googleapis.com",
