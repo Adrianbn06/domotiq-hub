@@ -454,9 +454,9 @@
     </div>
     <div class="footer-col">
       <p id="footer-plat-title" style="font-size:14px;font-weight:600;margin-bottom:12px;">Plataformas</p>
-      <a href="https://www.amazon.com/s?k=smart+home" target="_blank" rel="noopener">🛒 Amazon</a>
-      <a href="https://www.ebay.com/sch/i.html?_nkw=smart+home" target="_blank" rel="noopener">🏪 eBay</a>
-      <a href="https://www.alibaba.com/trade/search?SearchText=smart+home" target="_blank" rel="noopener">🌐 Alibaba</a>
+      <a href="https://www.amazon.com/s?k=smart+home" target="_blank" rel="sponsored noopener">🛒 Amazon</a>
+      <a href="https://www.ebay.com/sch/i.html?_nkw=smart+home" target="_blank" rel="sponsored noopener">🏪 eBay</a>
+      <a href="https://www.alibaba.com/trade/search?SearchText=smart+home" target="_blank" rel="sponsored noopener">🌐 Alibaba</a>
     </div>
   </div>
 <div class="footer-bottom">
@@ -997,7 +997,7 @@ function renderDeals(items) {
 
   grid.innerHTML = promos.map((item, i) => {
     const delay = (i * 0.04).toFixed(2);
-    return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="noopener"
+    return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="sponsored noopener"
          onclick="trackClick('promo', '${(item.platform||'').replace(/'/g,'\'') }', '${item.title.replace(/'/g,'\'') }')">
       <div class="card-header">
         <div class="card-tags">

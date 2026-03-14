@@ -218,7 +218,7 @@ function generateArticlePage(item) {
       <span class="price-main">${item.price}</span>
       ${item.originalPrice ? `<span class="price-old">${item.originalPrice}</span>` : ''}
       ${item.discount ? `<span class="price-discount">${item.discount}</span>` : ''}
-      <a href="${item.url}" target="_blank" rel="noopener sponsored" class="buy-btn">
+      <a href="${item.url}" target="_blank" rel="sponsored noopener" class="buy-btn">
         Ver oferta en ${item.platform} →
       </a>
     </div>` : '';
@@ -552,7 +552,7 @@ function renderCardHTML(item, i) {
 
   if (item.type === 'promo') {
     const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
-    return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_self" rel="noopener">
+    return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_blank" rel="sponsored noopener">
       <div class="card-header">
         <div class="card-tags">
           <span class="tag promo">🏷️ Oferta</span>

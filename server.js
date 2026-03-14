@@ -237,14 +237,21 @@ app.get('/api/status', (req, res) => {
 // SPA fallback — inyecta el nonce en el HTML para scripts inline seguros
 app.get('*', (req, res) => {
   const indexPath = path.join(__dirname, 'public', 'index.html');
+  const notFoundPath = path.join(__dirname, 'public', '404.html');
+
+  // Check if requesting a specific file that doesn't exist
+  const requestedFile = path.join(__dirname, 'public', req.path);
+  if (req.path !== '/' && !fs.existsSync(requestedFile) && req.path.includes('.html')) {
+    return res.status(404).sendFile(notFoundPath);
+  }
+
   try {
     let html = fs.readFileSync(indexPath, 'utf8');
-    // Reemplaza el placeholder NONCE_PLACEHOLDER con el nonce real
     html = html.replace(/NONCE_PLACEHOLDER/g, res.locals.nonce || '');
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.send(html);
   } catch {
-    res.sendFile(indexPath);
+    res.status(404).sendFile(notFoundPath);
   }
 });
 

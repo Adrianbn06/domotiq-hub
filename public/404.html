@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada | OfertasDomoticas.com</title>
+  <meta name="description" content="La página que buscas no existe. Descubre las mejores ofertas de domótica y smart home en OfertasDomoticas.com">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://ofertasdomoticas.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Página no encontrada",
+    "url": "https://ofertasdomoticas.com/404.html",
+    "isPartOf": { "@type": "WebSite", "url": "https://ofertasdomoticas.com" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg:#0a0e1a; --bg2:#111827; --card:#141c2e;
+      --accent:#00d4aa; --accent2:#3b82f6;
+      --text:#e2e8f0; --muted:#94a3b8;
+      --border:rgba(255,255,255,0.07);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Space Grotesk',sans-serif;
+      background:var(--bg); color:var(--text);
+      min-height:100vh; display:flex; flex-direction:column;
+    }
+    body::before {
+      content:''; position:fixed; inset:0;
+      background-image:
+        linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px);
+      background-size:40px 40px; pointer-events:none; z-index:0;
+    }
+
+    /* HEADER */
+    header {
+      background:rgba(10,14,26,0.95);
+      border-bottom:1px solid var(--border);
+      padding:0 20px; position:relative; z-index:1;
+    }
+    .header-inner {
+      max-width:1100px; margin:0 auto;
+      display:flex; align-items:center; height:64px;
+    }
+    .logo {
+      display:flex; align-items:center; gap:10px;
+      font-size:20px; font-weight:700; text-decoration:none; color:var(--text);
+    }
+    .logo-icon {
+      width:34px; height:34px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      border-radius:8px; display:flex; align-items:center; justify-content:center;
+    }
+    .logo span { color:var(--accent); }
+
+    /* MAIN */
+    main {
+      flex:1; display:flex; align-items:center; justify-content:center;
+      padding:40px 20px; position:relative; z-index:1;
+    }
+    .container { max-width:700px; width:100%; text-align:center; }
+
+    .error-code {
+      font-size:clamp(80px,15vw,140px);
+      font-weight:700; line-height:1;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      letter-spacing:-4px; margin-bottom:8px;
+    }
+    .error-icon { font-size:48px; margin-bottom:16px; }
+    h1 {
+      font-size:clamp(22px,4vw,32px); font-weight:700;
+      margin-bottom:12px; letter-spacing:-0.5px;
+    }
+    .subtitle {
+      font-size:16px; color:var(--muted); margin-bottom:36px; line-height:1.6;
+    }
+
+    /* SEARCH BOX */
+    .search-box {
+      display:flex; gap:10px; margin-bottom:40px;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:8px 8px 8px 16px;
+    }
+    .search-box input {
+      flex:1; background:transparent; border:none; outline:none;
+      color:var(--text); font-size:15px; font-family:'Space Grotesk',sans-serif;
+    }
+    .search-box input::placeholder { color:var(--muted); }
+    .search-btn {
+      background:linear-gradient(135deg,var(--accent),#00a884);
+      color:#000; font-weight:600; font-size:14px;
+      border:none; border-radius:8px; padding:10px 20px;
+      cursor:pointer; font-family:'Space Grotesk',sans-serif;
+      white-space:nowrap; transition:all 0.2s;
+    }
+    .search-btn:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(0,212,170,0.3); }
+
+    /* QUICK LINKS */
+    .quick-title {
+      font-size:13px; color:var(--muted); text-transform:uppercase;
+      letter-spacing:0.5px; margin-bottom:14px;
+    }
+    .quick-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:12px; margin-bottom:40px;
+    }
+    .quick-card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:16px 14px; text-decoration:none;
+      color:var(--text); transition:all 0.2s; text-align:center;
+    }
+    .quick-card:hover {
+      border-color:rgba(0,212,170,0.3);
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(0,0,0,0.3);
+    }
+    .quick-card .icon { font-size:24px; margin-bottom:8px; display:block; }
+    .quick-card .label { font-size:13px; font-weight:500; }
+    .quick-card .desc { font-size:12px; color:var(--muted); margin-top:3px; }
+
+    /* HOME BUTTON */
+    .home-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:transparent; color:var(--accent);
+      border:1px solid rgba(0,212,170,0.3); border-radius:10px;
+      padding:12px 24px; font-size:14px; font-weight:500;
+      text-decoration:none; transition:all 0.2s;
+    }
+    .home-btn:hover { background:rgba(0,212,170,0.08); }
+
+    /* FOOTER */
+    footer {
+      border-top:1px solid var(--border); padding:20px;
+      text-align:center; font-size:12px; color:var(--muted);
+      position:relative; z-index:1;
+    }
+
+    @media(max-width:480px) {
+      .search-box { flex-direction:column; }
+      .search-btn { width:100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🏠</div>
+      Ofertas<span>Domoticas</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="error-icon">🔌</div>
+    <div class="error-code">404</div>
+    <h1>Esta página se desconectó</h1>
+    <p class="subtitle">
+      La oferta o artículo que buscas ya no está disponible — probablemente expiró o fue retirado.<br>
+      Pero tenemos cientos de ofertas nuevas esperándote.
+    </p>
+
+    <!-- SEARCH -->
+    <div class="search-box" role="search">
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Buscar ofertas de domótica..."
+        aria-label="Buscar ofertas"
+        onkeydown="if(event.key==='Enter') doSearch()"
+      >
+      <button class="search-btn" onclick="doSearch()">Buscar →</button>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <p class="quick-title">O explora directamente</p>
+    <div class="quick-grid">
+      <a href="/#descuentos" class="quick-card">
+        <span class="icon">🔥</span>
+        <div class="label">Ofertas del día</div>
+        <div class="desc">Amazon, eBay, Alibaba</div>
+      </a>
+      <a href="/#noticias" class="quick-card">
+        <span class="icon">📡</span>
+        <div class="label">Noticias</div>
+        <div class="desc">Smart Home e IoT</div>
+      </a>
+      <a href="/#archivo" class="quick-card">
+        <span class="icon">⭐</span>
+        <div class="label">Reviews</div>
+        <div class="desc">Análisis técnicos</div>
+      </a>
+      <a href="/#archivo" class="quick-card">
+        <span class="icon">⚖️</span>
+        <div class="label">Comparativas</div>
+        <div class="desc">Zigbee vs Matter y más</div>
+      </a>
+    </div>
+
+    <a href="/" class="home-btn">← Volver al inicio</a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 OfertasDomoticas.com · <a href="/privacidad.html" style="color:var(--muted);">Privacidad</a> · <a href="/contacto.html" style="color:var(--muted);">Contacto</a></p>
+</footer>
+
+<script>
+function doSearch() {
+  const q = document.getElementById('search-input').value.trim();
+  if (q) {
+    // Search Google restricted to this site
+    window.location.href = 'https://www.google.com/search?q=site:ofertasdomoticas.com+' + encodeURIComponent(q);
+  }
+}
+</script>
+</body>
+</html>
