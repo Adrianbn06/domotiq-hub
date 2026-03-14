@@ -42,9 +42,11 @@
   2. Cuando Google te apruebe, reemplaza ca-pub-XXXXXXXXXXXXXXXX con tu Publisher ID
   3. Mientras tanto, esta línea puede permanecer comentada
   ══════════════════════════════════════════════════════════════════════════ -->
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<!-- <script defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -57,7 +59,7 @@
     --accent2: #3b82f6;
     --accent3: #f59e0b;
     --text: #e2e8f0;
-    --muted: #64748b;
+    --muted: #94a3b8;
     --border: rgba(255,255,255,0.07);
     --border-accent: rgba(0,212,170,0.3);
     --font: 'Space Grotesk', sans-serif;
@@ -118,7 +120,7 @@
   .stats-bar { display:flex; justify-content:center; gap:40px; padding:20px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin-bottom:36px; flex-wrap:wrap; }
   .stat { text-align:center; }
   .stat-num { font-size:22px; font-weight:700; color:var(--accent); font-family:var(--mono); }
-  .stat-label { font-size:11px; color:var(--muted); margin-top:2px; letter-spacing:.5px; text-transform:uppercase; }
+  .stat-label { font-size:12px; color:var(--muted); margin-top:2px; letter-spacing:.3px; }
 
   /* ── AD BANNER ── */
   .ad-banner {
@@ -130,7 +132,7 @@
     margin-bottom:32px;
     min-height:90px;
     display:flex; align-items:center; justify-content:center;
-    color:var(--muted); font-size:12px; font-family:var(--mono);
+    color:#94a3b8; font-size:12px; font-family:var(--mono);
   }
   /* Cuando AdSense esté activo, el div se rellena automáticamente */
   .adsbygoogle { display:block; }
@@ -291,25 +293,27 @@
 <body>
 
 <!-- ═══ HEADER ════════════════════════════════════════════════════════════════ -->
+<a href="#contenido-principal" style="position:absolute;top:-40px;left:0;background:var(--accent);color:#000;padding:8px 16px;border-radius:0 0 8px 0;font-weight:600;font-size:14px;z-index:9999;transition:top 0.2s;text-decoration:none;" onFocus="this.style.top='0'" onBlur="this.style.top='-40px'">Saltar al contenido</a>
 <header>
   <div class="header-inner">
     <a href="/" class="logo">
       <div class="logo-icon">🏠</div>
       Domoti<span>Q</span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Navegación principal">
       <a href="#noticias" id="nav-news">Noticias</a>
       <a href="#descuentos" id="nav-deals">Ofertas</a>
       <a href="#sobre" id="nav-about">Acerca de</a>
     </nav>
-    <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    <div class="lang-toggle" role="group" aria-label="Selector de idioma">
+      <button class="lang-btn active" id="btn-es" onclick="setLang('es')" aria-label="Cambiar a Español">ES</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="Switch to English">EN</button>
     </div>
   </div>
 </header>
 
 <!-- ═══ HERO ══════════════════════════════════════════════════════════════════ -->
+<main id="contenido-principal">
 <div class="wrapper">
   <section class="hero">
 
@@ -349,10 +353,10 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
       <h2 class="section-title">🔥 Mejores descuentos de hoy <span id="deals-count-badge" style="color:var(--accent);font-family:var(--mono);font-size:14px;"></span></h2>
       <div class="filters">
-        <button class="filter-btn active" onclick="setDealsFilter('all')" id="df-all">Todos</button>
-        <button class="filter-btn" onclick="setDealsFilter('amazon')" id="df-amazon">Amazon</button>
-        <button class="filter-btn" onclick="setDealsFilter('ebay')" id="df-ebay">eBay</button>
-        <button class="filter-btn" onclick="setDealsFilter('alibaba')" id="df-alibaba">Alibaba</button>
+        <button class="filter-btn active" onclick="setDealsFilter('all')" id="df-all" aria-label="Ver todas las ofertas">Todos</button>
+        <button class="filter-btn" onclick="setDealsFilter('amazon')" id="df-amazon" aria-label="Filtrar ofertas de Amazon">Amazon</button>
+        <button class="filter-btn" onclick="setDealsFilter('ebay')" id="df-ebay" aria-label="Filtrar ofertas de eBay">eBay</button>
+        <button class="filter-btn" onclick="setDealsFilter('alibaba')" id="df-alibaba" aria-label="Filtrar ofertas de Alibaba">Alibaba</button>
       </div>
     </div>
     <div class="content-grid" id="deals-grid">
@@ -366,14 +370,14 @@
       <h2 class="section-title" id="section-news-title">Noticias de hoy <span id="news-count-badge"></span></h2>
       <div class="filters">
         <span class="filter-label" id="filter-label">Filtrar:</span>
-        <button class="filter-btn active" onclick="setFilter('all')" id="f-all">Todo</button>
-        <button class="filter-btn" onclick="setFilter('news')" id="f-news">Noticias</button>
-        <button class="filter-btn" onclick="setFilter('promo')" id="f-promo">Ofertas</button>
-        <button class="filter-btn" onclick="setFilter('amazon')" id="f-amazon">Amazon</button>
-        <button class="filter-btn" onclick="setFilter('ebay')" id="f-ebay">eBay</button>
-        <button class="filter-btn" onclick="setFilter('alibaba')" id="f-alibaba">Alibaba</button>
-        <button class="filter-btn" onclick="setFilter('review')" id="f-review">Reviews</button>
-        <button class="filter-btn" onclick="setFilter('comparativa')" id="f-comparativa">Comparativas</button>
+        <button class="filter-btn active" onclick="setFilter('all')" id="f-all" aria-label="Ver todo el contenido">Todo</button>
+        <button class="filter-btn" onclick="setFilter('news')" id="f-news" aria-label="Ver solo noticias">Noticias</button>
+        <button class="filter-btn" onclick="setFilter('promo')" id="f-promo" aria-label="Ver solo ofertas">Ofertas</button>
+        <button class="filter-btn" onclick="setFilter('amazon')" id="f-amazon" aria-label="Filtrar por Amazon">Amazon</button>
+        <button class="filter-btn" onclick="setFilter('ebay')" id="f-ebay" aria-label="Filtrar por eBay">eBay</button>
+        <button class="filter-btn" onclick="setFilter('alibaba')" id="f-alibaba" aria-label="Filtrar por Alibaba">Alibaba</button>
+        <button class="filter-btn" onclick="setFilter('review')" id="f-review" aria-label="Ver solo reviews">Reviews</button>
+        <button class="filter-btn" onclick="setFilter('comparativa')" id="f-comparativa" aria-label="Ver solo comparativas">Comparativas</button>
       </div>
     </div>
 
@@ -423,10 +427,10 @@
         <span style="color:var(--accent);font-family:var(--mono);font-size:14px;margin-left:8px;" id="archive-count-badge"></span>
       </h2>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
-        <button class="filter-btn active" onclick="setArchiveFilter('all')" id="af-all">Todo</button>
-        <button class="filter-btn" onclick="setArchiveFilter('news')" id="af-news">Noticias</button>
-        <button class="filter-btn" onclick="setArchiveFilter('review')" id="af-review">Reviews</button>
-        <button class="filter-btn" onclick="setArchiveFilter('comparativa')" id="af-comparativa">Comparativas</button>
+        <button class="filter-btn active" onclick="setArchiveFilter('all')" id="af-all" aria-label="Ver todo el archivo">Todo</button>
+        <button class="filter-btn" onclick="setArchiveFilter('news')" id="af-news" aria-label="Archivo de noticias">Noticias</button>
+        <button class="filter-btn" onclick="setArchiveFilter('review')" id="af-review" aria-label="Archivo de reviews">Reviews</button>
+        <button class="filter-btn" onclick="setArchiveFilter('comparativa')" id="af-comparativa" aria-label="Archivo de comparativas">Comparativas</button>
       </div>
     </div>
     <div class="content-grid" id="archive-grid">
@@ -437,10 +441,11 @@
       </div>
     </div>
   </section>
+</main>
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
-      <h4>🏠 DomotiQ Hub</h4>
+      <p style="font-size:16px;font-weight:700;margin-bottom:8px;">🏠 DomotiQ Hub</p>
       <p id="footer-desc">Tu fuente diaria de noticias y ofertas de domótica, impulsada por inteligencia artificial.</p>
     </div>
     <div class="footer-col">

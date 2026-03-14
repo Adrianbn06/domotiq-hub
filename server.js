@@ -55,7 +55,8 @@ if (helmet) {
           defaultSrc: ["'self'"],
           scriptSrc: [
             "'self'",
-            `'nonce-${nonce}'`,                          // scripts inline con nonce
+            `'nonce-${nonce}'`,
+            "'strict-dynamic'",                          // scripts inline con nonce
             "https://www.googletagmanager.com",
             "https://pagead2.googlesyndication.com",
             "https://fonts.googleapis.com",
@@ -152,7 +153,10 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: false, limit: '10kb' }));
 
 // 4. Servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files EXCEPT index.html (which needs nonce injection)
+app.use(express.static(path.join(__dirname, 'public'), {
+  index: false  // Don't serve index.html automatically — we inject nonce manually
+}));
 
 // 5. Logger de seguridad — registra intentos sospechosos
 app.use((req, res, next) => {
