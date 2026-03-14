@@ -1,110 +1,393 @@
 /**
- * cron.js - Generador de contenido diario con Claude AI
+ * cron.js - Generador de contenido con E-E-A-T, Long-Tail y páginas individuales
  *
- * Lunes y jueves: formato largo con reviews y comparativas (~$0.05)
- * Resto de días:  formato corto económico (~$0.015)
- * Reviews y comparativas se acumulan en archive.json (se borran cada 6 meses)
+ * Lunes y jueves: formato largo (reviews + comparativas) ~$0.05
+ * Resto de días:  formato corto ~$0.015
+ * Cada item genera su propia página HTML en /public/articulos/
  */
 
 import fetch from 'node-fetch';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import cron from 'node-cron';
 import 'dotenv/config';
 
-const DATA_DIR    = process.env.VERCEL ? '/tmp' : './data';
-const DATA_FILE   = process.env.VERCEL ? '/tmp/content.json'  : './data/content.json';
-const ARCHIVE_FILE = './data/archive.json'; // siempre en el repo para persistir
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const today = () => new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+const DATA_DIR     = process.env.VERCEL ? '/tmp' : './data';
+const DATA_FILE    = process.env.VERCEL ? '/tmp/content.json' : './data/content.json';
+const ARCHIVE_FILE = './data/archive.json';
+const PAGES_DIR    = './public/articulos';
+
+const today    = () => new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 const todayISO = () => new Date().toISOString().split('T')[0];
 
-// ─── PROMPT CORTO (lunes-miércoles-viernes-sábado-domingo) ────────────────────
-const PROMPT_CORTO = `Eres un experto en domótica y smart home. Fecha: ${today()}.
+// ─── UTILIDADES ───────────────────────────────────────────────────────────────
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // quitar tildes
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 80);
+}
 
-Busca en la web y genera contenido en español para OfertasDomoticas.com:
-- 10 noticias REALES y RECIENTES sobre domótica, IoT, Alexa, Google Home, Matter, Zigbee.
-- 10 ofertas de productos domóticos: 4 Amazon (&tag=domotiq-20), 3 eBay, 3 Alibaba.
+// ─── PROMPT CORTO (martes, miércoles, viernes, sábado, domingo) ──────────────
+const PROMPT_CORTO = `Eres un ingeniero experto en domótica y smart home con 10 años de experiencia práctica instalando y configurando sistemas. Demuestras EXPERIENCIA REAL (E-E-A-T de Google). Fecha: ${today()}.
+
+Busca en la web y genera contenido TÉCNICO Y ESPECÍFICO en español para OfertasDomoticas.com.
+
+REGLAS DE CALIDAD E-E-A-T:
+- Usa terminología técnica real: protocolos (Zigbee 3.0, Z-Wave S2, Matter 1.2, Thread, BLE Mesh), frecuencias (2.4GHz vs 868MHz), topologías de red (malla vs estrella), consumo en watts, latencia en ms.
+- Menciona compatibilidad específica con ecosistemas: Works with Alexa, Google Home, Apple HomeKit, Home Assistant, SmartThings, Hubitat.
+- Explica POR QUÉ una tecnología es mejor que otra en cada caso de uso.
+- Títulos LONG-TAIL específicos (no "bombilla inteligente" sino "bombilla inteligente E27 Zigbee 3.0 compatible con Home Assistant sin hub Wi-Fi").
+
+Genera:
+- 10 NOTICIAS REALES Y RECIENTES (2025-2026) con URLs reales de fuentes como The Verge, Xataka, Android Authority, ZDNet, TechCrunch, Genbeta. NO uses url:"#".
+- 10 OFERTAS con títulos long-tail técnicos, descripción con specs reales, protocolo usado y ventajas técnicas concretas.
 
 RESPONDE SOLO CON JSON VÁLIDO:
 {
   "items": [
     {
-      "id": 1, "type": "news",
-      "title": "Título noticia",
-      "body": "Resumen de 3-4 oraciones con contexto y detalles técnicos.",
-      "date": "${today()}", "tags": ["IoT"], "source": "Medio", "url": "#"
+      "id": 1,
+      "type": "news",
+      "title": "Título long-tail específico y técnico de la noticia",
+      "body": "3-4 oraciones técnicas: menciona protocolos, versiones, compatibilidades y el impacto real para usuarios de smart home. Explica la relevancia técnica.",
+      "date": "${today()}",
+      "tags": ["Matter", "Zigbee"],
+      "source": "The Verge",
+      "url": "URL REAL del artículo original — busca la fuente en la web",
+      "slug": "slug-url-amigable-del-titulo"
     },
     {
-      "id": 11, "type": "promo",
-      "title": "Nombre producto",
-      "body": "Descripción: qué hace, compatibilidad, protocolo, por qué es buena oferta.",
-      "platform": "Amazon", "price": "$34.99", "originalPrice": "$59.99",
-      "discount": "-41%", "date": "${today()}", "featured": true,
-      "url": "https://www.amazon.com/s?k=smart+home&tag=domotiq-20"
+      "id": 11,
+      "type": "promo",
+      "title": "Nombre Producto + Protocolo + Compatibilidad + Caso de uso específico",
+      "body": "Descripción técnica: protocolo (Zigbee/Matter/Z-Wave), frecuencia de operación, consumo en standby, ecosistemas compatibles, por qué este protocolo es mejor para este caso de uso (ej: Zigbee satura menos la red Wi-Fi doméstica que los dispositivos Wi-Fi directos).",
+      "platform": "Amazon",
+      "price": "$34.99",
+      "originalPrice": "$59.99",
+      "discount": "-41%",
+      "date": "${today()}",
+      "featured": true,
+      "protocol": "Zigbee 3.0",
+      "compatibility": ["Alexa", "Google Home", "Home Assistant"],
+      "slug": "slug-del-producto",
+      "url": "https://www.amazon.com/s?k=zigbee+bulb+smart+home&tag=domotiq-20"
     }
   ]
 }
-REGLAS: IDs 1-10 = news, IDs 11-20 = promo. 4 Amazon con &tag=domotiq-20, 3 eBay, 3 Alibaba. Total 20 items.`;
+REGLAS: IDs 1-10=news, 11-20=promo. 4 Amazon con &tag=domotiq-20, 3 eBay, 3 Alibaba. Total 20 items. Cada item DEBE tener campo "slug".`;
 
-// ─── PROMPT LARGO (lunes y jueves) ────────────────────────────────────────────
-const PROMPT_LARGO = `Eres un experto en domótica y smart home con 10 años de experiencia. Fecha: ${today()}.
+// ─── PROMPT LARGO (lunes y jueves) ───────────────────────────────────────────
+const PROMPT_LARGO = `Eres un ingeniero experto en domótica con 10 años de experiencia real. Demuestras E-E-A-T (Experiencia, Expertise, Autoridad, Confianza) como exige Google. Fecha: ${today()}.
 
-Busca en la web y genera contenido DETALLADO en español para OfertasDomoticas.com:
+Busca en la web y genera contenido TÉCNICO PROFUNDO en español para OfertasDomoticas.com.
 
-1. 6 noticias recientes y reales sobre domótica, IoT, Alexa, Google Home, Matter.
-2. 6 ofertas: 3 Amazon (&tag=domotiq-20), 2 eBay, 1 Alibaba.
-3. 3 REVIEWS detalladas (mínimo 300 palabras): descripción completa, specs técnicas, ventajas, desventajas, para quién es ideal, puntuación /10.
-4. 3 COMPARATIVAS detalladas (mínimo 300 palabras): introducción, diferencias clave, cuándo elegir cada uno, recomendación final.
+REGLAS DE CALIDAD E-E-A-T:
+- Cita protocolos técnicos reales: Zigbee 3.0, Z-Wave S2 Security, Matter 1.2, Thread, Wi-Fi HaLow, BLE Mesh
+- Explica diferencias técnicas: "Zigbee opera a 2.4GHz en topología de malla, saturando menos la red doméstica que 40 dispositivos Wi-Fi directos"
+- Usa métricas reales: latencia, consumo en mW, alcance en metros, número máximo de nodos
+- Títulos LONG-TAIL: "Mejor termostato inteligente Z-Wave para pisos sin neutro compatible con Home Assistant 2026"
+- Para comparativas: tabla real de specs, casos de uso concretos, recomendación por perfil de usuario
+
+Genera:
+1. 6 NOTICIAS REALES con URLs reales de fuentes reconocidas
+2. 6 OFERTAS con specs técnicas detalladas
+3. 3 REVIEWS de 400+ palabras con análisis técnico profundo
+4. 3 COMPARATIVAS de 400+ palabras tipo "Protocolo A vs Protocolo B en 2026"
 
 RESPONDE SOLO CON JSON VÁLIDO:
 {
   "items": [
     {
-      "id": 1, "type": "news",
-      "title": "Título noticia",
-      "body": "Desarrollo completo en 3-4 oraciones con contexto técnico.",
-      "date": "${today()}", "tags": ["IoT"], "source": "Medio", "url": "#"
+      "id": 1,
+      "type": "news",
+      "title": "Título long-tail técnico específico",
+      "body": "Análisis técnico de 4-5 oraciones: protocolos involucrados, impacto en ecosistemas existentes, ventajas técnicas sobre soluciones anteriores, compatibilidad con plataformas open-source como Home Assistant.",
+      "date": "${today()}",
+      "tags": ["Matter 1.2", "Thread"],
+      "source": "The Verge",
+      "url": "URL REAL del artículo",
+      "slug": "slug-seo-amigable"
     },
     {
-      "id": 7, "type": "promo",
-      "title": "Nombre producto",
-      "body": "Descripción detallada: specs, compatibilidad, protocolo, por qué comprar.",
-      "platform": "Amazon", "price": "$34.99", "originalPrice": "$59.99",
-      "discount": "-41%", "date": "${today()}", "featured": true,
-      "url": "https://www.amazon.com/s?k=smart+home&tag=domotiq-20"
+      "id": 7,
+      "type": "promo",
+      "title": "Producto + Protocolo + Ecosistema + Caso uso específico",
+      "body": "Análisis técnico: protocolo de comunicación y sus ventajas sobre Wi-Fi directo, frecuencia de operación, consumo en standby vs activo, número máximo de dispositivos en la malla, latencia típica, ecosistemas compatibles y cómo se integra con Home Assistant sin suscripción en la nube.",
+      "platform": "Amazon",
+      "price": "$49.99",
+      "originalPrice": "$79.99",
+      "discount": "-37%",
+      "date": "${today()}",
+      "featured": true,
+      "protocol": "Matter 1.2",
+      "compatibility": ["Alexa", "Google Home", "Apple HomeKit", "Home Assistant"],
+      "slug": "slug-producto",
+      "url": "https://www.amazon.com/s?k=matter+smart+plug&tag=domotiq-20"
     },
     {
-      "id": 13, "type": "review",
-      "title": "Review: Nombre Producto — ¿Vale la pena en 2026?",
-      "body": "Review COMPLETA de 300+ palabras. Incluye: introducción al producto, características técnicas (conectividad, compatibilidad, consumo), experiencia de uso real, mínimo 3 ventajas y 2 desventajas detalladas, para quién es ideal y veredicto final.",
-      "product": "Nombre exacto", "brand": "Marca", "rating": 8.5,
-      "pros": ["Ventaja 1 detallada", "Ventaja 2 detallada", "Ventaja 3 detallada"],
-      "cons": ["Desventaja 1 detallada", "Desventaja 2 detallada"],
-      "verdict": "Veredicto final en 1-2 oraciones concretas.",
-      "date": "${today()}", "tags": ["Review", "Smart Home"],
+      "id": 13,
+      "type": "review",
+      "title": "Review Técnica: [Producto] — Análisis Completo para Smart Home 2026",
+      "body": "Review de 400+ palabras con estructura: 1) Introducción y posicionamiento en el mercado, 2) Especificaciones técnicas completas (protocolo, frecuencia, consumo, alcance, cifrado), 3) Proceso de instalación y emparejamiento, 4) Rendimiento real en uso diario, 5) Integración con ecosistemas (Alexa, Google Home, Home Assistant), 6) Mínimo 3 ventajas técnicas detalladas, 7) Mínimo 2 limitaciones reales, 8) Perfil ideal de usuario, 9) Comparación con alternativas del mismo rango de precio, 10) Veredicto técnico final con puntuación.",
+      "product": "Nombre exacto del producto",
+      "brand": "Marca",
+      "rating": 8.5,
+      "protocol": "Zigbee 3.0",
+      "pros": ["Ventaja técnica 1 con datos", "Ventaja técnica 2 con datos", "Ventaja técnica 3 con datos"],
+      "cons": ["Limitación técnica 1 con contexto", "Limitación técnica 2 con contexto"],
+      "verdict": "Veredicto técnico en 2 oraciones con recomendación clara.",
+      "date": "${today()}",
+      "tags": ["Review Técnica", "Zigbee"],
+      "slug": "review-producto-2026",
       "url": "https://www.amazon.com/s?k=producto&tag=domotiq-20"
     },
     {
-      "id": 16, "type": "comparativa",
-      "title": "Producto A vs Producto B: ¿Cuál comprar en 2026?",
-      "body": "Comparativa COMPLETA de 300+ palabras. Incluye: qué son ambos productos, tabla de diferencias (precio, compatibilidad, ecosistema, facilidad), análisis individual de cada uno, en qué casos conviene cada uno y recomendación final clara.",
-      "product_a": "Producto A", "product_b": "Producto B",
-      "winner": "Nombre del ganador",
-      "winner_reason": "Por qué gana en una oración.",
-      "date": "${today()}", "tags": ["Comparativa", "Smart Home"],
+      "id": 16,
+      "type": "comparativa",
+      "title": "Protocolo A vs Protocolo B para Hogar Inteligente: ¿Cuál Elegir en 2026?",
+      "body": "Comparativa de 400+ palabras con estructura: 1) Introducción técnica a ambos protocolos/productos, 2) Tabla de especificaciones (frecuencia, topología, alcance, latencia, max nodos, cifrado, consumo), 3) Ventajas técnicas de A sobre B, 4) Ventajas técnicas de B sobre A, 5) Escenario ideal para A (ej: hogar grande con 50+ dispositivos), 6) Escenario ideal para B (ej: apartamento pequeño con pocos dispositivos), 7) Coste total de implementación, 8) Compatibilidad con Home Assistant y otras plataformas open-source, 9) Recomendación final por perfil de usuario.",
+      "product_a": "Producto/Protocolo A",
+      "product_b": "Producto/Protocolo B",
+      "winner": "Ganador general",
+      "winner_reason": "Por qué gana con datos técnicos concretos.",
+      "date": "${today()}",
+      "tags": ["Comparativa Técnica", "Protocolos"],
+      "slug": "comparativa-a-vs-b-2026",
       "url": "https://www.amazon.com/s?k=smart+home&tag=domotiq-20"
     }
   ]
 }
-REGLAS: IDs 1-6=news, 7-12=promo, 13-15=review, 16-18=comparativa. Total 18 items.
-Reviews y comparativas: mínimo 300 palabras en body. Contenido en español.`;
+REGLAS: IDs 1-6=news, 7-12=promo, 13-15=review, 16-18=comparativa. Total 18 items. Cada item DEBE tener "slug".`;
+
+// ─── GENERADOR DE PÁGINAS INDIVIDUALES ───────────────────────────────────────
+function generateArticlePage(item) {
+  const canonicalUrl = `https://ofertasdomoticas.com/articulos/${item.slug}.html`;
+  const typeLabels = { news: 'Noticia', promo: 'Oferta', review: 'Review', comparativa: 'Comparativa' };
+  const typeIcons  = { news: '📡', promo: '🏷️', review: '⭐', comparativa: '⚖️' };
+  const typeColors = { news: '#3b82f6', promo: '#f59e0b', review: '#a78bfa', comparativa: '#4ade80' };
+
+  const color = typeColors[item.type] || '#00d4aa';
+  const label = typeLabels[item.type] || item.type;
+  const icon  = typeIcons[item.type]  || '📄';
+
+  // Protocolo y compatibilidad (para ofertas y reviews)
+  const protocolHtml = item.protocol ? `
+    <div class="meta-tag">🔌 ${item.protocol}</div>` : '';
+  const compatHtml = item.compatibility ? `
+    <div class="compat">
+      <strong>Compatible con:</strong> ${item.compatibility.map(c => `<span class="compat-badge">${c}</span>`).join('')}
+    </div>` : '';
+
+  // Puntuación para reviews
+  const ratingHtml = item.rating ? `
+    <div class="rating-box">
+      <span class="rating-num">${item.rating}</span>
+      <span class="rating-max">/10</span>
+      <span class="rating-label">Puntuación técnica</span>
+    </div>` : '';
+
+  // Pros y cons para reviews
+  const prosConsHtml = (item.pros || item.cons) ? `
+    <div class="pros-cons-grid">
+      ${item.pros ? `<div class="pros-box"><h3>✅ Ventajas</h3><ul>${item.pros.map(p => `<li>${p}</li>`).join('')}</ul></div>` : ''}
+      ${item.cons ? `<div class="cons-box"><h3>❌ Limitaciones</h3><ul>${item.cons.map(c => `<li>${c}</li>`).join('')}</ul></div>` : ''}
+    </div>` : '';
+
+  // Veredicto para reviews
+  const verdictHtml = item.verdict ? `
+    <div class="verdict-box">
+      <strong>🏆 Veredicto:</strong> ${item.verdict}
+    </div>` : '';
+
+  // Ganador para comparativas
+  const winnerHtml = item.winner ? `
+    <div class="winner-box">
+      <strong>🏆 Ganador:</strong> ${item.winner} — ${item.winner_reason || ''}
+    </div>` : '';
+
+  // Precio para ofertas
+  const priceHtml = item.price ? `
+    <div class="price-section">
+      <span class="price-main">${item.price}</span>
+      ${item.originalPrice ? `<span class="price-old">${item.originalPrice}</span>` : ''}
+      ${item.discount ? `<span class="price-discount">${item.discount}</span>` : ''}
+      <a href="${item.url}" target="_blank" rel="noopener sponsored" class="buy-btn">
+        Ver oferta en ${item.platform} →
+      </a>
+    </div>` : '';
+
+  // Schema JSON-LD específico por tipo
+  let schemaJson = '';
+  if (item.type === 'promo') {
+    schemaJson = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": item.title,
+      "description": item.body,
+      "offers": {
+        "@type": "Offer",
+        "url": canonicalUrl,
+        "priceCurrency": "USD",
+        "price": item.price ? item.price.replace(/[^0-9.]/g,'') : "0",
+        "availability": "https://schema.org/InStock",
+        "seller": { "@type": "Organization", "name": item.platform || "Amazon" }
+      }
+    });
+  } else if (item.type === 'review') {
+    schemaJson = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "name": item.title,
+      "reviewBody": item.body,
+      "datePublished": item.date,
+      "author": { "@type": "Organization", "name": "OfertasDomoticas.com" },
+      "itemReviewed": { "@type": "Product", "name": item.product || item.title },
+      "reviewRating": item.rating ? {
+        "@type": "Rating", "ratingValue": item.rating, "bestRating": 10
+      } : undefined
+    });
+  } else if (item.type === 'news') {
+    schemaJson = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "headline": item.title,
+      "description": item.body,
+      "datePublished": new Date().toISOString(),
+      "author": { "@type": "Organization", "name": "OfertasDomoticas.com" },
+      "publisher": { "@type": "Organization", "name": "OfertasDomoticas.com",
+        "logo": { "@type": "ImageObject", "url": "https://ofertasdomoticas.com/og-image.png" }
+      },
+      "keywords": (item.tags || []).join(', ')
+    });
+  } else {
+    schemaJson = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": item.title,
+      "description": item.body.slice(0, 200),
+      "datePublished": new Date().toISOString(),
+      "author": { "@type": "Organization", "name": "OfertasDomoticas.com" }
+    });
+  }
+
+  return `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${item.title} | OfertasDomoticas.com</title>
+  <meta name="description" content="${item.body.slice(0, 155).replace(/"/g, '&quot;')}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="${canonicalUrl}">
+  <meta property="og:title" content="${item.title.replace(/"/g, '&quot;')}">
+  <meta property="og:description" content="${item.body.slice(0, 155).replace(/"/g, '&quot;')}">
+  <meta property="og:url" content="${canonicalUrl}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OfertasDomoticas.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">${schemaJson}</script>
+  <style>
+    :root { --accent:#00d4aa; --bg:#0a0e1a; --card:#141c2e; --text:#e2e8f0; --muted:#64748b; --border:rgba(255,255,255,0.07); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Space Grotesk',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+    body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+    .wrapper { max-width:800px; margin:0 auto; padding:40px 20px; position:relative; z-index:1; }
+    .back { display:inline-flex; align-items:center; gap:6px; color:var(--accent); text-decoration:none; font-size:14px; margin-bottom:28px; padding:8px 16px; border:1px solid rgba(0,212,170,0.3); border-radius:8px; transition:all 0.2s; }
+    .back:hover { background:rgba(0,212,170,0.08); }
+    .type-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:100px; font-size:12px; font-weight:600; letter-spacing:0.4px; margin-bottom:16px; background:rgba(${color === '#3b82f6' ? '59,130,246' : color === '#f59e0b' ? '245,158,11' : color === '#a78bfa' ? '167,139,250' : '74,222,128'},.15); color:${color}; border:1px solid ${color}33; }
+    .breadcrumb { font-size:12px; color:var(--muted); margin-bottom:16px; }
+    .breadcrumb a { color:var(--muted); text-decoration:none; }
+    .breadcrumb a:hover { color:var(--accent); }
+    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; letter-spacing:-0.5px; margin-bottom:16px; }
+    .meta { display:flex; align-items:center; gap:16px; color:var(--muted); font-size:13px; margin-bottom:24px; flex-wrap:wrap; }
+    .meta-tag { background:rgba(255,255,255,0.05); padding:3px 10px; border-radius:6px; font-size:12px; }
+    .compat { margin:12px 0; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    .compat-badge { background:rgba(0,212,170,0.1); color:var(--accent); padding:2px 10px; border-radius:6px; font-size:12px; font-weight:500; }
+    .article-body { font-size:16px; color:#cbd5e1; line-height:1.85; margin:24px 0; }
+    .rating-box { display:flex; align-items:baseline; gap:6px; margin:20px 0; padding:16px 20px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:12px; }
+    .rating-num { font-size:42px; font-weight:700; color:#f59e0b; font-variant-numeric:tabular-nums; }
+    .rating-max { font-size:20px; color:var(--muted); }
+    .rating-label { font-size:14px; color:var(--muted); margin-left:8px; }
+    .pros-cons-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
+    .pros-box, .cons-box { padding:16px; border-radius:12px; }
+    .pros-box { background:rgba(74,222,128,0.06); border:1px solid rgba(74,222,128,0.2); }
+    .cons-box { background:rgba(248,113,113,0.06); border:1px solid rgba(248,113,113,0.2); }
+    .pros-box h3 { color:#4ade80; font-size:14px; margin-bottom:10px; }
+    .cons-box h3 { color:#f87171; font-size:14px; margin-bottom:10px; }
+    .pros-box li, .cons-box li { font-size:13px; color:var(--muted); margin-bottom:6px; margin-left:16px; line-height:1.6; }
+    .verdict-box { background:rgba(0,212,170,0.06); border-left:3px solid var(--accent); padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0; font-size:15px; }
+    .winner-box { background:rgba(245,158,11,0.08); border-left:3px solid #f59e0b; padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0; font-size:15px; }
+    .price-section { display:flex; align-items:center; gap:12px; margin:24px 0; flex-wrap:wrap; padding:20px; background:var(--card); border-radius:14px; border:1px solid var(--border); }
+    .price-main { font-size:28px; font-weight:700; color:#f59e0b; font-family:monospace; }
+    .price-old { font-size:16px; color:var(--muted); text-decoration:line-through; }
+    .price-discount { background:rgba(239,68,68,0.12); color:#f87171; padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; }
+    .buy-btn { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,var(--accent),#00a884); color:#000; font-weight:600; font-size:14px; padding:10px 22px; border-radius:10px; text-decoration:none; margin-left:auto; transition:all 0.2s; }
+    .buy-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,212,170,0.3); }
+    .source-link { display:inline-flex; align-items:center; gap:6px; color:var(--accent); text-decoration:none; font-size:14px; padding:10px 18px; border:1px solid rgba(0,212,170,0.3); border-radius:8px; margin-top:20px; transition:all 0.2s; }
+    .source-link:hover { background:rgba(0,212,170,0.08); }
+    .related { margin-top:48px; padding-top:32px; border-top:1px solid var(--border); }
+    .related h3 { font-size:18px; font-weight:600; margin-bottom:16px; }
+    .related-link { display:block; color:var(--accent); text-decoration:none; font-size:14px; padding:10px 0; border-bottom:1px solid var(--border); }
+    .related-link:hover { color:#fff; }
+    @media(max-width:600px) { .pros-cons-grid { grid-template-columns:1fr; } .buy-btn { margin-left:0; width:100%; justify-content:center; } }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <a href="/" class="back">← Volver a OfertasDomoticas.com</a>
+
+  <nav class="breadcrumb">
+    <a href="/">Inicio</a> › <a href="/#${item.type === 'news' ? 'noticias' : item.type === 'promo' ? 'descuentos' : 'archivo'}">${label}s</a> › ${item.title.slice(0, 50)}...
+  </nav>
+
+  <div class="type-badge">${icon} ${label}</div>
+
+  <h1>${item.title}</h1>
+
+  <div class="meta">
+    <span>📅 ${item.date}</span>
+    ${item.source ? `<span>📰 ${item.source}</span>` : ''}
+    ${item.tags ? item.tags.map(t => `<span class="meta-tag">${t}</span>`).join('') : ''}
+  </div>
+
+  ${protocolHtml}
+  ${compatHtml}
+  ${priceHtml}
+  ${ratingHtml}
+
+  <div class="article-body">${item.body}</div>
+
+  ${prosConsHtml}
+  ${verdictHtml}
+  ${winnerHtml}
+
+  ${item.type === 'news' && item.url && item.url !== '#' ? `
+  <a href="${item.url}" target="_blank" rel="noopener" class="source-link">
+    🔗 Leer artículo completo en ${item.source || 'la fuente original'} →
+  </a>` : ''}
+
+  <div class="related">
+    <h3>Explorar más contenido</h3>
+    <a href="/#descuentos" class="related-link">🔥 Ver todas las ofertas del día</a>
+    <a href="/#noticias" class="related-link">📡 Últimas noticias de domótica</a>
+    <a href="/#archivo" class="related-link">📚 Archivo de reviews y comparativas</a>
+  </div>
+</div>
+</body>
+</html>`;
+}
 
 // ─── ARCHIVO HISTÓRICO ────────────────────────────────────────────────────────
 function loadArchive() {
   try {
-    if (fs.existsSync(ARCHIVE_FILE)) {
-      return JSON.parse(fs.readFileSync(ARCHIVE_FILE, 'utf8'));
-    }
+    if (fs.existsSync(ARCHIVE_FILE)) return JSON.parse(fs.readFileSync(ARCHIVE_FILE, 'utf8'));
   } catch {}
   return { items: [], lastPurge: todayISO() };
 }
@@ -116,49 +399,55 @@ function saveArchive(archive) {
 
 function updateArchive(newItems) {
   const archive = loadArchive();
+  newItems.forEach(item => { item.archivedAt = todayISO(); archive.items.push(item); });
 
-  // Agregar solo reviews y comparativas nuevas
-  const toAdd = newItems.filter(i => i.type === 'review' || i.type === 'comparativa' || i.type === 'news');
-  toAdd.forEach(item => {
-    item.archivedAt = todayISO();
-    archive.items.push(item);
-  });
-
-  // Purgar items de más de 6 meses si corresponde
+  // Purgar items de más de 6 meses
   const sixMonthsAgo = new Date();
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-
   const lastPurge = new Date(archive.lastPurge || '2020-01-01');
-  const shouldPurge = (new Date() - lastPurge) > (30 * 24 * 60 * 60 * 1000); // cada 30 días verifica
 
-  if (shouldPurge) {
+  if ((new Date() - lastPurge) > 30 * 24 * 60 * 60 * 1000) {
     const before = archive.items.length;
-    archive.items = archive.items.filter(item => {
-      const itemDate = new Date(item.archivedAt || '2020-01-01');
-      return itemDate > sixMonthsAgo;
-    });
+    archive.items = archive.items.filter(i => new Date(i.archivedAt || '2020-01-01') > sixMonthsAgo);
     archive.lastPurge = todayISO();
     const removed = before - archive.items.length;
     if (removed > 0) console.log(`🗑️ Archivo: eliminados ${removed} items de más de 6 meses`);
   }
 
   saveArchive(archive);
-  console.log(`📚 Archivo: ${archive.items.length} reviews/comparativas acumuladas`);
+  console.log(`📚 Archivo: ${archive.items.length} items acumulados`);
   return archive;
+}
+
+// ─── GENERACIÓN DE PÁGINAS INDIVIDUALES ──────────────────────────────────────
+function generatePages(items) {
+  if (!fs.existsSync(PAGES_DIR)) fs.mkdirSync(PAGES_DIR, { recursive: true });
+
+  let generated = 0;
+  for (const item of items) {
+    if (!item.slug) {
+      item.slug = slugify(item.title);
+    }
+    const filePath = path.join(PAGES_DIR, `${item.slug}.html`);
+    // No sobreescribir páginas existentes (preservar contenido histórico)
+    if (!fs.existsSync(filePath)) {
+      fs.writeFileSync(filePath, generateArticlePage(item), 'utf8');
+      generated++;
+    }
+  }
+  console.log(`📄 Páginas generadas: ${generated} nuevas`);
+  return generated;
 }
 
 // ─── FUNCIÓN PRINCIPAL ────────────────────────────────────────────────────────
 export async function generateContent() {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    throw new Error('Falta ANTHROPIC_API_KEY en el archivo .env');
-  }
+  if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
 
-  // Determinar si es día largo (lunes=1, jueves=4)
   const dayOfWeek = new Date().getDay();
   const isLongDay = dayOfWeek === 1 || dayOfWeek === 4;
-  const mode = isLongDay ? 'LARGO (reviews + comparativas)' : 'CORTO (económico)';
+  const mode = isLongDay ? 'LARGO (E-E-A-T + reviews + comparativas)' : 'CORTO (E-E-A-T + long-tail)';
 
-  console.log(`[${new Date().toISOString()}] 🤖 Generando contenido — Modo: ${mode}`);
+  console.log(`[${new Date().toISOString()}] 🤖 Generando — Modo: ${mode}`);
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -178,7 +467,7 @@ export async function generateContent() {
 
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Error API Anthropic ${response.status}: ${errText}`);
+    throw new Error(`Error API ${response.status}: ${errText}`);
   }
 
   const data = await response.json();
@@ -188,31 +477,38 @@ export async function generateContent() {
   }
 
   const jsonMatch = rawText.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) throw new Error(`No JSON en respuesta: ${rawText.slice(0, 300)}`);
+  if (!jsonMatch) throw new Error(`Sin JSON en respuesta: ${rawText.slice(0, 300)}`);
 
   const parsed = JSON.parse(jsonMatch[0]);
   if (!parsed.items || !Array.isArray(parsed.items)) throw new Error('JSON sin campo items');
 
-  // Guardar contenido del día
+  // Asegurar que todos los items tienen slug
+  parsed.items.forEach(item => {
+    if (!item.slug) item.slug = slugify(item.title);
+  });
+
   const result = {
     generated: new Date().toISOString(),
     generatedHuman: new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' }),
     mode: isLongDay ? 'long' : 'short',
     count: parsed.items.length,
-    newsCount: parsed.items.filter(i => i.type === 'news').length,
-    promoCount: parsed.items.filter(i => i.type === 'promo').length,
-    reviewCount: parsed.items.filter(i => i.type === 'review').length,
-    comparativaCount: parsed.items.filter(i => i.type === 'comparativa').length,
+    newsCount:       parsed.items.filter(i => i.type === 'news').length,
+    promoCount:      parsed.items.filter(i => i.type === 'promo').length,
+    reviewCount:     parsed.items.filter(i => i.type === 'review').length,
+    comparativaCount:parsed.items.filter(i => i.type === 'comparativa').length,
     items: parsed.items
   };
 
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.writeFileSync(DATA_FILE, JSON.stringify(result, null, 2), 'utf8');
 
-  // Acumular en archivo histórico (noticias siempre, reviews/comparativas en días largos)
+  // Generar páginas individuales
+  generatePages(parsed.items);
+
+  // Archivar todo
   updateArchive(parsed.items);
 
-  console.log(`✅ Generados: ${result.newsCount} noticias, ${result.promoCount} promos, ${result.reviewCount} reviews, ${result.comparativaCount} comparativas`);
+  console.log(`✅ ${result.newsCount} noticias, ${result.promoCount} promos, ${result.reviewCount} reviews, ${result.comparativaCount} comparativas`);
   return result;
 }
 
@@ -225,5 +521,5 @@ if (process.argv.includes('--once')) {
   cron.schedule(`0 ${hour} * * *`, () => {
     generateContent().catch(err => console.error('❌ Error cron:', err.message));
   });
-  console.log(`⏰ Cron activo — Lunes/Jueves: modo largo | Resto: modo corto`);
+  console.log(`⏰ Cron activo — Lun/Jue: largo | Resto: corto | E-E-A-T + páginas individuales`);
 }

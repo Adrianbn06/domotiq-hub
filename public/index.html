@@ -670,7 +670,7 @@ function renderItems(items) {
     if (item.type === 'news') {
       return `
         <a class="card" style="animation-delay:${delay}s"
-           href="${item.url || '#'}" target="_blank" rel="noopener"
+           href="${item.slug ? '/articulos/' + item.slug + '.html' : (item.url || '#')}" target="${item.slug ? '_self' : '_blank'}" rel="noopener"
            onclick="trackClick('news', '${item.title.replace(/'/g,"\\'")}')">
           <div class="card-header">
             <div class="card-tags">
@@ -689,7 +689,7 @@ function renderItems(items) {
     } else if (item.type === 'review') {
       return `
         <a class="card" style="animation-delay:${delay}s"
-           href="${item.url || '#'}" target="_blank" rel="noopener"
+           href="${item.slug ? '/articulos/' + item.slug + '.html' : (item.url || '#')}" target="${item.slug ? '_self' : '_blank'}" rel="noopener"
            onclick="trackClick('review', '${item.title.replace(/'/g,"\'")}')">
           <div class="card-header">
             <div class="card-tags">
@@ -707,7 +707,7 @@ function renderItems(items) {
     } else if (item.type === 'comparativa') {
       return `
         <a class="card" style="animation-delay:${delay}s"
-           href="${item.url || '#'}" target="_blank" rel="noopener"
+           href="${item.slug ? '/articulos/' + item.slug + '.html' : (item.url || '#')}" target="${item.slug ? '_self' : '_blank'}" rel="noopener"
            onclick="trackClick('comparativa', '${item.title.replace(/'/g,"\'")}')">
           <div class="card-header">
             <div class="card-tags">
