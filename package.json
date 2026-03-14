@@ -1,0 +1,18 @@
+{
+  "name": "domotiq-hub",
+  "version": "1.0.0",
+  "description": "Hub de noticias y ofertas de domotica con IA",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "generate": "node cron.js --once"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2"
+  }
+}
