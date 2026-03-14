@@ -13,6 +13,75 @@ import { fileURLToPath } from 'url';
 import cron from 'node-cron';
 import 'dotenv/config';
 
+const PRICE_HISTORY_FILE = './data/price-history.json';
+
+// ─── HISTORIAL DE PRECIOS ─────────────────────────────────────────────────────
+function loadPriceHistory() {
+  try {
+    if (fs.existsSync(PRICE_HISTORY_FILE)) {
+      return JSON.parse(fs.readFileSync(PRICE_HISTORY_FILE, 'utf8'));
+    }
+  } catch {}
+  return { prices: {}, lastUpdate: new Date().toISOString().split('T')[0] };
+}
+
+function savePriceHistory(history) {
+  fs.writeFileSync(PRICE_HISTORY_FILE, JSON.stringify(history, null, 2), 'utf8');
+}
+
+function updatePriceHistory(items) {
+  const history = loadPriceHistory();
+  const today = new Date().toISOString().split('T')[0];
+
+  items.filter(i => i.type === 'promo' && i.price).forEach(item => {
+    const key = item.slug || item.title.slice(0, 50);
+    const price = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+    if (isNaN(price)) return;
+
+    if (!history.prices[key]) {
+      history.prices[key] = { title: item.title, records: [] };
+    }
+
+    history.prices[key].records.push({ date: today, price });
+
+    // Mantener solo los últimos 90 días
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 90);
+    history.prices[key].records = history.prices[key].records.filter(r =>
+      new Date(r.date) > cutoff
+    );
+  });
+
+  history.lastUpdate = today;
+  savePriceHistory(history);
+  return history;
+}
+
+function getPriceInsight(item, history) {
+  if (!item.slug && !item.title) return null;
+  const key = item.slug || item.title.slice(0, 50);
+  const record = history.prices[key];
+  if (!record || record.records.length < 3) return null;
+
+  const currentPrice = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+  if (isNaN(currentPrice)) return null;
+
+  const prices = record.records.map(r => r.price);
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+  const avgPrice = prices.reduce((a, b) => a + b, 0) / prices.length;
+
+  if (currentPrice <= minPrice * 1.02) {
+    return { type: 'minimum', label: '🔥 Precio mínimo histórico', color: '#ef4444' };
+  } else if (currentPrice <= avgPrice * 0.9) {
+    return { type: 'low', label: '📉 Por debajo del precio medio', color: '#f59e0b' };
+  } else if (currentPrice >= maxPrice * 0.98) {
+    return { type: 'high', label: '📈 Precio alto — espera si puedes', color: '#64748b' };
+  }
+  return null;
+}
+
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const DATA_DIR     = process.env.VERCEL ? '/tmp' : './data';
@@ -167,7 +236,7 @@ RESPONDE SOLO CON JSON VÁLIDO:
 REGLAS: IDs 1-6=news, 7-12=promo, 13-15=review, 16-18=comparativa. Total 18 items. Cada item DEBE tener "slug".`;
 
 // ─── GENERADOR DE PÁGINAS INDIVIDUALES ───────────────────────────────────────
-function generateArticlePage(item) {
+function generateArticlePage(item, allItems = []) {
   const canonicalUrl = `https://ofertasdomoticas.com/articulos/${item.slug}.html`;
   const typeLabels = { news: 'Noticia', promo: 'Oferta', review: 'Review', comparativa: 'Comparativa' };
   const typeIcons  = { news: '📡', promo: '🏷️', review: '⭐', comparativa: '⚖️' };
@@ -224,6 +293,75 @@ function generateArticlePage(item) {
     </div>` : '';
 
   // Schema JSON-LD específico por tipo
+  // ─── FAQ dinámico por tipo ─────────────────────────────────────────────────
+  const faqData = {
+    news: [
+      { q: '¿Cómo afecta esta noticia al mercado del hogar inteligente?', a: item.body },
+      { q: '¿Es compatible con los sistemas domóticos actuales?', a: 'Los principales ecosistemas como Alexa, Google Home y Apple HomeKit están adoptando el estándar Matter, lo que garantiza compatibilidad entre marcas.' },
+      { q: '¿Dónde puedo encontrar más información sobre este tema?', a: `Puedes leer el artículo completo en la fuente original${item.source ? ' (' + item.source + ')' : ''} y seguir las novedades en OfertasDomoticas.com.` }
+    ],
+    promo: [
+      { q: `¿Vale la pena comprar ${item.product || item.title}?`, a: item.body },
+      { q: '¿Con qué asistentes de voz es compatible?', a: item.compatibility ? 'Es compatible con: ' + item.compatibility.join(', ') + '.' : 'Consulta la descripción del producto para ver la compatibilidad exacta con Alexa, Google Home y Apple HomeKit.' },
+      { q: '¿Cuánto tiempo durará esta oferta?', a: 'Las ofertas de domótica pueden cambiar en cualquier momento. Te recomendamos aprovecharla cuanto antes si el precio te parece adecuado.' },
+      { q: `¿Qué protocolo usa ${item.product || item.title}?`, a: item.protocol ? `Este dispositivo usa el protocolo ${item.protocol}, que ofrece mayor estabilidad y menor interferencia con tu red Wi-Fi doméstica.` : 'Consulta las especificaciones técnicas del producto para conocer el protocolo de comunicación.' }
+    ],
+    review: [
+      { q: `¿Es recomendable ${item.product || item.title}?`, a: item.verdict || item.body.slice(0, 200) },
+      { q: '¿Funciona con Home Assistant sin suscripción en la nube?', a: 'La compatibilidad con Home Assistant depende del protocolo del dispositivo. Los dispositivos Zigbee, Z-Wave y Matter suelen funcionar localmente sin necesidad de nube.' },
+      { q: '¿Cuáles son las principales desventajas?', a: item.cons ? item.cons.join('. ') : 'Consulta la sección de desventajas en esta review para conocer las limitaciones del producto.' }
+    ],
+    comparativa: [
+      { q: `¿Cuál es mejor, ${item.product_a || 'opción A'} o ${item.product_b || 'opción B'}?`, a: item.winner_reason || item.body.slice(0, 200) },
+      { q: '¿Cuál tiene mejor relación calidad-precio?', a: 'Depende de tu caso de uso. Lee la comparativa completa para ver cuál se adapta mejor a tu hogar y presupuesto.' },
+      { q: '¿Son compatibles entre sí estos dispositivos?', a: 'Con el estándar Matter ambos ecosistemas pueden coexistir. Sin embargo, para integración avanzada te recomendamos usar Home Assistant como hub central.' }
+    ]
+  };
+
+  const faqs = faqData[item.type] || faqData.news;
+  const faqHtml = `
+    <section class="faq-section" style="margin-top:40px;">
+      <h2 style="font-size:20px;font-weight:600;color:#e2e8f0;margin-bottom:20px;">Preguntas frecuentes</h2>
+      ${faqs.map(faq => `
+        <details style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:10px;overflow:hidden;">
+          <summary style="padding:14px 18px;cursor:pointer;font-size:14px;font-weight:500;color:#e2e8f0;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+            ${faq.q}
+            <span style="color:#00d4aa;font-size:18px;flex-shrink:0;margin-left:12px;">+</span>
+          </summary>
+          <div style="padding:0 18px 14px;font-size:14px;color:#94a3b8;line-height:1.7;">${faq.a}</div>
+        </details>`).join('')}
+    </section>`;
+
+  const faqSchemaJson = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
+    }))
+  });
+
+  // ─── Artículos relacionados ──────────────────────────────────────────────────
+  const related = allItems
+    .filter(r => r.slug && r.slug !== item.slug && r.type === item.type)
+    .slice(0, 3);
+
+  const relatedHtml = related.length > 0 ? `
+    <section style="margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.07);">
+      <h2 style="font-size:18px;font-weight:600;color:#e2e8f0;margin-bottom:16px;">
+        ${item.type === 'promo' ? '🏷️ Más ofertas relacionadas' : item.type === 'news' ? '📡 Más noticias' : '⭐ Más reviews'}
+      </h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+        ${related.map(r => `
+          <a href="/articulos/${r.slug}.html" style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;text-decoration:none;color:#e2e8f0;display:block;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,212,170,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+            <div style="font-size:12px;color:#00d4aa;margin-bottom:6px;">${r.type === 'promo' ? '🏷️ Oferta' : r.type === 'news' ? '📡 Noticia' : '⭐ Review'}</div>
+            <div style="font-size:13px;font-weight:500;line-height:1.4;">${r.title.slice(0,80)}${r.title.length > 80 ? '...' : ''}</div>
+            ${r.price ? `<div style="font-size:14px;font-weight:700;color:#f59e0b;margin-top:8px;">${r.price}</div>` : ''}
+          </a>`).join('')}
+      </div>
+    </section>` : '';
+
   let schemaJson = '';
   if (item.type === 'promo') {
     schemaJson = JSON.stringify({
@@ -373,13 +511,17 @@ function generateArticlePage(item) {
     🔗 Leer artículo completo en ${item.source || 'la fuente original'} →
   </a>` : ''}
 
-  <div class="related">
-    <h3>Explorar más contenido</h3>
+  ${faqHtml}
+  ${relatedHtml}
+
+  <div class="related" style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:12px;">Explorar más</h3>
     <a href="/#descuentos" class="related-link">🔥 Ver todas las ofertas del día</a>
     <a href="/#noticias" class="related-link">📡 Últimas noticias de domótica</a>
     <a href="/#archivo" class="related-link">📚 Archivo de reviews y comparativas</a>
   </div>
 </div>
+<script type="application/ld+json">${faqSchemaJson}</script>
 </body>
 </html>`;
 }
@@ -421,6 +563,7 @@ function updateArchive(newItems) {
 
 // ─── GENERACIÓN DE PÁGINAS INDIVIDUALES ──────────────────────────────────────
 function generatePages(items) {
+  const allItems = items; // pass to article pages for related articles
   if (!fs.existsSync(PAGES_DIR)) fs.mkdirSync(PAGES_DIR, { recursive: true });
 
   let generated = 0;
@@ -431,7 +574,7 @@ function generatePages(items) {
     const filePath = path.join(PAGES_DIR, `${item.slug}.html`);
     // No sobreescribir páginas existentes (preservar contenido histórico)
     if (!fs.existsSync(filePath)) {
-      fs.writeFileSync(filePath, generateArticlePage(item), 'utf8');
+      fs.writeFileSync(filePath, generateArticlePage(item, allItems), 'utf8');
       generated++;
     }
   }
@@ -508,8 +651,11 @@ export async function generateContent() {
   // Archivar todo
   updateArchive(parsed.items);
 
+  // Actualizar historial de precios
+  const priceHistory = updatePriceHistory(parsed.items);
+
   // SSG: inject content directly into index.html for instant loading
-  injectSSG(parsed.items);
+  injectSSG(parsed.items, priceHistory);
 
   console.log(`✅ ${result.newsCount} noticias, ${result.promoCount} promos, ${result.reviewCount} reviews, ${result.comparativaCount} comparativas`);
   return result;
@@ -552,6 +698,8 @@ function renderCardHTML(item, i) {
 
   if (item.type === 'promo') {
     const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    const insight = priceHistory ? getPriceInsight(item, priceHistory) : null;
+    const insightBadge = insight ? `<div style="background:${insight.color}22;border:1px solid ${insight.color}44;color:${insight.color};padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;margin-top:6px;display:inline-block;">${insight.label}</div>` : '';
     return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_blank" rel="sponsored noopener">
       <div class="card-header">
         <div class="card-tags">
@@ -563,6 +711,7 @@ function renderCardHTML(item, i) {
       </div>
       <div class="card-title">${item.title}</div>
       <div class="card-body">${item.body}</div>
+      ${insightBadge}
       <div class="card-footer">
         <div style="display:flex;gap:8px;align-items:center;">
           <span class="price-badge">${item.price}</span>
@@ -604,7 +753,7 @@ function renderCardHTML(item, i) {
   return '';
 }
 
-export function injectSSG(items) {
+export function injectSSG(items, priceHistory = null) {
   const indexPath = path.join(__dirname, 'public', 'index.html');
   if (!fs.existsSync(indexPath)) {
     console.log('⚠️  index.html no encontrado para SSG');
