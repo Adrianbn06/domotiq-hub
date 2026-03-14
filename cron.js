@@ -1,8 +1,11 @@
 /**
  * cron.js - Generador de contenido con E-E-A-T, Long-Tail y páginas individuales
  *
- * Lunes y jueves: formato largo (reviews + comparativas) ~$0.05
- * Resto de días:  formato corto ~$0.015
+ * Lunes:          resumen noticias semanales ~$0.032
+ * Mar/Mié/Jue:    10 ofertas ~$0.032/día
+ * Viernes:         5 ofertas + 3 reviews + 3 comparativas ~$0.093
+ * Sáb/Dom:         10 ofertas ~$0.032/día
+ * Costo mensual:   ~$1.24
  * Cada item genera su propia página HTML en /public/articulos/
  */
 
@@ -91,37 +94,48 @@ const PAGES_DIR    = './public/articulos';
 
 const today    = () => new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
 
-// ─── PROMPTS DIVIDIDOS (noticias + ofertas por separado para evitar JSON truncado) ─
+// ─── PROMPTS POR DÍA ─────────────────────────────────────────────────────────
+// Lunes:       10 noticias resumen semanal
+// Mar/Mié/Jue: 10 ofertas
+// Viernes:     5 ofertas + 3 reviews + 3 comparativas
+// Sáb/Dom:     10 ofertas
 
-const PROMPT_CORTO_NOTICIAS = `Eres un experto en domótica y smart home. Fecha: ${today()}.
-Busca en la web y genera 10 NOTICIAS REALES Y RECIENTES (2025-2026) sobre domótica, IoT, Alexa, Google Home, Matter, Zigbee.
-Usa terminología técnica: protocolos, versiones, compatibilidades. Títulos long-tail específicos.
+// LUNES — Resumen de las noticias más importantes de la semana
+const PROMPT_LUNES_NOTICIAS = `Eres un experto en domótica y smart home. Fecha: ${today()}.
+Busca en la web las 10 NOTICIAS MÁS IMPORTANTES de la última semana sobre domótica, IoT, smart home, Alexa, Google Home, Matter, Zigbee, Z-Wave.
+Selecciona solo las que tienen mayor impacto técnico o comercial. Títulos long-tail específicos.
 RESPONDE SOLO CON JSON VÁLIDO — sin markdown, sin texto extra:
-{"items":[{"id":1,"type":"news","title":"Título técnico long-tail","body":"3-4 oraciones técnicas con protocolos y compatibilidades.","date":"${today()}","tags":["Matter"],"source":"The Verge","url":"URL REAL del artículo","slug":"slug-url-amigable"}]}
+{"items":[{"id":1,"type":"news","title":"Título técnico long-tail específico","body":"3-4 oraciones técnicas: protocolo involucrado, impacto real, compatibilidad con ecosistemas.","date":"${today()}","tags":["Matter"],"source":"The Verge","url":"URL REAL del artículo original","slug":"slug-url-amigable"}]}
 IDs del 1 al 10. Exactamente 10 noticias.`;
 
-const PROMPT_CORTO_OFERTAS = `Eres un experto en domótica y smart home. Fecha: ${today()}.
-Genera 10 OFERTAS de productos domóticos: 4 Amazon (con &tag=domotiq-20), 3 eBay, 3 Alibaba.
-Títulos long-tail técnicos con protocolo y ecosistema. Descripción con specs reales.
+// MAR/MIÉ/JUE/SÁB/DOM — 10 mejores ofertas del día
+const PROMPT_OFERTAS_10 = `Eres un experto en domótica y smart home. Fecha: ${today()}.
+Genera las 10 MEJORES OFERTAS del día en productos domóticos. Busca las más atractivas por precio y descuento.
+Distribución: 4 Amazon (con &tag=domotiq-20), 3 eBay, 3 Alibaba.
+Títulos long-tail técnicos con protocolo y ecosistema. Descripción con specs reales y ventajas concretas.
 RESPONDE SOLO CON JSON VÁLIDO — sin markdown, sin texto extra:
-{"items":[{"id":11,"type":"promo","title":"Producto + Protocolo + Ecosistema","body":"Specs técnicas: protocolo, frecuencia, compatibilidad, ventajas sobre Wi-Fi directo.","platform":"Amazon","price":"$34.99","originalPrice":"$59.99","discount":"-41%","date":"${today()}","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home"],"slug":"slug-producto","url":"https://www.amazon.com/s?k=zigbee+smart+bulb&tag=domotiq-20"}]}
-IDs del 11 al 20. 4 Amazon con &tag=domotiq-20, 3 eBay, 3 Alibaba.`;
+{"items":[{"id":1,"type":"promo","title":"Producto + Protocolo + Ecosistema compatible","body":"Specs técnicas: protocolo, frecuencia, consumo standby, ecosistemas compatibles, por qué es mejor que Wi-Fi directo.","platform":"Amazon","price":"$34.99","originalPrice":"$59.99","discount":"-41%","date":"${today()}","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home","Home Assistant"],"slug":"slug-producto","url":"https://www.amazon.com/s?k=zigbee+smart+bulb&tag=domotiq-20"}]}
+IDs del 1 al 10. Exactamente 10 ofertas. Las más atractivas primero (featured:true en las 3 mejores).`;
 
-const PROMPT_LARGO_NOTICIAS = `Eres un experto en domótica con 10 años de experiencia. Fecha: ${today()}.
-Busca en la web y genera 6 NOTICIAS REALES con análisis técnico profundo.
+// VIERNES — 5 ofertas destacadas + 3 reviews + 3 comparativas
+const PROMPT_VIERNES_OFERTAS = `Eres un experto en domótica con 10 años de experiencia. Fecha: ${today()}.
+Genera las 5 MEJORES OFERTAS de la semana (las más destacadas, mayor descuento o mejor relación calidad-precio).
+Distribución: 2 Amazon (&tag=domotiq-20), 2 eBay, 1 Alibaba.
 RESPONDE SOLO CON JSON VÁLIDO:
-{"items":[{"id":1,"type":"news","title":"Título técnico específico","body":"4-5 oraciones: protocolos involucrados, impacto técnico, compatibilidad con plataformas open-source.","date":"${today()}","tags":["Matter 1.2"],"source":"The Verge","url":"URL REAL","slug":"slug-noticia"}]}
-IDs 1-6. Exactamente 6 noticias.`;
+{"items":[{"id":1,"type":"promo","title":"Producto técnico long-tail","body":"Specs detalladas: protocolo, frecuencia, consumo, ecosistemas, por qué comprar ahora.","platform":"Amazon","price":"$49.99","originalPrice":"$89.99","discount":"-44%","date":"${today()}","featured":true,"protocol":"Matter 1.2","compatibility":["Alexa","Google Home","HomeKit"],"slug":"slug","url":"https://www.amazon.com/s?k=matter+plug&tag=domotiq-20"}]}
+IDs 1-5. Exactamente 5 ofertas.`;
 
-const PROMPT_LARGO_OFERTAS = `Eres un experto en domótica con 10 años de experiencia. Fecha: ${today()}.
-Genera: 3 ofertas Amazon (&tag=domotiq-20) + 2 eBay + 1 Alibaba + 3 reviews técnicas (400+ palabras) + 3 comparativas técnicas (400+ palabras).
+const PROMPT_VIERNES_REVIEWS = `Eres un experto en domótica con 10 años de experiencia. Fecha: ${today()}.
+Genera 3 REVIEWS TÉCNICAS DETALLADAS (400+ palabras cada una) de productos domóticos relevantes en 2026.
 RESPONDE SOLO CON JSON VÁLIDO:
-{"items":[
-  {"id":7,"type":"promo","title":"Producto técnico","body":"Specs: protocolo, frecuencia, consumo, ecosistemas.","platform":"Amazon","price":"$49.99","originalPrice":"$79.99","discount":"-37%","date":"${today()}","featured":true,"protocol":"Matter 1.2","compatibility":["Alexa","Google Home","HomeKit"],"slug":"slug","url":"https://www.amazon.com/s?k=matter+plug&tag=domotiq-20"},
-  {"id":13,"type":"review","title":"Review Técnica: Producto — ¿Vale la pena en 2026?","body":"400+ palabras: introducción, specs técnicas, instalación, rendimiento, ecosistemas, pros, contras, veredicto.","product":"Nombre","brand":"Marca","rating":8.5,"protocol":"Zigbee 3.0","pros":["Pro 1","Pro 2","Pro 3"],"cons":["Con 1","Con 2"],"verdict":"Veredicto en 2 oraciones.","date":"${today()}","tags":["Review"],"slug":"review-slug","url":"https://www.amazon.com/s?k=producto&tag=domotiq-20"},
-  {"id":16,"type":"comparativa","title":"Producto A vs Producto B: ¿Cuál elegir en 2026?","body":"400+ palabras: introducción, tabla specs, ventajas de A, ventajas de B, casos de uso, recomendación.","product_a":"A","product_b":"B","winner":"Ganador","winner_reason":"Por qué gana.","date":"${today()}","tags":["Comparativa"],"slug":"comp-slug","url":"https://www.amazon.com/s?k=smart+home&tag=domotiq-20"}
-]}
-IDs 7-12=promo, 13-15=review, 16-18=comparativa.`;
+{"items":[{"id":6,"type":"review","title":"Review Técnica: [Producto] — Análisis Completo 2026","body":"Review de 400+ palabras: introducción y posicionamiento, specs técnicas completas (protocolo, frecuencia, consumo, cifrado), instalación, rendimiento real, integración con Alexa/Google/HomeKit/Home Assistant, ventajas técnicas detalladas, limitaciones reales, perfil de usuario ideal, comparación con alternativas, veredicto final con puntuación.","product":"Nombre exacto","brand":"Marca","rating":8.5,"protocol":"Zigbee 3.0","pros":["Ventaja técnica 1 con datos","Ventaja técnica 2","Ventaja técnica 3"],"cons":["Limitación 1 con contexto","Limitación 2"],"verdict":"Veredicto técnico en 2 oraciones.","date":"${today()}","tags":["Review Técnica"],"slug":"review-producto-2026","url":"https://www.amazon.com/s?k=producto&tag=domotiq-20"}]}
+IDs 6-8. Exactamente 3 reviews.`;
+
+const PROMPT_VIERNES_COMPARATIVAS = `Eres un experto en domótica con 10 años de experiencia. Fecha: ${today()}.
+Genera 3 COMPARATIVAS TÉCNICAS DETALLADAS (400+ palabras cada una) entre productos o protocolos de domótica relevantes en 2026.
+RESPONDE SOLO CON JSON VÁLIDO:
+{"items":[{"id":9,"type":"comparativa","title":"Producto A vs Producto B: ¿Cuál Elegir en 2026?","body":"Comparativa de 400+ palabras: introducción técnica a ambos, tabla de especificaciones (frecuencia, topología, alcance, latencia, max nodos, cifrado, consumo), ventajas técnicas de A, ventajas de B, escenario ideal para A, escenario ideal para B, coste total de implementación, compatibilidad con Home Assistant, recomendación final por perfil de usuario.","product_a":"Producto A","product_b":"Producto B","winner":"Ganador general","winner_reason":"Por qué gana con datos técnicos.","date":"${today()}","tags":["Comparativa Técnica"],"slug":"comparativa-a-vs-b-2026","url":"https://www.amazon.com/s?k=smart+home&tag=domotiq-20"}]}
+IDs 9-11. Exactamente 3 comparativas.`;
 
 const todayISO = () => new Date().toISOString().split('T')[0];
 
@@ -606,26 +620,43 @@ async function callAPI(prompt, maxTokens) {
 export async function generateContent() {
   if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
 
+  // Determinar modo según día de la semana
+  // 0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb
   const dayOfWeek = new Date().getDay();
-  const isLongDay = dayOfWeek === 4;
-  const mode = isLongDay ? 'LARGO (reviews + comparativas)' : 'CORTO (E-E-A-T + long-tail)';
-  console.log(`[${new Date().toISOString()}] 🤖 Generando — Modo: ${mode}`);
+  const modos = { 0:'DOMINGO (ofertas)', 1:'LUNES (resumen noticias)', 2:'MARTES (ofertas)', 3:'MIÉRCOLES (ofertas)', 4:'JUEVES (ofertas)', 5:'VIERNES (ofertas+reviews+comparativas)', 6:'SÁBADO (ofertas)' };
+  console.log(`[${new Date().toISOString()}] 🤖 Generando — ${modos[dayOfWeek]}`);
 
-  // Llamada 1: Noticias
-  console.log('📡 Generando noticias...');
-  const rawNews = await callAPI(
-    isLongDay ? PROMPT_LARGO_NOTICIAS : PROMPT_CORTO_NOTICIAS,
-    2500
-  );
+  let rawText = '';
 
-  // Llamada 2: Ofertas (+ reviews/comparativas si es día largo)
-  console.log('🏷️  Generando ofertas...');
-  const rawPromos = await callAPI(
-    isLongDay ? PROMPT_LARGO_OFERTAS : PROMPT_CORTO_OFERTAS,
-    isLongDay ? 5000 : 2500
-  );
+  if (dayOfWeek === 1) {
+    // LUNES: resumen semanal de noticias
+    console.log('📰 Generando resumen semanal de noticias...');
+    rawText = await callAPI(PROMPT_LUNES_NOTICIAS, 2500);
 
-  const rawText = rawNews + '\n' + rawPromos;
+  } else if (dayOfWeek === 5) {
+    // VIERNES: 5 ofertas + 3 reviews + 3 comparativas (3 llamadas separadas)
+    console.log('🏷️  Generando ofertas destacadas de la semana...');
+    const rawOfertas = await callAPI(PROMPT_VIERNES_OFERTAS, 2000);
+
+    console.log('⏳ Pausa 65s (rate limit)...');
+    await new Promise(r => setTimeout(r, 65000));
+
+    console.log('⭐ Generando reviews técnicas...');
+    const rawReviews = await callAPI(PROMPT_VIERNES_REVIEWS, 3500);
+
+    console.log('⏳ Pausa 65s (rate limit)...');
+    await new Promise(r => setTimeout(r, 65000));
+
+    console.log('⚖️  Generando comparativas técnicas...');
+    const rawComparativas = await callAPI(PROMPT_VIERNES_COMPARATIVAS, 3500);
+
+    rawText = rawOfertas + '\n' + rawReviews + '\n' + rawComparativas;
+
+  } else {
+    // MAR / MIÉ / JUE / SÁB / DOM: 10 ofertas
+    console.log('🏷️  Generando 10 mejores ofertas del día...');
+    rawText = await callAPI(PROMPT_OFERTAS_10, 2500);
+  }
 
   // Parser robusto — limpia el JSON antes de parsear
   let jsonMatch = rawText.match(/\{[\s\S]*\}/);

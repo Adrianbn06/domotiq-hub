@@ -1,12 +1,13 @@
 @echo off
-echo Generando contenido con IA (SSG + historial precios + FAQ + articulos relacionados)...
+echo Generando contenido segun calendario diario...
+echo Lunes: noticias | Mar/Mie/Jue/Sab/Dom: ofertas | Viernes: ofertas+reviews+comparativas
 cd /d "%~dp0"
 node cron.js --once
 echo.
 echo Subiendo a GitHub...
 git add public/index.html data/content.json data/archive.json data/price-history.json public/articulos/
-git commit -m "contenido diario %date% — SSG + precios + FAQ"
+git commit -m "contenido %date%"
 git push
 echo.
-echo Listo! El sitio se actualiza en Vercel en 1-2 minutos.
+echo Listo! Vercel actualiza en 1-2 minutos.
 pause
