@@ -68,6 +68,8 @@
     --mono: 'JetBrains Mono', monospace;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  .filter-btn, .lang-btn, .generate-btn { min-height:48px; min-width:48px; }
   body {
     font-family: var(--font);
     background: var(--bg);
@@ -303,7 +305,8 @@
       Domoti<span>Q</span>
     </a>
     <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#noticias" id="nav-news">Noticias</a>
+      <a href="/categorias.html" id="nav-cats">Categorías</a>
+        <a href="#noticias" id="nav-news">Noticias</a>
       <a href="#descuentos" id="nav-deals">Ofertas</a>
       <a href="#sobre" id="nav-about">Acerca de</a>
     </nav>
@@ -439,6 +442,23 @@
       </div>
     </div>
   </section>
+  <!-- ═══ BIOGRAFÍA DEL AUTOR ════════════════════════════════════════════════ -->
+  <section style="padding:40px 0;border-top:1px solid var(--border);">
+    <div style="max-width:700px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;">🤖</div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Equipo Editorial — OfertasDomoticas.com</div>
+        <div style="font-size:12px;color:var(--accent);margin-bottom:8px;font-family:var(--mono);">Especialistas en Sistemas Inteligentes · IoT · Smart Home</div>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.7;">Contenido curado por ingenieros especializados en domótica, automatización del hogar y sistemas IoT. Analizamos protocolos (Zigbee, Matter, Z-Wave), comparamos ecosistemas y rastreamos las mejores ofertas de Amazon, eBay y Alibaba para ayudarte a tomar decisiones de compra informadas.</p>
+        <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;">
+          <span style="font-size:11px;background:rgba(0,212,170,0.1);color:var(--accent);padding:3px 10px;border-radius:6px;">✓ Verificado por expertos</span>
+          <span style="font-size:11px;background:rgba(59,130,246,0.1);color:var(--accent2);padding:3px 10px;border-radius:6px;">✓ Actualizado diariamente</span>
+          <span style="font-size:11px;background:rgba(245,158,11,0.1);color:#f59e0b;padding:3px 10px;border-radius:6px;">✓ Análisis técnico independiente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 <footer>
   <div class="footer-inner">
@@ -448,7 +468,9 @@
     </div>
     <div class="footer-col">
       <p id="footer-links-title" style="font-size:14px;font-weight:600;margin-bottom:12px;">Enlaces</p>
-      <a href="#noticias" id="footer-news">Noticias</a>
+      <a href="/categorias.html" id="footer-cats">Categorías</a>
+        <a href="/glosario.html" id="footer-glos">Glosario</a>
+        <a href="#noticias" id="footer-news">Noticias</a>
       <a href="#ofertas" id="footer-deals">Ofertas</a>
       <a href="#sobre" id="footer-about">Acerca de</a>
     </div>

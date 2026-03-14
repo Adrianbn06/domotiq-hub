@@ -487,11 +487,17 @@ function generateArticlePage(item, allItems = []) {
 
   <div class="type-badge">${icon} ${label}</div>
 
-  <h1>${item.title}</h1>
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
+    <span style="font-size:12px;color:#94a3b8;background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:6px;">⏱ \${estimateReadingTime(item.body)}</span>
+    <span style="font-size:12px;color:#94a3b8;">📅 \${item.date||''}</span>
+    \${item.source ? '<span style="font-size:12px;color:#94a3b8;">📰 '+item.source+'</span>' : ''}
+  </div>
+
+  <h1>\${item.title}</h1>
+
+  \${generateTOC(item)}
 
   <div class="meta">
-    <span>📅 ${item.date}</span>
-    ${item.source ? `<span>📰 ${item.source}</span>` : ''}
     ${item.tags ? item.tags.map(t => `<span class="meta-tag">${t}</span>`).join('') : ''}
   </div>
 
@@ -583,6 +589,81 @@ function generatePages(items) {
 }
 
 // ─── FUNCIÓN PRINCIPAL ────────────────────────────────────────────────────────
+
+// ─── CANAL DE TELEGRAM ───────────────────────────────────────────────────────
+async function sendToTelegram(items) {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId   = process.env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    console.log('ℹ️  Telegram no configurado (faltan TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID)');
+    return;
+  }
+
+  // Seleccionar las 3 mejores ofertas (featured + mayor descuento)
+  const topDeals = items
+    .filter(i => i.type === 'promo' && i.price)
+    .sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      const da = parseInt((a.discount||'0').replace(/[^0-9]/g,''));
+      const db = parseInt((b.discount||'0').replace(/[^0-9]/g,''));
+      return db - da;
+    })
+    .slice(0, 3);
+
+  if (topDeals.length === 0) return;
+
+  const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
+  const date = new Date().toLocaleDateString('es-ES', { day:'numeric', month:'long' });
+
+  let message = `🏠 *Mejores ofertas de domótica — ${date}*
+
+`;
+
+  topDeals.forEach((deal, i) => {
+    message += `${i === 0 ? '🥇' : i === 1 ? '🥈' : '🥉'} *${deal.title}*
+`;
+    message += `💰 ${deal.price}`;
+    if (deal.originalPrice) message += ` ~~${deal.originalPrice}~~`;
+    if (deal.discount) message += ` *${deal.discount}*`;
+    message += `
+${icon(deal.platform)} ${deal.platform}
+`;
+    if (deal.protocol) message += `🔌 Protocolo: ${deal.protocol}
+`;
+    message += `[Ver oferta →](${deal.url})
+
+`;
+  });
+
+  message += `📡 Más ofertas y noticias en [OfertasDomoticas.com](https://ofertasdomoticas.com)`;
+
+  try {
+    const response = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+          parse_mode: 'Markdown',
+          disable_web_page_preview: false
+        })
+      }
+    );
+    const result = await response.json();
+    if (result.ok) {
+      console.log('📱 Telegram: mensaje enviado al canal');
+    } else {
+      console.warn('⚠️  Telegram error:', result.description);
+    }
+  } catch (err) {
+    console.warn('⚠️  Telegram error:', err.message);
+  }
+}
+
 export async function generateContent() {
   if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
 
@@ -653,6 +734,9 @@ export async function generateContent() {
 
   // Actualizar historial de precios
   const priceHistory = updatePriceHistory(parsed.items);
+
+  // Enviar mejores ofertas a Telegram
+  await sendToTelegram(parsed.items);
 
   // SSG: inject content directly into index.html for instant loading
   injectSSG(parsed.items, priceHistory);
