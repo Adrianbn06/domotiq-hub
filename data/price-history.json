@@ -1,4 +1,95 @@
 {
-  "prices": {},
+  "prices": {
+    "amazon-smart-thermostat-zigbee": {
+      "title": "Amazon Smart Thermostat Zigbee + Alexa ecosistema compatible WiFi 2.4GHz",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 79
+        }
+      ]
+    },
+    "echo-show-8-zigbee-hub": {
+      "title": "Echo Show 8 4ta Gen Zigbee Hub + WiFi smart display touchscreen compatible ecosistemas",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 89.99
+        }
+      ]
+    },
+    "philips-hue-tv-backlight-zigbee": {
+      "title": "Philips Hue Smart LED TV Backlight Zigbee 3.0 + Bridge ecosistema compatible",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 136
+        }
+      ]
+    },
+    "nest-learning-thermostat-google": {
+      "title": "Nest Learning Thermostat 3rd Gen WiFi + Google Home ecosistema integrado",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 199.99
+        }
+      ]
+    },
+    "ring-doorbell-pro-2-wifi6": {
+      "title": "Ring Video Doorbell Pro 2 WiFi 6 + Alexa ecosistema seguridad compatible",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 159.99
+        }
+      ]
+    },
+    "eufy-l60-robot-vacuum": {
+      "title": "Eufy L60 Robot Vacuum WiFi + Zigbee sensors multi-protocolo compatible",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 199.99
+        }
+      ]
+    },
+    "dr-j-hepa-air-purifier-smart": {
+      "title": "Dr.J Professional HEPA Smart WiFi Air Purifier app control ecosistema",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 89.99
+        }
+      ]
+    },
+    "tuya-zigbee-gateway-multimode": {
+      "title": "Tuya Zigbee 3.0 Gateway Hub + WiFi + Bluetooth multi-mode compatible",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 24.99
+        }
+      ]
+    },
+    "sonoff-zigbee-router-bridge": {
+      "title": "SONOFF Zigbee Router + WiFi bridge smart home automation compatible",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 18.9
+        }
+      ]
+    },
+    "xiaomi-smart-gateway-zigbee": {
+      "title": "Xiaomi Mi Smart Gateway 2 Zigbee Hub + WiFi ecosistema Mi Home",
+      "records": [
+        {
+          "date": "2026-03-14",
+          "price": 16.99
+        }
+      ]
+    }
+  },
   "lastUpdate": "2026-03-14"
 }

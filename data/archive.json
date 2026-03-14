@@ -137,6 +137,218 @@
       "url": "https://spectrum.ieee.org/mesh-network-interoperable-thread",
       "slug": "wifi-7-mesh-thread-1-4-convergen-2026-era-conectividad-invisible-unificada",
       "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 1,
+      "type": "promo",
+      "title": "Amazon Smart Thermostat Zigbee + Alexa ecosistema compatible WiFi 2.4GHz",
+      "body": "Specs técnicas: WiFi 2.4GHz, protocolo nativo Alexa, consumo standby <3W, ecosistemas Alexa/Honeywell compatible, superior a WiFi directo por integración nativa cloud sin latencia, ahorro energético 10-15% verificado CNET.",
+      "platform": "Amazon",
+      "price": "$79.00",
+      "originalPrice": "$130.00",
+      "discount": "-39%",
+      "date": "14 de marzo de 2026",
+      "featured": true,
+      "protocol": "WiFi 2.4GHz",
+      "compatibility": [
+        "Alexa",
+        "Honeywell Home",
+        "IFTTT"
+      ],
+      "slug": "amazon-smart-thermostat-zigbee",
+      "url": "https://www.amazon.com/s?k=amazon+smart+thermostat&tag=domotiq-20",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 2,
+      "type": "promo",
+      "title": "Echo Show 8 4ta Gen Zigbee Hub + WiFi smart display touchscreen compatible ecosistemas",
+      "body": "Specs técnicas: WiFi 6 2.4/5GHz, Zigbee 3.0 hub integrado, pantalla HD 8 pulg, consumo standby 2W, ecosistemas Alexa/Matter, superior a WiFi directo por hub centralizado sin dependencia internet para dispositivos locales.",
+      "platform": "Amazon",
+      "price": "$89.99",
+      "originalPrice": "$149.99",
+      "discount": "-40%",
+      "date": "14 de marzo de 2026",
+      "featured": true,
+      "protocol": "Zigbee 3.0 + WiFi 6",
+      "compatibility": [
+        "Alexa",
+        "Matter",
+        "Home Assistant"
+      ],
+      "slug": "echo-show-8-zigbee-hub",
+      "url": "https://www.amazon.com/s?k=echo+show+8+smart+display&tag=domotiq-20",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 3,
+      "type": "promo",
+      "title": "Philips Hue Smart LED TV Backlight Zigbee 3.0 + Bridge ecosistema compatible",
+      "body": "Specs técnicas: Zigbee 3.0, frecuencia 2.4GHz mesh, consumo standby 0.5W, ecosistemas Hue Bridge/Alexa/Google/HomeKit, superior a WiFi directo por mesh resiliente sin saturar router, sincronización TV inmersiva.",
+      "platform": "Amazon",
+      "price": "$136.00",
+      "originalPrice": "$297.00",
+      "discount": "-54%",
+      "date": "14 de marzo de 2026",
+      "featured": true,
+      "protocol": "Zigbee 3.0",
+      "compatibility": [
+        "Philips Hue",
+        "Alexa",
+        "Google Home",
+        "HomeKit"
+      ],
+      "slug": "philips-hue-tv-backlight-zigbee",
+      "url": "https://www.amazon.com/s?k=philips+hue+tv+backlight&tag=domotiq-20",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 4,
+      "type": "promo",
+      "title": "Nest Learning Thermostat 3rd Gen WiFi + Google Home ecosistema integrado",
+      "body": "Specs técnicas: WiFi 802.11n 2.4/5GHz, protocolo Google Weave, consumo standby 3.5W, ecosistemas Google Home/Nest nativo, superior a WiFi directo por aprendizaje automático y integración profunda rutinas Google.",
+      "platform": "Amazon",
+      "price": "$199.99",
+      "originalPrice": "$249.99",
+      "discount": "-20%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "WiFi + Google Weave",
+      "compatibility": [
+        "Google Home",
+        "Nest",
+        "Google Assistant"
+      ],
+      "slug": "nest-learning-thermostat-google",
+      "url": "https://www.amazon.com/s?k=nest+learning+thermostat&tag=domotiq-20",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 5,
+      "type": "promo",
+      "title": "Ring Video Doorbell Pro 2 WiFi 6 + Alexa ecosistema seguridad compatible",
+      "body": "Specs técnicas: WiFi 6 dual band, protocolo Ring proprietary, consumo standby 1.8W, ecosistemas Ring/Alexa/Echo Show, superior a WiFi directo por detección 3D movimiento y audio bidireccional optimizado cloud.",
+      "platform": "eBay",
+      "price": "$159.99",
+      "originalPrice": "$249.99",
+      "discount": "-36%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "WiFi 6",
+      "compatibility": [
+        "Ring",
+        "Alexa",
+        "Echo Show"
+      ],
+      "slug": "ring-doorbell-pro-2-wifi6",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=ring+video+doorbell+pro+2",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 6,
+      "type": "promo",
+      "title": "Eufy L60 Robot Vacuum WiFi + Zigbee sensors multi-protocolo compatible",
+      "body": "Specs técnicas: WiFi 802.11n + sensores Zigbee, frecuencia dual 2.4GHz, consumo standby 4W, ecosistemas EufyHome/Alexa/Google, superior a WiFi directo por navegación laser y mapeo inteligente sin latencia.",
+      "platform": "eBay",
+      "price": "$199.99",
+      "originalPrice": "$559.99",
+      "discount": "-64%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "WiFi + Zigbee sensors",
+      "compatibility": [
+        "EufyHome",
+        "Alexa",
+        "Google Assistant"
+      ],
+      "slug": "eufy-l60-robot-vacuum",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=eufy+l60+robot+vacuum",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 7,
+      "type": "promo",
+      "title": "Dr.J Professional HEPA Smart WiFi Air Purifier app control ecosistema",
+      "body": "Specs técnicas: WiFi 802.11b/g/n 2.4GHz, protocolo MQTT/HTTP, consumo standby 2W, ecosistemas SmartLife/Alexa/Google compatible, superior a WiFi directo por monitoreo calidad aire tiempo real y filtros inteligentes.",
+      "platform": "eBay",
+      "price": "$89.99",
+      "originalPrice": "$199.99",
+      "discount": "-55%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "WiFi 2.4GHz",
+      "compatibility": [
+        "SmartLife",
+        "Alexa",
+        "Google Home"
+      ],
+      "slug": "dr-j-hepa-air-purifier-smart",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=dr+j+professional+hepa+smart+air+purifier",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 8,
+      "type": "promo",
+      "title": "Tuya Zigbee 3.0 Gateway Hub + WiFi + Bluetooth multi-mode compatible",
+      "body": "Specs técnicas: Zigbee 3.0 + WiFi 2.4GHz + Bluetooth 5.0, protocolo Tuya mesh, consumo standby 1.5W, ecosistemas Tuya/Alexa/Google/Home Assistant, superior a WiFi directo por triple protocolo y mesh robusto.",
+      "platform": "Alibaba",
+      "price": "$24.99",
+      "originalPrice": "$45.00",
+      "discount": "-44%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "Zigbee 3.0 + WiFi + BLE",
+      "compatibility": [
+        "Tuya",
+        "Alexa",
+        "Google Home",
+        "Home Assistant"
+      ],
+      "slug": "tuya-zigbee-gateway-multimode",
+      "url": "https://www.alibaba.com/showroom/tuya-zigbee-gateway.html",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 9,
+      "type": "promo",
+      "title": "SONOFF Zigbee Router + WiFi bridge smart home automation compatible",
+      "body": "Specs técnicas: Zigbee 3.0 router + WiFi bridge, frecuencia 2.4GHz mesh, consumo standby 1W, ecosistemas eWeLink/Alexa/Google, superior a WiFi directo por extensión mesh range y repetidor inteligente.",
+      "platform": "Alibaba",
+      "price": "$18.90",
+      "originalPrice": "$32.00",
+      "discount": "-41%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "Zigbee 3.0 Router",
+      "compatibility": [
+        "eWeLink",
+        "Alexa",
+        "Google Assistant"
+      ],
+      "slug": "sonoff-zigbee-router-bridge",
+      "url": "https://www.alibaba.com/showroom/sonoff-zigbee-router.html",
+      "archivedAt": "2026-03-14"
+    },
+    {
+      "id": 10,
+      "type": "promo",
+      "title": "Xiaomi Mi Smart Gateway 2 Zigbee Hub + WiFi ecosistema Mi Home",
+      "body": "Specs técnicas: Zigbee HA1.2 + WiFi 802.11n, protocolo Mi proprietary, consumo standby 2W, ecosistemas Mi Home/Alexa/Google compatible, superior a WiFi directo por hub centralizado y gestión dispositivos Mi local.",
+      "platform": "Alibaba",
+      "price": "$16.99",
+      "originalPrice": "$29.99",
+      "discount": "-43%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "Zigbee HA1.2 + WiFi",
+      "compatibility": [
+        "Mi Home",
+        "Alexa",
+        "Google Assistant"
+      ],
+      "slug": "xiaomi-smart-gateway-zigbee",
+      "url": "https://www.alibaba.com/showroom/xiaomi-zigbee-gateway.html",
+      "archivedAt": "2026-03-14"
     }
   ],
   "lastPurge": "2026-03-14"

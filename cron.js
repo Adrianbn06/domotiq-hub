@@ -745,8 +745,8 @@ if (process.argv.includes('--once')) {
 }
 
 // ─── SSG: INYECTAR CONTENIDO EN INDEX.HTML ────────────────────────────────────
-function renderCardHTML(item, i) {
-  const delay = (i * 0.04).toFixed(2);
+function renderCardHTML(item, i, priceHistory) {
+    const delay = (i * 0.04).toFixed(2);
   const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
 
   if (item.type === 'news') {
@@ -848,12 +848,12 @@ export function injectSSG(items, priceHistory = null) {
 
   // Generate grid HTML (news + reviews + comparativas)
   const adInFeed = `<div class="ad-in-feed"><div class="ad-banner"><span>📢 Anuncio In-Feed — Google AdSense</span></div></div>`;
-  const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i));
+const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i, priceHistory));
   if (gridCards.length > 5) gridCards.splice(5, 0, adInFeed);
   const gridHTML = gridCards.join('\n');
 
   // Generate deals HTML
-  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i)).join('\n');
+  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i, priceHistory)).join('\n');
 
   // Build SSG data script for JS hydration
   const ssgDataScript = `<script id="ssg-data" type="application/json">${JSON.stringify(items)}</script>`;
