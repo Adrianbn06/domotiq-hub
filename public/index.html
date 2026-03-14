@@ -310,10 +310,6 @@
       <a href="#descuentos" id="nav-deals">Ofertas</a>
       <a href="#sobre" id="nav-about">Acerca de</a>
     </nav>
-    <div class="lang-toggle" role="group" aria-label="Selector de idioma">
-      <button class="lang-btn active" id="btn-es" onclick="setLang('es')" aria-label="Cambiar a Español">ES</button>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="Switch to English">EN</button>
-    </div>
   </div>
 </header>
 
@@ -596,88 +592,6 @@
 let lang = 'es';
 let currentFilter = 'all';
 let allItems = [];
-
-// Textos en ambos idiomas
-const TX = {
-  es: {
-    badge: 'IA · Actualización diaria automática',
-    heroTitle: 'El hub inteligente de<br><span class="gr">domótica y smart home</span>',
-    heroSub: 'Las mejores ofertas y noticias de domótica — actualizado diariamente',
-    navNews:'Noticias', navDeals:'Ofertas', navAbout:'Acerca de',
-    lblNews:'noticias hoy', lblPromos:'ofertas activas', lblSources:'plataformas', lblTime:'última actualización',
-    filterLabel:'Filtrar:', fAll:'Todo', fNews:'Noticias', fPromo:'Ofertas',
-    sectionNewsTitle:'Noticias de hoy',
-    loadingText:'Cargando contenido del día...', loadingSub:'Conectando con el servidor',
-    tagNews:'Noticia', tagDeal:'Oferta', tagFeatured:'Destacado',
-    readMore:'Leer más', seeDeal:'Ver oferta',
-    emptyTitle:'Sin resultados', emptySub:'No hay contenido para este filtro.',
-    errorTitle:'Error al cargar', errorSub:'No se pudo obtener el contenido. Intenta recargar la página.',
-    noContent:'Sin contenido aún',
-    noContentSub:'El contenido se genera automáticamente cada mañana a las 7am. Si es la primera vez, ejecuta: node cron.js --once',
-    aboutTitle:'¿Qué es DomotiQ Hub?',
-    aboutBody:'DomotiQ Hub es un agregador inteligente de noticias y ofertas sobre domótica y hogar inteligente. Cada mañana, nuestra IA busca en la web las noticias más relevantes sobre smart home, IoT y automatización del hogar, además de las mejores promociones disponibles en Amazon, eBay y Alibaba.',
-    footerDesc:'Tu fuente diaria de noticias y ofertas de domótica, impulsada por inteligencia artificial.',
-    footerLinksTitle:'Enlaces', footerPlatTitle:'Plataformas',
-    footerNews:'Noticias', footerDeals:'Ofertas', footerAbout:'Acerca de',
-    footerCopy:'© 2025 DomotiQ Hub',
-  },
-  en: {
-    badge: 'AI · Automatic daily updates',
-    heroTitle: 'The smart hub for<br><span class="gr">home automation & smart home</span>',
-    heroSub: 'The best smart home deals and news — updated daily',
-    navNews:'News', navDeals:'Deals', navAbout:'About',
-    lblNews:'news today', lblPromos:'active deals', lblSources:'platforms', lblTime:'last updated',
-    filterLabel:'Filter:', fAll:'All', fNews:'News', fPromo:'Deals',
-    sectionNewsTitle:"Today's news",
-    loadingText:"Loading today's content...", loadingSub:'Connecting to server',
-    tagNews:'News', tagDeal:'Deal', tagFeatured:'Featured',
-    readMore:'Read more', seeDeal:'See deal',
-    emptyTitle:'No results', emptySub:'No content for this filter.',
-    errorTitle:'Loading error', errorSub:'Could not load content. Try refreshing the page.',
-    noContent:'No content yet',
-    noContentSub:'Content is auto-generated every morning at 7am. First time? Run: node cron.js --once',
-    aboutTitle:'What is DomotiQ Hub?',
-    aboutBody:'DomotiQ Hub is an intelligent aggregator of news and deals about home automation and smart homes. Every morning, our AI searches the web for the most relevant news about smart home, IoT and home automation, plus the best deals on Amazon, eBay and Alibaba.',
-    footerDesc:'Your daily source of home automation news and deals.',
-    footerLinksTitle:'Links', footerPlatTitle:'Platforms',
-    footerNews:'News', footerDeals:'Deals', footerAbout:'About',
-    footerCopy:'© 2025 DomotiQ Hub',
-  }
-};
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// TRADUCCIONES
-// ═══════════════════════════════════════════════════════════════════════════════
-function setLang(l) {
-  lang = l;
-  document.getElementById('btn-es').classList.toggle('active', l==='es');
-  document.getElementById('btn-en').classList.toggle('active', l==='en');
-  document.documentElement.lang = l;
-  applyTranslations();
-  if (allItems.length > 0) renderItems(allItems);
-  // Track en GA4
-  gtag('event', 'language_switch', { language: l });
-}
-
-function applyTranslations() {
-  const t = TX[lang];
-  const set = (id, val) => { const el = document.getElementById(id); if(el) el.innerHTML = val; };
-  set('badge-text', t.badge);
-  set('hero-title', t.heroTitle);
-  set('hero-sub', t.heroSub);
-  set('nav-news', t.navNews); set('nav-deals', t.navDeals); set('nav-about', t.navAbout);
-  set('lbl-news', t.lblNews); set('lbl-promos', t.lblPromos);
-  set('lbl-sources', t.lblSources); set('lbl-time', t.lblTime);
-  set('filter-label', t.filterLabel);
-  set('f-all', t.fAll); set('f-news', t.fNews); set('f-promo', t.fPromo);
-  const snt = document.getElementById('section-news-title');
-  if (snt) snt.childNodes[0].textContent = t.sectionNewsTitle + ' ';
-  set('about-title', t.aboutTitle); set('about-body', t.aboutBody);
-  set('footer-desc', t.footerDesc);
-  set('footer-links-title', t.footerLinksTitle); set('footer-plat-title', t.footerPlatTitle);
-  set('footer-news', t.footerNews); set('footer-deals', t.footerDeals); set('footer-about', t.footerAbout);
-  set('footer-copy', t.footerCopy);
-}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // FILTROS
@@ -1070,7 +984,6 @@ function updateDynamicSchema(items) {
   }
 }
 
-applyTranslations();
 loadContent();
 loadArchive();
 // ─── SECCIÓN DESCUENTOS ────────────────────────────────────────────────────
