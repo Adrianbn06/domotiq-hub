@@ -90,6 +90,39 @@ const ARCHIVE_FILE = './data/archive.json';
 const PAGES_DIR    = './public/articulos';
 
 const today    = () => new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// ─── PROMPTS DIVIDIDOS (noticias + ofertas por separado para evitar JSON truncado) ─
+
+const PROMPT_CORTO_NOTICIAS = `Eres un experto en domótica y smart home. Fecha: ${today()}.
+Busca en la web y genera 10 NOTICIAS REALES Y RECIENTES (2025-2026) sobre domótica, IoT, Alexa, Google Home, Matter, Zigbee.
+Usa terminología técnica: protocolos, versiones, compatibilidades. Títulos long-tail específicos.
+RESPONDE SOLO CON JSON VÁLIDO — sin markdown, sin texto extra:
+{"items":[{"id":1,"type":"news","title":"Título técnico long-tail","body":"3-4 oraciones técnicas con protocolos y compatibilidades.","date":"${today()}","tags":["Matter"],"source":"The Verge","url":"URL REAL del artículo","slug":"slug-url-amigable"}]}
+IDs del 1 al 10. Exactamente 10 noticias.`;
+
+const PROMPT_CORTO_OFERTAS = `Eres un experto en domótica y smart home. Fecha: ${today()}.
+Genera 10 OFERTAS de productos domóticos: 4 Amazon (con &tag=domotiq-20), 3 eBay, 3 Alibaba.
+Títulos long-tail técnicos con protocolo y ecosistema. Descripción con specs reales.
+RESPONDE SOLO CON JSON VÁLIDO — sin markdown, sin texto extra:
+{"items":[{"id":11,"type":"promo","title":"Producto + Protocolo + Ecosistema","body":"Specs técnicas: protocolo, frecuencia, compatibilidad, ventajas sobre Wi-Fi directo.","platform":"Amazon","price":"$34.99","originalPrice":"$59.99","discount":"-41%","date":"${today()}","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home"],"slug":"slug-producto","url":"https://www.amazon.com/s?k=zigbee+smart+bulb&tag=domotiq-20"}]}
+IDs del 11 al 20. 4 Amazon con &tag=domotiq-20, 3 eBay, 3 Alibaba.`;
+
+const PROMPT_LARGO_NOTICIAS = `Eres un experto en domótica con 10 años de experiencia. Fecha: ${today()}.
+Busca en la web y genera 6 NOTICIAS REALES con análisis técnico profundo.
+RESPONDE SOLO CON JSON VÁLIDO:
+{"items":[{"id":1,"type":"news","title":"Título técnico específico","body":"4-5 oraciones: protocolos involucrados, impacto técnico, compatibilidad con plataformas open-source.","date":"${today()}","tags":["Matter 1.2"],"source":"The Verge","url":"URL REAL","slug":"slug-noticia"}]}
+IDs 1-6. Exactamente 6 noticias.`;
+
+const PROMPT_LARGO_OFERTAS = `Eres un experto en domótica con 10 años de experiencia. Fecha: ${today()}.
+Genera: 3 ofertas Amazon (&tag=domotiq-20) + 2 eBay + 1 Alibaba + 3 reviews técnicas (400+ palabras) + 3 comparativas técnicas (400+ palabras).
+RESPONDE SOLO CON JSON VÁLIDO:
+{"items":[
+  {"id":7,"type":"promo","title":"Producto técnico","body":"Specs: protocolo, frecuencia, consumo, ecosistemas.","platform":"Amazon","price":"$49.99","originalPrice":"$79.99","discount":"-37%","date":"${today()}","featured":true,"protocol":"Matter 1.2","compatibility":["Alexa","Google Home","HomeKit"],"slug":"slug","url":"https://www.amazon.com/s?k=matter+plug&tag=domotiq-20"},
+  {"id":13,"type":"review","title":"Review Técnica: Producto — ¿Vale la pena en 2026?","body":"400+ palabras: introducción, specs técnicas, instalación, rendimiento, ecosistemas, pros, contras, veredicto.","product":"Nombre","brand":"Marca","rating":8.5,"protocol":"Zigbee 3.0","pros":["Pro 1","Pro 2","Pro 3"],"cons":["Con 1","Con 2"],"verdict":"Veredicto en 2 oraciones.","date":"${today()}","tags":["Review"],"slug":"review-slug","url":"https://www.amazon.com/s?k=producto&tag=domotiq-20"},
+  {"id":16,"type":"comparativa","title":"Producto A vs Producto B: ¿Cuál elegir en 2026?","body":"400+ palabras: introducción, tabla specs, ventajas de A, ventajas de B, casos de uso, recomendación.","product_a":"A","product_b":"B","winner":"Ganador","winner_reason":"Por qué gana.","date":"${today()}","tags":["Comparativa"],"slug":"comp-slug","url":"https://www.amazon.com/s?k=smart+home&tag=domotiq-20"}
+]}
+IDs 7-12=promo, 13-15=review, 16-18=comparativa.`;
+
 const todayISO = () => new Date().toISOString().split('T')[0];
 
 // ─── UTILIDADES ───────────────────────────────────────────────────────────────
@@ -103,137 +136,7 @@ function slugify(text) {
     .slice(0, 80);
 }
 
-// ─── PROMPT CORTO (martes, miércoles, viernes, sábado, domingo) ──────────────
-const PROMPT_CORTO = `Eres un ingeniero experto en domótica y smart home con 10 años de experiencia práctica instalando y configurando sistemas. Demuestras EXPERIENCIA REAL (E-E-A-T de Google). Fecha: ${today()}.
 
-Busca en la web y genera contenido TÉCNICO Y ESPECÍFICO en español para OfertasDomoticas.com.
-
-REGLAS DE CALIDAD E-E-A-T:
-- Usa terminología técnica real: protocolos (Zigbee 3.0, Z-Wave S2, Matter 1.2, Thread, BLE Mesh), frecuencias (2.4GHz vs 868MHz), topologías de red (malla vs estrella), consumo en watts, latencia en ms.
-- Menciona compatibilidad específica con ecosistemas: Works with Alexa, Google Home, Apple HomeKit, Home Assistant, SmartThings, Hubitat.
-- Explica POR QUÉ una tecnología es mejor que otra en cada caso de uso.
-- Títulos LONG-TAIL específicos (no "bombilla inteligente" sino "bombilla inteligente E27 Zigbee 3.0 compatible con Home Assistant sin hub Wi-Fi").
-
-Genera:
-- 10 NOTICIAS REALES Y RECIENTES (2025-2026) con URLs reales de fuentes como The Verge, Xataka, Android Authority, ZDNet, TechCrunch, Genbeta. NO uses url:"#".
-- 10 OFERTAS con títulos long-tail técnicos, descripción con specs reales, protocolo usado y ventajas técnicas concretas.
-
-RESPONDE SOLO CON JSON VÁLIDO:
-{
-  "items": [
-    {
-      "id": 1,
-      "type": "news",
-      "title": "Título long-tail específico y técnico de la noticia",
-      "body": "3-4 oraciones técnicas: menciona protocolos, versiones, compatibilidades y el impacto real para usuarios de smart home. Explica la relevancia técnica.",
-      "date": "${today()}",
-      "tags": ["Matter", "Zigbee"],
-      "source": "The Verge",
-      "url": "URL REAL del artículo original — busca la fuente en la web",
-      "slug": "slug-url-amigable-del-titulo"
-    },
-    {
-      "id": 11,
-      "type": "promo",
-      "title": "Nombre Producto + Protocolo + Compatibilidad + Caso de uso específico",
-      "body": "Descripción técnica: protocolo (Zigbee/Matter/Z-Wave), frecuencia de operación, consumo en standby, ecosistemas compatibles, por qué este protocolo es mejor para este caso de uso (ej: Zigbee satura menos la red Wi-Fi doméstica que los dispositivos Wi-Fi directos).",
-      "platform": "Amazon",
-      "price": "$34.99",
-      "originalPrice": "$59.99",
-      "discount": "-41%",
-      "date": "${today()}",
-      "featured": true,
-      "protocol": "Zigbee 3.0",
-      "compatibility": ["Alexa", "Google Home", "Home Assistant"],
-      "slug": "slug-del-producto",
-      "url": "https://www.amazon.com/s?k=zigbee+bulb+smart+home&tag=domotiq-20"
-    }
-  ]
-}
-REGLAS: IDs 1-10=news, 11-20=promo. 4 Amazon con &tag=domotiq-20, 3 eBay, 3 Alibaba. Total 20 items. Cada item DEBE tener campo "slug".`;
-
-// ─── PROMPT LARGO (lunes y jueves) ───────────────────────────────────────────
-const PROMPT_LARGO = `Eres un ingeniero experto en domótica con 10 años de experiencia real. Demuestras E-E-A-T (Experiencia, Expertise, Autoridad, Confianza) como exige Google. Fecha: ${today()}.
-
-Busca en la web y genera contenido TÉCNICO PROFUNDO en español para OfertasDomoticas.com.
-
-REGLAS DE CALIDAD E-E-A-T:
-- Cita protocolos técnicos reales: Zigbee 3.0, Z-Wave S2 Security, Matter 1.2, Thread, Wi-Fi HaLow, BLE Mesh
-- Explica diferencias técnicas: "Zigbee opera a 2.4GHz en topología de malla, saturando menos la red doméstica que 40 dispositivos Wi-Fi directos"
-- Usa métricas reales: latencia, consumo en mW, alcance en metros, número máximo de nodos
-- Títulos LONG-TAIL: "Mejor termostato inteligente Z-Wave para pisos sin neutro compatible con Home Assistant 2026"
-- Para comparativas: tabla real de specs, casos de uso concretos, recomendación por perfil de usuario
-
-Genera:
-1. 6 NOTICIAS REALES con URLs reales de fuentes reconocidas
-2. 6 OFERTAS con specs técnicas detalladas
-3. 3 REVIEWS de 400+ palabras con análisis técnico profundo
-4. 3 COMPARATIVAS de 400+ palabras tipo "Protocolo A vs Protocolo B en 2026"
-
-RESPONDE SOLO CON JSON VÁLIDO:
-{
-  "items": [
-    {
-      "id": 1,
-      "type": "news",
-      "title": "Título long-tail técnico específico",
-      "body": "Análisis técnico de 4-5 oraciones: protocolos involucrados, impacto en ecosistemas existentes, ventajas técnicas sobre soluciones anteriores, compatibilidad con plataformas open-source como Home Assistant.",
-      "date": "${today()}",
-      "tags": ["Matter 1.2", "Thread"],
-      "source": "The Verge",
-      "url": "URL REAL del artículo",
-      "slug": "slug-seo-amigable"
-    },
-    {
-      "id": 7,
-      "type": "promo",
-      "title": "Producto + Protocolo + Ecosistema + Caso uso específico",
-      "body": "Análisis técnico: protocolo de comunicación y sus ventajas sobre Wi-Fi directo, frecuencia de operación, consumo en standby vs activo, número máximo de dispositivos en la malla, latencia típica, ecosistemas compatibles y cómo se integra con Home Assistant sin suscripción en la nube.",
-      "platform": "Amazon",
-      "price": "$49.99",
-      "originalPrice": "$79.99",
-      "discount": "-37%",
-      "date": "${today()}",
-      "featured": true,
-      "protocol": "Matter 1.2",
-      "compatibility": ["Alexa", "Google Home", "Apple HomeKit", "Home Assistant"],
-      "slug": "slug-producto",
-      "url": "https://www.amazon.com/s?k=matter+smart+plug&tag=domotiq-20"
-    },
-    {
-      "id": 13,
-      "type": "review",
-      "title": "Review Técnica: [Producto] — Análisis Completo para Smart Home 2026",
-      "body": "Review de 400+ palabras con estructura: 1) Introducción y posicionamiento en el mercado, 2) Especificaciones técnicas completas (protocolo, frecuencia, consumo, alcance, cifrado), 3) Proceso de instalación y emparejamiento, 4) Rendimiento real en uso diario, 5) Integración con ecosistemas (Alexa, Google Home, Home Assistant), 6) Mínimo 3 ventajas técnicas detalladas, 7) Mínimo 2 limitaciones reales, 8) Perfil ideal de usuario, 9) Comparación con alternativas del mismo rango de precio, 10) Veredicto técnico final con puntuación.",
-      "product": "Nombre exacto del producto",
-      "brand": "Marca",
-      "rating": 8.5,
-      "protocol": "Zigbee 3.0",
-      "pros": ["Ventaja técnica 1 con datos", "Ventaja técnica 2 con datos", "Ventaja técnica 3 con datos"],
-      "cons": ["Limitación técnica 1 con contexto", "Limitación técnica 2 con contexto"],
-      "verdict": "Veredicto técnico en 2 oraciones con recomendación clara.",
-      "date": "${today()}",
-      "tags": ["Review Técnica", "Zigbee"],
-      "slug": "review-producto-2026",
-      "url": "https://www.amazon.com/s?k=producto&tag=domotiq-20"
-    },
-    {
-      "id": 16,
-      "type": "comparativa",
-      "title": "Protocolo A vs Protocolo B para Hogar Inteligente: ¿Cuál Elegir en 2026?",
-      "body": "Comparativa de 400+ palabras con estructura: 1) Introducción técnica a ambos protocolos/productos, 2) Tabla de especificaciones (frecuencia, topología, alcance, latencia, max nodos, cifrado, consumo), 3) Ventajas técnicas de A sobre B, 4) Ventajas técnicas de B sobre A, 5) Escenario ideal para A (ej: hogar grande con 50+ dispositivos), 6) Escenario ideal para B (ej: apartamento pequeño con pocos dispositivos), 7) Coste total de implementación, 8) Compatibilidad con Home Assistant y otras plataformas open-source, 9) Recomendación final por perfil de usuario.",
-      "product_a": "Producto/Protocolo A",
-      "product_b": "Producto/Protocolo B",
-      "winner": "Ganador general",
-      "winner_reason": "Por qué gana con datos técnicos concretos.",
-      "date": "${today()}",
-      "tags": ["Comparativa Técnica", "Protocolos"],
-      "slug": "comparativa-a-vs-b-2026",
-      "url": "https://www.amazon.com/s?k=smart+home&tag=domotiq-20"
-    }
-  ]
-}
-REGLAS: IDs 1-6=news, 7-12=promo, 13-15=review, 16-18=comparativa. Total 18 items. Cada item DEBE tener "slug".`;
 
 // ─── GENERADOR DE PÁGINAS INDIVIDUALES ───────────────────────────────────────
 function generateArticlePage(item, allItems = []) {
