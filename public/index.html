@@ -175,7 +175,7 @@
   .card-date { font-size:11px; color:var(--muted); font-family:var(--mono); white-space:nowrap; }
   .card-title { font-size:16px; font-weight:600; line-height:1.45; color:var(--text); }
   .card-body { font-size:14px; color:var(--muted); line-height:1.65; }
-  .card-source { font-size:11px; color:var(--muted); opacity:.6; font-family:var(--mono); }
+  .card-source { font-size:11px; color:#94a3b8; font-family:var(--mono); }
   .card-footer { display:flex; justify-content:space-between; align-items:center; margin-top:auto; }
   .price-badge { background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05)); border:1px solid rgba(245,158,11,.3); color:var(--accent3); padding:5px 12px; border-radius:8px; font-size:14px; font-weight:700; font-family:var(--mono); }
   .discount-badge { background:rgba(239,68,68,.1); color:#f87171; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; font-family:var(--mono); }
@@ -188,11 +188,11 @@
   .loader { width:48px; height:48px; border:3px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 16px; }
   @keyframes spin { to{transform:rotate(360deg)} }
   .loading-text { color:var(--muted); font-size:14px; }
-  .loading-sub { color:var(--muted); font-size:12px; margin-top:6px; opacity:.6; font-family:var(--mono); }
+  .loading-sub { color:#94a3b8; font-size:12px; margin-top:6px; font-family:var(--mono); }
 
   /* ── EMPTY / ERROR ── */
   .empty-state { grid-column:1/-1; text-align:center; padding:80px 20px; color:var(--muted); }
-  .empty-icon { font-size:48px; margin-bottom:16px; opacity:.4; }
+  .empty-icon { font-size:48px; margin-bottom:16px; opacity:.6; }
   .empty-title { font-size:18px; font-weight:600; margin-bottom:8px; color:var(--text); }
   .error-card { grid-column:1/-1; background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.2); border-radius:16px; padding:32px; text-align:center; }
   .error-card h3 { color:#f87171; margin-bottom:8px; }
@@ -206,7 +206,7 @@
   .footer-col a:hover { color:var(--accent); }
   .footer-bottom { max-width:1200px; margin:24px auto 0; padding-top:20px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
   .footer-bottom p { font-size:12px; color:var(--muted); }
-  .powered { font-size:11px; font-family:var(--mono); color:var(--muted); opacity:.5; }
+  .powered { font-size:11px; font-family:var(--mono); color:#718096; }
 
   /* ── IN-FEED AD ── */
   .ad-in-feed { grid-column:1/-1; }
@@ -321,7 +321,7 @@
       El hub inteligente de<br>
       <span class="gr">domótica y smart home</span>
     </h1>
-    <p id="hero-sub">Las mejores ofertas y noticias de domótica — actualizado diariamente</p>
+    <p id="hero-sub" style="color:#94a3b8;font-size:16px;max-width:520px;margin:0 auto 28px;line-height:1.6;">Las mejores ofertas y noticias de domótica — actualizado diariamente</p>
   </section>
 
   <!-- ── STATS ── -->
@@ -465,11 +465,11 @@
     <p>
       <span id="footer-copy">© 2026 DomotiQ Hub</span> 
       <span style="color:var(--muted);"> · </span> 
-      <a href="/privacidad.html" style="color:var(--muted);">Política de Privacidad</a> 
+      <a href="/privacidad.html" style="color:#94a3b8;">Política de Privacidad</a> 
       <span style="color:var(--muted);"> · </span> 
-      <a href="/contacto.html" style="color:var(--muted);">Contacto</a>
+      <a href="/contacto.html" style="color:#94a3b8;">Contacto</a>
     </p>
-    <p class="powered" style="color:#64748b;">POWERED BY CLAUDE AI + WEB SEARCH</p>
+    <p class="powered">POWERED BY CLAUDE AI + WEB SEARCH</p>
   </div>
 </footer>
 
