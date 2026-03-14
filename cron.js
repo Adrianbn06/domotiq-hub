@@ -701,7 +701,7 @@ export async function generateContent() {
   const result = {
     generated: new Date().toISOString(),
     generatedHuman: new Date().toLocaleString('es-EC', { timeZone: 'America/Guayaquil' }),
-    mode: isLongDay ? 'long' : 'short',
+    mode: dayOfWeek === 5 ? 'long' : dayOfWeek === 1 ? 'news' : 'offers',
     count: parsed.items.length,
     newsCount:       parsed.items.filter(i => i.type === 'news').length,
     promoCount:      parsed.items.filter(i => i.type === 'promo').length,
