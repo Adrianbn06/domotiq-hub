@@ -595,7 +595,7 @@ export async function generateContent() {
         model: 'claude-sonnet-4-20250514',
         max_tokens: isLongDay ? 8000 : 4000,
         tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        messages: [{ role: 'user', content: isLongDay ? PROMPT_LARGO : PROMPT_CORTO }]
+        messages: [{ role: 'user', content: prompt }]
       })
     });
   } finally {
