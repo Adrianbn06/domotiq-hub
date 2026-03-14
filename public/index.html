@@ -46,7 +46,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
 <style>
   :root {
@@ -360,7 +362,7 @@
       </div>
     </div>
     <div class="content-grid" id="deals-grid">
-      <div class="loading-state"><div class="loader"></div><div class="loading-text">Cargando ofertas...</div></div>
+      <!-- SSG_DEALS_CONTENT -->
     </div>
   </section>
 
@@ -382,11 +384,7 @@
     </div>
 
     <div class="content-grid" id="grid">
-      <div class="loading-state">
-        <div class="loader"></div>
-        <div class="loading-text" id="loading-text">Cargando contenido del día...</div>
-        <div class="loading-sub" id="loading-sub">Conectando con el servidor</div>
-      </div>
+      <!-- SSG_GRID_CONTENT -->
     </div>
   </section>
 
@@ -591,6 +589,26 @@ function getFiltered(items) {
 async function loadContent() {
   const grid = document.getElementById('grid');
   const t = TX[lang];
+
+  // SSG: if content already injected by cron.js, parse it and skip fetch
+  const existingCards = grid.querySelectorAll('.card');
+  if (existingCards.length > 0) {
+    // Content already in HTML — parse from data attributes
+    try {
+      const dataEl = document.getElementById('ssg-data');
+      if (dataEl) {
+        allItems = JSON.parse(dataEl.textContent);
+        const newsCount = allItems.filter(i => i.type === 'news').length;
+        const promoCount = allItems.filter(i => i.type === 'promo').length;
+        document.getElementById('stat-news').textContent = newsCount;
+        document.getElementById('stat-promos').textContent = promoCount;
+        renderDeals(allItems);
+        updateDynamicSchema(allItems);
+        gtag('event', 'content_loaded', { news_count: newsCount, promo_count: promoCount, source: 'ssg' });
+        return;
+      }
+    } catch(e) { console.log('SSG parse error, falling back to fetch', e); }
+  }
 
   grid.innerHTML = `
     <div class="loading-state">

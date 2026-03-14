@@ -508,6 +508,9 @@ export async function generateContent() {
   // Archivar todo
   updateArchive(parsed.items);
 
+  // SSG: inject content directly into index.html for instant loading
+  injectSSG(parsed.items);
+
   console.log(`✅ ${result.newsCount} noticias, ${result.promoCount} promos, ${result.reviewCount} reviews, ${result.comparativaCount} comparativas`);
   return result;
 }
@@ -522,4 +525,132 @@ if (process.argv.includes('--once')) {
     generateContent().catch(err => console.error('❌ Error cron:', err.message));
   });
   console.log(`⏰ Cron activo — Lun/Jue: largo | Resto: corto | E-E-A-T + páginas individuales`);
+}
+
+// ─── SSG: INYECTAR CONTENIDO EN INDEX.HTML ────────────────────────────────────
+function renderCardHTML(item, i) {
+  const delay = (i * 0.04).toFixed(2);
+  const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
+
+  if (item.type === 'news') {
+    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    const target = item.slug ? '_self' : '_blank';
+    const tags = (item.tags||[]).slice(0,2).map(t => `<span class="tag platform">${t}</span>`).join('');
+    return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="${target}" rel="noopener">
+      <div class="card-header">
+        <div class="card-tags"><span class="tag news">📡 Noticia</span>${tags}</div>
+        <span class="card-date">${item.date||''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body}</div>
+      <div class="card-footer">
+        ${item.source ? `<span class="card-source">${item.source}</span>` : '<span></span>'}
+        <span class="read-more">Leer más</span>
+      </div>
+    </a>`;
+  }
+
+  if (item.type === 'promo') {
+    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_self" rel="noopener">
+      <div class="card-header">
+        <div class="card-tags">
+          <span class="tag promo">🏷️ Oferta</span>
+          ${item.featured ? '<span class="tag featured">🔥 Top</span>' : ''}
+          <span class="tag platform">${icon(item.platform)} ${item.platform}</span>
+        </div>
+        <span class="card-date">${item.date||''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body}</div>
+      <div class="card-footer">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="price-badge">${item.price}</span>
+          ${item.discount ? `<span class="discount-badge">${item.discount}</span>` : ''}
+        </div>
+        <span class="read-more">Ver oferta</span>
+      </div>
+    </a>`;
+  }
+
+  if (item.type === 'review') {
+    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_self" rel="noopener">
+      <div class="card-header">
+        <div class="card-tags"><span class="tag review">⭐ Review</span></div>
+        <span class="card-date">${item.date||''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body.slice(0,220)}...</div>
+      ${item.rating ? `<div class="rating">⭐ ${item.rating}/10</div>` : ''}
+      ${item.verdict ? `<div class="verdict">${item.verdict}</div>` : ''}
+      <div class="card-footer"><span></span><span class="read-more">Ver review</span></div>
+    </a>`;
+  }
+
+  if (item.type === 'comparativa') {
+    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_self" rel="noopener">
+      <div class="card-header">
+        <div class="card-tags"><span class="tag comparativa">⚖️ Comparativa</span></div>
+        <span class="card-date">${item.date||''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body.slice(0,220)}...</div>
+      ${item.winner ? `<div class="verdict">🏆 Ganador: <strong>${item.winner}</strong></div>` : ''}
+      <div class="card-footer"><span></span><span class="read-more">Ver comparativa</span></div>
+    </a>`;
+  }
+  return '';
+}
+
+export function injectSSG(items) {
+  const indexPath = path.join(__dirname, 'public', 'index.html');
+  if (!fs.existsSync(indexPath)) {
+    console.log('⚠️  index.html no encontrado para SSG');
+    return;
+  }
+
+  let html = fs.readFileSync(indexPath, 'utf8');
+
+  // Sort promos: featured first, then by discount
+  const promos = items
+    .filter(i => i.type === 'promo')
+    .sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      const da = parseInt((a.discount||'0').replace(/[^0-9]/g,''));
+      const db = parseInt((b.discount||'0').replace(/[^0-9]/g,''));
+      return db - da;
+    });
+
+  const nonPromos = items.filter(i => i.type !== 'promo');
+
+  // Generate grid HTML (news + reviews + comparativas)
+  const adInFeed = `<div class="ad-in-feed"><div class="ad-banner"><span>📢 Anuncio In-Feed — Google AdSense</span></div></div>`;
+  const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i));
+  if (gridCards.length > 5) gridCards.splice(5, 0, adInFeed);
+  const gridHTML = gridCards.join('\n');
+
+  // Generate deals HTML
+  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i)).join('\n');
+
+  // Build SSG data script for JS hydration
+  const ssgDataScript = `<script id="ssg-data" type="application/json">${JSON.stringify(items)}</script>`;
+
+  // Inject into placeholders
+  html = html.replace('<!-- SSG_GRID_CONTENT -->', gridHTML || '<div class="empty-state"><div class="empty-icon">🏠</div><div class="empty-title">Cargando...</div></div>');
+  html = html.replace('<!-- SSG_DEALS_CONTENT -->', dealsHTML || '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Cargando ofertas...</div></div>');
+
+  // Inject SSG data before </body>
+  html = html.replace('</body>', ssgDataScript + '\n</body>');
+
+  // Update stats in HTML directly
+  const newsCount  = items.filter(i => i.type === 'news').length;
+  const promoCount = items.filter(i => i.type === 'promo').length;
+  html = html.replace('id="stat-news">—<', `id="stat-news">${newsCount}<`);
+  html = html.replace('id="stat-promos">—<', `id="stat-promos">${promoCount}<`);
+
+  fs.writeFileSync(indexPath, html, 'utf8');
+  console.log(`🚀 SSG: index.html inyectado con ${items.length} items (${newsCount} noticias, ${promoCount} ofertas)`);
 }
