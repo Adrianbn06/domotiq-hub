@@ -38,46 +38,79 @@ const ARCHIVE_FILE = path.join(__dirname, 'data', 'archive.json');
 // ─── MIDDLEWARE DE SEGURIDAD ──────────────────────────────────────────────────
 
 // 1. Helmet — configura automáticamente ~14 headers de seguridad HTTP
+import crypto from 'crypto';
+
+// Generar nonce único por petición para scripts inline seguros
+app.use((req, res, next) => {
+  res.locals.nonce = crypto.randomBytes(16).toString('base64');
+  next();
+});
+
 if (helmet) {
-  app.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
-          "'self'",
-          "'unsafe-inline'",          // necesario para gtag inline
-          "https://www.googletagmanager.com",
-          "https://pagead2.googlesyndication.com",
-          "https://fonts.googleapis.com",
-          "https://www.googletagservices.com",
-        ],
-        styleSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://fonts.googleapis.com"
-        ],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        imgSrc: ["'self'", "data:", "https:", "http:"],
-        connectSrc: [
-          "'self'",
-          "https://www.google-analytics.com",
-          "https://region1.google-analytics.com",
-        ],
-        frameSrc: ["https://googleads.g.doubleclick.net"],
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
-      },
-    },
-    crossOriginEmbedderPolicy: false, // necesario para Google Ads
-  }));
-} else {
-  // Fallback manual si helmet no está disponible
   app.use((req, res, next) => {
+    const nonce = res.locals.nonce;
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: [
+            "'self'",
+            `'nonce-${nonce}'`,                          // scripts inline con nonce
+            "https://www.googletagmanager.com",
+            "https://pagead2.googlesyndication.com",
+            "https://fonts.googleapis.com",
+            "https://www.googletagservices.com",
+            "https://adservice.google.com",
+          ],
+          styleSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://fonts.googleapis.com"
+          ],
+          fontSrc: ["'self'", "https://fonts.gstatic.com"],
+          imgSrc: ["'self'", "data:", "https:", "http:"],
+          connectSrc: [
+            "'self'",
+            "https://www.google-analytics.com",
+            "https://region1.google-analytics.com",
+            "https://analytics.google.com",
+          ],
+          frameSrc: [
+            "https://googleads.g.doubleclick.net",
+            "https://tpc.googlesyndication.com",
+          ],
+          objectSrc: ["'none'"],
+          baseUri: ["'self'"],
+          formAction: ["'self'"],
+          upgradeInsecureRequests: [],
+        },
+      },
+      // Permissions-Policy completo para A+
+      permissionsPolicy: {
+        features: {
+          camera: [],
+          microphone: [],
+          geolocation: [],
+          fullscreen: ["'self'"],
+          payment: [],
+          usb: [],
+          accelerometer: [],
+          gyroscope: [],
+          magnetometer: [],
+        }
+      },
+      crossOriginEmbedderPolicy: false,
+    })(req, res, next);
+  });
+} else {
+  app.use((req, res, next) => {
+    const nonce = res.locals.nonce;
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('X-XSS-Protection', '1; mode=block');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-    res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+    res.setHeader('Permissions-Policy', "camera=(), microphone=(), geolocation=(), payment=(), usb=()");
+    res.setHeader('Content-Security-Policy', `default-src 'self'; script-src 'self' 'nonce-${nonce}' https://www.googletagmanager.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; object-src 'none'`);
     next();
   });
 }
@@ -198,9 +231,18 @@ app.get('/api/status', (req, res) => {
   res.json({ ok: true, lastGenerated, itemCount, archiveCount });
 });
 
-// SPA fallback
+// SPA fallback — inyecta el nonce en el HTML para scripts inline seguros
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  const indexPath = path.join(__dirname, 'public', 'index.html');
+  try {
+    let html = fs.readFileSync(indexPath, 'utf8');
+    // Reemplaza el placeholder NONCE_PLACEHOLDER con el nonce real
+    html = html.replace(/NONCE_PLACEHOLDER/g, res.locals.nonce || '');
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(html);
+  } catch {
+    res.sendFile(indexPath);
+  }
 });
 
 // ─── MANEJO DE ERRORES GLOBAL ─────────────────────────────────────────────────
