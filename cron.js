@@ -11,8 +11,8 @@ import fs from 'fs';
 import cron from 'node-cron';
 import 'dotenv/config';
 
-const DATA_DIR  = './data';
-const DATA_FILE = './data/content.json';
+const DATA_DIR  = process.env.VERCEL ? '/tmp' : './data';
+const DATA_FILE = process.env.VERCEL ? '/tmp/content.json' : './data/content.json';
 
 const PROMPT_ES = `Eres un experto en domótica, smart home e IoT. La fecha de hoy es ${new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}.
 

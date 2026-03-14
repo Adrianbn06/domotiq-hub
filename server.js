@@ -17,7 +17,7 @@ import 'dotenv/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const DATA_FILE = './data/content.json';
+const DATA_FILE = process.env.VERCEL ? '/tmp/content.json' : './data/content.json';
 
 // ─── Middleware ────────────────────────────────────────────────────────────────
 app.use(express.json());
