@@ -567,24 +567,14 @@ ${icon(deal.platform)} ${deal.platform}
   }
 }
 
-export async function generateContent() {
-  if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
-
-  const dayOfWeek = new Date().getDay();
-  const isLongDay = dayOfWeek === 4; // Solo jueves — reduce costo de $2.10 a $1.57/mes
-  const mode = isLongDay ? 'LARGO (E-E-A-T + reviews + comparativas)' : 'CORTO (E-E-A-T + long-tail)';
-
-  console.log(`[${new Date().toISOString()}] 🤖 Generando — Modo: ${mode}`);
-
-  // Timeout de 120 segundos para evitar socket hang up silencioso
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 120000);
-
-  let response;
+// ─── HELPER: UNA LLAMADA A LA API ────────────────────────────────────────────
+async function callAPI(prompt, maxTokens) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 120000);
   try {
-    response = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      signal: controller.signal,
+      signal: ctrl.signal,
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': process.env.ANTHROPIC_API_KEY,
@@ -593,25 +583,49 @@ export async function generateContent() {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: isLongDay ? 8000 : 4000,
+        max_tokens: maxTokens,
         tools: [{ type: 'web_search_20250305', name: 'web_search' }],
         messages: [{ role: 'user', content: prompt }]
       })
     });
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Error API ${res.status}: ${errText}`);
+    }
+    const data = await res.json();
+    let text = '';
+    for (const block of data.content || []) {
+      if (block.type === 'text') text += block.text;
+    }
+    return text;
   } finally {
-    clearTimeout(timeout);
+    clearTimeout(t);
   }
+}
 
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`Error API ${response.status}: ${errText}`);
-  }
+export async function generateContent() {
+  if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
 
-  const data = await response.json();
-  let rawText = '';
-  for (const block of data.content || []) {
-    if (block.type === 'text') rawText += block.text;
-  }
+  const dayOfWeek = new Date().getDay();
+  const isLongDay = dayOfWeek === 4;
+  const mode = isLongDay ? 'LARGO (reviews + comparativas)' : 'CORTO (E-E-A-T + long-tail)';
+  console.log(`[${new Date().toISOString()}] 🤖 Generando — Modo: ${mode}`);
+
+  // Llamada 1: Noticias
+  console.log('📡 Generando noticias...');
+  const rawNews = await callAPI(
+    isLongDay ? PROMPT_LARGO_NOTICIAS : PROMPT_CORTO_NOTICIAS,
+    2500
+  );
+
+  // Llamada 2: Ofertas (+ reviews/comparativas si es día largo)
+  console.log('🏷️  Generando ofertas...');
+  const rawPromos = await callAPI(
+    isLongDay ? PROMPT_LARGO_OFERTAS : PROMPT_CORTO_OFERTAS,
+    isLongDay ? 5000 : 2500
+  );
+
+  const rawText = rawNews + '\n' + rawPromos;
 
   // Parser robusto — limpia el JSON antes de parsear
   let jsonMatch = rawText.match(/\{[\s\S]*\}/);
