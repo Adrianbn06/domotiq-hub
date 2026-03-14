@@ -587,7 +587,7 @@ export async function generateContent() {
   if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
 
   const dayOfWeek = new Date().getDay();
-  const isLongDay = dayOfWeek === 1 || dayOfWeek === 4;
+  const isLongDay = dayOfWeek === 4; // Solo jueves — reduce costo de $2.10 a $1.57/mes
   const mode = isLongDay ? 'LARGO (E-E-A-T + reviews + comparativas)' : 'CORTO (E-E-A-T + long-tail)';
 
   console.log(`[${new Date().toISOString()}] 🤖 Generando — Modo: ${mode}`);
@@ -670,7 +670,7 @@ if (process.argv.includes('--once')) {
   cron.schedule(`0 ${hour} * * *`, () => {
     generateContent().catch(err => console.error('❌ Error cron:', err.message));
   });
-  console.log(`⏰ Cron activo — Lun/Jue: largo | Resto: corto | E-E-A-T + páginas individuales`);
+  console.log(`⏰ Cron activo — Jue: largo (reviews+comparativas) | Resto: corto | E-E-A-T`);
 }
 
 // ─── SSG: INYECTAR CONTENIDO EN INDEX.HTML ────────────────────────────────────
