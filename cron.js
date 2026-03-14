@@ -45,7 +45,7 @@ RESPONDE ÚNICAMENTE CON JSON VÁLIDO, sin markdown, sin texto antes o después:
       "discount": "-41%",
       "date": "13 Mar 2025",
       "featured": true,
-      "url": "https://www.amazon.com/s?k=bombilla+inteligente+wifi"
+      "url": "https://www.amazon.com/s?k=bombilla+inteligente+wifi&tag=domotiq-20"
     }
   ]
 }
@@ -54,7 +54,7 @@ REGLAS:
 - Los primeros 10 items deben ser type:"news" (ids 1-10)
 - Los siguientes 10 deben ser type:"promo" (ids 11-20)
 - Para promos: 4 Amazon, 3 eBay, 3 Alibaba
-- URLs de Amazon: https://www.amazon.com/s?k=... con búsqueda relevante
+- URLs de Amazon: https://www.amazon.com/s?k=TERMINO+DE+BUSQUEDA&tag=domotiq-20 (SIEMPRE incluir &tag=domotiq-20 en TODAS las URLs de Amazon)
 - URLs de eBay: https://www.ebay.com/sch/i.html?_nkw=...
 - URLs de Alibaba: https://www.alibaba.com/trade/search?SearchText=...
 - Al menos 3 promos deben tener featured:true
