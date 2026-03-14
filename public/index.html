@@ -229,7 +229,7 @@
     </a>
     <nav class="nav-links">
       <a href="#noticias" id="nav-news">Noticias</a>
-      <a href="#ofertas" id="nav-deals">Ofertas</a>
+      <a href="#descuentos" id="nav-deals">Ofertas</a>
       <a href="#sobre" id="nav-about">Acerca de</a>
     </nav>
     <div class="lang-toggle">
@@ -242,15 +242,12 @@
 <!-- ═══ HERO ══════════════════════════════════════════════════════════════════ -->
 <div class="wrapper">
   <section class="hero">
-    <div class="hero-badge">
-      <div class="pulse"></div>
-      <span id="badge-text">IA · Actualización diaria automática</span>
-    </div>
+
     <h1 id="hero-title">
       El hub inteligente de<br>
       <span class="gr">domótica y smart home</span>
     </h1>
-    <p id="hero-sub">10 noticias + las mejores ofertas de Amazon, eBay y Alibaba — generadas con IA cada mañana</p>
+    <p id="hero-sub">Las mejores ofertas y noticias de domótica — actualizado diariamente</p>
   </section>
 
   <!-- ── STATS ── -->
@@ -258,7 +255,7 @@
     <div class="stat"><div class="stat-num" id="stat-news">—</div><div class="stat-label" id="lbl-news">noticias hoy</div></div>
     <div class="stat"><div class="stat-num" id="stat-promos">—</div><div class="stat-label" id="lbl-promos">ofertas activas</div></div>
     <div class="stat"><div class="stat-num">3</div><div class="stat-label" id="lbl-sources">plataformas</div></div>
-    <div class="stat"><div class="stat-num" id="stat-time">—</div><div class="stat-label" id="lbl-time">última actualización</div></div>
+
   </div>
 
   <!-- ═══ ANUNCIO SUPERIOR (Banner 728x90 o adaptativo) ════════════════════════
@@ -276,6 +273,22 @@
     <!-- ESPACIO PUBLICITARIO — Activa Google AdSense aquí cuando seas aprobado -->
     <span>📢 Espacio para anuncio de Google AdSense</span>
   </div>
+
+  <!-- ── DESCUENTOS DEL DÍA (primero) ── -->
+  <section id="descuentos" style="margin-bottom:48px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+      <h2 class="section-title">🔥 Mejores descuentos de hoy <span id="deals-count-badge" style="color:var(--accent);font-family:var(--mono);font-size:14px;"></span></h2>
+      <div class="filters">
+        <button class="filter-btn active" onclick="setDealsFilter('all')" id="df-all">Todos</button>
+        <button class="filter-btn" onclick="setDealsFilter('amazon')" id="df-amazon">Amazon</button>
+        <button class="filter-btn" onclick="setDealsFilter('ebay')" id="df-ebay">eBay</button>
+        <button class="filter-btn" onclick="setDealsFilter('alibaba')" id="df-alibaba">Alibaba</button>
+      </div>
+    </div>
+    <div class="content-grid" id="deals-grid">
+      <div class="loading-state"><div class="loader"></div><div class="loading-text">Cargando ofertas...</div></div>
+    </div>
+  </section>
 
   <!-- ── NOTICIAS ── -->
   <section id="noticias">
@@ -339,8 +352,9 @@
         Archivo de Reviews y Comparativas
         <span style="color:var(--accent);font-family:var(--mono);font-size:14px;margin-left:8px;" id="archive-count-badge"></span>
       </h2>
-      <div style="display:flex;gap:8px;">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <button class="filter-btn active" onclick="setArchiveFilter('all')" id="af-all">Todo</button>
+        <button class="filter-btn" onclick="setArchiveFilter('news')" id="af-news">Noticias</button>
         <button class="filter-btn" onclick="setArchiveFilter('review')" id="af-review">Reviews</button>
         <button class="filter-btn" onclick="setArchiveFilter('comparativa')" id="af-comparativa">Comparativas</button>
       </div>
@@ -397,7 +411,7 @@ const TX = {
   es: {
     badge: 'IA · Actualización diaria automática',
     heroTitle: 'El hub inteligente de<br><span class="gr">domótica y smart home</span>',
-    heroSub: '10 noticias + las mejores ofertas de Amazon, eBay y Alibaba — generadas con IA cada mañana',
+    heroSub: 'Las mejores ofertas y noticias de domótica — actualizado diariamente',
     navNews:'Noticias', navDeals:'Ofertas', navAbout:'Acerca de',
     lblNews:'noticias hoy', lblPromos:'ofertas activas', lblSources:'plataformas', lblTime:'última actualización',
     filterLabel:'Filtrar:', fAll:'Todo', fNews:'Noticias', fPromo:'Ofertas',
@@ -419,7 +433,7 @@ const TX = {
   en: {
     badge: 'AI · Automatic daily updates',
     heroTitle: 'The smart hub for<br><span class="gr">home automation & smart home</span>',
-    heroSub: '10 news stories + best deals from Amazon, eBay & Alibaba — AI-generated every morning',
+    heroSub: 'The best smart home deals and news — updated daily',
     navNews:'News', navDeals:'Deals', navAbout:'About',
     lblNews:'news today', lblPromos:'active deals', lblSources:'platforms', lblTime:'last updated',
     filterLabel:'Filter:', fAll:'All', fNews:'News', fPromo:'Deals',
@@ -540,6 +554,7 @@ async function loadContent() {
     }
 
     renderItems(allItems);
+    renderDeals(allItems);
 
     // Evento GA4
     gtag('event', 'content_loaded', { news_count: newsCount, promo_count: promoCount });
@@ -698,6 +713,72 @@ function trackClick(type, labelOrPlatform, title) {
 applyTranslations();
 loadContent();
 loadArchive();
+// ─── SECCIÓN DESCUENTOS ────────────────────────────────────────────────────
+let dealsFilter = 'all';
+
+function setDealsFilter(f) {
+  dealsFilter = f;
+  ['all','amazon','ebay','alibaba'].forEach(id => {
+    const el = document.getElementById('df-' + id);
+    if (el) el.classList.toggle('active', id === f);
+  });
+  if (allItems.length > 0) renderDeals(allItems);
+}
+
+function renderDeals(items) {
+  const grid = document.getElementById('deals-grid');
+  if (!grid) return;
+
+  let promos = items.filter(i => i.type === 'promo');
+  if (dealsFilter !== 'all') {
+    promos = promos.filter(i => i.platform && i.platform.toLowerCase() === dealsFilter);
+  }
+
+  const badge = document.getElementById('deals-count-badge');
+  if (badge) badge.textContent = '(' + promos.length + ' ofertas)';
+
+  if (promos.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Sin ofertas</div></div>';
+    return;
+  }
+
+  // Sort: featured first, then by discount
+  promos.sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    const da = parseInt((a.discount||'0').replace(/[^0-9]/g,''));
+    const db = parseInt((b.discount||'0').replace(/[^0-9]/g,''));
+    return db - da;
+  });
+
+  const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
+
+  grid.innerHTML = promos.map((item, i) => {
+    const delay = (i * 0.04).toFixed(2);
+    return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="noopener"
+         onclick="trackClick('promo', '${(item.platform||'').replace(/'/g,'\'') }', '${item.title.replace(/'/g,'\'') }')">
+      <div class="card-header">
+        <div class="card-tags">
+          <span class="tag promo">🏷️ Oferta</span>
+          ${item.featured ? '<span class="tag featured">🔥 Top</span>' : ''}
+          <span class="tag platform">${icon(item.platform)} ${item.platform}</span>
+        </div>
+        <span class="card-date">${item.date || ''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body}</div>
+      <div class="card-footer">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="price-badge">${item.price}</span>
+          ${item.discount ? `<span class="discount-badge">${item.discount}</span>` : ''}
+          ${item.originalPrice ? `<span style="font-size:12px;color:var(--muted);text-decoration:line-through;">${item.originalPrice}</span>` : ''}
+        </div>
+        <span class="read-more">Ver oferta</span>
+      </div>
+    </a>`;
+  }).join('');
+}
+
 
 // Recargar el contenido cada hora (por si el cron actualizó mientras el usuario está en la página)
 setInterval(loadContent, 60 * 60 * 1000);
@@ -742,7 +823,17 @@ function renderArchive(items) {
 
   grid.innerHTML = filtered.map((item, i) => {
     const delay = (i * 0.04).toFixed(2);
-    if (item.type === 'review') {
+    if (item.type === 'news') {
+      return `<a class="card" style="animation-delay:${delay}s" href="${item.url && item.url !== '#' ? item.url : '#'}" target="_blank" rel="noopener">
+        <div class="card-header">
+          <div class="card-tags"><span class="tag news">📡 Noticia</span>${(item.tags||[]).slice(0,1).map(t=>`<span class="tag platform">${t}</span>`).join('')}</div>
+          <span class="card-date">${item.archivedAt || item.date || ''}</span>
+        </div>
+        <div class="card-title">${item.title}</div>
+        <div class="card-body">${item.body}</div>
+        <div class="card-footer"><span class="card-source">${item.source||''}</span><span class="read-more">Leer noticia</span></div>
+      </a>`;
+    } else if (item.type === 'review') {
       return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="noopener">
         <div class="card-header">
           <div class="card-tags"><span class="tag review">⭐ Review</span></div>

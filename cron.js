@@ -118,7 +118,7 @@ function updateArchive(newItems) {
   const archive = loadArchive();
 
   // Agregar solo reviews y comparativas nuevas
-  const toAdd = newItems.filter(i => i.type === 'review' || i.type === 'comparativa');
+  const toAdd = newItems.filter(i => i.type === 'review' || i.type === 'comparativa' || i.type === 'news');
   toAdd.forEach(item => {
     item.archivedAt = todayISO();
     archive.items.push(item);
@@ -209,10 +209,8 @@ export async function generateContent() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
   fs.writeFileSync(DATA_FILE, JSON.stringify(result, null, 2), 'utf8');
 
-  // Acumular en archivo histórico si hay reviews/comparativas
-  if (isLongDay) {
-    updateArchive(parsed.items);
-  }
+  // Acumular en archivo histórico (noticias siempre, reviews/comparativas en días largos)
+  updateArchive(parsed.items);
 
   console.log(`✅ Generados: ${result.newsCount} noticias, ${result.promoCount} promos, ${result.reviewCount} reviews, ${result.comparativaCount} comparativas`);
   return result;
