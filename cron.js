@@ -322,7 +322,10 @@ function generateArticlePage(item, allItems = []) {
     }))
   });
 
-  const tags = item.tags ? item.tags.map(t=>`<span style="font-size:11px;background:rgba(255,255,255,0.05);color:#94a3b8;padding:3px 10px;border-radius:6px;">${t}</span>`).join('') : '';
+  const tags = item.tags ? item.tags.map(t => {
+    const slug = t.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+    return `<a href="/tags/${slug}.html" style="font-size:11px;background:rgba(255,255,255,0.05);color:#94a3b8;padding:3px 10px;border-radius:6px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.color='#00d4aa';this.style.background='rgba(0,212,170,0.08)'" onmouseout="this.style.color='#94a3b8';this.style.background='rgba(255,255,255,0.05)'">${t}</a>`;
+  }).join('') : '';
 
   return `<!DOCTYPE html>
 <html lang="es">
