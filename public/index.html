@@ -1024,8 +1024,7 @@ function renderDeals(items) {
   }
 
   grid.innerHTML = promos.map((item, i) => {
-    const insight = getPriceInsight(item);
-    const insightBadge = insight ? `<div style="background:${insight.color}22;border:1px solid ${insight.color}44;color:${insight.color};padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;margin-top:6px;display:inline-block;">${insight.label}</div>` : '';
+    // Hemos eliminado la llamada a getPriceInsight de aquí
     return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${item.slug ? '/articulos/'+item.slug+'.html' : item.url}" target="_blank" rel="sponsored noopener">
       <div class="card-header">
         <div class="card-tags">
@@ -1037,7 +1036,6 @@ function renderDeals(items) {
       </div>
       <div class="card-title">${item.title}</div>
       <div class="card-body">${item.body}</div>
-      ${insightBadge}
       <div class="card-footer">
         <div style="display:flex;gap:8px;align-items:center;">
           <span class="price-badge">${item.price}</span>
