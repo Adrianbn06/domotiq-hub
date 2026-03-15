@@ -155,15 +155,7 @@ document.addEventListener('keydown', e => {
 // ── DELEGACIÓN DE EVENTOS PARA CARDS ─────────────────────────────────────────
 // Usando delegación para evitar problemas con CSP y onclick inline
 document.addEventListener('click', function(e) {
-  // Botón WhatsApp compartir
-  const waBtn = e.target.closest('.wa-share-btn');
-  if (waBtn) {
-    e.preventDefault();
-    e.stopPropagation();
-    const waText = waBtn.getAttribute('data-wa');
-    window.open('https://api.whatsapp.com/send?text=' + waText, '_blank', 'noopener');
-    return;
-  }
+
   // Botón "Avísame si baja"
   const alertBtn = e.target.closest('.price-alert-btn');
   if (alertBtn) {
@@ -225,14 +217,8 @@ function renderDeals(items) {
       <div class="dc-footer">
         <div><div class="dc-price">${item.price}</div>${item.originalPrice?`<div class="dc-old">${item.originalPrice}</div>`:''}</div>
         <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end;">
-          <a href="${href}" target="_blank" rel="sponsored noopener" class="dc-btn" style="text-decoration:none;">Ver oferta</a>
-          <div style="display:flex;gap:6px;align-items:center;margin-top:2px;">
-            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent('🏷️ Oferta de domótica: ' + item.title + ' — ' + item.price + (item.discount?' ('+item.discount+')':'') + ' 👉 https://ofertasdomoticas.com/articulos/' + item.slug + '.html')}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:#25d366;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);padding:3px 8px;border-radius:5px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(37,211,102,0.15)'" onmouseout="this.style.background='rgba(37,211,102,0.08)'">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.547a.5.5 0 0 0 .609.61l5.796-1.516A11.955 11.955 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.51-5.166-1.4l-.371-.22-3.844 1.006 1.022-3.737-.242-.386A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-              Compartir
-            </a>
-            <button class="price-alert-btn" data-title="${safeTitle}" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:3px 4px;font-family:var(--font);transition:color 0.2s;">🔔</button>
-          </div>
+          <button class="dc-btn">Ver oferta</button>
+          <button class="price-alert-btn" data-title="${safeTitle}" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:2px 4px;font-family:var(--font);transition:color 0.2s;">🔔 Avísame si baja</button>
         </div>
       </div>
     </div>`;
