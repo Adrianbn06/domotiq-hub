@@ -856,45 +856,25 @@ export function injectSSG(items, priceHistory = null) {
 
   let html = fs.readFileSync(indexPath, 'utf8');
 
-  // Sort promos: featured first, then by discount
-  const promos = items
-    .filter(i => i.type === 'promo')
-    .sort((a, b) => {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      const da = parseInt((a.discount||'0').replace(/[^0-9]/g,''));
-      const db = parseInt((b.discount||'0').replace(/[^0-9]/g,''));
-      return db - da;
-    });
-
-  const nonPromos = items.filter(i => i.type !== 'promo');
-
-  // Generate grid HTML (news + reviews + comparativas)
-  const adInFeed = `<div class="ad-in-feed"><div class="ad-banner"><span>📢 Anuncio In-Feed — Google AdSense</span></div></div>`;
-  const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i, priceHistory));
-  if (gridCards.length > 5) gridCards.splice(5, 0, adInFeed);
-  const gridHTML = gridCards.join('\n');
-
-  // Generate deals HTML
-  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i, priceHistory)).join('\n');
-
-  // Build SSG data script for JS hydration
+  // Solo inyectar el JSON de datos — app.js se encarga del renderizado
   const ssgDataScript = `<script id="ssg-data" type="application/json">${JSON.stringify(items)}</script>`;
 
-  // Inject into placeholders
-  html = html.replace('<!-- SSG_GRID_CONTENT -->', gridHTML || '<div class="empty-state"><div class="empty-icon">🏠</div><div class="empty-title">Cargando...</div></div>');
-  html = html.replace('<!-- SSG_DEALS_CONTENT -->', dealsHTML || '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Cargando ofertas...</div></div>');
-
-  // Inject SSG data before </body>
-  // Eliminar script anterior para evitar duplicados acumulados
+  // Eliminar script anterior para evitar duplicados
   html = html.replace(/<script id="ssg-data"[\s\S]*?<\/script>/g, '');
-  html = html.replace('</body>', ssgDataScript + '\n</body>');
 
-  // Update stats in HTML directly
+  // Reemplazar el placeholder vacío con los datos reales
+  html = html.replace(
+    '<script id="ssg-data" type="application/json">[]</script>',
+    ssgDataScript
+  );
+
+  // Si no había placeholder, insertar antes de app.js
+  if (!html.includes(ssgDataScript)) {
+    html = html.replace('<script src="/app.js"></script>', ssgDataScript + '\n<script src="/app.js"></script>');
+  }
+
   const newsCount  = items.filter(i => i.type === 'news').length;
   const promoCount = items.filter(i => i.type === 'promo').length;
-  html = html.replace('id="stat-news">—<', `id="stat-news">${newsCount}<`);
-  html = html.replace('id="stat-promos">—<', `id="stat-promos">${promoCount}<`);
 
   fs.writeFileSync(indexPath, html, 'utf8');
   console.log(`🚀 SSG: index.html inyectado con ${items.length} items (${newsCount} noticias, ${promoCount} ofertas)`);

@@ -45,7 +45,7 @@ function renderDeals(items, filter) {
   if (!grid) return;
   let promos = items.filter(i => i.type === 'promo');
   if (filter !== 'all') {
-    promos = promos.filter(i => i.platform && i.platform.toLowerCase() === filter.toLowerCase());
+    promos = promos.filter(i => i.platform && i.platform.trim().toLowerCase() === filter.trim().toLowerCase());
   }
   promos.sort((a,b) => {
     if (a.featured && !b.featured) return -1;
@@ -87,10 +87,16 @@ function renderDeals(items, filter) {
 // ── FILTROS DE OFERTAS ────────────────────────────────────────────────────────
 function setDealsFilter(platform) {
   currentDealFilter = platform;
+  // Actualizar botones
   document.querySelectorAll('[id^="df-"]').forEach(btn => btn.classList.remove('active'));
   const btn = document.getElementById('df-' + platform);
   if (btn) btn.classList.add('active');
-  renderDeals(allItems, platform);
+  // Si allItems está vacío intentar cargar primero
+  if (allItems.length === 0) {
+    loadFromAPI().then(() => renderDeals(allItems, platform));
+  } else {
+    renderDeals(allItems, platform);
+  }
 }
 
 // ── RENDERIZAR ARCHIVO ────────────────────────────────────────────────────────
@@ -175,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadFromAPI() {
-  fetch('/api/content')
+  return fetch('/api/content')
     .then(r => r.json())
     .then(data => {
       if (data && data.items && data.items.length > 0) {
