@@ -384,6 +384,10 @@ document.addEventListener('DOMContentLoaded', function() {
         archiveItems = data.items;
         const sa = document.getElementById('stat-archive');
         if (sa) sa.textContent = archiveItems.length;
+        // Contador de artículos publicados (archive + items actuales)
+        const totalArticles = archiveItems.filter(i => i.slug).length + allItems.filter(i => i.slug).length;
+        const statArt = document.getElementById('stat-articles');
+        if (statArt) statArt.textContent = totalArticles;
         renderArchive(archiveItems);
       }
     })
