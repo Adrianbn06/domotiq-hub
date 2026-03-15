@@ -105,22 +105,40 @@ function showPriceAlert(e, productTitle) {
 
   const popup = document.createElement('div');
   popup.id = 'price-alert-popup';
-  popup.innerHTML = `
-    <div id="price-alert-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;backdrop-filter:blur(4px);" onclick="closePriceAlert()"></div>
-    <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;background:var(--card,#141c2e);border:1px solid rgba(0,212,170,0.3);border-radius:16px;padding:28px 28px 24px;max-width:360px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
-      <div style="font-size:36px;margin-bottom:12px;">🔔</div>
-      <div style="font-size:17px;font-weight:700;color:var(--text,#e2e8f0);margin-bottom:8px;line-height:1.3;">¿Precio muy alto ahora?</div>
-      <div style="font-size:13px;color:var(--muted,#94a3b8);line-height:1.6;margin-bottom:20px;">Únete a nuestro canal de Telegram. Avisamos al instante cuando <strong style="color:var(--text,#e2e8f0);">${productTitle.slice(0,50)}${productTitle.length>50?'...':''}</strong> alcance su mínimo histórico.</div>
-      <a href="https://t.me/ofertas_domoticas" target="_blank" rel="noopener"
-        onclick="closePriceAlert()"
-        style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:10px;background:#0088cc;color:#fff;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;transition:background 0.2s;">
-        ✈ Unirse al canal de Telegram
-      </a>
-      <button onclick="closePriceAlert()" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border,rgba(255,255,255,0.07));background:transparent;color:var(--muted,#94a3b8);font-size:13px;cursor:pointer;font-family:var(--font,'Space Grotesk',sans-serif);">
-        Ahora no
-      </button>
-    </div>
+
+  const overlay = document.createElement('div');
+  overlay.id = 'price-alert-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;backdrop-filter:blur(4px);';
+  overlay.addEventListener('click', closePriceAlert);
+
+  const box = document.createElement('div');
+  box.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;background:var(--card,#141c2e);border:1px solid rgba(0,212,170,0.3);border-radius:16px;padding:28px 28px 24px;max-width:360px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);';
+
+  const shortTitle = productTitle.length > 50 ? productTitle.slice(0,50) + '...' : productTitle;
+
+  box.innerHTML = `
+    <div style="font-size:36px;margin-bottom:12px;">🔔</div>
+    <div style="font-size:17px;font-weight:700;color:var(--text,#e2e8f0);margin-bottom:8px;line-height:1.3;">¿Precio muy alto ahora?</div>
+    <div style="font-size:13px;color:var(--muted,#94a3b8);line-height:1.6;margin-bottom:20px;">Únete a nuestro canal de Telegram. Avisamos al instante cuando <strong style="color:var(--text,#e2e8f0);">${shortTitle}</strong> alcance su mínimo histórico.</div>
   `;
+
+  const tgLink = document.createElement('a');
+  tgLink.href = 'https://t.me/ofertas_domoticas';
+  tgLink.target = '_blank';
+  tgLink.rel = 'noopener';
+  tgLink.textContent = '✈ Unirse al canal de Telegram';
+  tgLink.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:10px;background:#0088cc;color:#fff;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;box-sizing:border-box;';
+  tgLink.addEventListener('click', closePriceAlert);
+
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = 'Ahora no';
+  closeBtn.style.cssText = 'width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--muted,#94a3b8);font-size:13px;cursor:pointer;font-family:var(--font,sans-serif);';
+  closeBtn.addEventListener('click', closePriceAlert);
+
+  box.appendChild(tgLink);
+  box.appendChild(closeBtn);
+  popup.appendChild(overlay);
+  popup.appendChild(box);
   document.body.appendChild(popup);
 }
 
