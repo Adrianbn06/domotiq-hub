@@ -166,7 +166,21 @@ document.addEventListener('DOMContentLoaded', function() {
     loadFromAPI();
   }
 
-  // 2. Cargar archivo histórico desde API
+  // 2. Configurar event listeners para filtros (sin onclick en HTML)
+  document.querySelectorAll('[data-filter]').forEach(btn => {
+    btn.addEventListener('click', () => setDealsFilter(btn.getAttribute('data-filter')));
+  });
+  document.querySelectorAll('[data-archive]').forEach(btn => {
+    btn.addEventListener('click', () => setArchiveFilter(btn.getAttribute('data-archive')));
+  });
+
+  // 3. Google Analytics
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J4MP94RSZL');
+
+  // 4. Cargar archivo histórico desde API
   fetch('/api/archive')
     .then(r => r.json())
     .then(data => {
