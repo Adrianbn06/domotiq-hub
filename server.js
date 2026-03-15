@@ -238,13 +238,30 @@ app.get('/api/status', (req, res) => {
 app.get('*', (req, res) => {
   const indexPath = path.join(__dirname, 'public', 'index.html');
   const notFoundPath = path.join(__dirname, 'public', '404.html');
-
-  // Check if requesting a specific file that doesn't exist
   const requestedFile = path.join(__dirname, 'public', req.path);
+
+  // Si es un directorio, buscar index.html dentro
+  if (fs.existsSync(requestedFile) && fs.statSync(requestedFile).isDirectory()) {
+    const dirIndex = path.join(requestedFile, 'index.html');
+    if (fs.existsSync(dirIndex)) {
+      try {
+        let html = fs.readFileSync(dirIndex, 'utf8');
+        html = html.replace(/NONCE_PLACEHOLDER/g, res.locals.nonce || '');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        return res.send(html);
+      } catch {
+        return res.status(404).sendFile(notFoundPath);
+      }
+    }
+    return res.status(404).sendFile(notFoundPath);
+  }
+
+  // Si es un archivo .html que no existe → 404
   if (req.path !== '/' && !fs.existsSync(requestedFile) && req.path.includes('.html')) {
     return res.status(404).sendFile(notFoundPath);
   }
 
+  // Todo lo demás → index.html principal con nonce
   try {
     let html = fs.readFileSync(indexPath, 'utf8');
     html = html.replace(/NONCE_PLACEHOLDER/g, res.locals.nonce || '');
