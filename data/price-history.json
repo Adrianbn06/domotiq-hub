@@ -89,7 +89,88 @@
           "price": 16.99
         }
       ]
+    },
+    "aqara-m3-hub-matter-zigbee-thread": {
+      "title": "Aqara Hub M3 Matter Zigbee Thread IR Bridge Controller Compatible SmartThings Apple Home",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 109.99
+        }
+      ]
+    },
+    "echo-dot-max-zigbee-thread-hub": {
+      "title": "Amazon Echo Dot Max Zigbee 3.0 Hub Thread Border Router Matter Compatible Built-in",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 99.99
+        }
+      ]
+    },
+    "zemismart-m1-pro-matter-bridge": {
+      "title": "Zemismart M1 Pro Matter Zigbee Thread IR Universal Bridge 128 Device Controller",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 60.72
+        }
+      ]
+    },
+    "homey-pro-2026-multi-protocol": {
+      "title": "Homey Pro 2026 Multi-Protocol Hub Z-Wave Zigbee Thread Matter WiFi BLE IR Controller",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 399.99
+        }
+      ]
+    },
+    "samsung-smartthings-motion-zigbee": {
+      "title": "Samsung SmartThings Motion Sensor Zigbee 3.0 PIR Detector Battery 2-Year Compatible",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 24.99
+        }
+      ]
+    },
+    "sonoff-snzb-03p-zigbee-motion": {
+      "title": "SONOFF SNZB-03P Motion Sensor Zigbee 3.0 PIR 5-Year Battery Smart Detection",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 15.99
+        }
+      ]
+    },
+    "aqara-door-sensor-zigbee-contact": {
+      "title": "Aqara Door Window Contact Sensor Zigbee 3.0 Magnetic Reed Switch 2-Year Battery",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 12.99
+        }
+      ]
+    },
+    "tuya-zigbee-gateway-hub-bridge": {
+      "title": "Tuya Zigbee 3.0 Gateway Hub 100 Device Capacity WiFi Bridge Controller Smart Home",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 18.5
+        }
+      ]
+    },
+    "xiaomi-aqara-temperature-zigbee": {
+      "title": "Xiaomi Aqara Temperature Humidity Sensor Zigbee 3.0 Atmospheric Pressure Monitor",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 8.9
+        }
+      ]
     }
   },
-  "lastUpdate": "2026-03-14"
+  "lastUpdate": "2026-03-15"
 }

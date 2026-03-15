@@ -768,7 +768,7 @@ if (process.argv.includes('--once')) {
 }
 
 // ─── SSG: INYECTAR CONTENIDO EN INDEX.HTML ────────────────────────────────────
-function renderCardHTML(item, i) {
+function renderCardHTML(item, i, priceHistory = null) {
   const delay = (i * 0.04).toFixed(2);
   const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
 
@@ -871,12 +871,12 @@ export function injectSSG(items, priceHistory = null) {
 
   // Generate grid HTML (news + reviews + comparativas)
   const adInFeed = `<div class="ad-in-feed"><div class="ad-banner"><span>📢 Anuncio In-Feed — Google AdSense</span></div></div>`;
-  const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i));
+  const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i, priceHistory));
   if (gridCards.length > 5) gridCards.splice(5, 0, adInFeed);
   const gridHTML = gridCards.join('\n');
 
   // Generate deals HTML
-  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i)).join('\n');
+  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i, priceHistory)).join('\n');
 
   // Build SSG data script for JS hydration
   const ssgDataScript = `<script id="ssg-data" type="application/json">${JSON.stringify(items)}</script>`;
@@ -886,6 +886,8 @@ export function injectSSG(items, priceHistory = null) {
   html = html.replace('<!-- SSG_DEALS_CONTENT -->', dealsHTML || '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Cargando ofertas...</div></div>');
 
   // Inject SSG data before </body>
+  // Eliminar script anterior para evitar duplicados acumulados
+  html = html.replace(/<script id="ssg-data"[\s\S]*?<\/script>/, '');
   html = html.replace('</body>', ssgDataScript + '\n</body>');
 
   // Update stats in HTML directly
