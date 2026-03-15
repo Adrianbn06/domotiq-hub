@@ -105,6 +105,10 @@
         {
           "date": "2026-03-15",
           "price": 99.99
+        },
+        {
+          "date": "2026-03-15",
+          "price": 89.99
         }
       ]
     },
@@ -114,6 +118,10 @@
         {
           "date": "2026-03-15",
           "price": 60.72
+        },
+        {
+          "date": "2026-03-15",
+          "price": 61.99
         }
       ]
     },
@@ -141,6 +149,10 @@
         {
           "date": "2026-03-15",
           "price": 15.99
+        },
+        {
+          "date": "2026-03-15",
+          "price": 12.99
         }
       ]
     },
@@ -168,6 +180,60 @@
         {
           "date": "2026-03-15",
           "price": 8.9
+        }
+      ]
+    },
+    "ikea-kajplats-matter-thread-bulb": {
+      "title": "IKEA KAJPLATS Smart Bulb Matter over Thread + HomeKit Compatible",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 8.99
+        }
+      ]
+    },
+    "aqara-fp300-dual-protocol-sensor": {
+      "title": "Aqara FP300 Multi-Sensor Zigbee 3.0 + Thread Dual Protocol Presence Detection",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 34.99
+        }
+      ]
+    },
+    "tuya-multimode-zigbee-bluetooth-hub": {
+      "title": "Tuya Multi-Mode Gateway Zigbee 3.0 + WiFi + Bluetooth Smart Hub Controller",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 28.99
+        }
+      ]
+    },
+    "home-assistant-zbt1-skyconnect-coordinator": {
+      "title": "Home Assistant ZBT-1 SkyConnect Zigbee Thread Matter USB Coordinator Stick",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 39.99
+        }
+      ]
+    },
+    "tuya-zigbee-30-gateway-wholesale": {
+      "title": "Tuya Zigbee 3.0 Gateway Hub WiFi Bridge Smart Home Automation Controller Wholesale",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 15.99
+        }
+      ]
+    },
+    "matter-thread-zigbee-multiprotocol-hub": {
+      "title": "Matter Smart Home Hub Thread Border Router Tuya Zigbee 3.0 Multi-Protocol Bridge",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 45.99
         }
       ]
     }
