@@ -26,9 +26,9 @@
     .bc a{color:var(--muted);text-decoration:none;}
     h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-0.5px;margin-bottom:10px;}
     .lead{font-size:16px;color:var(--muted);max-width:600px;line-height:1.7;margin-bottom:36px;}
-    .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
-    .article-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all 0.2s;}
-    .article-card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-2px);}
+    .articles-grid{display:flex;flex-direction:column;gap:16px;max-width:820px;}
+    .article-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 26px;text-decoration:none;color:var(--text);display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;transition:all 0.2s;}
+    .article-card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,0.2);}
     .article-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:5px;background:rgba(0,212,170,0.1);color:var(--accent);align-self:flex-start;}
     .article-title{font-size:17px;font-weight:600;line-height:1.4;}
     .article-desc{font-size:13px;color:var(--muted);line-height:1.65;flex:1;}
@@ -37,6 +37,7 @@
     footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--muted);position:relative;z-index:1;}
     footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
     footer a:hover{color:var(--accent);}
+      @media(max-width:600px){.article-card{grid-template-columns:1fr;} .article-card>div:last-child{display:none;}}
   </style>
 </head>
 <body>
@@ -58,11 +59,13 @@
 
   <div class="articles-grid">
     <a href="/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50.html" class="article-card">
-      <span class="article-badge">📖 Guía principiantes</span>
-      <div class="article-title">¿Qué es la domótica y cómo empezar con menos de $50 en 2026?</div>
-      <div class="article-desc">Qué es la domótica, cómo funcionan los protocolos Wi-Fi, Zigbee, Thread y Matter, y qué dispositivos comprar primero sin gastar mucho.</div>
-      <div class="article-meta"><span>📅 15 Mar 2026</span><span>⏱ 9 min</span></div>
-      <div class="article-more">Leer artículo →</div>
+      <div>
+        <span class="article-badge">📖 Guía principiantes</span>
+        <div class="article-title" style="margin-top:8px;">¿Qué es la domótica y cómo empezar con menos de $50 en 2026?</div>
+        <div class="article-desc" style="margin-top:6px;">Qué es la domótica, cómo funcionan los protocolos Wi-Fi, Zigbee, Thread y Matter, y qué dispositivos comprar primero sin gastar mucho.</div>
+        <div class="article-meta" style="margin-top:10px;"><span>📅 15 Mar 2026</span><span>⏱ 9 min</span></div>
+      </div>
+      <div style="flex-shrink:0;font-size:13px;font-weight:600;color:var(--accent);white-space:nowrap;">Leer →</div>
     </a>
     <!-- Más artículos se irán agregando aquí cada semana -->
   </div>
