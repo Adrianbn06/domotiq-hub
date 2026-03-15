@@ -229,7 +229,35 @@
     .scroll-top-btn{position:fixed;bottom:24px;right:24px;background-color:var(--card);color:var(--text);width:50px;height:50px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,0.3);z-index:1000;cursor:pointer;opacity:0;visibility:hidden;transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);}
     .scroll-top-btn.show{opacity:1;visibility:visible;}
     .scroll-top-btn:hover{background-color:var(--accent);color:#000;transform:translateY(-4px);}
-    @media(max-width:600px){.scroll-top-btn{bottom:16px;right:16px;width:44px;height:44px;}}
+
+    /* ── RESPONSIVE MÓVIL ── */
+    html,body{overflow-x:hidden;width:100%;}
+    .dc-title,.dc-body,.card-title,.card-body,.nc-title,.nc-body{word-wrap:break-word;overflow-wrap:break-word;}
+    .deal-grid,.news-grid,.archive-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));}
+    @media(max-width:600px){
+      .header-inner{flex-wrap:wrap;height:auto;padding:12px 16px;gap:8px;}
+      nav{gap:12px;flex-wrap:wrap;}
+      nav a{font-size:13px;}
+      .w{padding:0 16px 100px;}
+      .stats-bar-inner{gap:14px;flex-wrap:wrap;}
+      .sb-divider{display:none;}
+      .sd-inner{grid-template-columns:1fr;padding:20px 16px;}
+      .sd-price{font-size:26px;}
+      .sd-actions{flex-direction:row;flex-wrap:wrap;gap:8px;}
+      .sd-btn{flex:1;justify-content:center;}
+      .deal-card{padding:14px;}
+      .dc-footer{flex-direction:column;align-items:flex-start;gap:10px;}
+      .dc-footer>div:last-child{width:100%;justify-content:space-between;}
+      .control-bar{gap:6px;}
+      .filter-btn{padding:6px 10px;font-size:12px;}
+      .sort-select{width:100%;margin-left:0;}
+      .section-head{flex-direction:column;align-items:flex-start;gap:8px;}
+      .footer-grid{grid-template-columns:1fr;gap:20px;}
+      .fab{bottom:84px;right:16px;}
+      .scroll-top-btn{bottom:24px;right:16px;width:46px;height:46px;}
+      .newsletter{padding:24px 16px;}
+      .sd-inner{gap:16px;}
+    }
   </style>
 </head>
 <body>
