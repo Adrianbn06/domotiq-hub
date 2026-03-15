@@ -581,39 +581,55 @@ ${icon(deal.platform)} ${deal.platform}
   }
 }
 
-// ─── HELPER: UNA LLAMADA A LA API ────────────────────────────────────────────
-async function callAPI(prompt, maxTokens) {
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 120000);
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      signal: ctrl.signal,
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'anthropic-beta': 'web-search-2025-03-05'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: maxTokens,
-        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    if (!res.ok) {
-      const errText = await res.text();
-      throw new Error(`Error API ${res.status}: ${errText}`);
+// ─── HELPER: UNA LLAMADA A LA API (con reintentos automáticos) ───────────────
+async function callAPI(prompt, maxTokens, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 120000);
+    try {
+      console.log(`  → Intento ${attempt}/${retries}...`);
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        signal: ctrl.signal,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.ANTHROPIC_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-beta': 'web-search-2025-03-05'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: maxTokens,
+          tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Error API ${res.status}: ${errText}`);
+      }
+      const data = await res.json();
+      let text = '';
+      for (const block of data.content || []) {
+        if (block.type === 'text') text += block.text;
+      }
+      return text;
+    } catch (err) {
+      clearTimeout(t);
+      const isRetryable = err.message.includes('ECONNRESET') ||
+                          err.message.includes('socket hang up') ||
+                          err.message.includes('ETIMEDOUT') ||
+                          err.message.includes('aborted');
+      if (isRetryable && attempt < retries) {
+        const wait = attempt * 15000; // 15s, 30s entre reintentos
+        console.log(`  ⚠ Error de red (${err.message.slice(0,40)}), reintentando en ${wait/1000}s...`);
+        await new Promise(r => setTimeout(r, wait));
+        continue;
+      }
+      throw err;
+    } finally {
+      clearTimeout(t);
     }
-    const data = await res.json();
-    let text = '';
-    for (const block of data.content || []) {
-      if (block.type === 'text') text += block.text;
-    }
-    return text;
-  } finally {
-    clearTimeout(t);
   }
 }
 
