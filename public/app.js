@@ -155,6 +155,15 @@ document.addEventListener('keydown', e => {
 // ── DELEGACIÓN DE EVENTOS PARA CARDS ─────────────────────────────────────────
 // Usando delegación para evitar problemas con CSP y onclick inline
 document.addEventListener('click', function(e) {
+  // Botón WhatsApp compartir
+  const waBtn = e.target.closest('.wa-share-btn');
+  if (waBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+    const waText = waBtn.getAttribute('data-wa');
+    window.open('https://api.whatsapp.com/send?text=' + waText, '_blank', 'noopener');
+    return;
+  }
   // Botón "Avísame si baja"
   const alertBtn = e.target.closest('.price-alert-btn');
   if (alertBtn) {
