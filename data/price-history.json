@@ -468,6 +468,78 @@
           "price": 79.99
         }
       ]
+    },
+    "thirdreality-zigbee-smart-rgbcw-bulb-4pack": {
+      "title": "ThirdReality Zigbee 3.0 Smart RGBCW Bulb Pack con Hub Echo Compatible A19 800LM",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 34.99
+        }
+      ]
+    },
+    "sylvania-smart-zigbee-br30-color-flood": {
+      "title": "Sylvania Smart+ Zigbee 3.0 BR30 Color Full Spectrum SmartThings Echo Plus Flood",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 24.99
+        }
+      ]
+    },
+    "amazon-smart-thermostat-zigbee-honeywell": {
+      "title": "Amazon Smart Thermostat Zigbee 3.0 Honeywell Tech Alexa Voice Control Energy Star",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 79
+        }
+      ]
+    },
+    "ecosmart-zigbee-smart-led-br30-2pack": {
+      "title": "Ecosmart Zigbee 3.0 Smart LED BR30 2-Pack Voice Control Hub Required 65W Equiv",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 19.99
+        }
+      ]
+    },
+    "sonoff-snzb-02d-zigbee-temperature-humidity": {
+      "title": "Sonoff SNZB-02D Zigbee 3.0 LCD Temperature Humidity Sensor Smart Home Monitor",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 12.99
+        }
+      ]
+    },
+    "smart-plug-zigbee-eu-16a-power-monitor": {
+      "title": "Smart Plug Zigbee 3.0 EU 16A Power Monitor Energy Tracking Voice Control Timer",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 16.49
+        }
+      ]
+    },
+    "plus-smart-home-hub-zigbee-zwave": {
+      "title": "Plus Smart Home Hub Zigbee 3.0 Z-Wave WiFi Multi-Protocol Gateway Controller",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 89.99
+        }
+      ]
+    },
+    "tuya-zigbee-multi-mode-gateway-hub": {
+      "title": "Tuya Zigbee 3.0 Multi-Mode Gateway WiFi Bluetooth Smart Home Hub Remote Control",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 25.99
+        }
+      ]
     }
   },
   "lastUpdate": "2026-03-15"

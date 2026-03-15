@@ -1,40 +1,59 @@
 {
-  "generated": "2026-03-15T01:49:38.329Z",
-  "generatedHuman": "14/3/2026, 8:49:38 p. m.",
+  "generated": "2026-03-15T02:07:18.990Z",
+  "generatedHuman": "14/3/2026, 9:07:18 p. m.",
   "mode": "offers",
-  "count": 9,
+  "count": 8,
   "newsCount": 0,
-  "promoCount": 9,
+  "promoCount": 8,
   "reviewCount": 0,
   "comparativaCount": 0,
   "items": [
     {
       "id": 1,
       "type": "promo",
-      "title": "Homey Pro 2026 Multi-Protocol Smart Hub + Zigbee 3.0 + Z-Wave Plus + Matter + Thread + BLE + IR",
-      "body": "Hub definitivo con 7 protocolos: Zigbee 3.0, Z-Wave Plus, Wi-Fi 6, BLE, IR, Matter y Thread. Procesa todo localmente sin dependencia en la nube, soporta 50,000+ dispositivos de 1,000+ marcas. Doble RAM vs versión anterior permite redes más grandes. Standby ultra-bajo <1W. Superior a hubs Wi-Fi por mesh local distribuido.",
+      "title": "ThirdReality Zigbee 3.0 Smart RGBCW Bulb Pack con Hub Echo Compatible A19 800LM",
+      "body": "Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo standby <1W, ecosistemas compatibles Alexa/Google/SmartThings/Home Assistant. Superior a Wi-Fi por menor latencia mesh, sin saturar red principal, batería 2+ años sensores. Incluye control remoto smartphone, millones colores RGB, temperatura 2700K-6500K ajustable, automatizaciones horarias.",
       "platform": "Amazon",
-      "price": "$349.99",
-      "originalPrice": "$499.99",
-      "discount": "-30%",
+      "price": "$34.99",
+      "originalPrice": "$59.99",
+      "discount": "-42%",
       "date": "14 de marzo de 2026",
       "featured": true,
-      "protocol": "Multi-Protocol",
+      "protocol": "Zigbee 3.0",
       "compatibility": [
         "Alexa",
         "Google Home",
-        "Apple HomeKit",
         "SmartThings",
         "Home Assistant"
       ],
-      "slug": "homey-pro-2026-smart-hub",
-      "url": "https://www.amazon.com/Homey-Pro-Smart-Home-Automation/dp/B0G52DX5M3?tag=domotiq-20"
+      "slug": "thirdreality-zigbee-smart-rgbcw-bulb-4pack",
+      "url": "https://www.amazon.com/s?k=thirdreality+zigbee+smart+bulb&tag=domotiq-20"
     },
     {
       "id": 2,
       "type": "promo",
-      "title": "Amazon Smart Thermostat + Zigbee 3.0 + Alexa Built-in + Honeywell Technology Base",
-      "body": "Termostato inteligente con tecnología Honeywell, conectividad Zigbee 3.0 de baja potencia y integración Alexa nativa. Configuración sin C-wire gracias a kit adaptador incluido. Consumo standby 0.5W vs 3-5W de termostatos Wi-Fi. Automación local via Zigbee mesh vs dependencia cloud Wi-Fi.",
+      "title": "Sylvania Smart+ Zigbee 3.0 BR30 Color Full Spectrum SmartThings Echo Plus Flood",
+      "body": "Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz global, consumo 10W equiv 60W, standby <0.5W, ecosistemas SmartThings/Echo Plus/Google. Ventaja vs Wi-Fi: red mesh autoreparable, sin congestión router, alcance 30-60 pies entre nodos. 16M colores, dimming 1-100%, vida útil 20.000h garantía 2 años.",
+      "platform": "Amazon",
+      "price": "$24.99",
+      "originalPrice": "$44.99",
+      "discount": "-44%",
+      "date": "14 de marzo de 2026",
+      "featured": true,
+      "protocol": "Zigbee 3.0",
+      "compatibility": [
+        "Alexa",
+        "SmartThings",
+        "Google Home"
+      ],
+      "slug": "sylvania-smart-zigbee-br30-color-flood",
+      "url": "https://www.amazon.com/s?k=sylvania+smart+zigbee+br30&tag=domotiq-20"
+    },
+    {
+      "id": 3,
+      "type": "promo",
+      "title": "Amazon Smart Thermostat Zigbee 3.0 Honeywell Tech Alexa Voice Control Energy Star",
+      "body": "Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo standby <2W, ecosistemas Alexa/Google/IFTTT nativos. Superior a Wi-Fi por comunicación local directa, respuesta <100ms, funciona sin internet. Tecnología Honeywell, aprendizaje hábitos, geofencing smartphone, ahorro energético 10-15% certificado Energy Star.",
       "platform": "Amazon",
       "price": "$79.00",
       "originalPrice": "$129.99",
@@ -44,156 +63,112 @@
       "protocol": "Zigbee 3.0",
       "compatibility": [
         "Alexa",
-        "SmartThings",
-        "Home Assistant"
-      ],
-      "slug": "amazon-smart-thermostat-zigbee",
-      "url": "https://www.amazon.com/s?k=amazon+smart+thermostat&tag=domotiq-20"
-    },
-    {
-      "id": 3,
-      "type": "promo",
-      "title": "Aqara Hub M3 + Matter Bridge + Thread Border Router + Zigbee 3.0 + Apple HomeKit Native",
-      "body": "Hub tri-protocolo: Zigbee 3.0, Thread 1.4, Matter 1.3. Soporte nativo HomeKit sin bridges adicionales, hasta 128 dispositivos Zigbee. IR blaster integrado para electrodomésticos legacy. Procesamiento local sub-100ms vs 300-900ms cloud. Thread mesh auto-reparable, consumo 10x menor que Wi-Fi equivalente.",
-      "platform": "Amazon",
-      "price": "$69.99",
-      "originalPrice": "$99.99",
-      "discount": "-30%",
-      "date": "14 de marzo de 2026",
-      "featured": true,
-      "protocol": "Matter/Thread/Zigbee 3.0",
-      "compatibility": [
-        "Apple HomeKit",
-        "Alexa",
         "Google Home",
-        "Home Assistant"
+        "IFTTT"
       ],
-      "slug": "aqara-hub-m3-matter-bridge",
-      "url": "https://www.amazon.com/s?k=aqara+hub+m3+matter&tag=domotiq-20"
+      "slug": "amazon-smart-thermostat-zigbee-honeywell",
+      "url": "https://www.amazon.com/s?k=amazon+smart+thermostat&tag=domotiq-20"
     },
     {
       "id": 4,
       "type": "promo",
-      "title": "SONOFF ZBDongle-P + Zigbee 3.0 Coordinator + USB Stick + External Antenna Home Assistant",
-      "body": "Coordinador Zigbee 3.0 USB con chip TI CC2652P, antena externa 2.4GHz, compatible Zigbee2MQTT/ZHA. Soporta 5,200+ dispositivos de 550+ fabricantes. Firmware actualizable, rango extendido vs dongles internos. Ideal Home Assistant, control local sin cloud, latencia <50ms vs hubs comerciales.",
+      "title": "Ecosmart Zigbee 3.0 Smart LED BR30 2-Pack Voice Control Hub Required 65W Equiv",
+      "body": "Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo 10.5W equiv 65W, standby <0.8W, ecosistemas Echo Plus/SmartThings. Mejor que Wi-Fi por topología mesh resiliente, sin interferencia router, instalación sin configuración compleja. Dimming completo, temperatura ajustable, control remoto smartphone, vida 25.000h.",
       "platform": "Amazon",
-      "price": "$24.99",
-      "originalPrice": "$34.99",
-      "discount": "-29%",
+      "price": "$19.99",
+      "originalPrice": "$32.99",
+      "discount": "-39%",
       "date": "14 de marzo de 2026",
       "featured": false,
       "protocol": "Zigbee 3.0",
       "compatibility": [
-        "Home Assistant",
-        "Zigbee2MQTT",
-        "ZHA"
+        "Alexa",
+        "SmartThings",
+        "Google Home"
       ],
-      "slug": "sonoff-zbdongle-zigbee-coordinator",
-      "url": "https://www.amazon.com/s?k=sonoff+zbdongle+zigbee&tag=domotiq-20"
+      "slug": "ecosmart-zigbee-smart-led-br30-2pack",
+      "url": "https://www.amazon.com/s?k=ecosmart+zigbee+smart+bulb&tag=domotiq-20"
     },
     {
       "id": 5,
       "type": "promo",
-      "title": "SONOFF Temperature Humidity Sensor + Zigbee 3.0 + 3-Pack + Wireless Monitoring",
-      "body": "Sensores Zigbee 3.0 tri-pack, precisión ±0.3°C temperatura, ±3% humedad, batería CR2450 3+ años. Comunicación mesh auto-reparable, reportes cada 5min configurables. Consumo ultra-bajo 0.02mA standby vs 2-5mA sensores Wi-Fi. Encriptación AES-128 local vs transmisión cloud vulnerable.",
+      "title": "Sonoff SNZB-02D Zigbee 3.0 LCD Temperature Humidity Sensor Smart Home Monitor",
+      "body": "Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo standby <10μA, batería CR2450 duración 2+ años, ecosistemas SmartThings/Alexa. Superior a Wi-Fi por ultra bajo consumo, red mesh extendida automáticamente, sin dependencia router principal. Pantalla LCD integrada, precisión ±0.2°C, alertas smartphone, historial datos.",
       "platform": "eBay",
-      "price": "$18.99",
-      "originalPrice": "$29.99",
-      "discount": "-37%",
+      "price": "$12.99",
+      "originalPrice": "$21.99",
+      "discount": "-41%",
       "date": "14 de marzo de 2026",
       "featured": false,
       "protocol": "Zigbee 3.0",
       "compatibility": [
-        "Home Assistant",
         "SmartThings",
-        "Hubitat"
+        "Alexa",
+        "Home Assistant"
       ],
-      "slug": "sonoff-temp-humidity-zigbee-3pack",
-      "url": "https://www.ebay.com/sch/i.html?_nkw=sonoff+temperature+humidity+zigbee"
+      "slug": "sonoff-snzb-02d-zigbee-temperature-humidity",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=sonoff+zigbee+temperature+sensor"
     },
     {
       "id": 6,
       "type": "promo",
-      "title": "Inovelli Blue Series + Zigbee 3.0 Smart Switch + Scene Control + No-Neutral Compatible",
-      "body": "Switch Zigbee 3.0 con Zigbee Bindings directos, control escenas multi-tap, compatible instalaciones sin neutro. Chip Zigbee de última generación, latencia <20ms via bindings vs 200ms+ hubs tradicionales. LED bar notificaciones, automación local robusta, mesh strengthening para sensores.",
+      "title": "Smart Plug Zigbee 3.0 EU 16A Power Monitor Energy Tracking Voice Control Timer",
+      "body": "Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, carga máxima 16A, consumo standby <1W, ecosistemas Alexa/Google/SmartThings. Ventaja vs Wi-Fi: funciona como repetidor mesh, extiende red automáticamente, no satura ancho banda router. Monitoreo energía tiempo real, programación horarios, control remoto, protección sobrecarga.",
       "platform": "eBay",
-      "price": "$52.99",
-      "originalPrice": "$69.99",
-      "discount": "-24%",
+      "price": "$16.49",
+      "originalPrice": "$28.99",
+      "discount": "-43%",
       "date": "14 de marzo de 2026",
       "featured": false,
       "protocol": "Zigbee 3.0",
       "compatibility": [
-        "Home Assistant",
-        "SmartThings",
-        "Hubitat"
+        "Alexa",
+        "Google Home",
+        "SmartThings"
       ],
-      "slug": "inovelli-blue-zigbee-switch",
-      "url": "https://www.ebay.com/sch/i.html?_nkw=inovelli+blue+series+zigbee"
+      "slug": "smart-plug-zigbee-eu-16a-power-monitor",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=zigbee+smart+plug+power+monitor"
     },
     {
       "id": 7,
       "type": "promo",
-      "title": "Aqara Presence Sensor FP300 + mmWave + Zigbee 3.0/Thread Dual-Protocol + Motion Detection",
-      "body": "Sensor presencia mmWave dual-protocolo Zigbee 3.0/Thread, detección ocupación precisa vs PIR tradicional. Tecnología radar 60GHz, detección respiración/micro-movimientos, rango 6m, ángulo 120°. Batería 3 años Zigbee / 2 años Thread. Instalación ceiling/wall, automación local millisegundos.",
+      "title": "Plus Smart Home Hub Zigbee 3.0 Z-Wave WiFi Multi-Protocol Gateway Controller",
+      "body": "Specs técnicas: protocolo Zigbee 3.0 + Z-Wave + WiFi, frecuencia 2.4GHz/915MHz, consumo <5W, ecosistemas universales Alexa/Google/HomeKit. Superior a hubs monoprootocolo por interoperabilidad total, control local sin nube, latencia <50ms. Hasta 232 dispositivos, automatizaciones complejas, API REST, backup configuración local.",
       "platform": "eBay",
       "price": "$89.99",
-      "originalPrice": "$119.99",
-      "discount": "-25%",
+      "originalPrice": "$149.99",
+      "discount": "-40%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Zigbee 3.0/Thread",
+      "protocol": "Zigbee 3.0 + Z-Wave",
       "compatibility": [
-        "Apple HomeKit",
         "Alexa",
         "Google Home",
-        "Home Assistant"
+        "HomeKit",
+        "SmartThings"
       ],
-      "slug": "aqara-presence-fp300-mmwave",
-      "url": "https://www.ebay.com/sch/i.html?_nkw=aqara+presence+sensor+fp300"
+      "slug": "plus-smart-home-hub-zigbee-zwave",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=zigbee+zwave+smart+hub"
     },
     {
       "id": 8,
       "type": "promo",
-      "title": "Tuya Zigbee Gateway Hub + Bluetooth Mesh Bridge + 2.4GHz Network + 128 Device Support",
-      "body": "Gateway multi-protocolo Tuya: Zigbee 3.0 + Bluetooth Mesh unificados en red 2.4GHz. Soporte 128 dispositivos mixtos, configuración app Smart Life/MOES. Control voz Alexa/Google, automatizaciones locales, alarma sonora/visual integrada. Instalación plug-and-play sin cableado.",
+      "title": "Tuya Zigbee 3.0 Multi-Mode Gateway WiFi Bluetooth Smart Home Hub Remote Control",
+      "body": "Specs técnicas: protocolo Zigbee 3.0 + WiFi + Bluetooth 5.0, frecuencia 2.4GHz, consumo <4W, ecosistemas Tuya/Alexa/Google nativos. Mejor que hubs simples por triple conectividad, respaldo automático protocolos, gestión centralizada 200+ dispositivos. Control remoto global, automatizaciones inteligentes, actualizaciones OTA, API desarrolladores.",
       "platform": "Alibaba",
-      "price": "$34.99",
-      "originalPrice": "$49.99",
-      "discount": "-30%",
+      "price": "$25.99",
+      "originalPrice": "$42.99",
+      "discount": "-40%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Zigbee 3.0/Bluetooth Mesh",
+      "protocol": "Zigbee 3.0 + WiFi + BLE",
       "compatibility": [
         "Tuya Smart",
-        "Smart Life",
         "Alexa",
         "Google Home"
       ],
-      "slug": "tuya-zigbee-bluetooth-gateway",
-      "url": "https://www.alibaba.com/product-detail/zigbee-bluetooth-gateway"
-    },
-    {
-      "id": 9,
-      "type": "promo",
-      "title": "Zemismart M1 Pro + Matter Controller + Zigbee/Thread Bridge + IR Blaster + Multi-Protocol Hub",
-      "body": "Hub Matter 1.3 con soporte Zigbee, Thread, IR integrado, actúa como Controller y Bridge. Conecta dispositivos legacy a ecosistemas Matter certificados: Apple Home, Google, SmartThings. Máximo 128 dispositivos Zigbee, control IR electrodomésticos tradicionales, procesamiento local robusto.",
-      "platform": "Alibaba",
-      "price": "$79.99",
-      "originalPrice": "$109.99",
-      "discount": "-27%",
-      "date": "14 de marzo de 2026",
-      "featured": false,
-      "protocol": "Matter/Zigbee/Thread/IR",
-      "compatibility": [
-        "Apple HomeKit",
-        "Google Home",
-        "SmartThings",
-        "Tuya",
-        "Home Assistant"
-      ],
-      "slug": "zemismart-m1-pro-matter-hub",
-      "url": "https://www.alibaba.com/product-detail/zemismart-matter-hub"
+      "slug": "tuya-zigbee-multi-mode-gateway-hub",
+      "url": "https://www.alibaba.com/product-detail/Tuya-Zigbee-WiFi-Bluetooth-Gateway_62058739847.html"
     }
   ]
 }
