@@ -658,6 +658,9 @@ export async function generateContent() {
     rawText = await callAPI(PROMPT_OFERTAS_10, 2500);
   }
 
+  // Limpiar <cite> tags que Claude a veces inyecta en el body
+  rawText = rawText.replace(/<cite[^>]*>/g, '').replace(/<\/cite>/g, '');
+
   // Parser robusto — limpia el JSON antes de parsear
   let jsonMatch = rawText.match(/\{[\s\S]*\}/);
   if (!jsonMatch) throw new Error(`Sin JSON en respuesta: ${rawText.slice(0, 300)}`);
@@ -719,8 +722,12 @@ export async function generateContent() {
   // Archivar todo
   updateArchive(parsed.items);
 
-  // Actualizar historial de precios
-  const priceHistory = updatePriceHistory(parsed.items);
+  // Actualizar historial de precios (solo si hay promos)
+  let priceHistory = null;
+  const hasPromos = parsed.items.some(i => i.type === 'promo');
+  if (hasPromos) {
+    priceHistory = updatePriceHistory(parsed.items);
+  }
 
   // Enviar mejores ofertas a Telegram
   await sendToTelegram(parsed.items);
@@ -745,8 +752,8 @@ if (process.argv.includes('--once')) {
 }
 
 // ─── SSG: INYECTAR CONTENIDO EN INDEX.HTML ────────────────────────────────────
-function renderCardHTML(item, i, priceHistory) {
-    const delay = (i * 0.04).toFixed(2);
+function renderCardHTML(item, i) {
+  const delay = (i * 0.04).toFixed(2);
   const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
 
   if (item.type === 'news') {
@@ -848,12 +855,12 @@ export function injectSSG(items, priceHistory = null) {
 
   // Generate grid HTML (news + reviews + comparativas)
   const adInFeed = `<div class="ad-in-feed"><div class="ad-banner"><span>📢 Anuncio In-Feed — Google AdSense</span></div></div>`;
-const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i, priceHistory));
+  const gridCards = nonPromos.map((item, i) => renderCardHTML(item, i));
   if (gridCards.length > 5) gridCards.splice(5, 0, adInFeed);
   const gridHTML = gridCards.join('\n');
 
   // Generate deals HTML
-  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i, priceHistory)).join('\n');
+  const dealsHTML = promos.map((item, i) => renderCardHTML(item, i)).join('\n');
 
   // Build SSG data script for JS hydration
   const ssgDataScript = `<script id="ssg-data" type="application/json">${JSON.stringify(items)}</script>`;
