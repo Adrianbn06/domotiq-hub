@@ -702,19 +702,29 @@ async function loadContent() {
 // RENDERIZADO DE TARJETAS
 // ═══════════════════════════════════════════════════════════════════════════════
 function renderItems(items) {
-  const t = TX[lang];
   const grid = document.getElementById('grid');
-  const filtered = getFiltered(items);
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">🔍</div>
-        <div class="empty-title">${t.emptyTitle}</div>
-        <p style="color:var(--muted);font-size:14px;margin-top:8px;">${t.emptySub}</p>
-      </div>`;
+  if (!items || items.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🏠</div><div class="empty-title">Sin publicaciones hoy</div></div>`;
     return;
   }
+  
+  const news = items.filter(i => i.type === 'news');
+  grid.innerHTML = news.map((item, i) => {
+    const tags = (item.tags||[]).slice(0,2).map(t => `<span class="tag platform">${t}</span>`).join('');
+    return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${item.slug ? '/articulos/'+item.slug+'.html' : item.url}" target="${item.slug ? '_self' : '_blank'}" rel="noopener">
+      <div class="card-header">
+        <div class="card-tags"><span class="tag news">📡 Noticia</span>${tags}</div>
+        <span class="card-date">${item.date||''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body}</div>
+      <div class="card-footer">
+        ${item.source ? `<span class="card-source">${item.source}</span>` : '<span></span>'}
+        <span class="read-more">Leer más</span>
+      </div>
+    </a>`;
+  }).join('');
+}
 
   // Actualizar badge del conteo
   document.getElementById('news-count-badge').textContent =
@@ -1000,51 +1010,38 @@ function setDealsFilter(f) {
 
 function renderDeals(items) {
   const grid = document.getElementById('deals-grid');
-  if (!grid) return;
-
-  let promos = items.filter(i => i.type === 'promo');
-  if (dealsFilter !== 'all') {
-    promos = promos.filter(i => i.platform && i.platform.toLowerCase() === dealsFilter);
-  }
-
-  const badge = document.getElementById('deals-count-badge');
-  if (badge) badge.textContent = '(' + promos.length + ' ofertas)';
-
-  if (promos.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Sin ofertas</div></div>';
-    return;
-  }
-
-  // Sort: featured first, then by discount
-  promos.sort((a, b) => {
-    if (a.featured && !b.featured) return -1;
-    if (!a.featured && b.featured) return 1;
+  const promos = items.filter(i => i.type === 'promo').sort((a,b) => {
+    if(a.featured && !b.featured) return -1;
+    if(!a.featured && b.featured) return 1;
     const da = parseInt((a.discount||'0').replace(/[^0-9]/g,''));
     const db = parseInt((b.discount||'0').replace(/[^0-9]/g,''));
     return db - da;
   });
 
-  const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
+  if (promos.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Sin ofertas activas</div></div>`;
+    return;
+  }
 
   grid.innerHTML = promos.map((item, i) => {
-    const delay = (i * 0.04).toFixed(2);
-    return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="sponsored noopener"
-         onclick="trackClick('promo', '${(item.platform||'').replace(/'/g,'\'') }', '${item.title.replace(/'/g,'\'') }')">
+    const insight = getPriceInsight(item);
+    const insightBadge = insight ? `<div style="background:${insight.color}22;border:1px solid ${insight.color}44;color:${insight.color};padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;margin-top:6px;display:inline-block;">${insight.label}</div>` : '';
+    return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${item.slug ? '/articulos/'+item.slug+'.html' : item.url}" target="_blank" rel="sponsored noopener">
       <div class="card-header">
         <div class="card-tags">
           <span class="tag promo">🏷️ Oferta</span>
           ${item.featured ? '<span class="tag featured">🔥 Top</span>' : ''}
           <span class="tag platform">${icon(item.platform)} ${item.platform}</span>
         </div>
-        <span class="card-date">${item.date || ''}</span>
+        <span class="card-date">${item.date||''}</span>
       </div>
       <div class="card-title">${item.title}</div>
       <div class="card-body">${item.body}</div>
+      ${insightBadge}
       <div class="card-footer">
         <div style="display:flex;gap:8px;align-items:center;">
           <span class="price-badge">${item.price}</span>
           ${item.discount ? `<span class="discount-badge">${item.discount}</span>` : ''}
-          ${item.originalPrice ? `<span style="font-size:12px;color:var(--muted);text-decoration:line-through;">${item.originalPrice}</span>` : ''}
         </div>
         <span class="read-more">Ver oferta</span>
       </div>
@@ -1081,55 +1078,24 @@ async function loadArchive() {
 
 function renderArchive(items) {
   const grid = document.getElementById('archive-grid');
-  if (!grid) return;
-
-  const filtered = archiveFilter === 'all' ? items :
-    items.filter(i => i.type === archiveFilter);
-
-  const badge = document.getElementById('archive-count-badge');
-  if (badge) badge.textContent = '(' + filtered.length + ' items)';
-
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><div class="empty-title">Sin resultados</div></div>';
+  if (!items || items.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📚</div><div class="empty-title">Archivo vacío</div></div>`;
     return;
   }
 
-  grid.innerHTML = filtered.map((item, i) => {
-    const delay = (i * 0.04).toFixed(2);
-    if (item.type === 'news') {
-      return `<a class="card" style="animation-delay:${delay}s" href="${item.url && item.url !== '#' ? item.url : '#'}" target="_blank" rel="noopener">
-        <div class="card-header">
-          <div class="card-tags"><span class="tag news">📡 Noticia</span>${(item.tags||[]).slice(0,1).map(t=>`<span class="tag platform">${t}</span>`).join('')}</div>
-          <span class="card-date">${item.archivedAt || item.date || ''}</span>
-        </div>
-        <div class="card-title">${item.title}</div>
-        <div class="card-body">${item.body}</div>
-        <div class="card-footer"><span class="card-source">${item.source||''}</span><span class="read-more">Leer noticia</span></div>
-      </a>`;
-    } else if (item.type === 'review') {
-      return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="noopener">
-        <div class="card-header">
-          <div class="card-tags"><span class="tag review">⭐ Review</span></div>
-          <span class="card-date">${item.archivedAt || item.date || ''}</span>
-        </div>
-        <div class="card-title">${item.title}</div>
-        <div class="card-body">${item.body.slice(0,220)}...</div>
-        ${item.rating ? '<div class="rating">⭐ ' + item.rating + '/10</div>' : ''}
-        ${item.verdict ? '<div class="verdict">' + item.verdict + '</div>' : ''}
-        <div class="card-footer"><span></span><span class="read-more">Ver review</span></div>
-      </a>`;
-    } else {
-      return `<a class="card" style="animation-delay:${delay}s" href="${item.url || '#'}" target="_blank" rel="noopener">
-        <div class="card-header">
-          <div class="card-tags"><span class="tag comparativa">⚖️ Comparativa</span></div>
-          <span class="card-date">${item.archivedAt || item.date || ''}</span>
-        </div>
-        <div class="card-title">${item.title}</div>
-        <div class="card-body">${item.body.slice(0,220)}...</div>
-        ${item.winner ? '<div class="verdict">🏆 Ganador: <strong>' + item.winner + '</strong></div>' : ''}
-        <div class="card-footer"><span></span><span class="read-more">Ver comparativa</span></div>
-      </a>`;
-    }
+  grid.innerHTML = items.map((item, i) => {
+    const isReview = item.type === 'review';
+    return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${item.slug ? '/articulos/'+item.slug+'.html' : item.url}" target="_self" rel="noopener">
+      <div class="card-header">
+        <div class="card-tags"><span class="tag ${item.type}">${isReview ? '⭐ Review' : '⚖️ Comparativa'}</span></div>
+        <span class="card-date">${item.date||''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body.slice(0,180)}...</div>
+      ${item.rating ? `<div class="rating">⭐ ${item.rating}/10</div>` : ''}
+      ${item.winner ? `<div class="verdict">🏆 Ganador: <strong>${item.winner}</strong></div>` : ''}
+      <div class="card-footer"><span></span><span class="read-more">${isReview ? 'Ver review' : 'Ver comparativa'}</span></div>
+    </a>`;
   }).join('');
 }
 
