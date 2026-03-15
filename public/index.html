@@ -437,25 +437,16 @@
 
 
 <!-- BANNER DE COOKIES -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0d1220;border-top:1px solid rgba(0,212,170,0.2);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;backdrop-filter:blur(12px);">
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0d1220;border-top:1px solid rgba(0,212,170,0.2);padding:16px 24px;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;backdrop-filter:blur(12px);">
   <div style="font-size:13px;color:#94a3b8;line-height:1.6;max-width:700px;">
     🍪 Usamos cookies propias y de terceros (Google Analytics, Google AdSense) para analizar el tráfico y mostrar publicidad relevante. Los enlaces de Amazon y otras plataformas son de afiliado.
     <a href="/privacidad.html" style="color:#00d4aa;text-decoration:none;margin-left:4px;">Política de Privacidad</a>
   </div>
   <div style="display:flex;gap:8px;flex-shrink:0;">
-    <button onclick="rejectCookies()" style="padding:9px 18px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#94a3b8;font-size:13px;font-weight:500;cursor:pointer;font-family:'Space Grotesk',sans-serif;">Solo esenciales</button>
-    <button onclick="acceptCookies()" style="padding:9px 18px;border-radius:8px;border:none;background:#00d4aa;color:#000;font-size:13px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;">Aceptar todo</button>
+    <button id="cookie-reject" style="padding:9px 18px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#94a3b8;font-size:13px;font-weight:500;cursor:pointer;font-family:'Space Grotesk',sans-serif;">Solo esenciales</button>
+    <button id="cookie-accept" style="padding:9px 18px;border-radius:8px;border:none;background:#00d4aa;color:#000;font-size:13px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif;">Aceptar todo</button>
   </div>
 </div>
-<script>
-function acceptCookies(){localStorage.setItem('cookies','accepted');document.getElementById('cookie-banner').style.display='none';}
-function rejectCookies(){localStorage.setItem('cookies','rejected');document.getElementById('cookie-banner').style.display='none';}
-window.addEventListener('DOMContentLoaded',function(){
-  if(!localStorage.getItem('cookies')){
-    document.getElementById('cookie-banner').style.display='flex';
-  }
-});
-</script>
 
 <!-- SSG DATA -->
 <script id="ssg-data" type="application/json">[]</script>

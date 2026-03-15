@@ -27,6 +27,30 @@ const platIcon = p => {
 const parsePrice = s => parseFloat((s||'0').replace(/[^0-9.]/g,'')) || 0;
 const parseDiscount = s => parseInt((s||'0').replace(/[^0-9]/g,'')) || 0;
 
+// ── BANNER DE COOKIES ────────────────────────────────────────────────────────
+function initCookieBanner() {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+
+  // Show if no consent saved
+  if (!localStorage.getItem('cookies')) {
+    banner.style.display = 'flex';
+  }
+
+  const accept = document.getElementById('cookie-accept');
+  const reject = document.getElementById('cookie-reject');
+
+  if (accept) accept.addEventListener('click', () => {
+    localStorage.setItem('cookies', 'accepted');
+    banner.style.display = 'none';
+  });
+
+  if (reject) reject.addEventListener('click', () => {
+    localStorage.setItem('cookies', 'rejected');
+    banner.style.display = 'none';
+  });
+}
+
 // ── TEMA CLARO/OSCURO ─────────────────────────────────────────────────────────
 function initTheme() {
   const saved = localStorage.getItem('theme');
@@ -438,6 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initTheme();
   initControls();
   initAnalytics();
+  initCookieBanner();
 
   // Leer datos SSG
   const ssgEl = document.getElementById('ssg-data');
