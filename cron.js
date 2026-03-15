@@ -155,182 +155,130 @@ function slugify(text) {
 // ─── GENERADOR DE PÁGINAS INDIVIDUALES ───────────────────────────────────────
 function generateArticlePage(item, allItems = []) {
   const canonicalUrl = `https://ofertasdomoticas.com/articulos/${item.slug}.html`;
-  const typeLabels = { news: 'Noticia', promo: 'Oferta', review: 'Review', comparativa: 'Comparativa' };
-  const typeIcons  = { news: '📡', promo: '🏷️', review: '⭐', comparativa: '⚖️' };
-  const typeColors = { news: '#3b82f6', promo: '#f59e0b', review: '#a78bfa', comparativa: '#4ade80' };
-
+  const typeLabels = { news:'Noticia', promo:'Oferta', review:'Review', comparativa:'Comparativa' };
+  const typeIcons  = { news:'📡', promo:'🏷️', review:'⭐', comparativa:'⚖️' };
+  const typeColors = { news:'#3b82f6', promo:'#f59e0b', review:'#a78bfa', comparativa:'#4ade80' };
   const color = typeColors[item.type] || '#00d4aa';
   const label = typeLabels[item.type] || item.type;
-  const icon  = typeIcons[item.type]  || '📄';
+  const icon  = typeIcons[item.type] || '📄';
 
-  // Protocolo y compatibilidad (para ofertas y reviews)
-  const protocolHtml = item.protocol ? `
-    <div class="meta-tag">🔌 ${item.protocol}</div>` : '';
-  const compatHtml = item.compatibility ? `
-    <div class="compat">
-      <strong>Compatible con:</strong> ${item.compatibility.map(c => `<span class="compat-badge">${c}</span>`).join('')}
-    </div>` : '';
+  // Reading time
+  const words = (item.body||'').trim().split(/\s+/).length;
+  const readTime = Math.ceil(words / 200);
+  const readTimeStr = readTime <= 1 ? '1 min de lectura' : readTime + ' min de lectura';
 
-  // Puntuación para reviews
-  const ratingHtml = item.rating ? `
-    <div class="rating-box">
-      <span class="rating-num">${item.rating}</span>
-      <span class="rating-max">/10</span>
-      <span class="rating-label">Puntuación técnica</span>
-    </div>` : '';
+  // Protocol and compatibility
+  const protocolHtml = item.protocol
+    ? `<div style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.2);padding:4px 12px;border-radius:8px;font-size:13px;margin-bottom:12px;">🔌 ${item.protocol}</div>`
+    : '';
+  const compatHtml = item.compatibility
+    ? `<div style="margin-bottom:16px;font-size:13px;color:#94a3b8;display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><strong>Compatible con:</strong>${item.compatibility.map(c=>`<span style="background:rgba(0,212,170,0.1);color:#00d4aa;padding:2px 10px;border-radius:6px;font-size:12px;">${c}</span>`).join('')}</div>`
+    : '';
+  const priceHtml = item.price
+    ? `<div style="display:flex;align-items:center;gap:12px;margin:20px 0;flex-wrap:wrap;padding:20px;background:#141c2e;border-radius:14px;border:1px solid rgba(255,255,255,0.07);">
+        <span style="font-size:28px;font-weight:700;color:#f59e0b;font-family:monospace;">${item.price}</span>
+        ${item.originalPrice ? `<span style="font-size:16px;color:#64748b;text-decoration:line-through;">${item.originalPrice}</span>` : ''}
+        ${item.discount ? `<span style="background:rgba(239,68,68,0.12);color:#f87171;padding:4px 10px;border-radius:6px;font-size:13px;font-weight:600;">${item.discount}</span>` : ''}
+        <a href="${item.url}" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#00d4aa,#00a884);color:#000;font-weight:600;font-size:14px;padding:10px 22px;border-radius:10px;text-decoration:none;margin-left:auto;">Ver oferta en ${item.platform} →</a>
+       </div>`
+    : '';
+  const ratingHtml = item.rating
+    ? `<div style="display:flex;align-items:baseline;gap:6px;margin:16px 0;padding:16px 20px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:12px;">
+        <span style="font-size:42px;font-weight:700;color:#f59e0b;">${item.rating}</span>
+        <span style="font-size:20px;color:#64748b;">/10</span>
+        <span style="font-size:14px;color:#64748b;margin-left:8px;">Puntuación técnica</span>
+       </div>`
+    : '';
+  const prosConsHtml = (item.pros || item.cons)
+    ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+        ${item.pros ? `<div style="padding:16px;background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.2);border-radius:12px;"><div style="color:#4ade80;font-size:14px;font-weight:600;margin-bottom:10px;">✅ Ventajas</div><ul style="margin-left:16px;">${item.pros.map(p=>`<li style="font-size:13px;color:#94a3b8;margin-bottom:6px;line-height:1.6;">${p}</li>`).join('')}</ul></div>` : ''}
+        ${item.cons ? `<div style="padding:16px;background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.2);border-radius:12px;"><div style="color:#f87171;font-size:14px;font-weight:600;margin-bottom:10px;">❌ Limitaciones</div><ul style="margin-left:16px;">${item.cons.map(c=>`<li style="font-size:13px;color:#94a3b8;margin-bottom:6px;line-height:1.6;">${c}</li>`).join('')}</ul></div>` : ''}
+       </div>`
+    : '';
+  const verdictHtml = item.verdict
+    ? `<div style="background:rgba(0,212,170,0.06);border-left:3px solid #00d4aa;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:15px;color:#e2e8f0;"><strong>🏆 Veredicto:</strong> ${item.verdict}</div>`
+    : '';
+  const winnerHtml = item.winner
+    ? `<div style="background:rgba(245,158,11,0.08);border-left:3px solid #f59e0b;padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:15px;color:#e2e8f0;"><strong>🏆 Ganador:</strong> ${item.winner} — ${item.winner_reason||''}</div>`
+    : '';
 
-  // Pros y cons para reviews
-  const prosConsHtml = (item.pros || item.cons) ? `
-    <div class="pros-cons-grid">
-      ${item.pros ? `<div class="pros-box"><h3>✅ Ventajas</h3><ul>${item.pros.map(p => `<li>${p}</li>`).join('')}</ul></div>` : ''}
-      ${item.cons ? `<div class="cons-box"><h3>❌ Limitaciones</h3><ul>${item.cons.map(c => `<li>${c}</li>`).join('')}</ul></div>` : ''}
-    </div>` : '';
-
-  // Veredicto para reviews
-  const verdictHtml = item.verdict ? `
-    <div class="verdict-box">
-      <strong>🏆 Veredicto:</strong> ${item.verdict}
-    </div>` : '';
-
-  // Ganador para comparativas
-  const winnerHtml = item.winner ? `
-    <div class="winner-box">
-      <strong>🏆 Ganador:</strong> ${item.winner} — ${item.winner_reason || ''}
-    </div>` : '';
-
-  // Precio para ofertas
-  const priceHtml = item.price ? `
-    <div class="price-section">
-      <span class="price-main">${item.price}</span>
-      ${item.originalPrice ? `<span class="price-old">${item.originalPrice}</span>` : ''}
-      ${item.discount ? `<span class="price-discount">${item.discount}</span>` : ''}
-      <a href="${item.url}" target="_blank" rel="sponsored noopener" class="buy-btn">
-        Ver oferta en ${item.platform} →
-      </a>
-    </div>` : '';
-
-  // Schema JSON-LD específico por tipo
-  // ─── FAQ dinámico por tipo ─────────────────────────────────────────────────
-  const faqData = {
-    news: [
-      { q: '¿Cómo afecta esta noticia al mercado del hogar inteligente?', a: item.body },
-      { q: '¿Es compatible con los sistemas domóticos actuales?', a: 'Los principales ecosistemas como Alexa, Google Home y Apple HomeKit están adoptando el estándar Matter, lo que garantiza compatibilidad entre marcas.' },
-      { q: '¿Dónde puedo encontrar más información sobre este tema?', a: `Puedes leer el artículo completo en la fuente original${item.source ? ' (' + item.source + ')' : ''} y seguir las novedades en OfertasDomoticas.com.` }
-    ],
-    promo: [
-      { q: `¿Vale la pena comprar ${item.product || item.title}?`, a: item.body },
-      { q: '¿Con qué asistentes de voz es compatible?', a: item.compatibility ? 'Es compatible con: ' + item.compatibility.join(', ') + '.' : 'Consulta la descripción del producto para ver la compatibilidad exacta con Alexa, Google Home y Apple HomeKit.' },
-      { q: '¿Cuánto tiempo durará esta oferta?', a: 'Las ofertas de domótica pueden cambiar en cualquier momento. Te recomendamos aprovecharla cuanto antes si el precio te parece adecuado.' },
-      { q: `¿Qué protocolo usa ${item.product || item.title}?`, a: item.protocol ? `Este dispositivo usa el protocolo ${item.protocol}, que ofrece mayor estabilidad y menor interferencia con tu red Wi-Fi doméstica.` : 'Consulta las especificaciones técnicas del producto para conocer el protocolo de comunicación.' }
-    ],
-    review: [
-      { q: `¿Es recomendable ${item.product || item.title}?`, a: item.verdict || item.body.slice(0, 200) },
-      { q: '¿Funciona con Home Assistant sin suscripción en la nube?', a: 'La compatibilidad con Home Assistant depende del protocolo del dispositivo. Los dispositivos Zigbee, Z-Wave y Matter suelen funcionar localmente sin necesidad de nube.' },
-      { q: '¿Cuáles son las principales desventajas?', a: item.cons ? item.cons.join('. ') : 'Consulta la sección de desventajas en esta review para conocer las limitaciones del producto.' }
-    ],
-    comparativa: [
-      { q: `¿Cuál es mejor, ${item.product_a || 'opción A'} o ${item.product_b || 'opción B'}?`, a: item.winner_reason || item.body.slice(0, 200) },
-      { q: '¿Cuál tiene mejor relación calidad-precio?', a: 'Depende de tu caso de uso. Lee la comparativa completa para ver cuál se adapta mejor a tu hogar y presupuesto.' },
-      { q: '¿Son compatibles entre sí estos dispositivos?', a: 'Con el estándar Matter ambos ecosistemas pueden coexistir. Sin embargo, para integración avanzada te recomendamos usar Home Assistant como hub central.' }
-    ]
-  };
-
-  const faqs = faqData[item.type] || faqData.news;
-  const faqHtml = `
-    <section class="faq-section" style="margin-top:40px;">
-      <h2 style="font-size:20px;font-weight:600;color:#e2e8f0;margin-bottom:20px;">Preguntas frecuentes</h2>
-      ${faqs.map(faq => `
-        <details style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:10px;overflow:hidden;">
-          <summary style="padding:14px 18px;cursor:pointer;font-size:14px;font-weight:500;color:#e2e8f0;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-            ${faq.q}
-            <span style="color:#00d4aa;font-size:18px;flex-shrink:0;margin-left:12px;">+</span>
-          </summary>
-          <div style="padding:0 18px 14px;font-size:14px;color:#94a3b8;line-height:1.7;">${faq.a}</div>
-        </details>`).join('')}
-    </section>`;
-
-  const faqSchemaJson = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.q,
-      "acceptedAnswer": { "@type": "Answer", "text": faq.a }
-    }))
-  });
-
-  // ─── Artículos relacionados ──────────────────────────────────────────────────
-  const related = allItems
-    .filter(r => r.slug && r.slug !== item.slug && r.type === item.type)
+  // Cross-sell: ofertas que comparten tags con este artículo
+  const itemTags = (item.tags||[]).map(t => t.toLowerCase());
+  const crossSellOffers = allItems
+    .filter(r => r.type === 'promo' && r.slug && r.price && r.slug !== item.slug)
+    .filter(r => {
+      const rTags = (r.tags||[]).concat(r.protocol||'', r.title||'').join(' ').toLowerCase();
+      return itemTags.some(t => t.length > 3 && rTags.includes(t));
+    })
     .slice(0, 3);
 
-  const relatedHtml = related.length > 0 ? `
-    <section style="margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.07);">
-      <h2 style="font-size:18px;font-weight:600;color:#e2e8f0;margin-bottom:16px;">
-        ${item.type === 'promo' ? '🏷️ Más ofertas relacionadas' : item.type === 'news' ? '📡 Más noticias' : '⭐ Más reviews'}
-      </h2>
+  const crossSellHtml = crossSellOffers.length > 0 ? `
+    <section style="margin-top:36px;padding:24px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.15);border-radius:14px;">
+      <h2 style="font-size:16px;font-weight:700;color:#f59e0b;margin-bottom:16px;">🏷️ Ofertas relacionadas con ${(item.tags||['este tema'])[0]}</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
-        ${related.map(r => `
-          <a href="/articulos/${r.slug}.html" style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;text-decoration:none;color:#e2e8f0;display:block;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,212,170,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
-            <div style="font-size:12px;color:#00d4aa;margin-bottom:6px;">${r.type === 'promo' ? '🏷️ Oferta' : r.type === 'news' ? '📡 Noticia' : '⭐ Review'}</div>
-            <div style="font-size:13px;font-weight:500;line-height:1.4;">${r.title.slice(0,80)}${r.title.length > 80 ? '...' : ''}</div>
-            ${r.price ? `<div style="font-size:14px;font-weight:700;color:#f59e0b;margin-top:8px;">${r.price}</div>` : ''}
+        ${crossSellOffers.map(o => `
+          <a href="/articulos/${o.slug}.html" target="_blank" rel="sponsored noopener" style="background:#141c2e;border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px;text-decoration:none;display:block;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(245,158,11,0.5)'" onmouseout="this.style.borderColor='rgba(245,158,11,0.2)'">
+            <div style="font-size:10px;font-weight:700;color:#f59e0b;margin-bottom:6px;letter-spacing:0.5px;">${o.platform||'Oferta'}</div>
+            <div style="font-size:13px;font-weight:500;color:#e2e8f0;line-height:1.4;margin-bottom:8px;">${o.title.slice(0,70)}${o.title.length>70?'...':''}</div>
+            <div style="font-size:18px;font-weight:800;color:#f59e0b;font-family:monospace;">${o.price}</div>
+            ${o.discount?`<div style="font-size:11px;color:#f87171;font-weight:600;">${o.discount}</div>`:''}
           </a>`).join('')}
       </div>
     </section>` : '';
 
-  let schemaJson = '';
-  if (item.type === 'promo') {
-    schemaJson = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": item.title,
-      "description": item.body,
-      "offers": {
-        "@type": "Offer",
-        "url": canonicalUrl,
-        "priceCurrency": "USD",
-        "price": item.price ? item.price.replace(/[^0-9.]/g,'') : "0",
-        "availability": "https://schema.org/InStock",
-        "seller": { "@type": "Organization", "name": item.platform || "Amazon" }
-      }
-    });
-  } else if (item.type === 'review') {
-    schemaJson = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Review",
-      "name": item.title,
-      "reviewBody": item.body,
-      "datePublished": item.date,
-      "author": { "@type": "Organization", "name": "OfertasDomoticas.com" },
-      "itemReviewed": { "@type": "Product", "name": item.product || item.title },
-      "reviewRating": item.rating ? {
-        "@type": "Rating", "ratingValue": item.rating, "bestRating": 10
-      } : undefined
-    });
-  } else if (item.type === 'news') {
-    schemaJson = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      "headline": item.title,
-      "description": item.body,
-      "datePublished": new Date().toISOString(),
-      "author": { "@type": "Organization", "name": "OfertasDomoticas.com" },
-      "publisher": { "@type": "Organization", "name": "OfertasDomoticas.com",
-        "logo": { "@type": "ImageObject", "url": "https://ofertasdomoticas.com/og-image.png" }
-      },
-      "keywords": (item.tags || []).join(', ')
-    });
-  } else {
-    schemaJson = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": item.title,
-      "description": item.body.slice(0, 200),
-      "datePublished": new Date().toISOString(),
-      "author": { "@type": "Organization", "name": "OfertasDomoticas.com" }
-    });
-  }
+  // Related articles
+  const related = allItems.filter(r => r.slug && r.slug !== item.slug && r.type === item.type).slice(0,3);
+  const relatedHtml = related.length > 0
+    ? `<section style="margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07);">
+        <h2 style="font-size:18px;font-weight:600;color:#e2e8f0;margin-bottom:14px;">Más ${label}s relacionadas</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+          ${related.map(r=>`<a href="/articulos/${r.slug}.html" style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;text-decoration:none;color:#e2e8f0;display:block;">
+            <div style="font-size:11px;color:#00d4aa;margin-bottom:6px;">${typeIcons[r.type]||'📄'} ${typeLabels[r.type]||r.type}</div>
+            <div style="font-size:13px;font-weight:500;line-height:1.4;">${r.title.slice(0,80)}${r.title.length>80?'...':''}</div>
+            ${r.price?`<div style="font-size:14px;font-weight:700;color:#f59e0b;margin-top:8px;">${r.price}</div>`:''}
+          </a>`).join('')}
+        </div>
+       </section>`
+    : '';
+
+  // FAQ
+  const faqMap = {
+    promo: [
+      {q:`¿Vale la pena comprar ${item.product||item.title}?`, a:item.body},
+      {q:'¿Con qué asistentes de voz es compatible?', a:item.compatibility?'Compatible con: '+item.compatibility.join(', '):'Consulta la descripción del producto para ver la compatibilidad.'},
+      {q:'¿Cuánto tiempo durará esta oferta?', a:'Las ofertas pueden cambiar en cualquier momento. Te recomendamos aprovecharla si el precio te parece adecuado.'},
+    ],
+    news: [
+      {q:'¿Cómo afecta esta noticia al smart home?', a:item.body},
+      {q:'¿Dónde puedo leer más sobre este tema?', a:`Puedes leer el artículo completo en la fuente original${item.source?' ('+item.source+')':''}.`},
+    ],
+    review: [
+      {q:`¿Es recomendable ${item.product||item.title}?`, a:item.verdict||item.body.slice(0,200)},
+      {q:'¿Cuáles son las principales desventajas?', a:item.cons?item.cons.join('. '):'Consulta la sección de limitaciones en esta review.'},
+    ],
+    comparativa: [
+      {q:`¿Cuál es mejor, ${item.product_a||'opción A'} o ${item.product_b||'opción B'}?`, a:item.winner_reason||item.body.slice(0,200)},
+      {q:'¿Cuál tiene mejor relación calidad-precio?', a:'Lee la comparativa completa para ver cuál se adapta mejor a tu caso.'},
+    ],
+  };
+  const faqs = faqMap[item.type]||faqMap.news;
+  const faqHtml = `<section style="margin-top:36px;">
+    <h2 style="font-size:18px;font-weight:600;color:#e2e8f0;margin-bottom:14px;">Preguntas frecuentes</h2>
+    ${faqs.map(f=>`<details style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;margin-bottom:8px;overflow:hidden;">
+      <summary style="padding:14px 18px;cursor:pointer;font-size:14px;font-weight:500;color:#e2e8f0;list-style:none;display:flex;justify-content:space-between;">${f.q}<span style="color:#00d4aa;">+</span></summary>
+      <div style="padding:0 18px 14px;font-size:14px;color:#94a3b8;line-height:1.7;">${f.a}</div>
+    </details>`).join('')}
+  </section>`;
+
+  const faqSchema = JSON.stringify({
+    "@context":"https://schema.org","@type":"FAQPage",
+    "mainEntity":faqs.map(f=>({
+      "@type":"Question","name":f.q,
+      "acceptedAnswer":{"@type":"Answer","text":f.a}
+    }))
+  });
+
+  const tags = item.tags ? item.tags.map(t=>`<span style="font-size:11px;background:rgba(255,255,255,0.05);color:#94a3b8;padding:3px 10px;border-radius:6px;">${t}</span>`).join('') : '';
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -338,116 +286,78 @@ function generateArticlePage(item, allItems = []) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${item.title} | OfertasDomoticas.com</title>
-  <meta name="description" content="${item.body.slice(0, 155).replace(/"/g, '&quot;')}">
+  <meta name="description" content="${(item.body||'').slice(0,155).replace(/"/g,'&quot;')}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="${canonicalUrl}">
-  <meta property="og:title" content="${item.title.replace(/"/g, '&quot;')}">
-  <meta property="og:description" content="${item.body.slice(0, 155).replace(/"/g, '&quot;')}">
+  <meta property="og:title" content="${(item.title||'').replace(/"/g,'&quot;')}">
+  <meta property="og:description" content="${(item.body||'').slice(0,155).replace(/"/g,'&quot;')}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="OfertasDomoticas.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="application/ld+json">${schemaJson}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <script type="application/ld+json">${faqSchema}</script>
   <style>
-    :root { --accent:#00d4aa; --bg:#0a0e1a; --card:#141c2e; --text:#e2e8f0; --muted:#64748b; --border:rgba(255,255,255,0.07); }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Space Grotesk',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
-    body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
-    .wrapper { max-width:800px; margin:0 auto; padding:40px 20px; position:relative; z-index:1; }
-    .back { display:inline-flex; align-items:center; gap:6px; color:var(--accent); text-decoration:none; font-size:14px; margin-bottom:28px; padding:8px 16px; border:1px solid rgba(0,212,170,0.3); border-radius:8px; transition:all 0.2s; }
-    .back:hover { background:rgba(0,212,170,0.08); }
-    .type-badge { display:inline-flex; align-items:center; gap:6px; padding:5px 14px; border-radius:100px; font-size:12px; font-weight:600; letter-spacing:0.4px; margin-bottom:16px; background:rgba(${color === '#3b82f6' ? '59,130,246' : color === '#f59e0b' ? '245,158,11' : color === '#a78bfa' ? '167,139,250' : '74,222,128'},.15); color:${color}; border:1px solid ${color}33; }
-    .breadcrumb { font-size:12px; color:var(--muted); margin-bottom:16px; }
-    .breadcrumb a { color:var(--muted); text-decoration:none; }
-    .breadcrumb a:hover { color:var(--accent); }
-    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; letter-spacing:-0.5px; margin-bottom:16px; }
-    .meta { display:flex; align-items:center; gap:16px; color:var(--muted); font-size:13px; margin-bottom:24px; flex-wrap:wrap; }
-    .meta-tag { background:rgba(255,255,255,0.05); padding:3px 10px; border-radius:6px; font-size:12px; }
-    .compat { margin:12px 0; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-    .compat-badge { background:rgba(0,212,170,0.1); color:var(--accent); padding:2px 10px; border-radius:6px; font-size:12px; font-weight:500; }
-    .article-body { font-size:16px; color:#cbd5e1; line-height:1.85; margin:24px 0; }
-    .rating-box { display:flex; align-items:baseline; gap:6px; margin:20px 0; padding:16px 20px; background:rgba(245,158,11,0.08); border:1px solid rgba(245,158,11,0.2); border-radius:12px; }
-    .rating-num { font-size:42px; font-weight:700; color:#f59e0b; font-variant-numeric:tabular-nums; }
-    .rating-max { font-size:20px; color:var(--muted); }
-    .rating-label { font-size:14px; color:var(--muted); margin-left:8px; }
-    .pros-cons-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
-    .pros-box, .cons-box { padding:16px; border-radius:12px; }
-    .pros-box { background:rgba(74,222,128,0.06); border:1px solid rgba(74,222,128,0.2); }
-    .cons-box { background:rgba(248,113,113,0.06); border:1px solid rgba(248,113,113,0.2); }
-    .pros-box h3 { color:#4ade80; font-size:14px; margin-bottom:10px; }
-    .cons-box h3 { color:#f87171; font-size:14px; margin-bottom:10px; }
-    .pros-box li, .cons-box li { font-size:13px; color:var(--muted); margin-bottom:6px; margin-left:16px; line-height:1.6; }
-    .verdict-box { background:rgba(0,212,170,0.06); border-left:3px solid var(--accent); padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0; font-size:15px; }
-    .winner-box { background:rgba(245,158,11,0.08); border-left:3px solid #f59e0b; padding:14px 18px; border-radius:0 10px 10px 0; margin:20px 0; font-size:15px; }
-    .price-section { display:flex; align-items:center; gap:12px; margin:24px 0; flex-wrap:wrap; padding:20px; background:var(--card); border-radius:14px; border:1px solid var(--border); }
-    .price-main { font-size:28px; font-weight:700; color:#f59e0b; font-family:monospace; }
-    .price-old { font-size:16px; color:var(--muted); text-decoration:line-through; }
-    .price-discount { background:rgba(239,68,68,0.12); color:#f87171; padding:4px 10px; border-radius:6px; font-size:13px; font-weight:600; }
-    .buy-btn { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,var(--accent),#00a884); color:#000; font-weight:600; font-size:14px; padding:10px 22px; border-radius:10px; text-decoration:none; margin-left:auto; transition:all 0.2s; }
-    .buy-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(0,212,170,0.3); }
-    .source-link { display:inline-flex; align-items:center; gap:6px; color:var(--accent); text-decoration:none; font-size:14px; padding:10px 18px; border:1px solid rgba(0,212,170,0.3); border-radius:8px; margin-top:20px; transition:all 0.2s; }
-    .source-link:hover { background:rgba(0,212,170,0.08); }
-    .related { margin-top:48px; padding-top:32px; border-top:1px solid var(--border); }
-    .related h3 { font-size:18px; font-weight:600; margin-bottom:16px; }
-    .related-link { display:block; color:var(--accent); text-decoration:none; font-size:14px; padding:10px 0; border-bottom:1px solid var(--border); }
-    .related-link:hover { color:#fff; }
-    @media(max-width:600px) { .pros-cons-grid { grid-template-columns:1fr; } .buy-btn { margin-left:0; width:100%; justify-content:center; } }
+    :root{--bg:#0a0e1a;--card:#141c2e;--accent:#00d4aa;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(255,255,255,0.07);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+    .wrapper{max-width:820px;margin:0 auto;padding:40px 20px 80px;position:relative;z-index:1;}
+    .back{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:14px;margin-bottom:24px;padding:8px 16px;border:1px solid rgba(0,212,170,0.3);border-radius:8px;transition:all 0.2s;}
+    .back:hover{background:rgba(0,212,170,0.08);}
+    .breadcrumb{font-size:12px;color:var(--muted);margin-bottom:16px;}
+    .breadcrumb a{color:var(--muted);text-decoration:none;}
+    .type-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:16px;background:rgba(${color==='#3b82f6'?'59,130,246':color==='#f59e0b'?'245,158,11':color==='#a78bfa'?'167,139,250':'74,222,128'},.15);color:${color};border:1px solid ${color}33;}
+    h1{font-size:clamp(22px,4vw,34px);font-weight:700;line-height:1.25;letter-spacing:-0.5px;margin-bottom:16px;}
+    h2{font-size:20px;font-weight:600;color:var(--text);margin:32px 0 14px;}
+    .article-body{font-size:16px;color:#cbd5e1;line-height:1.85;margin:24px 0;}
+    .source-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:14px;padding:10px 18px;border:1px solid rgba(0,212,170,0.3);border-radius:8px;margin-top:20px;transition:all 0.2s;}
+    .source-link:hover{background:rgba(0,212,170,0.08);}
+    footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);}
+    footer a{color:var(--accent);text-decoration:none;font-size:14px;padding:10px 18px;border:1px solid rgba(0,212,170,0.3);border-radius:8px;display:inline-block;transition:all 0.2s;}
+    footer a:hover{background:rgba(0,212,170,0.08);}
+    @media(max-width:600px){.pros-cons-grid{grid-template-columns:1fr!important;}}
   </style>
 </head>
 <body>
 <div class="wrapper">
   <a href="/" class="back">← Volver a OfertasDomoticas.com</a>
-
   <nav class="breadcrumb">
-    <a href="/">Inicio</a> › <a href="/#${item.type === 'news' ? 'noticias' : item.type === 'promo' ? 'descuentos' : 'archivo'}">${label}s</a> › ${item.title.slice(0, 50)}...
+    <a href="/">Inicio</a> ›
+    <a href="/#${item.type==='news'?'noticias':item.type==='promo'?'descuentos':'archivo'}">${label}s</a> ›
+    ${item.title.slice(0,60)}${item.title.length>60?'...':''}
   </nav>
-
   <div class="type-badge">${icon} ${label}</div>
-
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;">
-    <span style="font-size:12px;color:#94a3b8;background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:6px;">⏱ \${estimateReadingTime(item.body)}</span>
-    <span style="font-size:12px;color:#94a3b8;">📅 \${item.date||''}</span>
-    \${item.source ? '<span style="font-size:12px;color:#94a3b8;">📰 '+item.source+'</span>' : ''}
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;">
+    <span style="font-size:12px;color:#94a3b8;background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:6px;">⏱ ${readTimeStr}</span>
+    <span style="font-size:12px;color:#94a3b8;">📅 ${item.date||''}</span>
+    ${item.source?`<span style="font-size:12px;color:#94a3b8;">📰 ${item.source}</span>`:''}
+    ${tags}
   </div>
-
-  <h1>\${item.title}</h1>
-
-  \${generateTOC(item)}
-
-  <div class="meta">
-    ${item.tags ? item.tags.map(t => `<span class="meta-tag">${t}</span>`).join('') : ''}
-  </div>
-
+  <h1>${item.title}</h1>
   ${protocolHtml}
   ${compatHtml}
   ${priceHtml}
   ${ratingHtml}
-
   <div class="article-body">${item.body}</div>
-
   ${prosConsHtml}
   ${verdictHtml}
   ${winnerHtml}
-
-  ${item.type === 'news' && item.url && item.url !== '#' ? `
-  <a href="${item.url}" target="_blank" rel="noopener" class="source-link">
-    🔗 Leer artículo completo en ${item.source || 'la fuente original'} →
-  </a>` : ''}
-
+  ${item.type==='news'&&item.url&&item.url!=='#'?`<a href="${item.url}" target="_blank" rel="noopener" class="source-link">🔗 Leer artículo completo en ${item.source||'la fuente original'} →</a>`:''}
+  ${crossSellHtml}
   ${faqHtml}
   ${relatedHtml}
-
-  <div class="related" style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);">
-    <h3 style="font-size:16px;font-weight:600;margin-bottom:12px;">Explorar más</h3>
-    <a href="/#descuentos" class="related-link">🔥 Ver todas las ofertas del día</a>
-    <a href="/#noticias" class="related-link">📡 Últimas noticias de domótica</a>
-    <a href="/#archivo" class="related-link">📚 Archivo de reviews y comparativas</a>
-  </div>
+  <footer>
+    <a href="/">← Volver al inicio</a>
+    &nbsp;&nbsp;
+    <a href="/categorias.html" style="margin-left:8px;">Ver categorías</a>
+  </footer>
 </div>
-<script type="application/ld+json">${faqSchemaJson}</script>
 </body>
 </html>`;
 }
+
 
 // ─── ARCHIVO HISTÓRICO ────────────────────────────────────────────────────────
 function loadArchive() {
@@ -633,6 +543,53 @@ async function callAPI(prompt, maxTokens, retries = 3) {
   }
 }
 
+
+// ─── GENERADOR RSS ────────────────────────────────────────────────────────────
+function generateRSS(items) {
+  const now = new Date().toUTCString();
+  const newsItems = items.filter(i => i.type === 'news').slice(0, 20);
+
+  const rssItems = newsItems.map(item => {
+    const url = item.slug
+      ? `https://ofertasdomoticas.com/articulos/${item.slug}.html`
+      : (item.url && item.url !== '#' ? item.url : 'https://ofertasdomoticas.com');
+    const title = (item.title||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const desc  = (item.body||'').slice(0,300).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const tags  = (item.tags||[]).map(t => `<category>${t.replace(/&/g,'&amp;')}</category>`).join('');
+    return `    <item>
+      <title>${title}</title>
+      <link>${url}</link>
+      <guid isPermaLink="true">${url}</guid>
+      <description>${desc}...</description>
+      <pubDate>${now}</pubDate>
+      <source url="https://ofertasdomoticas.com">OfertasDomoticas.com</source>
+      ${tags}
+    </item>`;
+  }).join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OfertasDomoticas.com — Noticias de Domótica</title>
+    <link>https://ofertasdomoticas.com</link>
+    <description>Las noticias más importantes de domótica y smart home. Zigbee, Matter, Z-Wave, Thread. Actualizado semanalmente.</description>
+    <language>es</language>
+    <lastBuildDate>${now}</lastBuildDate>
+    <atom:link href="https://ofertasdomoticas.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://ofertasdomoticas.com/og-image.png</url>
+      <title>OfertasDomoticas.com</title>
+      <link>https://ofertasdomoticas.com</link>
+    </image>
+${rssItems}
+  </channel>
+</rss>`;
+
+  const rssPath = path.join(__dirname, 'public', 'rss.xml');
+  fs.writeFileSync(rssPath, xml, 'utf8');
+  console.log(`📡 RSS generado con ${newsItems.length} noticias → public/rss.xml`);
+}
+
 export async function generateContent() {
   if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
 
@@ -743,6 +700,11 @@ export async function generateContent() {
   const hasPromos = parsed.items.some(i => i.type === 'promo');
   if (hasPromos) {
     priceHistory = updatePriceHistory(parsed.items);
+  }
+
+  // Generar RSS solo los lunes (día de noticias)
+  if (dayOfWeek === 1) {
+    generateRSS(parsed.items);
   }
 
   // Enviar mejores ofertas a Telegram

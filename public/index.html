@@ -8,187 +8,392 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://ofertasdomoticas.com/">
   <meta property="og:title" content="OfertasDomoticas.com — Ofertas y Noticias de Domótica">
+  <meta property="og:description" content="Las mejores ofertas de Amazon, eBay y Alibaba en domótica. Actualizado diariamente.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ofertasdomoticas.com/">
+  <link rel="alternate" type="application/rss+xml" title="OfertasDomoticas.com — Noticias" href="/rss.xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4MP94RSZL"></script>
-  <!-- gtag config loaded by app.js -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","url":"https://ofertasdomoticas.com","name":"OfertasDomoticas.com","description":"Las mejores ofertas y noticias de domótica. Actualizado diariamente.","inLanguage":"es"},{"@type":"Organization","name":"OfertasDomoticas.com","url":"https://ofertasdomoticas.com","contactPoint":{"@type":"ContactPoint","email":"casainteligente06@hotmail.com"}}]}
+  </script>
   <style>
-    :root{--bg:#0a0e1a;--card:#141c2e;--accent:#00d4aa;--accent2:#3b82f6;--accent3:#f59e0b;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(255,255,255,0.07);--font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;--r:14px;}
+    /* ── THEME VARIABLES ── */
+    :root{
+      --bg:#0a0e1a;--bg2:#0d1220;--card:#141c2e;
+      --text:#e2e8f0;--muted:#94a3b8;--border:rgba(255,255,255,0.07);
+      --accent:#00d4aa;--accent2:#3b82f6;--accent3:#f59e0b;
+      --font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;
+      --r:12px;--r-lg:16px;
+    }
+    body.light{
+      --bg:#f8fafc;--bg2:#f1f5f9;--card:#ffffff;
+      --text:#0f172a;--muted:#64748b;--border:rgba(0,0,0,0.08);
+      --accent:#059669;--accent2:#2563eb;--accent3:#d97706;
+    }
+
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
-    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;}
-    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
-    header{background:rgba(10,14,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100;}
-    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:64px;gap:32px;}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:18px;font-weight:700;flex-shrink:0;}
-    .logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
-    .logo span{color:var(--accent);}
-    nav{display:flex;gap:24px;margin-left:auto;}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;transition:background 0.3s,color 0.3s;}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;opacity:1;transition:opacity 0.3s;}
+    body.light::before{opacity:0;}
+
+    /* ── LAYOUT ── */
+    .w{max-width:1200px;margin:0 auto;padding:0 24px;}
+    section{position:relative;z-index:1;}
+
+    /* ── HEADER ── */
+    header{background:rgba(10,14,26,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100;transition:background 0.3s;}
+    body.light header{background:rgba(255,255,255,0.95);}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:62px;gap:28px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:18px;font-weight:700;flex-shrink:0;letter-spacing:-0.3px;}
+    .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+    .logo em{font-style:normal;color:var(--accent);}
+    nav{display:flex;gap:20px;margin-left:auto;}
     nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
     nav a:hover{color:var(--text);}
-    .hero{text-align:center;padding:72px 24px 48px;position:relative;z-index:1;}
-    .hero h1{font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;}
-    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .hero-sub{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 36px;}
+    .theme-btn{width:38px;height:38px;border-radius:9px;border:1px solid var(--border);background:var(--bg2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;transition:all 0.2s;}
+    .theme-btn:hover{border-color:var(--accent);}
+
+    /* ── HERO ── */
+    .hero{text-align:center;padding:64px 24px 40px;position:relative;z-index:1;}
+    .hero h1{font-size:clamp(30px,5vw,52px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:14px;}
+    .hero h1 em{font-style:normal;color:var(--accent);}
+    .hero-sub{font-size:16px;color:var(--muted);max-width:500px;margin:0 auto 36px;line-height:1.6;}
     .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
-    .stat{text-align:center;}
-    .stat-num{font-size:28px;font-weight:700;color:var(--accent);font-family:var(--mono);}
-    .stat-label{font-size:12px;color:var(--muted);margin-top:2px;}
-    .wrapper{max-width:1200px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1;}
-    .section-title{font-size:18px;font-weight:600;margin-bottom:4px;}
-    .content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px;}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all 0.2s;animation:fadeUp 0.4s ease both;}
-    .card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-    .card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
-    .card-tags{display:flex;gap:5px;flex-wrap:wrap;}
-    .card-date{font-size:11px;color:var(--muted);flex-shrink:0;font-family:var(--mono);}
-    .card-title{font-size:15px;font-weight:600;line-height:1.4;}
-    .card-body{font-size:13px;color:var(--muted);line-height:1.65;flex:1;}
-    .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
-    .card-source{font-size:11px;color:var(--muted);font-family:var(--mono);}
-    .read-more{font-size:12px;color:var(--accent);font-weight:500;}
-    .tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:6px;letter-spacing:0.3px;}
-    .tag.news{background:rgba(59,130,246,0.15);color:#60a5fa;}
-    .tag.promo{background:rgba(245,158,11,0.15);color:#f59e0b;}
-    .tag.review{background:rgba(167,139,250,0.15);color:#a78bfa;}
-    .tag.comparativa{background:rgba(74,222,128,0.15);color:#4ade80;}
-    .tag.featured{background:rgba(0,212,170,0.12);color:var(--accent);}
-    .tag.platform{background:rgba(255,255,255,0.05);color:var(--muted);}
-    .price-badge{font-size:18px;font-weight:700;color:var(--accent3);font-family:var(--mono);}
-    .discount-badge{font-size:12px;font-weight:600;background:rgba(239,68,68,0.12);color:#f87171;padding:2px 8px;border-radius:6px;}
-    .section-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:4px;}
-    .filters{display:flex;gap:6px;flex-wrap:wrap;}
-    .filter-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.2s;min-height:36px;}
+    .stat-n{font-size:30px;font-weight:800;color:var(--accent);font-family:var(--mono);letter-spacing:-1px;}
+    .stat-l{font-size:12px;color:var(--muted);margin-top:3px;letter-spacing:0.3px;}
+
+    /* ── SUPER OFERTA DEL DÍA ── */
+    #super-deal{margin:32px 0;border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(245,158,11,0.25);}
+    body:not(.light) #super-deal{background:linear-gradient(135deg,#1a1200 0%,#2a1d00 50%,#1a1500 100%);}
+    body.light #super-deal{background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 60%,#fffbeb 100%);border-color:rgba(217,119,6,0.25);}
+    .sd-inner{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;padding:28px 32px;}
+    .sd-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;}
+    .sd-badge{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px;background:rgba(245,158,11,0.2);color:#f59e0b;}
+    .sd-live{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#f59e0b;}
+    .sd-dot{width:6px;height:6px;border-radius:50%;background:#f59e0b;animation:blink 1.5s infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+    .sd-proto{display:inline-flex;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:5px;background:rgba(245,158,11,0.1);color:#f59e0b;border:1px solid rgba(245,158,11,0.2);margin-bottom:10px;}
+    .sd-title{font-size:clamp(14px,2.2vw,19px);font-weight:700;color:var(--text);line-height:1.35;margin-bottom:8px;max-width:580px;}
+    .sd-desc{font-size:13px;color:var(--muted);line-height:1.65;max-width:540px;margin-bottom:18px;}
+    .sd-prices{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+    .sd-price{font-size:34px;font-weight:800;color:#f59e0b;font-family:var(--mono);}
+    .sd-old{font-size:16px;color:var(--muted);text-decoration:line-through;font-family:var(--mono);}
+    .sd-disc{font-size:13px;font-weight:700;background:rgba(239,68,68,0.12);color:#f87171;padding:4px 10px;border-radius:6px;}
+    .sd-actions{display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0;}
+    .sd-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;background:#f59e0b;color:#000;font-size:15px;font-weight:700;border:none;cursor:pointer;text-decoration:none;white-space:nowrap;transition:all 0.2s;font-family:var(--font);}
+    .sd-btn:hover{background:#fbbf24;transform:translateY(-1px);}
+    .sd-plat{font-size:12px;color:var(--muted);text-align:center;}
+    .sd-empty{display:none;padding:32px;text-align:center;color:var(--muted);font-size:14px;}
+
+    /* ── CONTROL BAR ── */
+    .control-bar{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+    .cb-label{font-size:12px;color:var(--muted);margin-right:4px;}
+    .filter-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.15s;min-height:36px;}
     .filter-btn:hover{border-color:rgba(0,212,170,0.3);color:var(--text);}
     .filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent);}
-    .empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;}
-    .empty-icon{font-size:48px;margin-bottom:12px;opacity:0.5;}
-    .empty-title{font-size:16px;color:var(--muted);}
-    .loading-state{grid-column:1/-1;text-align:center;padding:60px 20px;}
-    .loader{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .ad-banner{background:var(--card);border:1px dashed rgba(255,255,255,0.08);border-radius:var(--r);padding:20px;text-align:center;color:#64748b;font-size:12px;font-family:var(--mono);min-height:90px;display:flex;align-items:center;justify-content:center;}
-    .rating{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--accent3);font-weight:600;font-family:var(--mono);}
-    .verdict{background:rgba(0,212,170,0.06);border-left:3px solid var(--accent);padding:8px 12px;border-radius:0 8px 8px 0;font-size:13px;color:var(--text);font-style:italic;}
-    footer{border-top:1px solid var(--border);padding:40px 24px;position:relative;z-index:1;}
-    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+    .sort-select{margin-left:auto;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px;cursor:pointer;font-family:var(--font);}
+
+    /* ── DEAL GRID ── */
+    .deal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:40px;}
+    .deal-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;transition:all 0.2s;text-decoration:none;color:var(--text);animation:fadeUp 0.4s ease both;}
+    .deal-card:hover{border-color:rgba(0,212,170,0.3);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.2);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .dc-head{display:flex;justify-content:space-between;align-items:center;}
+    .dc-plat{font-size:10px;font-weight:700;padding:3px 9px;border-radius:5px;letter-spacing:0.3px;}
+    .dc-plat.amazon{background:rgba(0,212,170,0.1);color:var(--accent);}
+    .dc-plat.ebay{background:rgba(59,130,246,0.1);color:var(--accent2);}
+    .dc-plat.alibaba{background:rgba(139,92,246,0.1);color:#a78bfa;}
+    .dc-plat.other{background:rgba(255,255,255,0.05);color:var(--muted);}
+    .dc-disc{font-size:11px;font-weight:700;color:#f87171;background:rgba(239,68,68,0.1);padding:2px 7px;border-radius:4px;}
+    .dc-proto{font-size:10px;font-weight:600;color:var(--accent);background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.15);padding:2px 9px;border-radius:5px;align-self:flex-start;}
+    .dc-title{font-size:14px;font-weight:600;line-height:1.4;flex:1;}
+    .dc-compat{display:flex;gap:4px;flex-wrap:wrap;}
+    .dc-tag{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg2);color:var(--muted);}
+    .dc-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
+    .dc-price{font-size:20px;font-weight:800;color:var(--accent3);font-family:var(--mono);}
+    .dc-old{font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:2px;font-family:var(--mono);}
+    .dc-btn{font-size:12px;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--font);transition:all 0.15s;}
+    .dc-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+    /* ── NEWS SECTION ── */
+    .news-section{margin-bottom:40px;}
+    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+    .section-title{font-size:18px;font-weight:700;letter-spacing:-0.3px;}
+    .count-badge{font-size:13px;color:var(--accent);font-family:var(--mono);}
+    .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+    .news-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--text);transition:all 0.2s;animation:fadeUp 0.4s ease both;}
+    .news-card:hover{border-color:rgba(59,130,246,0.3);transform:translateY(-2px);}
+    .nc-head{display:flex;justify-content:space-between;align-items:flex-start;}
+    .nc-tags{display:flex;gap:5px;flex-wrap:wrap;}
+    .nc-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:5px;background:rgba(59,130,246,0.12);color:var(--accent2);}
+    .nc-platform{font-size:10px;font-weight:600;padding:3px 8px;border-radius:5px;background:rgba(255,255,255,0.04);color:var(--muted);}
+    .nc-date{font-size:11px;color:var(--muted);font-family:var(--mono);flex-shrink:0;}
+    .nc-title{font-size:14px;font-weight:600;line-height:1.4;}
+    .nc-body{font-size:13px;color:var(--muted);line-height:1.6;flex:1;}
+    .nc-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
+    .nc-source{font-size:11px;color:var(--muted);font-family:var(--mono);}
+    .nc-more{font-size:12px;color:var(--accent2);font-weight:500;}
+
+    /* ── ARCHIVE ── */
+    .archive-section{margin-bottom:40px;}
+    .archive-filters{display:flex;gap:6px;flex-wrap:wrap;}
+    .af-btn{padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.15s;}
+    .af-btn.active{background:var(--accent);color:#000;border-color:var(--accent);}
+    .archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:16px;}
+    .arc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:8px;transition:all 0.2s;animation:fadeUp 0.4s ease both;}
+    .arc-card:hover{border-color:rgba(0,212,170,0.2);transform:translateY(-2px);}
+    .arc-badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:5px;}
+    .arc-badge.review{background:rgba(167,139,250,0.12);color:#a78bfa;}
+    .arc-badge.comparativa{background:rgba(74,222,128,0.12);color:#4ade80;}
+    .arc-badge.news{background:rgba(59,130,246,0.12);color:var(--accent2);}
+    .arc-badge.promo{background:rgba(245,158,11,0.12);color:var(--accent3);}
+    .arc-title{font-size:14px;font-weight:600;line-height:1.4;}
+    .arc-body{font-size:12px;color:var(--muted);line-height:1.6;}
+    .arc-rating{font-size:13px;color:var(--accent3);font-weight:600;}
+    .arc-winner{font-size:12px;color:var(--accent);font-style:italic;}
+    .arc-more{font-size:12px;color:var(--accent);font-weight:500;margin-top:auto;}
+
+    /* ── NEWSLETTER ── */
+    .newsletter{border-radius:var(--r-lg);padding:40px 32px;margin-bottom:48px;text-align:center;border:1px solid var(--border);background:var(--card);position:relative;overflow:hidden;}
+    .newsletter::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -20%,rgba(0,212,170,0.07) 0%,transparent 65%);pointer-events:none;}
+    .nl-icon{font-size:36px;margin-bottom:14px;}
+    .nl-title{font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:10px;}
+    .nl-sub{font-size:15px;color:var(--muted);max-width:500px;margin:0 auto 24px;line-height:1.65;}
+    .nl-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+    .nl-tg{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;background:#0088cc;color:#fff;font-size:14px;font-weight:600;border:none;cursor:pointer;font-family:var(--font);text-decoration:none;transition:all 0.2s;}
+    .nl-tg:hover{background:#0077b5;transform:translateY(-1px);}
+    .nl-em{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all 0.2s;}
+    .nl-em:hover{border-color:var(--accent);color:var(--accent);}
+    .nl-note{font-size:12px;color:var(--muted);margin-top:14px;}
+
+    /* ── AUTHOR BIO ── */
+    .author{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:48px;}
+    .author-av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+    .author-name{font-size:14px;font-weight:700;margin-bottom:3px;}
+    .author-role{font-size:12px;color:var(--accent);font-family:var(--mono);margin-bottom:10px;}
+    .author-text{font-size:13px;color:var(--muted);line-height:1.7;}
+    .author-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+    .chip{font-size:11px;padding:3px 10px;border-radius:6px;}
+
+    /* ── AD BANNERS ── */
+    .ad-slot{background:var(--card);border:1px dashed rgba(255,255,255,0.06);border-radius:var(--r);padding:20px;text-align:center;color:var(--muted);font-size:12px;font-family:var(--mono);min-height:90px;display:flex;align-items:center;justify-content:center;margin-bottom:32px;}
+    body.light .ad-slot{border-color:rgba(0,0,0,0.08);}
+
+    /* ── FOOTER ── */
+    footer{border-top:1px solid var(--border);padding:40px 24px 32px;position:relative;z-index:1;}
+    .footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:32px;}
     .footer-brand{font-size:18px;font-weight:700;margin-bottom:8px;}
-    .footer-brand span{color:var(--accent);}
+    .footer-brand em{font-style:normal;color:var(--accent);}
     .footer-desc{font-size:13px;color:var(--muted);line-height:1.7;max-width:280px;}
-    .footer-col h4{font-size:13px;font-weight:600;margin-bottom:14px;}
-    .footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color 0.2s;}
+    .footer-col h4{font-size:13px;font-weight:600;margin-bottom:14px;color:var(--text);}
+    .footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:9px;transition:color 0.2s;}
     .footer-col a:hover{color:var(--accent);}
-    .footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);}
-    @media(max-width:768px){.stats{gap:24px;}.footer-inner{grid-template-columns:1fr;gap:24px;}nav a:not(:first-child):not(:last-child){display:none;}}
+    .footer-bottom{max-width:1200px;margin:0 auto;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);}
+    .footer-bottom a{color:var(--muted);text-decoration:none;}
+    .footer-bottom a:hover{color:var(--accent);}
+
+    /* ── STATES ── */
+    .empty-state{grid-column:1/-1;text-align:center;padding:56px 20px;}
+    .empty-icon{font-size:44px;opacity:0.4;margin-bottom:12px;}
+    .empty-title{font-size:15px;color:var(--muted);}
+    .loading-state{grid-column:1/-1;text-align:center;padding:56px 20px;}
+    .loader{width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    @media(max-width:768px){
+      .sd-inner{grid-template-columns:1fr;}
+      .sd-actions{flex-direction:row;flex-wrap:wrap;justify-content:flex-start;}
+      .footer-grid{grid-template-columns:1fr;}
+      nav a:nth-child(n+3){display:none;}
+      .stats{gap:24px;}
+    }
   </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-inner">
-    <a href="/" class="logo"><div class="logo-icon">🏠</div>Ofertas<span>Domoticas</span></a>
+    <a href="/" class="logo">
+      <div class="logo-icon">🏠</div>
+      Ofertas<em>Domoticas</em>
+    </a>
     <nav>
       <a href="/categorias.html">Categorías</a>
-      <a href="#descuentos">Ofertas</a>
       <a href="#noticias">Noticias</a>
       <a href="/glosario.html">Glosario</a>
+      <a href="#sobre">Acerca de</a>
     </nav>
+    <button class="theme-btn" id="theme-btn" title="Cambiar tema">🌙</button>
   </div>
 </header>
 
 <main>
-  <section class="hero">
-    <h1>El hub inteligente de<br><span>domótica y smart home</span></h1>
-    <p class="hero-sub">Las mejores ofertas y noticias de domótica — actualizado diariamente</p>
-    <div class="stats">
-      <div class="stat"><div class="stat-num" id="stat-news">—</div><div class="stat-label">noticias hoy</div></div>
-      <div class="stat"><div class="stat-num" id="stat-promos">—</div><div class="stat-label">ofertas activas</div></div>
-      <div class="stat"><div class="stat-num" id="stat-archive">—</div><div class="stat-label">en el archivo</div></div>
-    </div>
-  </section>
 
-  <div class="wrapper">
-    <div class="ad-banner" style="margin-bottom:32px;">📢 Espacio para Google AdSense</div>
+<!-- HERO -->
+<section class="hero">
+  <h1>Las mejores ofertas de<br><em>domótica y smart home</em></h1>
+  <p class="hero-sub">Amazon · eBay · Alibaba — análisis técnico real, actualizado cada día</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n" id="stat-news">—</div><div class="stat-l">noticias hoy</div></div>
+    <div class="stat"><div class="stat-n" id="stat-promos">—</div><div class="stat-l">ofertas activas</div></div>
+    <div class="stat"><div class="stat-n" id="stat-archive">—</div><div class="stat-l">en el archivo</div></div>
+  </div>
+</section>
 
-    <section id="descuentos" style="margin-bottom:48px;">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">🔥 Mejores descuentos de hoy</h2>
-          <span id="deals-count-badge" style="font-size:13px;color:var(--accent);font-family:var(--mono);"></span>
+<div class="w">
+
+  <!-- AD TOP -->
+  <div class="ad-slot">📢 Espacio para Google AdSense</div>
+
+  <!-- SÚPER OFERTA DEL DÍA -->
+  <div id="super-deal">
+    <div class="sd-empty" id="sd-empty">Cargando súper oferta del día...</div>
+    <div class="sd-inner" id="sd-inner" style="display:none;">
+      <div>
+        <div class="sd-top">
+          <span class="sd-badge">⭐ Súper oferta del día</span>
+          <div class="sd-live"><div class="sd-dot"></div><span id="sd-tag">Oferta destacada</span></div>
         </div>
-        <div class="filters">
-          <button class="filter-btn active" id="df-all" data-filter="all">Todos</button>
-          <button class="filter-btn" id="df-amazon" data-filter="amazon">Amazon</button>
-          <button class="filter-btn" id="df-ebay" data-filter="ebay">eBay</button>
-          <button class="filter-btn" id="df-alibaba" data-filter="alibaba">Alibaba</button>
-        </div>
-      </div>
-      <div class="content-grid" id="deals-grid">
-        <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando ofertas...</p></div>
-      </div>
-    </section>
-
-    <section id="noticias" style="margin-bottom:48px;">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">📡 Noticias de domótica</h2>
-          <span id="news-count-badge" style="font-size:13px;color:var(--accent);font-family:var(--mono);"></span>
+        <div class="sd-proto" id="sd-proto" style="display:none;"></div>
+        <div class="sd-title" id="sd-title"></div>
+        <div class="sd-desc" id="sd-desc"></div>
+        <div class="sd-prices">
+          <span class="sd-price" id="sd-price"></span>
+          <span class="sd-old" id="sd-old"></span>
+          <span class="sd-disc" id="sd-disc"></span>
         </div>
       </div>
-      <div class="content-grid" id="grid">
-        <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando noticias...</p></div>
-      </div>
-    </section>
-
-    <div class="ad-banner" style="margin-bottom:48px;">📢 Anuncio In-Feed — Google AdSense</div>
-
-    <section id="archivo" style="margin-bottom:48px;">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">📚 Archivo — Reviews y Comparativas</h2>
-          <span id="archive-count-badge" style="font-size:13px;color:var(--accent);font-family:var(--mono);"></span>
-        </div>
-        <div class="filters">
-          <button class="filter-btn active" id="af-all" data-archive="all">Todo</button>
-          <button class="filter-btn" id="af-news" data-archive="news">Noticias</button>
-          <button class="filter-btn" id="af-review" data-archive="review">Reviews</button>
-          <button class="filter-btn" id="af-comparativa" data-archive="comparativa">Comparativas</button>
-        </div>
-      </div>
-      <div class="content-grid" id="archive-grid">
-        <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando archivo...</p></div>
-      </div>
-    </section>
-
-    <section id="sobre" style="margin-bottom:48px;">
-      <h2 class="section-title" style="margin-bottom:12px;">Acerca de OfertasDomoticas.com</h2>
-      <p style="color:var(--muted);font-size:15px;line-height:1.8;max-width:700px;">Somos un agregador inteligente de noticias y ofertas sobre domótica y hogar inteligente. Analizamos diariamente los mejores productos en Amazon, eBay y Alibaba, y cubrimos las últimas novedades en protocolos como Zigbee, Matter, Z-Wave y Thread.</p>
-    </section>
-
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;">
-      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🤖</div>
-      <div style="flex:1;">
-        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Equipo Editorial — OfertasDomoticas.com</div>
-        <div style="font-size:12px;color:var(--accent);font-family:var(--mono);margin-bottom:10px;">Especialistas en Sistemas Inteligentes · IoT · Smart Home</div>
-        <p style="font-size:13px;color:var(--muted);line-height:1.7;">Contenido curado por ingenieros especializados en domótica. Analizamos protocolos técnicos (Zigbee 3.0, Matter 1.2, Z-Wave S2) y rastreamos las mejores ofertas del mercado.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
-          <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(0,212,170,0.1);color:var(--accent);">✓ Verificado por expertos</span>
-          <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(59,130,246,0.1);color:var(--accent2);">✓ Actualizado diariamente</span>
-          <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(245,158,11,0.1);color:var(--accent3);">✓ Análisis técnico independiente</span>
-        </div>
+      <div class="sd-actions">
+        <a class="sd-btn" id="sd-btn" href="#" target="_blank" rel="sponsored noopener">🛒 Comprar ahora</a>
+        <div class="sd-plat" id="sd-plat"></div>
+        <div style="font-size:11px;color:var(--muted);text-align:center;max-width:140px;line-height:1.5;">Actualizado hoy a las 7:00am</div>
       </div>
     </div>
   </div>
+
+  <!-- RESUMEN DE LA SEMANA -->
+  <section id="resumen" style="margin-bottom:32px;display:none;">
+    <div style="background:linear-gradient(135deg,rgba(59,130,246,0.08) 0%,rgba(0,212,170,0.06) 100%);border:1px solid rgba(59,130,246,0.15);border-radius:16px;padding:24px 28px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+        <span style="font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);">📰 Lo más importante de la semana</span>
+        <span style="font-size:11px;color:var(--muted);font-family:var(--mono);" id="resumen-fecha"></span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;" id="resumen-grid"></div>
+    </div>
+  </section>
+
+  <!-- OFERTAS -->
+  <section id="descuentos" style="margin:32px 0;">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">🔥 Descuentos de hoy</h2>
+        <span class="count-badge" id="deals-count"></span>
+      </div>
+    </div>
+    <div class="control-bar">
+      <span class="cb-label">Filtrar:</span>
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="amazon">Amazon</button>
+      <button class="filter-btn" data-filter="ebay">eBay</button>
+      <button class="filter-btn" data-filter="alibaba">Alibaba</button>
+      <select class="sort-select" id="sort-select">
+        <option value="discount">Mayor descuento</option>
+        <option value="price-asc">Precio: menor a mayor</option>
+        <option value="price-desc">Precio: mayor a menor</option>
+      </select>
+    </div>
+    <div class="deal-grid" id="deals-grid">
+      <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando ofertas...</p></div>
+    </div>
+  </section>
+
+  <!-- AD MID -->
+  <div class="ad-slot">📢 Anuncio In-Feed — Google AdSense</div>
+
+  <!-- NOTICIAS -->
+  <section id="noticias" class="news-section">
+    <div class="section-head">
+      <h2 class="section-title">📡 Noticias de domótica</h2>
+      <span class="count-badge" id="news-count"></span>
+    </div>
+    <div class="control-bar" style="margin-bottom:14px;">
+      <span class="cb-label">Ecosistema:</span>
+      <button class="filter-btn active" data-ecosystem="all">Todos</button>
+      <button class="filter-btn" data-ecosystem="Matter">Matter</button>
+      <button class="filter-btn" data-ecosystem="Zigbee">Zigbee</button>
+      <button class="filter-btn" data-ecosystem="Alexa">Alexa</button>
+      <button class="filter-btn" data-ecosystem="Google Home">Google</button>
+      <button class="filter-btn" data-ecosystem="Thread">Thread</button>
+      <button class="filter-btn" data-ecosystem="Z-Wave">Z-Wave</button>
+    </div>
+    <div class="news-grid" id="news-grid">
+      <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando noticias...</p></div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter">
+    <div class="nl-icon">🤖</div>
+    <div class="nl-title">Deja que la IA busque por ti</div>
+    <div class="nl-sub">Únete a nuestro canal de Telegram y recibe las 3 mejores ofertas de domótica cada mañana — analizadas técnicamente, con precio mínimo histórico marcado.</div>
+    <div class="nl-actions">
+      <a class="nl-tg" href="https://t.me/ofertasdomoticas" target="_blank" rel="noopener">✈ Canal de Telegram</a>
+      <button class="nl-em">📧 Top 5 cada viernes</button>
+    </div>
+    <div class="nl-note">Sin spam · Solo ofertas reales · Puedes salir cuando quieras</div>
+  </div>
+
+  <!-- ARCHIVO -->
+  <section id="archivo" class="archive-section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">📚 Archivo — Reviews y Comparativas</h2>
+        <span class="count-badge" id="archive-count"></span>
+      </div>
+      <div class="archive-filters">
+        <button class="af-btn active" data-archive="all">Todo</button>
+        <button class="af-btn" data-archive="news">Noticias</button>
+        <button class="af-btn" data-archive="review">Reviews</button>
+        <button class="af-btn" data-archive="comparativa">Comparativas</button>
+      </div>
+    </div>
+    <div class="archive-grid" id="archive-grid">
+      <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando archivo...</p></div>
+    </div>
+  </section>
+
+  <!-- ACERCA DE + AUTOR -->
+  <section id="sobre" style="margin-bottom:40px;">
+    <h2 class="section-title" style="margin-bottom:14px;">Acerca de OfertasDomoticas.com</h2>
+    <p style="color:var(--muted);font-size:15px;line-height:1.8;max-width:680px;margin-bottom:24px;">Somos un agregador inteligente de noticias y ofertas sobre domótica y hogar inteligente. Analizamos diariamente los mejores productos en Amazon, eBay y Alibaba, cubriendo protocolos como Zigbee, Matter, Z-Wave y Thread.</p>
+    <div class="author">
+      <div class="author-av">🤖</div>
+      <div style="flex:1;">
+        <div class="author-name">Equipo Editorial — OfertasDomoticas.com</div>
+        <div class="author-role">Especialistas en Sistemas Inteligentes · IoT · Smart Home</div>
+        <p class="author-text">Contenido curado por ingenieros especializados en domótica. Analizamos protocolos técnicos (Zigbee 3.0, Matter 1.2, Z-Wave S2) y rastreamos las mejores ofertas del mercado para ayudarte a tomar decisiones de compra informadas.</p>
+        <div class="author-chips">
+          <span class="chip" style="background:rgba(0,212,170,0.1);color:var(--accent);">✓ Verificado por expertos</span>
+          <span class="chip" style="background:rgba(59,130,246,0.1);color:var(--accent2);">✓ Actualizado diariamente</span>
+          <span class="chip" style="background:rgba(245,158,11,0.1);color:var(--accent3);">✓ Análisis técnico independiente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
 </main>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
+  <div class="footer-grid">
     <div>
-      <div class="footer-brand">Ofertas<span>Domoticas</span>.com</div>
+      <div class="footer-brand">Ofertas<em>Domoticas</em>.com</div>
       <p class="footer-desc">Tu fuente diaria de noticias y ofertas de domótica, impulsada por inteligencia artificial.</p>
     </div>
     <div class="footer-col">
@@ -203,20 +408,20 @@
       <a href="https://www.amazon.com/s?k=smart+home" target="_blank" rel="sponsored noopener">🛒 Amazon</a>
       <a href="https://www.ebay.com/sch/i.html?_nkw=smart+home" target="_blank" rel="sponsored noopener">🏪 eBay</a>
       <a href="https://www.alibaba.com/trade/search?SearchText=smart+home" target="_blank" rel="sponsored noopener">🌐 Alibaba</a>
+      <a href="https://t.me/ofertasdomoticas" target="_blank" rel="noopener">✈ Telegram</a>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 OfertasDomoticas.com</span>
     <div style="display:flex;gap:16px;">
-      <a href="/privacidad.html" style="color:var(--muted);text-decoration:none;">Privacidad</a>
-      <a href="/contacto.html" style="color:var(--muted);text-decoration:none;">Contacto</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/contacto.html">Contacto</a>
     </div>
   </div>
 </footer>
 
-<!-- DATOS SSG — inyectados por cron.js cada día -->
-
-<script id="ssg-data" type="application/json">[{"id":1,"type":"promo","title":"ThirdReality Zigbee 3.0 Smart RGBCW Bulb Pack con Hub Echo Compatible A19 800LM","body":"Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo standby <1W, ecosistemas compatibles Alexa/Google/SmartThings/Home Assistant. Superior a Wi-Fi por menor latencia mesh, sin saturar red principal, batería 2+ años sensores. Incluye control remoto smartphone, millones colores RGB, temperatura 2700K-6500K ajustable, automatizaciones horarias.","platform":"Amazon","price":"$34.99","originalPrice":"$59.99","discount":"-42%","date":"14 de marzo de 2026","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home","SmartThings","Home Assistant"],"slug":"thirdreality-zigbee-smart-rgbcw-bulb-4pack","url":"https://www.amazon.com/s?k=thirdreality+zigbee+smart+bulb&tag=domotiq-20","archivedAt":"2026-03-15"},{"id":2,"type":"promo","title":"Sylvania Smart+ Zigbee 3.0 BR30 Color Full Spectrum SmartThings Echo Plus Flood","body":"Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz global, consumo 10W equiv 60W, standby <0.5W, ecosistemas SmartThings/Echo Plus/Google. Ventaja vs Wi-Fi: red mesh autoreparable, sin congestión router, alcance 30-60 pies entre nodos. 16M colores, dimming 1-100%, vida útil 20.000h garantía 2 años.","platform":"Amazon","price":"$24.99","originalPrice":"$44.99","discount":"-44%","date":"14 de marzo de 2026","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","SmartThings","Google Home"],"slug":"sylvania-smart-zigbee-br30-color-flood","url":"https://www.amazon.com/s?k=sylvania+smart+zigbee+br30&tag=domotiq-20","archivedAt":"2026-03-15"},{"id":3,"type":"promo","title":"Amazon Smart Thermostat Zigbee 3.0 Honeywell Tech Alexa Voice Control Energy Star","body":"Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo standby <2W, ecosistemas Alexa/Google/IFTTT nativos. Superior a Wi-Fi por comunicación local directa, respuesta <100ms, funciona sin internet. Tecnología Honeywell, aprendizaje hábitos, geofencing smartphone, ahorro energético 10-15% certificado Energy Star.","platform":"Amazon","price":"$79.00","originalPrice":"$129.99","discount":"-39%","date":"14 de marzo de 2026","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home","IFTTT"],"slug":"amazon-smart-thermostat-zigbee-honeywell","url":"https://www.amazon.com/s?k=amazon+smart+thermostat&tag=domotiq-20","archivedAt":"2026-03-15"},{"id":4,"type":"promo","title":"Ecosmart Zigbee 3.0 Smart LED BR30 2-Pack Voice Control Hub Required 65W Equiv","body":"Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo 10.5W equiv 65W, standby <0.8W, ecosistemas Echo Plus/SmartThings. Mejor que Wi-Fi por topología mesh resiliente, sin interferencia router, instalación sin configuración compleja. Dimming completo, temperatura ajustable, control remoto smartphone, vida 25.000h.","platform":"Amazon","price":"$19.99","originalPrice":"$32.99","discount":"-39%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0","compatibility":["Alexa","SmartThings","Google Home"],"slug":"ecosmart-zigbee-smart-led-br30-2pack","url":"https://www.amazon.com/s?k=ecosmart+zigbee+smart+bulb&tag=domotiq-20","archivedAt":"2026-03-15"},{"id":5,"type":"promo","title":"Sonoff SNZB-02D Zigbee 3.0 LCD Temperature Humidity Sensor Smart Home Monitor","body":"Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, consumo standby <10μA, batería CR2450 duración 2+ años, ecosistemas SmartThings/Alexa. Superior a Wi-Fi por ultra bajo consumo, red mesh extendida automáticamente, sin dependencia router principal. Pantalla LCD integrada, precisión ±0.2°C, alertas smartphone, historial datos.","platform":"eBay","price":"$12.99","originalPrice":"$21.99","discount":"-41%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0","compatibility":["SmartThings","Alexa","Home Assistant"],"slug":"sonoff-snzb-02d-zigbee-temperature-humidity","url":"https://www.ebay.com/sch/i.html?_nkw=sonoff+zigbee+temperature+sensor","archivedAt":"2026-03-15"},{"id":6,"type":"promo","title":"Smart Plug Zigbee 3.0 EU 16A Power Monitor Energy Tracking Voice Control Timer","body":"Specs técnicas: protocolo Zigbee 3.0, frecuencia 2.4GHz, carga máxima 16A, consumo standby <1W, ecosistemas Alexa/Google/SmartThings. Ventaja vs Wi-Fi: funciona como repetidor mesh, extiende red automáticamente, no satura ancho banda router. Monitoreo energía tiempo real, programación horarios, control remoto, protección sobrecarga.","platform":"eBay","price":"$16.49","originalPrice":"$28.99","discount":"-43%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home","SmartThings"],"slug":"smart-plug-zigbee-eu-16a-power-monitor","url":"https://www.ebay.com/sch/i.html?_nkw=zigbee+smart+plug+power+monitor","archivedAt":"2026-03-15"},{"id":7,"type":"promo","title":"Plus Smart Home Hub Zigbee 3.0 Z-Wave WiFi Multi-Protocol Gateway Controller","body":"Specs técnicas: protocolo Zigbee 3.0 + Z-Wave + WiFi, frecuencia 2.4GHz/915MHz, consumo <5W, ecosistemas universales Alexa/Google/HomeKit. Superior a hubs monoprootocolo por interoperabilidad total, control local sin nube, latencia <50ms. Hasta 232 dispositivos, automatizaciones complejas, API REST, backup configuración local.","platform":"eBay","price":"$89.99","originalPrice":"$149.99","discount":"-40%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0 + Z-Wave","compatibility":["Alexa","Google Home","HomeKit","SmartThings"],"slug":"plus-smart-home-hub-zigbee-zwave","url":"https://www.ebay.com/sch/i.html?_nkw=zigbee+zwave+smart+hub","archivedAt":"2026-03-15"},{"id":8,"type":"promo","title":"Tuya Zigbee 3.0 Multi-Mode Gateway WiFi Bluetooth Smart Home Hub Remote Control","body":"Specs técnicas: protocolo Zigbee 3.0 + WiFi + Bluetooth 5.0, frecuencia 2.4GHz, consumo <4W, ecosistemas Tuya/Alexa/Google nativos. Mejor que hubs simples por triple conectividad, respaldo automático protocolos, gestión centralizada 200+ dispositivos. Control remoto global, automatizaciones inteligentes, actualizaciones OTA, API desarrolladores.","platform":"Alibaba","price":"$25.99","originalPrice":"$42.99","discount":"-40%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0 + WiFi + BLE","compatibility":["Tuya Smart","Alexa","Google Home"],"slug":"tuya-zigbee-multi-mode-gateway-hub","url":"https://www.alibaba.com/product-detail/Tuya-Zigbee-WiFi-Bluetooth-Gateway_62058739847.html","archivedAt":"2026-03-15"}]</script>
+<!-- SSG DATA -->
+<script id="ssg-data" type="application/json">[]</script>
 <script src="/app.js"></script>
 </body>
 </html>
