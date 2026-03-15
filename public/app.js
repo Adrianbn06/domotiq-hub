@@ -118,6 +118,16 @@ function renderSuperDeal(items) {
 }
 
 
+
+// ── COPIAR ENLACE ─────────────────────────────────────────────────────────────
+function copyLink(btn, url) {
+  navigator.clipboard.writeText(url).then(() => {
+    const original = btn.innerHTML;
+    btn.innerHTML = '<span style="font-size:12px;font-weight:700;color:var(--accent,#00d4aa);">¡Copiado!</span>';
+    setTimeout(() => { btn.innerHTML = original; }, 2000);
+  }).catch(err => console.error('Error al copiar:', err));
+}
+
 // ── POPUP ALERTA DE PRECIO ────────────────────────────────────────────────────
 function showPriceAlert(e, productTitle) {
   e.preventDefault();
@@ -180,6 +190,14 @@ document.addEventListener('keydown', e => {
 // Usando delegación para evitar problemas con CSP y onclick inline
 document.addEventListener('click', function(e) {
 
+  // Botón copiar enlace
+  const copyBtn = e.target.closest('.copy-link-btn');
+  if (copyBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+    copyLink(copyBtn, copyBtn.getAttribute('data-url'));
+    return;
+  }
   // Botón WhatsApp compartir
   const waBtn = e.target.closest('.wa-share-btn');
   if (waBtn) {
@@ -465,12 +483,26 @@ function initAnalytics() {
   gtag('config', 'G-J4MP94RSZL');
 }
 
+
+// ── BOTÓN VOLVER ARRIBA ───────────────────────────────────────────────────────
+function initScrollTop() {
+  const btn = document.getElementById('scrollTopBtn');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('show', window.scrollY > 400);
+  });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 // ── INIT ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
   initTheme();
   initControls();
   initAnalytics();
   initCookieBanner();
+  initScrollTop();
 
   // Leer datos SSG
   const ssgEl = document.getElementById('ssg-data');
