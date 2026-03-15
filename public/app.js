@@ -293,7 +293,7 @@ function renderNews(items) {
     const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
     const target = item.slug ? '_self' : '_blank';
     const tags = (item.tags||[]).slice(0,2).map(t=>`<span class="nc-platform">${t}</span>`).join('');
-    return `<a class="news-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener">
+    return `<a class="news-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener" aria-label="${item.title}">
       <div class="nc-head">
         <div class="nc-tags"><span class="nc-tag">📡 Noticia</span>${tags}</div>
         <span class="nc-date">${item.date||''}</span>
@@ -393,7 +393,7 @@ function renderNewsFiltered(items) {
     const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
     const target = item.slug ? '_self' : '_blank';
     const tags = (item.tags||[]).slice(0,2).map(t=>`<span class="nc-platform">${t}</span>`).join('');
-    return `<a class="news-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener">
+    return `<a class="news-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener" aria-label="${item.title}">
       <div class="nc-head">
         <div class="nc-tags"><span class="nc-tag">📡 Noticia</span>${tags}</div>
         <span class="nc-date">${item.date||''}</span>

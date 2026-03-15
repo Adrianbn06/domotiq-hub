@@ -14,7 +14,8 @@
   <link rel="alternate" type="application/rss+xml" title="OfertasDomoticas.com — Noticias" href="/rss.xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mDoQDjQSkFtoMM3T6r8E7mF71Q-gowFY5.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap&font-display=swap" media="print" onload="this.media='all'">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4MP94RSZL"></script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"WebSite","url":"https://ofertasdomoticas.com","name":"OfertasDomoticas.com","description":"Las mejores ofertas y noticias de domótica. Actualizado diariamente.","inLanguage":"es"},{"@type":"Organization","name":"OfertasDomoticas.com","url":"https://ofertasdomoticas.com","contactPoint":{"@type":"ContactPoint","email":"contacto@ofertasdomoticas.com"}}]}
@@ -34,6 +35,7 @@
       --accent:#059669;--accent2:#2563eb;--accent3:#d97706;
     }
 
+    @font-face{font-family:"Space Grotesk";font-display:swap;}
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
     body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;transition:background 0.3s,color 0.3s;}
@@ -62,7 +64,7 @@
     .stats-bar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
     .stats-bar-inner::-webkit-scrollbar{display:none;}
     .sb-item{display:flex;align-items:center;gap:7px;}
-    .sb-num{font-size:17px;font-weight:700;color:var(--accent);font-family:var(--mono);}
+    .sb-num{font-size:17px;font-weight:700;color:var(--accent);font-family:var(--mono);min-width:20px;display:inline-block;}
     .sb-label{font-size:12px;color:var(--muted);}
     .sb-divider{width:1px;height:18px;background:var(--border);flex-shrink:0;}
     .sb-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-left:auto;}
@@ -107,10 +109,10 @@
     /* ── CONTROL BAR ── */
     .control-bar{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
     .cb-label{font-size:12px;color:var(--muted);margin-right:4px;}
-    .filter-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.15s;min-height:36px;}
+    .filter-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:transparent;color:#a8b8cc;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.15s;min-height:36px;}
     .filter-btn:hover{border-color:rgba(0,212,170,0.3);color:var(--text);}
     .filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent);}
-    .sort-select{margin-left:auto;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px;cursor:pointer;font-family:var(--font);}
+    .sort-select{margin-left:auto;padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px;cursor:pointer;font-family:var(--font);min-height:36px;}
 
     /* ── DEAL GRID ── */
     .deal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:40px;}
@@ -216,6 +218,8 @@
     .empty-icon{font-size:44px;opacity:0.4;margin-bottom:12px;}
     .empty-title{font-size:15px;color:var(--muted);}
     .loading-state{grid-column:1/-1;text-align:center;padding:56px 20px;}
+    .deal-grid{min-height:300px;}
+    .news-grid{min-height:200px;}
     .loader{width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px;}
     @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -306,7 +310,7 @@
   <div class="ad-slot">📢 Espacio para Google AdSense</div>
 
   <!-- SÚPER OFERTA DEL DÍA -->
-  <div id="super-deal" style="margin-top:24px;">
+  <div id="super-deal" style="margin-top:24px;min-height:180px;">
     <div class="sd-empty" id="sd-empty">Cargando súper oferta del día...</div>
     <div class="sd-inner" id="sd-inner" style="display:none;">
       <div>
@@ -365,6 +369,7 @@
       <button class="filter-btn" data-filter="amazon">Amazon</button>
       <button class="filter-btn" data-filter="ebay">eBay</button>
       <button class="filter-btn" data-filter="alibaba">Alibaba</button>
+      <label for="sort-select" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Ordenar ofertas por</label>
       <select class="sort-select" id="sort-select">
         <option value="discount">Mayor descuento</option>
         <option value="price-asc">Precio: menor a mayor</option>
@@ -496,6 +501,6 @@
 
 <!-- SSG DATA -->
 <script id="ssg-data" type="application/json">[]</script>
-<script src="/app.js"></script>
+<script src="/app.js" defer></script>
 </body>
 </html>
