@@ -164,7 +164,8 @@ function renderDeals(items) {
     const pc = platClass(item.platform);
     const pi = platIcon(item.platform);
     const compat = (item.compatibility||[]).slice(0,3).map(c=>`<span class="dc-tag">${c}</span>`).join('');
-    return `<a class="deal-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="_blank" rel="sponsored noopener">
+    const safeTitle = item.title.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;');
+    return `<div class="deal-card" style="animation-delay:${(i*0.04).toFixed(2)}s;cursor:pointer;" onclick="window.open('${href}','_blank')">
       <div class="dc-head">
         <span class="dc-plat ${pc}">${pi} ${item.platform||''}</span>
         ${item.discount?`<span class="dc-disc">${item.discount}</span>`:''}
@@ -175,11 +176,11 @@ function renderDeals(items) {
       <div class="dc-footer">
         <div><div class="dc-price">${item.price}</div>${item.originalPrice?`<div class="dc-old">${item.originalPrice}</div>`:''}</div>
         <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end;">
-          <button class="dc-btn">Ver oferta</button>
-          <button onclick="showPriceAlert(event,'${item.title.replace(/'/g,"\'")}')" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:2px 4px;font-family:var(--font);transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">🔔 Avísame si baja</button>
+          <span class="dc-btn">Ver oferta</span>
+          <button onclick="event.stopPropagation();showPriceAlert(event,'${safeTitle}')" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:2px 4px;font-family:var(--font);transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">🔔 Avísame si baja</button>
         </div>
       </div>
-    </a>`;
+    </div>`;
   }).join('');
 }
 
