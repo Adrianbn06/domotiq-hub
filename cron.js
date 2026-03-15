@@ -887,7 +887,7 @@ export function injectSSG(items, priceHistory = null) {
 
   // Inject SSG data before </body>
   // Eliminar script anterior para evitar duplicados acumulados
-  html = html.replace(/<script id="ssg-data"[\s\S]*?<\/script>/, '');
+  html = html.replace(/<script id="ssg-data"[\s\S]*?<\/script>/g, '');
   html = html.replace('</body>', ssgDataScript + '\n</body>');
 
   // Update stats in HTML directly
