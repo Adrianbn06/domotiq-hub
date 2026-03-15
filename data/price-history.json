@@ -6,6 +6,10 @@
         {
           "date": "2026-03-14",
           "price": 79
+        },
+        {
+          "date": "2026-03-15",
+          "price": 79
         }
       ]
     },
@@ -390,6 +394,78 @@
         {
           "date": "2026-03-15",
           "price": 16.49
+        }
+      ]
+    },
+    "homey-pro-2026-smart-hub": {
+      "title": "Homey Pro 2026 Multi-Protocol Smart Hub + Zigbee 3.0 + Z-Wave Plus + Matter + Thread + BLE + IR",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 349.99
+        }
+      ]
+    },
+    "aqara-hub-m3-matter-bridge": {
+      "title": "Aqara Hub M3 + Matter Bridge + Thread Border Router + Zigbee 3.0 + Apple HomeKit Native",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 69.99
+        }
+      ]
+    },
+    "sonoff-zbdongle-zigbee-coordinator": {
+      "title": "SONOFF ZBDongle-P + Zigbee 3.0 Coordinator + USB Stick + External Antenna Home Assistant",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 24.99
+        }
+      ]
+    },
+    "sonoff-temp-humidity-zigbee-3pack": {
+      "title": "SONOFF Temperature Humidity Sensor + Zigbee 3.0 + 3-Pack + Wireless Monitoring",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 18.99
+        }
+      ]
+    },
+    "inovelli-blue-zigbee-switch": {
+      "title": "Inovelli Blue Series + Zigbee 3.0 Smart Switch + Scene Control + No-Neutral Compatible",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 52.99
+        }
+      ]
+    },
+    "aqara-presence-fp300-mmwave": {
+      "title": "Aqara Presence Sensor FP300 + mmWave + Zigbee 3.0/Thread Dual-Protocol + Motion Detection",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 89.99
+        }
+      ]
+    },
+    "tuya-zigbee-bluetooth-gateway": {
+      "title": "Tuya Zigbee Gateway Hub + Bluetooth Mesh Bridge + 2.4GHz Network + 128 Device Support",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 34.99
+        }
+      ]
+    },
+    "zemismart-m1-pro-matter-hub": {
+      "title": "Zemismart M1 Pro + Matter Controller + Zigbee/Thread Bridge + IR Blaster + Multi-Protocol Hub",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 79.99
         }
       ]
     }

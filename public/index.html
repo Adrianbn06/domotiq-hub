@@ -1,173 +1,222 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OfertasDomoticas.com — Ofertas y Noticias de Domótica y Smart Home</title>
+  <meta name="description" content="Las mejores ofertas de domótica en Amazon, eBay y Alibaba. Noticias diarias de smart home, IoT, Zigbee, Matter y Z-Wave. Actualizado cada día.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ofertasdomoticas.com/">
+  <meta property="og:title" content="OfertasDomoticas.com — Ofertas y Noticias de Domótica">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ofertasdomoticas.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4MP94RSZL"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J4MP94RSZL');</script>
+  <style>
+    :root{--bg:#0a0e1a;--card:#141c2e;--accent:#00d4aa;--accent2:#3b82f6;--accent3:#f59e0b;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(255,255,255,0.07);--font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;--r:14px;}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+    header{background:rgba(10,14,26,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100;}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:64px;gap:32px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:18px;font-weight:700;flex-shrink:0;}
+    .logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+    .logo span{color:var(--accent);}
+    nav{display:flex;gap:24px;margin-left:auto;}
+    nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
+    nav a:hover{color:var(--text);}
+    .hero{text-align:center;padding:72px 24px 48px;position:relative;z-index:1;}
+    .hero h1{font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;}
+    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .hero-sub{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 36px;}
+    .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
+    .stat{text-align:center;}
+    .stat-num{font-size:28px;font-weight:700;color:var(--accent);font-family:var(--mono);}
+    .stat-label{font-size:12px;color:var(--muted);margin-top:2px;}
+    .wrapper{max-width:1200px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1;}
+    .section-title{font-size:18px;font-weight:600;margin-bottom:4px;}
+    .content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:16px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all 0.2s;animation:fadeUp 0.4s ease both;}
+    .card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    .card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+    .card-tags{display:flex;gap:5px;flex-wrap:wrap;}
+    .card-date{font-size:11px;color:var(--muted);flex-shrink:0;font-family:var(--mono);}
+    .card-title{font-size:15px;font-weight:600;line-height:1.4;}
+    .card-body{font-size:13px;color:var(--muted);line-height:1.65;flex:1;}
+    .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
+    .card-source{font-size:11px;color:var(--muted);font-family:var(--mono);}
+    .read-more{font-size:12px;color:var(--accent);font-weight:500;}
+    .tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:6px;letter-spacing:0.3px;}
+    .tag.news{background:rgba(59,130,246,0.15);color:#60a5fa;}
+    .tag.promo{background:rgba(245,158,11,0.15);color:#f59e0b;}
+    .tag.review{background:rgba(167,139,250,0.15);color:#a78bfa;}
+    .tag.comparativa{background:rgba(74,222,128,0.15);color:#4ade80;}
+    .tag.featured{background:rgba(0,212,170,0.12);color:var(--accent);}
+    .tag.platform{background:rgba(255,255,255,0.05);color:var(--muted);}
+    .price-badge{font-size:18px;font-weight:700;color:var(--accent3);font-family:var(--mono);}
+    .discount-badge{font-size:12px;font-weight:600;background:rgba(239,68,68,0.12);color:#f87171;padding:2px 8px;border-radius:6px;}
+    .section-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:4px;}
+    .filters{display:flex;gap:6px;flex-wrap:wrap;}
+    .filter-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font);transition:all 0.2s;min-height:36px;}
+    .filter-btn:hover{border-color:rgba(0,212,170,0.3);color:var(--text);}
+    .filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent);}
+    .empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;}
+    .empty-icon{font-size:48px;margin-bottom:12px;opacity:0.5;}
+    .empty-title{font-size:16px;color:var(--muted);}
+    .loading-state{grid-column:1/-1;text-align:center;padding:60px 20px;}
+    .loader{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 16px;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .ad-banner{background:var(--card);border:1px dashed rgba(255,255,255,0.08);border-radius:var(--r);padding:20px;text-align:center;color:#64748b;font-size:12px;font-family:var(--mono);min-height:90px;display:flex;align-items:center;justify-content:center;}
+    .rating{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--accent3);font-weight:600;font-family:var(--mono);}
+    .verdict{background:rgba(0,212,170,0.06);border-left:3px solid var(--accent);padding:8px 12px;border-radius:0 8px 8px 0;font-size:13px;color:var(--text);font-style:italic;}
+    footer{border-top:1px solid var(--border);padding:40px 24px;position:relative;z-index:1;}
+    .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+    .footer-brand{font-size:18px;font-weight:700;margin-bottom:8px;}
+    .footer-brand span{color:var(--accent);}
+    .footer-desc{font-size:13px;color:var(--muted);line-height:1.7;max-width:280px;}
+    .footer-col h4{font-size:13px;font-weight:600;margin-bottom:14px;}
+    .footer-col a{display:block;font-size:13px;color:var(--muted);text-decoration:none;margin-bottom:8px;transition:color 0.2s;}
+    .footer-col a:hover{color:var(--accent);}
+    .footer-bottom{max-width:1200px;margin:32px auto 0;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);}
+    @media(max-width:768px){.stats{gap:24px;}.footer-inner{grid-template-columns:1fr;gap:24px;}nav a:not(:first-child):not(:last-child){display:none;}}
+  </style>
+</head>
+<body>
 
-<!-- ═══ SEO META TAGS ═══════════════════════════════════════════════════════ -->
-<title>DomotiQ Hub — Noticias y Ofertas de Domótica | Smart Home</title>
-<meta name="description" content="Las 10 mejores noticias de domótica y smart home del día, más las mejores ofertas de Amazon, eBay y Alibaba. Actualizado diariamente con inteligencia artificial.">
-<meta name="keywords" content="domotica, smart home, IoT, hogar inteligente, ofertas amazon, alexa, google home, bombillas inteligentes, enchufes wifi">
-<meta name="author" content="DomotiQ Hub">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ofertasdomoticas.com/">
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><div class="logo-icon">🏠</div>Ofertas<span>Domoticas</span></a>
+    <nav>
+      <a href="/categorias.html">Categorías</a>
+      <a href="#descuentos">Ofertas</a>
+      <a href="#noticias">Noticias</a>
+      <a href="/glosario.html">Glosario</a>
+    </nav>
+  </div>
+</header>
 
-<!-- Open Graph (para compartir en redes sociales) -->
-<meta property="og:title" content="DomotiQ Hub — Noticias y Ofertas de Domótica">
-<meta property="og:description" content="Noticias diarias de domótica + mejores ofertas de Amazon, eBay y Alibaba. Generado con IA.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ofertasdomoticas.com/">
-<meta property="og:image" content="https://ofertasdomoticas.com/og-image.png">
+<main>
+  <section class="hero">
+    <h1>El hub inteligente de<br><span>domótica y smart home</span></h1>
+    <p class="hero-sub">Las mejores ofertas y noticias de domótica — actualizado diariamente</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="stat-news">—</div><div class="stat-label">noticias hoy</div></div>
+      <div class="stat"><div class="stat-num" id="stat-promos">—</div><div class="stat-label">ofertas activas</div></div>
+      <div class="stat"><div class="stat-num" id="stat-archive">—</div><div class="stat-label">en el archivo</div></div>
+    </div>
+  </section>
 
-<!-- ═══ GOOGLE ANALYTICS 4 ═══════════════════════════════════════════════════
-  INSTRUCCIONES:
-  1. Ve a analytics.google.com
-  2. Crear cuenta → Crear propiedad → Tipo: Web
-  3. Reemplaza G-J4MP94RSZL con tu Measurement ID real
-  ══════════════════════════════════════════════════════════════════════════ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-J4MP94RSZL"></script>
-<script>
-  // Variables globales
-  let allItems = [];
-  let archiveItems = [];
-  let currentDealFilter = 'all';
+  <div class="wrapper">
+    <div class="ad-banner" style="margin-bottom:32px;">📢 Espacio para Google AdSense</div>
 
-  const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : p === 'Alibaba' ? '📦' : '🌐';
-
-  // Renderizar Noticias
-  function renderItems(items) {
-    const grid = document.getElementById('grid');
-    if (!grid) return;
-    const news = items.filter(i => i.type === 'news');
-    if (news.length === 0) {
-      grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🏠</div><div class="empty-title">Sin noticias hoy</div></div>';
-      return;
-    }
-    grid.innerHTML = news.map((item, i) => {
-      const tags = (item.tags||[]).slice(0,2).map(t => `<span class="tag platform">${t}</span>`).join('');
-      return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${item.slug ? '/articulos/'+item.slug+'.html' : (item.url||'#')}" target="${item.slug ? '_self' : '_blank'}" rel="noopener">
-        <div class="card-header">
-          <div class="card-tags"><span class="tag news">📡 Noticia</span>${tags}</div>
-          <span class="card-date">${item.date||''}</span>
+    <section id="descuentos" style="margin-bottom:48px;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🔥 Mejores descuentos de hoy</h2>
+          <span id="deals-count-badge" style="font-size:13px;color:var(--accent);font-family:var(--mono);"></span>
         </div>
-        <div class="card-title">${item.title}</div>
-        <div class="card-body">${item.body}</div>
-        <div class="card-footer">
-          ${item.source ? `<span class="card-source">${item.source}</span>` : '<span></span>'}
-          <span class="read-more">Leer más</span>
+        <div class="filters">
+          <button class="filter-btn active" id="df-all" onclick="setDealsFilter('all')">Todos</button>
+          <button class="filter-btn" id="df-amazon" onclick="setDealsFilter('amazon')">Amazon</button>
+          <button class="filter-btn" id="df-ebay" onclick="setDealsFilter('ebay')">eBay</button>
+          <button class="filter-btn" id="df-alibaba" onclick="setDealsFilter('alibaba')">Alibaba</button>
         </div>
-      </a>`;
-    }).join('');
-  }
+      </div>
+      <div class="content-grid" id="deals-grid">
+        <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando ofertas...</p></div>
+      </div>
+    </section>
 
-  // Renderizar Ofertas con filtros
-  function renderDeals(items, filter) {
-    filter = filter || currentDealFilter;
-    const grid = document.getElementById('deals-grid');
-    if (!grid) return;
-    let promos = items.filter(i => i.type === 'promo');
-    if (filter !== 'all') {
-      promos = promos.filter(i => i.platform && i.platform.toLowerCase() === filter.toLowerCase());
-    }
-    promos = promos.sort((a,b) => {
-      if (a.featured && !b.featured) return -1;
-      if (!a.featured && b.featured) return 1;
-      const da = parseInt((a.discount||'0').replace(/[^0-9]/g,''));
-      const db = parseInt((b.discount||'0').replace(/[^0-9]/g,''));
-      return db - da;
-    });
-    const badge = document.getElementById('deals-count-badge');
-    if (badge) badge.textContent = '(' + promos.length + ' ofertas)';
-    if (promos.length === 0) {
-      grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Sin ofertas en esta categoría</div></div>';
-      return;
-    }
-    grid.innerHTML = promos.map((item, i) => {
-      return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${item.slug ? '/articulos/'+item.slug+'.html' : (item.url||'#')}" target="_blank" rel="sponsored noopener">
-        <div class="card-header">
-          <div class="card-tags">
-            <span class="tag promo">🏷️ Oferta</span>
-            ${item.featured ? '<span class="tag featured">🔥 Top</span>' : ''}
-            <span class="tag platform">${icon(item.platform)} ${item.platform}</span>
-          </div>
-          <span class="card-date">${item.date||''}</span>
+    <section id="noticias" style="margin-bottom:48px;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">📡 Noticias de domótica</h2>
+          <span id="news-count-badge" style="font-size:13px;color:var(--accent);font-family:var(--mono);"></span>
         </div>
-        <div class="card-title">${item.title}</div>
-        <div class="card-body">${item.body}</div>
-        <div class="card-footer">
-          <div style="display:flex;gap:8px;align-items:center;">
-            <span class="price-badge">${item.price}</span>
-            ${item.discount ? `<span class="discount-badge">${item.discount}</span>` : ''}
-          </div>
-          <span class="read-more">Ver oferta</span>
+      </div>
+      <div class="content-grid" id="grid">
+        <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando noticias...</p></div>
+      </div>
+    </section>
+
+    <div class="ad-banner" style="margin-bottom:48px;">📢 Anuncio In-Feed — Google AdSense</div>
+
+    <section id="archivo" style="margin-bottom:48px;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">📚 Archivo — Reviews y Comparativas</h2>
+          <span id="archive-count-badge" style="font-size:13px;color:var(--accent);font-family:var(--mono);"></span>
         </div>
-      </a>`;
-    }).join('');
-  }
-
-  // Filtrar ofertas por plataforma
-  function setDealsFilter(platform) {
-    currentDealFilter = platform;
-    document.querySelectorAll('[id^="df-"]').forEach(btn => btn.classList.remove('active'));
-    const activeBtn = document.getElementById('df-' + platform);
-    if (activeBtn) activeBtn.classList.add('active');
-    renderDeals(allItems, platform);
-  }
-
-  // Renderizar Archivo
-  function renderArchive(items) {
-    const grid = document.getElementById('archive-grid');
-    if (!grid) return;
-    if (!items || items.length === 0) {
-      grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><div class="empty-title">Archivo vacío</div></div>';
-      return;
-    }
-    grid.innerHTML = items.slice(0, 30).map((item, i) => {
-      return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${item.slug ? '/articulos/'+item.slug+'.html' : '#'}" target="_self" rel="noopener">
-        <div class="card-header">
-          <div class="card-tags"><span class="tag ${item.type}">${item.type==='review' ? '⭐ Review' : item.type==='comparativa' ? '⚖️ Comparativa' : item.type==='news' ? '📡 Noticia' : '🏷️ Oferta'}</span></div>
-          <span class="card-date">${item.archivedAt||item.date||''}</span>
+        <div class="filters">
+          <button class="filter-btn active" id="af-all" onclick="setArchiveFilter('all')">Todo</button>
+          <button class="filter-btn" id="af-news" onclick="setArchiveFilter('news')">Noticias</button>
+          <button class="filter-btn" id="af-review" onclick="setArchiveFilter('review')">Reviews</button>
+          <button class="filter-btn" id="af-comparativa" onclick="setArchiveFilter('comparativa')">Comparativas</button>
         </div>
-        <div class="card-title">${item.title}</div>
-        <div class="card-body">${(item.body||'').slice(0,180)}...</div>
-        ${item.rating ? `<div class="rating">⭐ ${item.rating}/10</div>` : ''}
-        ${item.winner ? `<div class="verdict">🏆 ${item.winner}</div>` : ''}
-        <div class="card-footer"><span></span><span class="read-more">Ver más</span></div>
-      </a>`;
-    }).join('');
-  }
+      </div>
+      <div class="content-grid" id="archive-grid">
+        <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando archivo...</p></div>
+      </div>
+    </section>
 
-  // Inicialización al cargar la página
-  window.addEventListener('DOMContentLoaded', () => {
-    try {
-      // Leer datos SSG inyectados por cron.js
-      const ssgDataEl = document.getElementById('ssg-data');
-      if (ssgDataEl) {
-        allItems = JSON.parse(ssgDataEl.textContent);
-        renderItems(allItems);
-        renderDeals(allItems, 'all');
-        // Stats
-        const newsCount = allItems.filter(i=>i.type==='news').length;
-        const promoCount = allItems.filter(i=>i.type==='promo').length;
-        const statNews = document.getElementById('stat-news');
-        const statPromos = document.getElementById('stat-promos');
-        if (statNews) statNews.textContent = newsCount;
-        if (statPromos) statPromos.textContent = promoCount;
-      } else {
-        // Fallback: cargar desde API
-        fetch('/api/content').then(r=>r.json()).then(data => {
-          if (data.items) { allItems = data.items; renderItems(allItems); renderDeals(allItems,'all'); }
-        }).catch(e => console.error('Error API:', e));
-      }
-      // Cargar archivo histórico siempre desde API
-      fetch('/api/archive').then(r=>r.json()).then(data => {
-        if (data.items) { archiveItems = data.items; renderArchive(archiveItems); }
-      }).catch(e => console.error('Error archivo:', e));
-    } catch(err) {
-      console.error('Error inicializando:', err);
-    }
-  });
-</script>
-<script id="ssg-data" type="application/json">[]</script>
+    <section id="sobre" style="margin-bottom:48px;">
+      <h2 class="section-title" style="margin-bottom:12px;">Acerca de OfertasDomoticas.com</h2>
+      <p style="color:var(--muted);font-size:15px;line-height:1.8;max-width:700px;">Somos un agregador inteligente de noticias y ofertas sobre domótica y hogar inteligente. Analizamos diariamente los mejores productos en Amazon, eBay y Alibaba, y cubrimos las últimas novedades en protocolos como Zigbee, Matter, Z-Wave y Thread.</p>
+    </section>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🤖</div>
+      <div style="flex:1;">
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Equipo Editorial — OfertasDomoticas.com</div>
+        <div style="font-size:12px;color:var(--accent);font-family:var(--mono);margin-bottom:10px;">Especialistas en Sistemas Inteligentes · IoT · Smart Home</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;">Contenido curado por ingenieros especializados en domótica. Analizamos protocolos técnicos (Zigbee 3.0, Matter 1.2, Z-Wave S2) y rastreamos las mejores ofertas del mercado.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+          <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(0,212,170,0.1);color:var(--accent);">✓ Verificado por expertos</span>
+          <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(59,130,246,0.1);color:var(--accent2);">✓ Actualizado diariamente</span>
+          <span style="font-size:11px;padding:3px 10px;border-radius:6px;background:rgba(245,158,11,0.1);color:var(--accent3);">✓ Análisis técnico independiente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Ofertas<span>Domoticas</span>.com</div>
+      <p class="footer-desc">Tu fuente diaria de noticias y ofertas de domótica, impulsada por inteligencia artificial.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <a href="/categorias.html">Categorías</a>
+      <a href="#descuentos">Ofertas del día</a>
+      <a href="#noticias">Noticias</a>
+      <a href="/glosario.html">Glosario</a>
+    </div>
+    <div class="footer-col">
+      <h4>Plataformas</h4>
+      <a href="https://www.amazon.com/s?k=smart+home" target="_blank" rel="sponsored noopener">🛒 Amazon</a>
+      <a href="https://www.ebay.com/sch/i.html?_nkw=smart+home" target="_blank" rel="sponsored noopener">🏪 eBay</a>
+      <a href="https://www.alibaba.com/trade/search?SearchText=smart+home" target="_blank" rel="sponsored noopener">🌐 Alibaba</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 OfertasDomoticas.com</span>
+    <div style="display:flex;gap:16px;">
+      <a href="/privacidad.html" style="color:var(--muted);text-decoration:none;">Privacidad</a>
+      <a href="/contacto.html" style="color:var(--muted);text-decoration:none;">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<!-- DATOS SSG — inyectados por cron.js cada día -->
+
+<script id="ssg-data" type="application/json">[{"id":1,"type":"promo","title":"Homey Pro 2026 Multi-Protocol Smart Hub + Zigbee 3.0 + Z-Wave Plus + Matter + Thread + BLE + IR","body":"Hub definitivo con 7 protocolos: Zigbee 3.0, Z-Wave Plus, Wi-Fi 6, BLE, IR, Matter y Thread. Procesa todo localmente sin dependencia en la nube, soporta 50,000+ dispositivos de 1,000+ marcas. Doble RAM vs versión anterior permite redes más grandes. Standby ultra-bajo <1W. Superior a hubs Wi-Fi por mesh local distribuido.","platform":"Amazon","price":"$349.99","originalPrice":"$499.99","discount":"-30%","date":"14 de marzo de 2026","featured":true,"protocol":"Multi-Protocol","compatibility":["Alexa","Google Home","Apple HomeKit","SmartThings","Home Assistant"],"slug":"homey-pro-2026-smart-hub","url":"https://www.amazon.com/Homey-Pro-Smart-Home-Automation/dp/B0G52DX5M3?tag=domotiq-20","archivedAt":"2026-03-15"},{"id":2,"type":"promo","title":"Amazon Smart Thermostat + Zigbee 3.0 + Alexa Built-in + Honeywell Technology Base","body":"Termostato inteligente con tecnología Honeywell, conectividad Zigbee 3.0 de baja potencia y integración Alexa nativa. Configuración sin C-wire gracias a kit adaptador incluido. Consumo standby 0.5W vs 3-5W de termostatos Wi-Fi. Automación local via Zigbee mesh vs dependencia cloud Wi-Fi.","platform":"Amazon","price":"$79.00","originalPrice":"$129.99","discount":"-39%","date":"14 de marzo de 2026","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","SmartThings","Home Assistant"],"slug":"amazon-smart-thermostat-zigbee","url":"https://www.amazon.com/s?k=amazon+smart+thermostat&tag=domotiq-20","archivedAt":"2026-03-15"},{"id":3,"type":"promo","title":"Aqara Hub M3 + Matter Bridge + Thread Border Router + Zigbee 3.0 + Apple HomeKit Native","body":"Hub tri-protocolo: Zigbee 3.0, Thread 1.4, Matter 1.3. Soporte nativo HomeKit sin bridges adicionales, hasta 128 dispositivos Zigbee. IR blaster integrado para electrodomésticos legacy. Procesamiento local sub-100ms vs 300-900ms cloud. Thread mesh auto-reparable, consumo 10x menor que Wi-Fi equivalente.","platform":"Amazon","price":"$69.99","originalPrice":"$99.99","discount":"-30%","date":"14 de marzo de 2026","featured":true,"protocol":"Matter/Thread/Zigbee 3.0","compatibility":["Apple HomeKit","Alexa","Google Home","Home Assistant"],"slug":"aqara-hub-m3-matter-bridge","url":"https://www.amazon.com/s?k=aqara+hub+m3+matter&tag=domotiq-20","archivedAt":"2026-03-15"},{"id":4,"type":"promo","title":"SONOFF ZBDongle-P + Zigbee 3.0 Coordinator + USB Stick + External Antenna Home Assistant","body":"Coordinador Zigbee 3.0 USB con chip TI CC2652P, antena externa 2.4GHz, compatible Zigbee2MQTT/ZHA. Soporta 5,200+ dispositivos de 550+ fabricantes. Firmware actualizable, rango extendido vs dongles internos. Ideal Home Assistant, control local sin cloud, latencia <50ms vs hubs comerciales.","platform":"Amazon","price":"$24.99","originalPrice":"$34.99","discount":"-29%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0","compatibility":["Home Assistant","Zigbee2MQTT","ZHA"],"slug":"sonoff-zbdongle-zigbee-coordinator","url":"https://www.amazon.com/s?k=sonoff+zbdongle+zigbee&tag=domotiq-20","archivedAt":"2026-03-15"},{"id":5,"type":"promo","title":"SONOFF Temperature Humidity Sensor + Zigbee 3.0 + 3-Pack + Wireless Monitoring","body":"Sensores Zigbee 3.0 tri-pack, precisión ±0.3°C temperatura, ±3% humedad, batería CR2450 3+ años. Comunicación mesh auto-reparable, reportes cada 5min configurables. Consumo ultra-bajo 0.02mA standby vs 2-5mA sensores Wi-Fi. Encriptación AES-128 local vs transmisión cloud vulnerable.","platform":"eBay","price":"$18.99","originalPrice":"$29.99","discount":"-37%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0","compatibility":["Home Assistant","SmartThings","Hubitat"],"slug":"sonoff-temp-humidity-zigbee-3pack","url":"https://www.ebay.com/sch/i.html?_nkw=sonoff+temperature+humidity+zigbee","archivedAt":"2026-03-15"},{"id":6,"type":"promo","title":"Inovelli Blue Series + Zigbee 3.0 Smart Switch + Scene Control + No-Neutral Compatible","body":"Switch Zigbee 3.0 con Zigbee Bindings directos, control escenas multi-tap, compatible instalaciones sin neutro. Chip Zigbee de última generación, latencia <20ms via bindings vs 200ms+ hubs tradicionales. LED bar notificaciones, automación local robusta, mesh strengthening para sensores.","platform":"eBay","price":"$52.99","originalPrice":"$69.99","discount":"-24%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0","compatibility":["Home Assistant","SmartThings","Hubitat"],"slug":"inovelli-blue-zigbee-switch","url":"https://www.ebay.com/sch/i.html?_nkw=inovelli+blue+series+zigbee","archivedAt":"2026-03-15"},{"id":7,"type":"promo","title":"Aqara Presence Sensor FP300 + mmWave + Zigbee 3.0/Thread Dual-Protocol + Motion Detection","body":"Sensor presencia mmWave dual-protocolo Zigbee 3.0/Thread, detección ocupación precisa vs PIR tradicional. Tecnología radar 60GHz, detección respiración/micro-movimientos, rango 6m, ángulo 120°. Batería 3 años Zigbee / 2 años Thread. Instalación ceiling/wall, automación local millisegundos.","platform":"eBay","price":"$89.99","originalPrice":"$119.99","discount":"-25%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0/Thread","compatibility":["Apple HomeKit","Alexa","Google Home","Home Assistant"],"slug":"aqara-presence-fp300-mmwave","url":"https://www.ebay.com/sch/i.html?_nkw=aqara+presence+sensor+fp300","archivedAt":"2026-03-15"},{"id":8,"type":"promo","title":"Tuya Zigbee Gateway Hub + Bluetooth Mesh Bridge + 2.4GHz Network + 128 Device Support","body":"Gateway multi-protocolo Tuya: Zigbee 3.0 + Bluetooth Mesh unificados en red 2.4GHz. Soporte 128 dispositivos mixtos, configuración app Smart Life/MOES. Control voz Alexa/Google, automatizaciones locales, alarma sonora/visual integrada. Instalación plug-and-play sin cableado.","platform":"Alibaba","price":"$34.99","originalPrice":"$49.99","discount":"-30%","date":"14 de marzo de 2026","featured":false,"protocol":"Zigbee 3.0/Bluetooth Mesh","compatibility":["Tuya Smart","Smart Life","Alexa","Google Home"],"slug":"tuya-zigbee-bluetooth-gateway","url":"https://www.alibaba.com/product-detail/zigbee-bluetooth-gateway","archivedAt":"2026-03-15"},{"id":9,"type":"promo","title":"Zemismart M1 Pro + Matter Controller + Zigbee/Thread Bridge + IR Blaster + Multi-Protocol Hub","body":"Hub Matter 1.3 con soporte Zigbee, Thread, IR integrado, actúa como Controller y Bridge. Conecta dispositivos legacy a ecosistemas Matter certificados: Apple Home, Google, SmartThings. Máximo 128 dispositivos Zigbee, control IR electrodomésticos tradicionales, procesamiento local robusto.","platform":"Alibaba","price":"$79.99","originalPrice":"$109.99","discount":"-27%","date":"14 de marzo de 2026","featured":false,"protocol":"Matter/Zigbee/Thread/IR","compatibility":["Apple HomeKit","Google Home","SmartThings","Tuya","Home Assistant"],"slug":"zemismart-m1-pro-matter-hub","url":"https://www.alibaba.com/product-detail/zemismart-matter-hub","archivedAt":"2026-03-15"}]</script>
+<script src="/app.js"></script>
 </body>
 </html>
