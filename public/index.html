@@ -57,14 +57,28 @@
     .theme-btn{width:38px;height:38px;border-radius:9px;border:1px solid var(--border);background:var(--bg2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;transition:all 0.2s;}
     .theme-btn:hover{border-color:var(--accent);}
 
-    /* ── HERO ── */
-    .hero{text-align:center;padding:64px 24px 40px;position:relative;z-index:1;}
-    .hero h1{font-size:clamp(30px,5vw,52px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:14px;}
-    .hero h1 em{font-style:normal;color:var(--accent);}
-    .hero-sub{font-size:16px;color:var(--muted);max-width:500px;margin:0 auto 36px;line-height:1.6;}
-    .stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;}
-    .stat-n{font-size:30px;font-weight:800;color:var(--accent);font-family:var(--mono);letter-spacing:-1px;}
-    .stat-l{font-size:12px;color:var(--muted);margin-top:3px;letter-spacing:0.3px;}
+    /* ── STATS BAR ── */
+    .stats-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 24px;position:relative;z-index:1;}
+    .stats-bar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+    .sb-item{display:flex;align-items:center;gap:7px;}
+    .sb-num{font-size:17px;font-weight:700;color:var(--accent);font-family:var(--mono);}
+    .sb-label{font-size:12px;color:var(--muted);}
+    .sb-divider{width:1px;height:18px;background:var(--border);flex-shrink:0;}
+    .sb-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-left:auto;}
+    .sb-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.5s infinite;flex-shrink:0;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+
+    /* ── FAB TELEGRAM ── */
+    .fab{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+    .fab-tooltip{background:var(--card);border:1px solid rgba(0,136,204,0.3);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--muted);white-space:nowrap;pointer-events:none;opacity:0;transform:translateX(8px);transition:all 0.2s;}
+    .fab:hover .fab-tooltip{opacity:1;transform:translateX(0);}
+    .fab-btn{display:flex;align-items:center;gap:0;background:#0088cc;border-radius:50px;border:none;cursor:pointer;padding:14px;box-shadow:0 4px 20px rgba(0,136,204,0.35);transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);overflow:hidden;max-width:52px;text-decoration:none;position:relative;}
+    .fab-btn:hover{max-width:220px;padding:14px 20px;box-shadow:0 6px 28px rgba(0,136,204,0.5);transform:translateY(-2px);}
+    .fab-icon{width:24px;height:24px;flex-shrink:0;}
+    .fab-label{font-size:14px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;max-width:0;opacity:0;margin-left:0;transition:all 0.25s;}
+    .fab-btn:hover .fab-label{max-width:160px;opacity:1;margin-left:10px;}
+    .fab-btn::after{content:'';position:absolute;width:52px;height:52px;border-radius:50%;border:2px solid rgba(0,136,204,0.35);animation:ring 2.5s ease-out infinite;pointer-events:none;}
+    @keyframes ring{0%{transform:scale(1);opacity:0.6;}100%{transform:scale(1.8);opacity:0;}}
 
     /* ── SUPER OFERTA DEL DÍA ── */
     #super-deal{margin:32px 0;border-radius:var(--r-lg);overflow:hidden;border:1px solid rgba(245,158,11,0.25);}
@@ -234,16 +248,17 @@
 
 <main>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Las mejores ofertas de<br><em>domótica y smart home</em></h1>
-  <p class="hero-sub">Amazon · eBay · Alibaba — análisis técnico real, actualizado cada día</p>
-  <div class="stats">
-    <div class="stat"><div class="stat-n" id="stat-news">—</div><div class="stat-l">noticias hoy</div></div>
-    <div class="stat"><div class="stat-n" id="stat-promos">—</div><div class="stat-l">ofertas activas</div></div>
-    <div class="stat"><div class="stat-n" id="stat-archive">—</div><div class="stat-l">en el archivo</div></div>
+<!-- STATS BAR COMPACTA -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="sb-item"><span class="sb-num" id="stat-news">—</span><span class="sb-label">noticias hoy</span></div>
+    <div class="sb-divider"></div>
+    <div class="sb-item"><span class="sb-num" id="stat-promos">—</span><span class="sb-label">ofertas activas</span></div>
+    <div class="sb-divider"></div>
+    <div class="sb-item"><span class="sb-num" id="stat-archive">—</span><span class="sb-label">en el archivo</span></div>
+    <div class="sb-live"><div class="sb-dot"></div>Actualizado hoy</div>
   </div>
-</section>
+</div>
 
 <div class="w">
 
@@ -251,7 +266,7 @@
   <div class="ad-slot">📢 Espacio para Google AdSense</div>
 
   <!-- SÚPER OFERTA DEL DÍA -->
-  <div id="super-deal">
+  <div id="super-deal" style="margin-top:24px;">
     <div class="sd-empty" id="sd-empty">Cargando súper oferta del día...</div>
     <div class="sd-inner" id="sd-inner" style="display:none;">
       <div>
@@ -342,7 +357,7 @@
     <div class="nl-title">Deja que la IA busque por ti</div>
     <div class="nl-sub">Únete a nuestro canal de Telegram y recibe las 3 mejores ofertas de domótica cada mañana — analizadas técnicamente, con precio mínimo histórico marcado.</div>
     <div class="nl-actions">
-      <a class="nl-tg" href="https://t.me/ofertasdomoticas" target="_blank" rel="noopener">✈ Canal de Telegram</a>
+      <a class="nl-tg" href="https://t.me/ofertas_domoticas" target="_blank" rel="noopener">✈ Canal de Telegram</a>
       <button class="nl-em">📧 Top 5 cada viernes</button>
     </div>
     <div class="nl-note">Sin spam · Solo ofertas reales · Puedes salir cuando quieras</div>
@@ -408,7 +423,7 @@
       <a href="https://www.amazon.com/s?k=smart+home" target="_blank" rel="sponsored noopener">🛒 Amazon</a>
       <a href="https://www.ebay.com/sch/i.html?_nkw=smart+home" target="_blank" rel="sponsored noopener">🏪 eBay</a>
       <a href="https://www.alibaba.com/trade/search?SearchText=smart+home" target="_blank" rel="sponsored noopener">🌐 Alibaba</a>
-      <a href="https://t.me/ofertasdomoticas" target="_blank" rel="noopener">✈ Telegram</a>
+      <a href="https://t.me/ofertas_domoticas" target="_blank" rel="noopener">✈ Telegram</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -419,6 +434,17 @@
     </div>
   </div>
 </footer>
+
+<!-- FAB TELEGRAM -->
+<div class="fab">
+  <div class="fab-tooltip">Las 3 mejores ofertas cada mañana</div>
+  <a class="fab-btn" href="https://t.me/ofertas_domoticas" target="_blank" rel="noopener" title="Únete al canal de Telegram">
+    <svg class="fab-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8c-.12.56-.46.7-.93.44l-2.58-1.9-1.24 1.2c-.14.14-.26.26-.53.26l.19-2.66 4.84-4.37c.21-.19-.05-.29-.32-.1L7.9 14.47l-2.54-.79c-.55-.17-.56-.55.12-.82l9.94-3.83c.46-.17.86.11.72.77z" fill="white"/>
+    </svg>
+    <span class="fab-label">Unirse al canal</span>
+  </a>
+</div>
 
 <!-- SSG DATA -->
 <script id="ssg-data" type="application/json">[]</script>
