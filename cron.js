@@ -105,8 +105,15 @@ const today    = () => new Date().toLocaleDateString('es-ES', { day: 'numeric', 
 const PROMPT_LUNES_NOTICIAS = `Eres un experto en domótica y smart home. Fecha: ${today()}.
 Busca en la web las 10 NOTICIAS MÁS IMPORTANTES de la última semana sobre domótica, IoT, smart home, Alexa, Google Home, Matter, Zigbee, Z-Wave.
 Selecciona solo las que tienen mayor impacto técnico o comercial. Títulos long-tail específicos.
+
+KEYWORDS REGIONALES — incluye términos de España Y Latinoamérica cuando aplique:
+- hogar inteligente / casa inteligente / domótica / smart home
+- bombilla / foco / lámpara LED inteligente
+- enchufe / tomacorriente WiFi inteligente
+- Use términos técnicos universales: protocolo, frecuencia, ecosistema, hub, gateway
+
 RESPONDE SOLO CON JSON VÁLIDO — sin markdown, sin texto extra:
-{"items":[{"id":1,"type":"news","title":"Título técnico long-tail específico","body":"3-4 oraciones técnicas: protocolo involucrado, impacto real, compatibilidad con ecosistemas.","date":"${today()}","tags":["Matter"],"source":"The Verge","url":"URL REAL del artículo original","slug":"slug-url-amigable"}]}
+{"items":[{"id":1,"type":"news","title":"Título técnico long-tail específico con términos regionales","body":"3-4 oraciones técnicas: protocolo involucrado, impacto real, compatibilidad con ecosistemas. Usa términos comprensibles para España y Latinoamérica.","date":"${today()}","tags":["Matter"],"source":"The Verge","url":"URL REAL del artículo original","slug":"slug-url-amigable"}]}
 IDs del 1 al 10. Exactamente 10 noticias.`;
 
 // MAR/MIÉ/JUE/SÁB/DOM — 10 mejores ofertas del día
@@ -114,8 +121,18 @@ const PROMPT_OFERTAS_10 = `Eres un experto en domótica y smart home. Fecha: ${t
 Genera las 10 MEJORES OFERTAS del día en productos domóticos. Busca las más atractivas por precio y descuento.
 Distribución: 4 Amazon (con &tag=domotiq-20), 3 eBay, 3 Alibaba.
 Títulos long-tail técnicos con protocolo y ecosistema. Descripción con specs reales y ventajas concretas.
+
+KEYWORDS REGIONALES — usa sinónimos para captar tráfico de España Y Latinoamérica:
+- bombilla / foco / lámpara inteligente
+- enchufe / tomacorriente / clavija inteligente
+- persiana / cortina / ciego automatizado
+- calefacción / calefactor / estufa inteligente
+- router / enrutador / modem mesh
+- cámara IP / cámara de seguridad / videocámara WiFi
+Menciona AMBOS términos cuando aplique. Ej: "bombilla inteligente (foco WiFi)" o "enchufe inteligente (tomacorriente wifi)"
+
 RESPONDE SOLO CON JSON VÁLIDO — sin markdown, sin texto extra:
-{"items":[{"id":1,"type":"promo","title":"Producto + Protocolo + Ecosistema compatible","body":"Specs técnicas: protocolo, frecuencia, consumo standby, ecosistemas compatibles, por qué es mejor que Wi-Fi directo.","platform":"Amazon","price":"$34.99","originalPrice":"$59.99","discount":"-41%","date":"${today()}","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home","Home Assistant"],"slug":"slug-producto","url":"https://www.amazon.com/s?k=zigbee+smart+bulb&tag=domotiq-20"}]}
+{"items":[{"id":1,"type":"promo","title":"Producto + Protocolo + Ecosistema compatible","body":"Specs técnicas: protocolo, frecuencia, consumo standby, ecosistemas compatibles. Usa términos regionales: bombilla/foco, enchufe/tomacorriente según aplique.","platform":"Amazon","price":"$34.99","originalPrice":"$59.99","discount":"-41%","date":"${today()}","featured":true,"protocol":"Zigbee 3.0","compatibility":["Alexa","Google Home","Home Assistant"],"slug":"slug-producto","url":"https://www.amazon.com/s?k=zigbee+smart+bulb&tag=domotiq-20"}]}
 IDs del 1 al 10. Exactamente 10 ofertas. Las más atractivas primero (featured:true en las 3 mejores).`;
 
 // VIERNES — 5 ofertas destacadas + 3 reviews + 3 comparativas
@@ -204,12 +221,38 @@ function generateArticlePage(item, allItems = []) {
     : '';
 
   // Cross-sell: ofertas que comparten tags con este artículo
+  // También busca en el archivo histórico para enlazado interno
   const itemTags = (item.tags||[]).map(t => t.toLowerCase());
-  const crossSellOffers = allItems
+  const titleKeywords = (item.title||'').toLowerCase().split(/\s+/).filter(w => w.length > 4);
+
+  // Combinar items actuales + archivo histórico para enlazado interno
+  let archiveForLinks = [];
+  try {
+    const archivePath = path.join(__dirname, 'data', 'archive.json');
+    if (fs.existsSync(archivePath)) {
+      const archData = JSON.parse(fs.readFileSync(archivePath, 'utf8'));
+      archiveForLinks = (archData.items || []).filter(r =>
+        r.slug && r.slug !== item.slug && r.type !== item.type
+      );
+    }
+  } catch {}
+
+  const allSearchable = [...allItems, ...archiveForLinks];
+
+  const crossSellOffers = allSearchable
     .filter(r => r.type === 'promo' && r.slug && r.price && r.slug !== item.slug)
     .filter(r => {
       const rTags = (r.tags||[]).concat(r.protocol||'', r.title||'').join(' ').toLowerCase();
-      return itemTags.some(t => t.length > 3 && rTags.includes(t));
+      return itemTags.some(t => t.length > 3 && rTags.includes(t)) ||
+             titleKeywords.some(k => rTags.includes(k));
+    })
+    .slice(0, 3);
+
+  // Artículos relacionados del archivo (tipos diferentes)
+  const archiveRelated = archiveForLinks
+    .filter(r => {
+      const rText = (r.title + ' ' + (r.tags||[]).join(' ')).toLowerCase();
+      return itemTags.some(t => t.length > 3 && rText.includes(t));
     })
     .slice(0, 3);
 
@@ -227,8 +270,8 @@ function generateArticlePage(item, allItems = []) {
       </div>
     </section>` : '';
 
-  // Related articles
-  const related = allItems.filter(r => r.slug && r.slug !== item.slug && r.type === item.type).slice(0,3);
+  // Related articles from current + archive
+  const related = allSearchable.filter(r => r.slug && r.slug !== item.slug && r.type === item.type).slice(0,3);
   const relatedHtml = related.length > 0
     ? `<section style="margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07);">
         <h2 style="font-size:18px;font-weight:600;color:#e2e8f0;margin-bottom:14px;">Más ${label}s relacionadas</h2>
@@ -347,6 +390,14 @@ function generateArticlePage(item, allItems = []) {
   ${winnerHtml}
   ${item.type==='news'&&item.url&&item.url!=='#'?`<a href="${item.url}" target="_blank" rel="noopener" class="source-link">🔗 Leer artículo completo en ${item.source||'la fuente original'} →</a>`:''}
   ${crossSellHtml}
+  ${archiveRelated.length > 0 ? `<section style="margin-top:28px;padding:20px;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.12);border-radius:12px;">
+    <h3 style="font-size:15px;font-weight:700;color:var(--accent2,#3b82f6);margin-bottom:14px;">📚 Del archivo — contenido relacionado</h3>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      ${archiveRelated.map(r => `<a href="/articulos/${r.slug}.html" style="font-size:13px;color:#94a3b8;text-decoration:none;padding:8px 12px;background:#141c2e;border-radius:8px;display:block;border:1px solid rgba(255,255,255,0.05);" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">
+        ${r.type==='review'?'⭐':r.type==='comparativa'?'⚖️':'📡'} ${r.title.slice(0,90)}${r.title.length>90?'...':''}
+      </a>`).join('')}
+    </div>
+  </section>` : ''}
   ${faqHtml}
   ${relatedHtml}
   <footer>

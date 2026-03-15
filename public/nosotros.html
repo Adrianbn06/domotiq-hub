@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre OfertasDomoticas.com — Metodología Técnica y Criterios de Evaluación</title>
+  <meta name="description" content="Cómo evaluamos productos de domótica: protocolos Zigbee, Matter, Z-Wave, Thread. Criterios técnicos para recomendar ecosistemas smart home. Ingeniería detrás de cada recomendación.">
+  <link rel="canonical" href="https://ofertasdomoticas.com/nosotros.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Sobre OfertasDomoticas.com",
+    "url": "https://ofertasdomoticas.com/nosotros.html",
+    "description": "Metodología técnica y criterios de evaluación de productos domóticos",
+    "publisher": {
+      "@type": "Organization",
+      "name": "OfertasDomoticas.com",
+      "url": "https://ofertasdomoticas.com",
+      "expertise": ["Domótica", "Zigbee", "Matter", "Z-Wave", "Thread", "Smart Home", "IoT"]
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ofertasdomoticas.com" },
+        { "@type": "ListItem", "position": 2, "name": "Nosotros", "item": "https://ofertasdomoticas.com/nosotros.html" }
+      ]
+    }
+  }
+  </script>
+  <style>
+    :root{--bg:#0a0e1a;--card:#141c2e;--accent:#00d4aa;--accent2:#3b82f6;--accent3:#f59e0b;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(255,255,255,0.07);--font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+    header{background:rgba(10,14,26,0.95);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100;}
+    .header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:18px;font-weight:700;}
+    .logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;}
+    .logo em{font-style:normal;color:var(--accent);}
+    .back{color:var(--muted);text-decoration:none;font-size:14px;}
+    .back:hover{color:var(--accent);}
+    .wrapper{max-width:900px;margin:0 auto;padding:48px 24px 80px;position:relative;z-index:1;}
+    nav.breadcrumb{font-size:12px;color:var(--muted);margin-bottom:32px;}
+    nav.breadcrumb a{color:var(--muted);text-decoration:none;}
+    nav.breadcrumb a:hover{color:var(--accent);}
+    h1{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-1px;line-height:1.15;margin-bottom:16px;}
+    h1 em{font-style:normal;color:var(--accent);}
+    .lead{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:48px;max-width:680px;}
+    h2{font-size:22px;font-weight:700;letter-spacing:-0.3px;margin:48px 0 16px;color:var(--text);}
+    h2 span{color:var(--accent);}
+    h3{font-size:16px;font-weight:600;margin:24px 0 10px;color:var(--text);}
+    p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:14px;}
+    strong{color:var(--text);font-weight:600;}
+    .protocol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:24px 0;}
+    .protocol-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+    .protocol-name{font-size:16px;font-weight:700;margin-bottom:4px;}
+    .protocol-freq{font-size:11px;font-family:var(--mono);color:var(--accent);margin-bottom:12px;}
+    .protocol-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+    .protocol-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;}
+    .badge{font-size:10px;font-weight:600;padding:3px 9px;border-radius:5px;}
+    .criteria-list{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+    .criteria-item{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+    .criteria-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+    .criteria-title{font-size:14px;font-weight:600;margin-bottom:4px;}
+    .criteria-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+    .comparison-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;}
+    .comparison-table th{text-align:left;padding:10px 14px;border-bottom:2px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;}
+    .comparison-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top;}
+    .comparison-table td:first-child{color:var(--text);font-weight:600;font-family:var(--mono);}
+    .comparison-table tr:hover td{background:rgba(255,255,255,0.02);}
+    .check{color:var(--accent);}
+    .cross{color:#f87171;}
+    .neutral{color:var(--accent3);}
+    .disclaimer{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent3);border-radius:0 10px 10px 0;padding:16px 20px;margin:32px 0;}
+    .disclaimer p{font-size:13px;margin-bottom:0;}
+    footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--muted);position:relative;z-index:1;}
+    footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
+    footer a:hover{color:var(--accent);}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo"><div class="logo-icon">🏠</div>Ofertas<em>Domoticas</em></a>
+    <a href="/" class="back">← Volver al inicio</a>
+  </div>
+</header>
+
+<div class="wrapper">
+  <nav class="breadcrumb">
+    <a href="/">Inicio</a> › Sobre nosotros
+  </nav>
+
+  <h1>Metodología técnica de<br><em>evaluación de domótica</em></h1>
+  <p class="lead">No somos una lista de afiliados genérica. Detrás de cada recomendación hay análisis de protocolos, topologías de red, consumo energético y compatibilidad real con ecosistemas abiertos como Home Assistant. Aquí explicamos exactamente cómo trabajamos.</p>
+
+  <!-- PROTOCOLOS -->
+  <h2><span>01.</span> Cómo evaluamos los protocolos de comunicación</h2>
+  <p>El protocolo de un dispositivo domótico determina su fiabilidad, consumo, alcance y compatibilidad futura. Analizamos cada protocolo por sus características técnicas reales, no por su marketing.</p>
+
+  <div class="protocol-grid">
+    <div class="protocol-card">
+      <div class="protocol-name">Zigbee 3.0</div>
+      <div class="protocol-freq">2.4 GHz · Topología de malla · IEEE 802.15.4</div>
+      <div class="protocol-desc">Hasta 65,000 dispositivos por red. Latencia ~20ms. Bajo consumo (funciona con pilas años). Requiere coordinador (hub). Estándar maduro y abierto — compatible con Zigbee2MQTT y Home Assistant sin nube.</div>
+      <div class="protocol-badges">
+        <span class="badge" style="background:rgba(0,212,170,0.1);color:var(--accent);">✓ Recomendado redes grandes</span>
+        <span class="badge" style="background:rgba(0,212,170,0.1);color:var(--accent);">✓ Sin dependencia cloud</span>
+      </div>
+    </div>
+    <div class="protocol-card">
+      <div class="protocol-name">Matter 1.2</div>
+      <div class="protocol-freq">IP (Wi-Fi / Thread / Ethernet) · CSA Standard</div>
+      <div class="protocol-desc">Estándar universal creado por Apple, Amazon, Google y Samsung. Un dispositivo Matter funciona simultáneamente con Alexa, Google Home y Apple HomeKit. Futuro del smart home — adopción creciente desde 2022.</div>
+      <div class="protocol-badges">
+        <span class="badge" style="background:rgba(59,130,246,0.1);color:var(--accent2);">✓ Interoperabilidad total</span>
+        <span class="badge" style="background:rgba(59,130,246,0.1);color:var(--accent2);">✓ Ecosistema unificado</span>
+      </div>
+    </div>
+    <div class="protocol-card">
+      <div class="protocol-name">Z-Wave S2</div>
+      <div class="protocol-freq">868 MHz (EU) · 908 MHz (US) · Topología de malla</div>
+      <div class="protocol-desc">Opera en frecuencias sub-GHz — sin interferencia con Wi-Fi. Mayor alcance (~100m exterior). Cifrado S2 de grado bancario. Máximo 232 dispositivos. Ideal para seguridad (cerraduras, sensores de puerta/ventana).</div>
+      <div class="protocol-badges">
+        <span class="badge" style="background:rgba(167,139,250,0.1);color:#a78bfa;">✓ Sin interferencia Wi-Fi</span>
+        <span class="badge" style="background:rgba(167,139,250,0.1);color:#a78bfa;">✓ Cifrado S2 bancario</span>
+      </div>
+    </div>
+    <div class="protocol-card">
+      <div class="protocol-name">Thread 1.4</div>
+      <div class="protocol-freq">2.4 GHz · IPv6 · Topología de malla · IEEE 802.15.4</div>
+      <div class="protocol-desc">Protocolo de capa de red para Matter. Requiere Border Router (Apple HomePod mini, Google Nest Hub). Muy bajo consumo. Desde 2026 con Thread 1.4 los Border Routers de distintas marcas forman una única malla unificada.</div>
+      <div class="protocol-badges">
+        <span class="badge" style="background:rgba(74,222,128,0.1);color:#4ade80;">✓ Base de Matter</span>
+        <span class="badge" style="background:rgba(74,222,128,0.1);color:#4ade80;">✓ IPv6 nativo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVA PROTOCOLOS -->
+  <h2><span>02.</span> Comparativa técnica de protocolos</h2>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Protocolo</th>
+        <th>Frecuencia</th>
+        <th>Max. Nodos</th>
+        <th>Latencia</th>
+        <th>Sin cloud</th>
+        <th>Saturación Wi-Fi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Zigbee 3.0</td><td>2.4 GHz</td><td>65,000</td><td>~20ms</td><td><span class="check">✓</span></td><td><span class="check">No satura</span></td></tr>
+      <tr><td>Z-Wave S2</td><td>868/908 MHz</td><td>232</td><td>~100ms</td><td><span class="check">✓</span></td><td><span class="check">No satura</span></td></tr>
+      <tr><td>Matter/Thread</td><td>2.4 GHz</td><td>~250/red</td><td>~50ms</td><td><span class="check">✓</span></td><td><span class="check">No satura</span></td></tr>
+      <tr><td>Wi-Fi directo</td><td>2.4/5 GHz</td><td>~30 típico</td><td>~200ms</td><td><span class="cross">✗ Nube</span></td><td><span class="cross">Satura red</span></td></tr>
+      <tr><td>Bluetooth BLE</td><td>2.4 GHz</td><td>~10 típico</td><td>~150ms</td><td><span class="neutral">Parcial</span></td><td><span class="neutral">Moderada</span></td></tr>
+    </tbody>
+  </table>
+  <p><strong>Por qué esto importa:</strong> Un hogar con 40 dispositivos Wi-Fi directos puede saturar el router doméstico, causando cortes en streaming y video llamadas. Zigbee y Z-Wave forman su propia red de malla independiente, preservando el ancho de banda Wi-Fi para laptops, teléfonos y TVs.</p>
+
+  <!-- CRITERIOS DE EVALUACIÓN -->
+  <h2><span>03.</span> Criterios técnicos de evaluación de ofertas</h2>
+  <p>Antes de publicar una oferta, la evaluamos con estos criterios. Solo publicamos productos que superan el mínimo técnico en cada categoría.</p>
+
+  <div class="criteria-list">
+    <div class="criteria-item">
+      <div class="criteria-icon">🔌</div>
+      <div>
+        <div class="criteria-title">Protocolo de comunicación</div>
+        <div class="criteria-desc">Preferimos protocolos de malla (Zigbee, Z-Wave, Thread) sobre Wi-Fi directo. Un dispositivo Zigbee en una red de 30 nodos tiene mejor cobertura y menor latencia que uno Wi-Fi en el mismo hogar. Indicamos el protocolo exacto en cada oferta.</div>
+      </div>
+    </div>
+    <div class="criteria-item">
+      <div class="criteria-icon">🏠</div>
+      <div>
+        <div class="criteria-title">Compatibilidad con ecosistemas abiertos</div>
+        <div class="criteria-desc">Valoramos positivamente la compatibilidad con Home Assistant (integración local sin nube), Zigbee2MQTT, ZHA y Matter. Un dispositivo que solo funciona con la app del fabricante tiene dependencia de nube — si el servidor cae o la empresa cierra, el dispositivo muere.</div>
+      </div>
+    </div>
+    <div class="criteria-item">
+      <div class="criteria-icon">⚡</div>
+      <div>
+        <div class="criteria-title">Consumo energético en standby</div>
+        <div class="criteria-desc">Un enchufe inteligente que consume 2W en standby cuesta ~$2.10/año adicionales en electricidad. Con 20 enchufes, son $42/año extra. Indicamos el consumo en standby cuando está disponible en las especificaciones técnicas.</div>
+      </div>
+    </div>
+    <div class="criteria-item">
+      <div class="criteria-icon">🛡️</div>
+      <div>
+        <div class="criteria-title">Cifrado y seguridad</div>
+        <div class="criteria-desc">Zigbee 3.0 usa AES-128. Z-Wave S2 usa cifrado de curva elíptica (ECDH) con autenticación de dispositivo. Matter implementa TLS 1.3. Los dispositivos Wi-Fi sin cifrado HTTPS en su API local representan un riesgo para toda la red doméstica.</div>
+      </div>
+    </div>
+    <div class="criteria-item">
+      <div class="criteria-icon">📈</div>
+      <div>
+        <div class="criteria-title">Relación calidad-precio y descuento real</div>
+        <div class="criteria-desc">Comparamos el precio actual con el histórico de 90 días. Solo marcamos como "Precio mínimo histórico" cuando el descuento es real respecto al precio de referencia verificable, no el PVP inflado que usan muchos marketplaces.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ECOSISTEMAS -->
+  <h2><span>04.</span> Cuándo recomendamos cada ecosistema</h2>
+
+  <h3>Alexa (Amazon Echo) — Ideal para principiantes</h3>
+  <p>La integración más amplia en cantidad de dispositivos compatibles ("Works with Alexa"). Configuración sencilla sin conocimientos técnicos. Limitación: depende de los servidores de Amazon — sin internet, el control por voz falla. Recomendado para hogares que priorizan la facilidad de uso sobre la independencia.</p>
+
+  <h3>Google Home — Equilibrio entre facilidad y potencia</h3>
+  <p>Excelente integración con Android y Chromecast. Las rutinas son más potentes que las de Alexa. Desde 2026 con Gemini, el contexto de habitaciones mejora significativamente. Mismo problema que Alexa: dependencia de nube para comandos de voz.</p>
+
+  <h3>Apple HomeKit — Para usuarios del ecosistema Apple</h3>
+  <p>La opción más segura en términos de privacidad — HomeKit usa cifrado extremo a extremo y los datos no pasan por servidores de Apple. El mayor chip de seguridad requerido (MFi) encarece los dispositivos. Con Matter, esta brecha se reduce.</p>
+
+  <h3>Home Assistant — Para usuarios avanzados (nuestra recomendación técnica)</h3>
+  <p>Plataforma open-source que se instala localmente (Raspberry Pi 4, Home Assistant Yellow, etc.). <strong>100% local — funciona sin internet.</strong> Compatible con más de 3,000 integraciones. Curva de aprendizaje alta pero control total sobre privacidad, automatizaciones y datos. Es la única opción que garantiza que tus dispositivos funcionarán indefinidamente sin depender de ninguna empresa.</p>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <p><strong>Sobre los enlaces de afiliado:</strong> OfertasDomoticas.com participa en el Programa de Afiliados de Amazon y otros programas similares. Cuando haces clic en un enlace marcado con <code>rel="sponsored"</code> y realizas una compra, podemos recibir una comisión sin costo adicional para ti. Esta comisión no influye en nuestras recomendaciones técnicas — si un producto no cumple nuestros criterios de evaluación, no lo publicamos independientemente del programa de afiliados.</p>
+  </div>
+
+  <h2><span>05.</span> Cobertura geográfica y terminología</h2>
+  <p>Cubrimos el mercado de domótica en español para <strong>España y Latinoamérica</strong>. Somos conscientes de que la terminología varía:</p>
+  <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin:16px 0;">
+    <li style="font-size:14px;color:var(--muted);">🔵 <strong style="color:var(--text);">Bombilla / Foco / Lámpara inteligente</strong> — mismo producto, diferente término según región</li>
+    <li style="font-size:14px;color:var(--muted);">🔵 <strong style="color:var(--text);">Enchufe / Tomacorriente / Clavija inteligente</strong> — variación regional</li>
+    <li style="font-size:14px;color:var(--muted);">🔵 <strong style="color:var(--text);">Router / Enrutador mesh</strong> — terminología técnica universal</li>
+  </ul>
+  <p>En nuestras descripciones incluimos ambos términos cuando es relevante para facilitar la búsqueda desde cualquier región hispanohablante.</p>
+
+</div>
+
+<footer>
+  <p>© 2026 OfertasDomoticas.com ·
+    <a href="/">Inicio</a> ·
+    <a href="/categorias.html">Categorías</a> ·
+    <a href="/glosario.html">Glosario</a> ·
+    <a href="/privacidad.html">Privacidad</a> ·
+    <a href="/contacto.html">Contacto</a>
+  </p>
+</footer>
+</body>
+</html>
