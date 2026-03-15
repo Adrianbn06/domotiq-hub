@@ -4,172 +4,346 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Categorías de Domótica | OfertasDomoticas.com</title>
-  <meta name="description" content="Explora todas las categorías de domótica: iluminación inteligente, seguridad, asistentes de voz y redes. Ofertas y noticias por categoría.">
+  <meta name="description" content="Explora ofertas y noticias de domótica por categoría: iluminación inteligente, seguridad, asistentes de voz, redes, energía y robots del hogar.">
   <link rel="canonical" href="https://ofertasdomoticas.com/categorias.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Categorías de Domótica",
-    "url": "https://ofertasdomoticas.com/categorias.html",
-    "description": "Todas las categorías de smart home y domótica",
-    "isPartOf": { "@type": "WebSite", "url": "https://ofertasdomoticas.com" },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://ofertasdomoticas.com" },
-        { "@type": "ListItem", "position": 2, "name": "Categorías", "item": "https://ofertasdomoticas.com/categorias.html" }
-      ]
-    }
-  }
-  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
   <style>
-    :root { --bg:#0a0e1a; --card:#141c2e; --accent:#00d4aa; --accent2:#3b82f6; --text:#e2e8f0; --muted:#94a3b8; --border:rgba(255,255,255,0.07); }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { font-family:'Space Grotesk',sans-serif; background:var(--bg); color:var(--text); }
-    body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
-    header { background:rgba(10,14,26,0.95); border-bottom:1px solid var(--border); padding:0 20px; position:sticky; top:0; z-index:100; }
-    .header-inner { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:64px; }
-    .logo { display:flex; align-items:center; gap:10px; font-size:20px; font-weight:700; text-decoration:none; color:var(--text); }
-    .logo-icon { width:34px; height:34px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:8px; display:flex; align-items:center; justify-content:center; }
-    .logo span { color:var(--accent); }
-    .back-link { color:var(--muted); text-decoration:none; font-size:14px; }
-    .back-link:hover { color:var(--accent); }
-    .wrapper { max-width:1100px; margin:0 auto; padding:48px 20px 80px; position:relative; z-index:1; }
-    h1 { font-size:clamp(28px,4vw,42px); font-weight:700; letter-spacing:-1px; margin-bottom:12px; }
-    .subtitle { color:var(--muted); font-size:16px; margin-bottom:48px; line-height:1.6; }
-    .categories-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
-    .cat-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 24px; text-decoration:none; color:var(--text); transition:all 0.3s; display:block; }
-    .cat-card:hover { border-color:var(--border-color,rgba(0,212,170,0.3)); transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
-    .cat-icon { font-size:40px; margin-bottom:16px; display:block; }
-    .cat-name { font-size:20px; font-weight:700; margin-bottom:8px; }
-    .cat-desc { font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:16px; }
-    .cat-tags { display:flex; gap:6px; flex-wrap:wrap; }
-    .cat-tag { font-size:11px; padding:3px 10px; border-radius:6px; font-family:monospace; }
-    .stat-bar { display:flex; gap:24px; margin-top:16px; padding-top:16px; border-top:1px solid var(--border); }
-    .stat { text-align:center; }
-    .stat-n { font-size:18px; font-weight:700; color:var(--accent); font-family:monospace; }
-    .stat-l { font-size:11px; color:var(--muted); }
-    footer { border-top:1px solid var(--border); padding:24px 20px; text-align:center; font-size:13px; color:var(--muted); }
+    :root{--bg:#0a0e1a;--card:#141c2e;--bg2:#0d1220;--accent:#00d4aa;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--border:rgba(255,255,255,0.07);--font:'Space Grotesk',sans-serif;--mono:'JetBrains Mono',monospace;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,170,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+    header{background:rgba(10,14,26,0.95);border-bottom:1px solid var(--border);padding:0 24px;position:sticky;top:0;z-index:100;}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:62px;gap:28px;}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-size:18px;font-weight:700;flex-shrink:0;}
+    .logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+    .logo em{font-style:normal;color:var(--accent);}
+    nav{display:flex;gap:20px;margin-left:auto;}
+    nav a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s;}
+    nav a:hover{color:var(--text);}
+
+    .wrapper{max-width:1200px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1;}
+
+    /* CAT NAV TABS */
+    .cat-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:32px;overflow-x:auto;padding-top:24px;}
+    .cat-tab{display:flex;align-items:center;gap:8px;padding:12px 20px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;background:none;border-left:none;border-right:none;border-top:none;font-family:var(--font);}
+    .cat-tab:hover{color:var(--text);}
+    .cat-tab.active{color:var(--text);border-bottom-color:var(--accent);}
+    .cat-tab-icon{font-size:16px;}
+
+    /* CATEGORY HERO */
+    .cat-hero{padding:32px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+    .cat-hero-inner{display:flex;align-items:flex-start;gap:20px;}
+    .cat-big-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
+    .cat-hero-title{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-0.5px;margin-bottom:8px;}
+    .cat-hero-desc{font-size:15px;color:var(--muted);line-height:1.7;max-width:600px;margin-bottom:14px;}
+    .cat-hero-tags{display:flex;gap:6px;flex-wrap:wrap;}
+    .cat-hero-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:5px;font-family:var(--mono);}
+
+    /* SECTION TITLES */
+    .section-title{font-size:17px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+    .count-badge{font-size:13px;color:var(--accent);font-family:var(--mono);font-weight:400;}
+
+    /* CARDS */
+    .content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:36px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:10px;transition:all 0.2s;animation:fadeUp 0.4s ease both;}
+    .card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.2);}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .card-head{display:flex;justify-content:space-between;align-items:flex-start;}
+    .card-tags{display:flex;gap:5px;flex-wrap:wrap;}
+    .tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:5px;}
+    .tag-news{background:rgba(59,130,246,0.12);color:var(--accent2);}
+    .tag-promo{background:rgba(245,158,11,0.12);color:#f59e0b;}
+    .tag-platform{background:rgba(255,255,255,0.05);color:var(--muted);}
+    .card-date{font-size:11px;color:var(--muted);font-family:var(--mono);flex-shrink:0;}
+    .card-title{font-size:14px;font-weight:600;line-height:1.4;}
+    .card-body{font-size:13px;color:var(--muted);line-height:1.6;flex:1;}
+    .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
+    .card-source{font-size:11px;color:var(--muted);font-family:var(--mono);}
+    .card-more{font-size:12px;color:var(--accent);font-weight:500;}
+    .card-price{font-size:20px;font-weight:800;color:#f59e0b;font-family:var(--mono);}
+    .card-old{font-size:11px;color:var(--muted);text-decoration:line-through;font-family:var(--mono);}
+    .card-disc{font-size:11px;font-weight:700;color:#f87171;background:rgba(239,68,68,0.1);padding:2px 7px;border-radius:4px;}
+    .card-plat{font-size:10px;font-weight:700;padding:3px 8px;border-radius:5px;}
+    .plat-amazon{background:rgba(0,212,170,0.1);color:var(--accent);}
+    .plat-ebay{background:rgba(59,130,246,0.1);color:var(--accent2);}
+    .plat-alibaba{background:rgba(139,92,246,0.1);color:#a78bfa;}
+    .plat-other{background:rgba(255,255,255,0.05);color:var(--muted);}
+
+    /* EMPTY */
+    .empty-state{grid-column:1/-1;text-align:center;padding:48px 20px;}
+    .empty-icon{font-size:40px;opacity:0.4;margin-bottom:10px;}
+    .empty-title{font-size:15px;color:var(--muted);}
+    .loading-state{grid-column:1/-1;text-align:center;padding:48px 20px;}
+    .loader{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--muted);position:relative;z-index:1;}
+    footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
+    footer a:hover{color:var(--accent);}
   </style>
 </head>
 <body>
+
 <header>
   <div class="header-inner">
-    <a href="/" class="logo"><div class="logo-icon">🏠</div>Ofertas<span>Domoticas</span></a>
-    <a href="/" class="back-link">← Volver al inicio</a>
+    <a href="/" class="logo"><div class="logo-icon">🏠</div>Ofertas<em>Domoticas</em></a>
+    <nav>
+      <a href="/">Inicio</a>
+      <a href="/glosario.html">Glosario</a>
+      <a href="/nosotros.html">Nosotros</a>
+    </nav>
   </div>
 </header>
 
 <div class="wrapper">
-  <nav style="font-size:12px;color:var(--muted);margin-bottom:20px;">
-    <a href="/" style="color:var(--muted);text-decoration:none;">Inicio</a> › Categorías
-  </nav>
 
-  <h1>Categorías de <span style="background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Domótica</span></h1>
-  <p class="subtitle">Explora ofertas, noticias y reviews organizadas por categoría. Encuentra exactamente lo que necesitas para tu hogar inteligente.</p>
-
-  <div class="categories-grid">
-
-    <a href="/?categoria=iluminacion" class="cat-card" style="--border-color:rgba(245,158,11,0.4);">
-      <span class="cat-icon">💡</span>
-      <div class="cat-name">Iluminación Inteligente</div>
-      <div class="cat-desc">Bombillas, tiras LED, interruptores y reguladores Wi-Fi, Zigbee y Matter. Controla la luz de tu hogar con voz o app.</div>
-      <div class="cat-tags">
-        <span class="cat-tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;">Zigbee</span>
-        <span class="cat-tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;">Matter</span>
-        <span class="cat-tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;">Philips Hue</span>
-        <span class="cat-tag" style="background:rgba(245,158,11,0.1);color:#f59e0b;">IKEA Tradfri</span>
-      </div>
-      <div class="stat-bar">
-        <div class="stat"><div class="stat-n">→</div><div class="stat-l">Ver ofertas</div></div>
-      </div>
-    </a>
-
-    <a href="/?categoria=seguridad" class="cat-card" style="--border-color:rgba(239,68,68,0.4);">
-      <span class="cat-icon">🔒</span>
-      <div class="cat-name">Seguridad del Hogar</div>
-      <div class="cat-desc">Cámaras IP, cerraduras smart, sensores de movimiento y puerta, videoporteros y alarmas conectadas.</div>
-      <div class="cat-tags">
-        <span class="cat-tag" style="background:rgba(239,68,68,0.1);color:#f87171;">Cámaras IP</span>
-        <span class="cat-tag" style="background:rgba(239,68,68,0.1);color:#f87171;">Z-Wave S2</span>
-        <span class="cat-tag" style="background:rgba(239,68,68,0.1);color:#f87171;">Ring</span>
-        <span class="cat-tag" style="background:rgba(239,68,68,0.1);color:#f87171;">Aqara</span>
-      </div>
-      <div class="stat-bar">
-        <div class="stat"><div class="stat-n">→</div><div class="stat-l">Ver ofertas</div></div>
-      </div>
-    </a>
-
-    <a href="/?categoria=asistentes" class="cat-card" style="--border-color:rgba(59,130,246,0.4);">
-      <span class="cat-icon">🎙️</span>
-      <div class="cat-name">Asistentes de Voz</div>
-      <div class="cat-desc">Amazon Echo, Google Nest, Apple HomePod y altavoces inteligentes. El cerebro de tu hogar conectado.</div>
-      <div class="cat-tags">
-        <span class="cat-tag" style="background:rgba(59,130,246,0.1);color:#60a5fa;">Alexa</span>
-        <span class="cat-tag" style="background:rgba(59,130,246,0.1);color:#60a5fa;">Google Home</span>
-        <span class="cat-tag" style="background:rgba(59,130,246,0.1);color:#60a5fa;">HomeKit</span>
-        <span class="cat-tag" style="background:rgba(59,130,246,0.1);color:#60a5fa;">Matter</span>
-      </div>
-      <div class="stat-bar">
-        <div class="stat"><div class="stat-n">→</div><div class="stat-l">Ver ofertas</div></div>
-      </div>
-    </a>
-
-    <a href="/?categoria=redes" class="cat-card" style="--border-color:rgba(0,212,170,0.4);">
-      <span class="cat-icon">📡</span>
-      <div class="cat-name">Redes y Conectividad</div>
-      <div class="cat-desc">Routers mesh, hubs Zigbee/Z-Wave, repetidores Wi-Fi 6 y switches para una red doméstica robusta y sin puntos ciegos.</div>
-      <div class="cat-tags">
-        <span class="cat-tag" style="background:rgba(0,212,170,0.1);color:var(--accent);">Wi-Fi 6</span>
-        <span class="cat-tag" style="background:rgba(0,212,170,0.1);color:var(--accent);">Zigbee Hub</span>
-        <span class="cat-tag" style="background:rgba(0,212,170,0.1);color:var(--accent);">Thread</span>
-        <span class="cat-tag" style="background:rgba(0,212,170,0.1);color:var(--accent);">Home Assistant</span>
-      </div>
-      <div class="stat-bar">
-        <div class="stat"><div class="stat-n">→</div><div class="stat-l">Ver ofertas</div></div>
-      </div>
-    </a>
-
-    <a href="/?categoria=energia" class="cat-card" style="--border-color:rgba(74,222,128,0.4);">
-      <span class="cat-icon">⚡</span>
-      <div class="cat-name">Energía y Climatización</div>
-      <div class="cat-desc">Enchufes inteligentes, termostatos, monitores de consumo y sistemas de ahorro energético para el hogar.</div>
-      <div class="cat-tags">
-        <span class="cat-tag" style="background:rgba(74,222,128,0.1);color:#4ade80;">Termostatos</span>
-        <span class="cat-tag" style="background:rgba(74,222,128,0.1);color:#4ade80;">Enchufes WiFi</span>
-        <span class="cat-tag" style="background:rgba(74,222,128,0.1);color:#4ade80;">Shelly</span>
-        <span class="cat-tag" style="background:rgba(74,222,128,0.1);color:#4ade80;">Sonoff</span>
-      </div>
-      <div class="stat-bar">
-        <div class="stat"><div class="stat-n">→</div><div class="stat-l">Ver ofertas</div></div>
-      </div>
-    </a>
-
-    <a href="/?categoria=robots" class="cat-card" style="--border-color:rgba(167,139,250,0.4);">
-      <span class="cat-icon">🤖</span>
-      <div class="cat-name">Robots del Hogar</div>
-      <div class="cat-desc">Aspiradoras robot, friegasuelos autónomos y cortacéspedes inteligentes con mapeo LiDAR y control por app.</div>
-      <div class="cat-tags">
-        <span class="cat-tag" style="background:rgba(167,139,250,0.1);color:#a78bfa;">Roomba</span>
-        <span class="cat-tag" style="background:rgba(167,139,250,0.1);color:#a78bfa;">Roborock</span>
-        <span class="cat-tag" style="background:rgba(167,139,250,0.1);color:#a78bfa;">LiDAR</span>
-        <span class="cat-tag" style="background:rgba(167,139,250,0.1);color:#a78bfa;">SLAM</span>
-      </div>
-      <div class="stat-bar">
-        <div class="stat"><div class="stat-n">→</div><div class="stat-l">Ver ofertas</div></div>
-      </div>
-    </a>
-
+  <!-- TABS DE CATEGORÍAS -->
+  <div class="cat-tabs" id="cat-tabs">
+    <button class="cat-tab active" data-cat="iluminacion"><span class="cat-tab-icon">💡</span>Iluminación</button>
+    <button class="cat-tab" data-cat="seguridad"><span class="cat-tab-icon">🔒</span>Seguridad</button>
+    <button class="cat-tab" data-cat="asistentes"><span class="cat-tab-icon">🎙️</span>Asistentes de Voz</button>
+    <button class="cat-tab" data-cat="redes"><span class="cat-tab-icon">📡</span>Redes y Conectividad</button>
+    <button class="cat-tab" data-cat="energia"><span class="cat-tab-icon">⚡</span>Energía</button>
+    <button class="cat-tab" data-cat="robots"><span class="cat-tab-icon">🤖</span>Robots del Hogar</button>
   </div>
+
+  <!-- HERO DE CATEGORÍA -->
+  <div class="cat-hero" id="cat-hero"></div>
+
+  <!-- NOTICIAS DE LA CATEGORÍA -->
+  <div id="news-section" style="margin-bottom:36px;">
+    <div class="section-title">📡 Noticias relacionadas <span class="count-badge" id="news-count"></span></div>
+    <div class="content-grid" id="news-grid">
+      <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando...</p></div>
+    </div>
+  </div>
+
+  <!-- OFERTAS DE LA CATEGORÍA -->
+  <div id="deals-section">
+    <div class="section-title">🏷️ Ofertas activas <span class="count-badge" id="deals-count"></span></div>
+    <div class="content-grid" id="deals-grid">
+      <div class="loading-state"><div class="loader"></div><p style="color:var(--muted)">Cargando...</p></div>
+    </div>
+  </div>
+
 </div>
 
 <footer>
-  <p>© 2026 OfertasDomoticas.com · <a href="/privacidad.html" style="color:var(--muted);">Privacidad</a> · <a href="/contacto.html" style="color:var(--muted);">Contacto</a> · <a href="/glosario.html" style="color:var(--muted);">Glosario</a></p>
+  © 2026 OfertasDomoticas.com ·
+  <a href="/">Inicio</a> ·
+  <a href="/glosario.html">Glosario</a> ·
+  <a href="/nosotros.html">Nosotros</a> ·
+  <a href="/privacidad.html">Privacidad</a> ·
+  <a href="/contacto.html">Contacto</a>
 </footer>
+
+<script>
+const CATS = {
+  iluminacion: {
+    icon:'💡', color:'#f59e0b', bg:'rgba(245,158,11,0.12)',
+    title:'Iluminación Inteligente',
+    desc:'Bombillas (focos), tiras LED, interruptores y reguladores inteligentes con Zigbee, Matter y Wi-Fi. Controla la luz de tu hogar con voz o app, sin saturar tu red doméstica.',
+    tags:['Zigbee 3.0','Matter','Philips Hue','IKEA Tradfri','Bombilla / Foco LED'],
+    keywords:['iluminacion','iluminación','bombilla','foco','lámpara','led','luz','light','bulb','hue','tradfri','zigbee','tuya']
+  },
+  seguridad: {
+    icon:'🔒', color:'#f87171', bg:'rgba(239,68,68,0.12)',
+    title:'Seguridad del Hogar',
+    desc:'Cámaras IP, cerraduras smart, sensores de movimiento y puerta, videoporteros y alarmas conectadas con Z-Wave S2 y Zigbee para máxima seguridad sin dependencia de nube.',
+    tags:['Z-Wave S2','Cámara IP','Sensor PIR','Cerradura Smart','Videoportero'],
+    keywords:['seguridad','security','cámara','camara','camera','cerradura','lock','sensor','pir','movimiento','motion','alarma','alarm','aqara','ring','eufy']
+  },
+  asistentes: {
+    icon:'🎙️', color:'#60a5fa', bg:'rgba(59,130,246,0.12)',
+    title:'Asistentes de Voz',
+    desc:'Amazon Echo, Google Nest, Apple HomePod y altavoces inteligentes. El cerebro de tu hogar conectado — compatible con Matter para controlar dispositivos de cualquier marca.',
+    tags:['Alexa','Google Home','Apple HomeKit','Matter','Amazon Echo'],
+    keywords:['asistente','alexa','google home','google assistant','homepod','homekit','siri','echo','nest','voice','voz','assistant']
+  },
+  redes: {
+    icon:'📡', color:'#00d4aa', bg:'rgba(0,212,170,0.12)',
+    title:'Redes y Conectividad',
+    desc:'Routers mesh Wi-Fi 6/7, hubs Zigbee y Z-Wave, Border Routers Thread y switches para una red doméstica robusta. La infraestructura que hace funcionar todo tu smart home.',
+    tags:['Wi-Fi 6','Wi-Fi 7','Thread','Zigbee Hub','Home Assistant'],
+    keywords:['red','redes','network','router','enrutador','mesh','hub','gateway','zigbee2mqtt','home assistant','thread','border router','wifi','wi-fi']
+  },
+  energia: {
+    icon:'⚡', color:'#4ade80', bg:'rgba(74,222,128,0.12)',
+    title:'Energía y Climatización',
+    desc:'Enchufes inteligentes (tomacorrientes WiFi), termostatos, monitores de consumo energético y sistemas de climatización smart. Reduce tu factura eléctrica con domótica.',
+    tags:['Termostato','Enchufe / Tomacorriente WiFi','Monitor Consumo','Shelly','Sonoff'],
+    keywords:['energia','energía','energy','enchufe','tomacorriente','plug','socket','termostato','thermostat','consumo','shelly','sonoff','climatizacion','hvac','calefaccion']
+  },
+  robots: {
+    icon:'🤖', color:'#a78bfa', bg:'rgba(167,139,250,0.12)',
+    title:'Robots del Hogar',
+    desc:'Aspiradoras robot con mapeo LiDAR, friegasuelos autónomos y cortacéspedes inteligentes. Control por app, integración con Alexa y Google Home, y automatización por zonas.',
+    tags:['LiDAR','SLAM','Roborock','Roomba','Robot Aspirador'],
+    keywords:['robot','aspiradora','roomba','roborock','ecovacs','lidar','slam','vacuum','friegasuelos','mop','cortacesped','lawnmower']
+  }
+};
+
+let allItems = [];
+let archiveItems = [];
+let currentCat = 'iluminacion';
+
+const platClass = p => {
+  if (!p) return 'other';
+  const l = p.toLowerCase();
+  if (l.includes('amazon')) return 'amazon';
+  if (l.includes('ebay')) return 'ebay';
+  if (l.includes('alibaba')) return 'alibaba';
+  return 'other';
+};
+const platIcon = p => {
+  if (!p) return '🌐';
+  const l = p.toLowerCase();
+  if (l.includes('amazon')) return '🛒';
+  if (l.includes('ebay')) return '🏪';
+  if (l.includes('alibaba')) return '📦';
+  return '🌐';
+};
+
+function matchesCat(item, cat) {
+  const cfg = CATS[cat];
+  if (!cfg) return false;
+  const haystack = [
+    item.title, item.body,
+    ...(item.tags||[]),
+    item.protocol||'',
+    item.compatibility ? item.compatibility.join(' ') : ''
+  ].join(' ').toLowerCase();
+  return cfg.keywords.some(kw => haystack.includes(kw));
+}
+
+function renderHero(cat) {
+  const cfg = CATS[cat];
+  const hero = document.getElementById('cat-hero');
+  hero.innerHTML = `
+    <div class="cat-hero-inner">
+      <div class="cat-big-icon" style="background:${cfg.bg};">${cfg.icon}</div>
+      <div>
+        <div class="cat-hero-title" style="color:${cfg.color};">${cfg.title}</div>
+        <div class="cat-hero-desc">${cfg.desc}</div>
+        <div class="cat-hero-tags">
+          ${cfg.tags.map(t=>`<span class="cat-hero-tag" style="background:${cfg.bg};color:${cfg.color};">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderNews(cat) {
+  const grid = document.getElementById('news-grid');
+  const count = document.getElementById('news-count');
+  const all = [...allItems, ...archiveItems].filter(i => i.type === 'news');
+  const filtered = all.filter(i => matchesCat(i, cat));
+  if (count) count.textContent = `(${filtered.length})`;
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📡</div><div class="empty-title">Sin noticias recientes en esta categoría</div></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map((item, i) => {
+    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
+    const target = item.slug ? '_self' : '_blank';
+    const tags = (item.tags||[]).slice(0,2).map(t=>`<span class="tag tag-platform">${t}</span>`).join('');
+    return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener">
+      <div class="card-head">
+        <div class="card-tags"><span class="tag tag-news">📡 Noticia</span>${tags}</div>
+        <span class="card-date">${item.date||''}</span>
+      </div>
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body}</div>
+      <div class="card-footer">
+        <span class="card-source">${item.source||''}</span>
+        <span class="card-more">Leer más</span>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+function renderDeals(cat) {
+  const grid = document.getElementById('deals-grid');
+  const count = document.getElementById('deals-count');
+  const all = [...allItems, ...archiveItems].filter(i => i.type === 'promo');
+  const filtered = all.filter(i => matchesCat(i, cat))
+    .sort((a,b) => parseInt((b.discount||'0').replace(/[^0-9]/g,'')) - parseInt((a.discount||'0').replace(/[^0-9]/g,'')));
+  if (count) count.textContent = `(${filtered.length})`;
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Sin ofertas activas en esta categoría. Vuelve el miércoles o viernes.</div></div>';
+    return;
+  }
+  grid.innerHTML = filtered.map((item, i) => {
+    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
+    const pc = platClass(item.platform);
+    const pi = platIcon(item.platform);
+    const compat = (item.compatibility||[]).slice(0,3).map(c=>`<span class="tag tag-platform">${c}</span>`).join('');
+    return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="_blank" rel="sponsored noopener">
+      <div class="card-head">
+        <span class="card-plat plat-${pc}">${pi} ${item.platform||''}</span>
+        ${item.discount?`<span class="card-disc">${item.discount}</span>`:''}
+      </div>
+      ${item.protocol?`<span class="tag tag-platform" style="align-self:flex-start;">⬡ ${item.protocol}</span>`:''}
+      <div class="card-title">${item.title}</div>
+      <div class="card-body">${item.body}</div>
+      ${compat?`<div class="card-tags">${compat}</div>`:''}
+      <div class="card-footer">
+        <div>
+          <div class="card-price">${item.price||''}</div>
+          ${item.originalPrice?`<div class="card-old">${item.originalPrice}</div>`:''}
+        </div>
+        <span class="card-more">Ver oferta →</span>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+function switchCat(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(t => {
+    t.classList.toggle('active', t.getAttribute('data-cat') === cat);
+  });
+  renderHero(cat);
+  renderNews(cat);
+  renderDeals(cat);
+  // Update URL without reload
+  const url = new URL(window.location);
+  url.searchParams.set('categoria', cat);
+  history.replaceState({}, '', url);
+  // Update page title
+  document.title = `${CATS[cat].title} | OfertasDomoticas.com`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Tab click events
+  document.querySelectorAll('.cat-tab').forEach(btn => {
+    btn.addEventListener('click', () => switchCat(btn.getAttribute('data-cat')));
+  });
+
+  // Load data from API
+  Promise.all([
+    fetch('/api/content').then(r=>r.json()).catch(()=>({items:[]})),
+    fetch('/api/archive').then(r=>r.json()).catch(()=>({items:[]}))
+  ]).then(([content, archive]) => {
+    allItems = content.items || [];
+    archiveItems = archive.items || [];
+
+    // Check URL param
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get('categoria');
+    if (catParam && CATS[catParam]) {
+      currentCat = catParam;
+      document.querySelectorAll('.cat-tab').forEach(t => {
+        t.classList.toggle('active', t.getAttribute('data-cat') === catParam);
+      });
+    }
+
+    switchCat(currentCat);
+  });
+});
+</script>
 </body>
 </html>
