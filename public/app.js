@@ -88,6 +88,9 @@ function renderSuperDeal(items) {
 
   const btn = document.getElementById('sd-btn');
   if (btn) btn.href = deal.url || '#';
+  // Update alert button with real title
+  const alertBtn = document.getElementById('sd-alert-btn');
+  if (alertBtn) alertBtn.setAttribute('data-title', deal.title || 'esta oferta');
 }
 
 
@@ -131,6 +134,25 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closePriceAlert();
 });
 
+// ── DELEGACIÓN DE EVENTOS PARA CARDS ─────────────────────────────────────────
+// Usando delegación para evitar problemas con CSP y onclick inline
+document.addEventListener('click', function(e) {
+  // Botón "Avísame si baja"
+  const alertBtn = e.target.closest('.price-alert-btn');
+  if (alertBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+    showPriceAlert(e, alertBtn.getAttribute('data-title') || '');
+    return;
+  }
+  // Clic en card → abrir oferta
+  const card = e.target.closest('.deal-card[data-href]');
+  if (card && !e.target.closest('button')) {
+    e.preventDefault();
+    window.open(card.getAttribute('data-href'), '_blank', 'noopener');
+  }
+});
+
 // ── RENDERIZAR OFERTAS ────────────────────────────────────────────────────────
 function renderDeals(items) {
   const grid = document.getElementById('deals-grid');
@@ -165,7 +187,7 @@ function renderDeals(items) {
     const pi = platIcon(item.platform);
     const compat = (item.compatibility||[]).slice(0,3).map(c=>`<span class="dc-tag">${c}</span>`).join('');
     const safeTitle = item.title.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;');
-    return `<div class="deal-card" style="animation-delay:${(i*0.04).toFixed(2)}s;cursor:pointer;" onclick="window.open('${href}','_blank')">
+    return `<div class="deal-card" style="animation-delay:${(i*0.04).toFixed(2)}s;" data-href="${href}">
       <div class="dc-head">
         <span class="dc-plat ${pc}">${pi} ${item.platform||''}</span>
         ${item.discount?`<span class="dc-disc">${item.discount}</span>`:''}
@@ -177,7 +199,7 @@ function renderDeals(items) {
         <div><div class="dc-price">${item.price}</div>${item.originalPrice?`<div class="dc-old">${item.originalPrice}</div>`:''}</div>
         <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end;">
           <span class="dc-btn">Ver oferta</span>
-          <button onclick="event.stopPropagation();showPriceAlert(event,'${safeTitle}')" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:2px 4px;font-family:var(--font);transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">🔔 Avísame si baja</button>
+          <button class="price-alert-btn" data-title="${safeTitle}" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:2px 4px;font-family:var(--font);transition:color 0.2s;">🔔 Avísame si baja</button>
         </div>
       </div>
     </div>`;
