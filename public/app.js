@@ -32,9 +32,12 @@ function initCookieBanner() {
   const banner = document.getElementById('cookie-banner');
   if (!banner) return;
 
-  // Show if no consent saved
+  // Show if no consent saved — use transform to avoid CLS
   if (!localStorage.getItem('cookies')) {
-    banner.style.display = 'flex';
+    // Small delay so page renders first, then banner slides in
+    setTimeout(() => {
+      banner.style.transform = 'translateY(0)';
+    }, 1500);
   }
 
   const accept = document.getElementById('cookie-accept');
@@ -42,12 +45,12 @@ function initCookieBanner() {
 
   if (accept) accept.addEventListener('click', () => {
     localStorage.setItem('cookies', 'accepted');
-    banner.style.display = 'none';
+    banner.style.transform = 'translateY(100%)';
   });
 
   if (reject) reject.addEventListener('click', () => {
     localStorage.setItem('cookies', 'rejected');
-    banner.style.display = 'none';
+    banner.style.transform = 'translateY(100%)';
   });
 }
 
@@ -472,7 +475,7 @@ function loadFromAPI() {
         updateStats(allItems);
       }
     })
-    .catch(e => console.error('Error API:', e));
+    .catch(() => {});
 }
 
 // ── ANALYTICS ─────────────────────────────────────────────────────────────────
@@ -520,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadFromAPI();
       }
     } catch(e) {
-      console.error('SSG parse error:', e);
+      // SSG parse error — silenced
       loadFromAPI();
     }
   } else {
@@ -542,5 +545,5 @@ document.addEventListener('DOMContentLoaded', function() {
         renderArchive(archiveItems);
       }
     })
-    .catch(e => console.error('Error archivo:', e));
+    .catch(() => {});
 });
