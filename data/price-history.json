@@ -122,6 +122,10 @@
         {
           "date": "2026-03-15",
           "price": 61.99
+        },
+        {
+          "date": "2026-03-15",
+          "price": 89.99
         }
       ]
     },
@@ -189,6 +193,10 @@
         {
           "date": "2026-03-15",
           "price": 8.99
+        },
+        {
+          "date": "2026-03-15",
+          "price": 12.99
         }
       ]
     },
@@ -234,6 +242,69 @@
         {
           "date": "2026-03-15",
           "price": 45.99
+        }
+      ]
+    },
+    "aqara-hub-m3-matter-thread-zigbee": {
+      "title": "Aqara Hub M3 Multi-Protocol Matter Thread Zigbee Smart Home Controller",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 189.99
+        }
+      ]
+    },
+    "echo-dot-max-thread-zigbee-hub": {
+      "title": "Amazon Echo Dot Max Thread Border Router Zigbee Hub Smart Speaker",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 79.99
+        }
+      ]
+    },
+    "philips-hue-a19-matter-thread-6pack": {
+      "title": "Philips Hue A19 Matter Thread Smart Bulb White Color 6-Pack Kit",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 149.99
+        }
+      ]
+    },
+    "generic-multi-protocol-hub": {
+      "title": "Generic Multi-Protocol Smart Home Hub Zigbee Thread Matter Bridge",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 64.99
+        }
+      ]
+    },
+    "home-assistant-skyconnect-zbt1": {
+      "title": "Home Assistant SkyConnect ZBT-1 Zigbee Thread USB Stick Dongle",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 29.99
+        }
+      ]
+    },
+    "ecosecure-x9-matter-security": {
+      "title": "ECOSECURE X9 Matter Zigbee 3.0 Smart Security System Z-Wave Platform",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 249.99
+        }
+      ]
+    },
+    "nexusguard-smarthub-pro-matter": {
+      "title": "NexusGuard SmartHub Pro Matter 1.3 Thread Zigbee Security Gateway",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 199.99
         }
       ]
     }
