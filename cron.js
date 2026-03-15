@@ -1,11 +1,12 @@
 /**
  * cron.js - Generador de contenido con E-E-A-T, Long-Tail y páginas individuales
  *
- * Lunes:          resumen noticias semanales ~$0.032
- * Mar/Mié/Jue:    10 ofertas ~$0.032/día
- * Viernes:         5 ofertas + 3 reviews + 3 comparativas ~$0.093
- * Sáb/Dom:         10 ofertas ~$0.032/día
- * Costo mensual:   ~$1.24
+ * OPCIÓN B — Solo 3 días a la semana:
+ * Lunes:     resumen noticias ~$0.040
+ * Miércoles: 10 ofertas ~$0.039
+ * Viernes:   10 ofertas ~$0.039
+ * Resto:     sin generación ($0)
+ * Costo mensual: ~$0.51 | $7.26 dura ~14 meses
  * Cada item genera su propia página HTML en /public/articulos/
  */
 
@@ -593,11 +594,17 @@ ${rssItems}
 export async function generateContent() {
   if (!process.env.ANTHROPIC_API_KEY) throw new Error('Falta ANTHROPIC_API_KEY en .env');
 
-  // Determinar modo según día de la semana
+  // OPCIÓN B: Solo 3 días — Lun/Mié/Vie (~$0.51/mes, 14 meses con $7.26)
   // 0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb
   const dayOfWeek = new Date().getDay();
-  const modos = { 0:'DOMINGO (ofertas)', 1:'LUNES (resumen noticias)', 2:'MARTES (ofertas)', 3:'MIÉRCOLES (ofertas)', 4:'JUEVES (ofertas)', 5:'VIERNES (ofertas+reviews+comparativas)', 6:'SÁBADO (ofertas)' };
-  console.log(`[${new Date().toISOString()}] 🤖 Generando — ${modos[dayOfWeek]}`);
+  const activeDays = { 1:'LUNES (noticias)', 3:'MIÉRCOLES (ofertas)', 5:'VIERNES (ofertas)' };
+
+  if (!activeDays[dayOfWeek]) {
+    console.log(`[${new Date().toISOString()}] ⏭ Día sin generación (solo Lun/Mié/Vie) — sin costo`);
+    return { generated: new Date().toISOString(), count: 0, newsCount: 0, promoCount: 0, reviewCount: 0, comparativaCount: 0, items: [] };
+  }
+
+  console.log(`[${new Date().toISOString()}] 🤖 Generando — ${activeDays[dayOfWeek]}`);
 
   let rawText = '';
 
@@ -605,28 +612,8 @@ export async function generateContent() {
     // LUNES: resumen semanal de noticias
     console.log('📰 Generando resumen semanal de noticias...');
     rawText = await callAPI(PROMPT_LUNES_NOTICIAS, 2500);
-
-  } else if (dayOfWeek === 5) {
-    // VIERNES: 5 ofertas + 3 reviews + 3 comparativas (3 llamadas separadas)
-    console.log('🏷️  Generando ofertas destacadas de la semana...');
-    const rawOfertas = await callAPI(PROMPT_VIERNES_OFERTAS, 2000);
-
-    console.log('⏳ Pausa 65s (rate limit)...');
-    await new Promise(r => setTimeout(r, 65000));
-
-    console.log('⭐ Generando reviews técnicas...');
-    const rawReviews = await callAPI(PROMPT_VIERNES_REVIEWS, 3500);
-
-    console.log('⏳ Pausa 65s (rate limit)...');
-    await new Promise(r => setTimeout(r, 65000));
-
-    console.log('⚖️  Generando comparativas técnicas...');
-    const rawComparativas = await callAPI(PROMPT_VIERNES_COMPARATIVAS, 3500);
-
-    rawText = rawOfertas + '\n' + rawReviews + '\n' + rawComparativas;
-
   } else {
-    // MAR / MIÉ / JUE / SÁB / DOM: 10 ofertas
+    // MIÉRCOLES y VIERNES: 10 mejores ofertas
     console.log('🏷️  Generando 10 mejores ofertas del día...');
     rawText = await callAPI(PROMPT_OFERTAS_10, 2500);
   }
@@ -726,7 +713,7 @@ if (process.argv.includes('--once')) {
   cron.schedule(`0 ${hour} * * *`, () => {
     generateContent().catch(err => console.error('❌ Error cron:', err.message));
   });
-  console.log(`⏰ Cron activo — Jue: largo (reviews+comparativas) | Resto: corto | E-E-A-T`);
+  console.log(`⏰ Cron activo — Opción B: Lun/Mié/Vie | ~$0.51/mes | 14 meses con $7.26`);
 }
 
 // ─── SSG: INYECTAR CONTENIDO EN INDEX.HTML ────────────────────────────────────
