@@ -90,6 +90,47 @@ function renderSuperDeal(items) {
   if (btn) btn.href = deal.url || '#';
 }
 
+
+// ── POPUP ALERTA DE PRECIO ────────────────────────────────────────────────────
+function showPriceAlert(e, productTitle) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  // Remove existing popup if any
+  const existing = document.getElementById('price-alert-popup');
+  if (existing) existing.remove();
+
+  const popup = document.createElement('div');
+  popup.id = 'price-alert-popup';
+  popup.innerHTML = `
+    <div id="price-alert-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;backdrop-filter:blur(4px);" onclick="closePriceAlert()"></div>
+    <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:9999;background:var(--card,#141c2e);border:1px solid rgba(0,212,170,0.3);border-radius:16px;padding:28px 28px 24px;max-width:360px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+      <div style="font-size:36px;margin-bottom:12px;">🔔</div>
+      <div style="font-size:17px;font-weight:700;color:var(--text,#e2e8f0);margin-bottom:8px;line-height:1.3;">¿Precio muy alto ahora?</div>
+      <div style="font-size:13px;color:var(--muted,#94a3b8);line-height:1.6;margin-bottom:20px;">Únete a nuestro canal de Telegram. Avisamos al instante cuando <strong style="color:var(--text,#e2e8f0);">${productTitle.slice(0,50)}${productTitle.length>50?'...':''}</strong> alcance su mínimo histórico.</div>
+      <a href="https://t.me/ofertas_domoticas" target="_blank" rel="noopener"
+        onclick="closePriceAlert()"
+        style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:10px;background:#0088cc;color:#fff;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;transition:background 0.2s;">
+        ✈ Unirse al canal de Telegram
+      </a>
+      <button onclick="closePriceAlert()" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border,rgba(255,255,255,0.07));background:transparent;color:var(--muted,#94a3b8);font-size:13px;cursor:pointer;font-family:var(--font,'Space Grotesk',sans-serif);">
+        Ahora no
+      </button>
+    </div>
+  `;
+  document.body.appendChild(popup);
+}
+
+function closePriceAlert() {
+  const popup = document.getElementById('price-alert-popup');
+  if (popup) popup.remove();
+}
+
+// Close on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closePriceAlert();
+});
+
 // ── RENDERIZAR OFERTAS ────────────────────────────────────────────────────────
 function renderDeals(items) {
   const grid = document.getElementById('deals-grid');
@@ -133,7 +174,10 @@ function renderDeals(items) {
       ${compat?`<div class="dc-compat">${compat}</div>`:''}
       <div class="dc-footer">
         <div><div class="dc-price">${item.price}</div>${item.originalPrice?`<div class="dc-old">${item.originalPrice}</div>`:''}</div>
-        <button class="dc-btn">Ver oferta</button>
+        <div style="display:flex;flex-direction:column;gap:5px;align-items:flex-end;">
+          <button class="dc-btn">Ver oferta</button>
+          <button onclick="showPriceAlert(event,'${item.title.replace(/'/g,"\'")}')" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:2px 4px;font-family:var(--font);transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">🔔 Avísame si baja</button>
+        </div>
       </div>
     </a>`;
   }).join('');
