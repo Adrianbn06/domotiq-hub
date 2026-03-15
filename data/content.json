@@ -1,196 +1,218 @@
 {
-  "generated": "2026-03-15T01:25:04.404Z",
-  "generatedHuman": "14/3/2026, 8:25:04 p. m.",
+  "generated": "2026-03-15T01:37:23.801Z",
+  "generatedHuman": "14/3/2026, 8:37:23 p. m.",
   "mode": "offers",
-  "count": 9,
+  "count": 10,
   "newsCount": 0,
-  "promoCount": 9,
+  "promoCount": 10,
   "reviewCount": 0,
   "comparativaCount": 0,
   "items": [
     {
       "id": 1,
       "type": "promo",
-      "title": "Aqara Hub M3 Multi-Protocol Matter Thread Zigbee Smart Home Controller",
-      "body": "Protocolo: Matter 1.5, Thread Border Router, Zigbee 3.0. Consumo standby <2W. Soporta hasta 254 dispositivos (127 Zigbee + 127 Thread). IR 360° integrado para AC, TV. Almacenamiento local 8GB. Compatible Alexa, Google Home, Apple HomeKit, Home Assistant. Ventaja vs WiFi: mesh auto-reparable, mayor alcance, menor interferencias.",
+      "title": "Philips Hue White A19 Zigbee 3.0 Smart Bulb Compatible con Alexa y Google Assistant",
+      "body": "Specs técnicas: Protocolo Zigbee 3.0, 800 lúmenes, 9W, standby <0.5W, compatible Alexa/Google/HomeKit/SmartThings. Superior a Wi-Fi por mesh networking estable, no congestiona router, funciona local sin internet, escalable hasta 50 dispositivos.",
       "platform": "Amazon",
-      "price": "$189.99",
-      "originalPrice": "$299.99",
-      "discount": "-37%",
+      "price": "$24.99",
+      "originalPrice": "$34.99",
+      "discount": "-29%",
       "date": "14 de marzo de 2026",
       "featured": true,
-      "protocol": "Matter over Thread + Zigbee 3.0",
+      "protocol": "Zigbee 3.0",
       "compatibility": [
         "Alexa",
         "Google Home",
         "Apple HomeKit",
-        "Home Assistant"
+        "SmartThings"
       ],
-      "slug": "aqara-hub-m3-matter-thread-zigbee",
-      "url": "https://www.amazon.com/s?k=Aqara+Hub+M3&tag=domotiq-20"
+      "slug": "philips-hue-zigbee-smart-bulb",
+      "url": "https://www.amazon.com/s?k=philips+hue+zigbee+smart+bulb&tag=domotiq-20"
     },
     {
       "id": 2,
       "type": "promo",
-      "title": "Amazon Echo Dot Max Thread Border Router Zigbee Hub Smart Speaker",
-      "body": "Protocolo: Thread 1.4 Border Router, Zigbee 3.0, Matter 1.4 SDK. Consumo standby 2.5W. Audio mejorado: tweeter 0.8\" + woofer 2.5\". Elimina bridges adicionales para bombillas Zigbee. Omnisense para automaciones por presencia/temperatura. Compatible con rutinas Alexa multi-condición. Ventaja vs WiFi directo: red mesh resiliente, mejor latencia.",
+      "title": "Amazon Smart Thermostat Alexa Voice Control Compatible Wi-Fi Honeywell Tech",
+      "body": "Specs técnicas: Wi-Fi 2.4GHz, Honeywell reliability, Energy Star certified, 10-15% ahorro HVAC, standby 3W, integración Alexa nativa. Mejor que termostatos básicos por inteligencia predictiva, geofencing, control remoto total, rebates disponibles.",
       "platform": "Amazon",
-      "price": "$79.99",
+      "price": "$79.00",
       "originalPrice": "$129.99",
-      "discount": "-38%",
+      "discount": "-39%",
       "date": "14 de marzo de 2026",
       "featured": true,
-      "protocol": "Thread 1.4 + Zigbee 3.0",
+      "protocol": "Wi-Fi",
       "compatibility": [
         "Alexa",
-        "Matter Controllers",
-        "Thread Devices"
+        "Echo devices"
       ],
-      "slug": "echo-dot-max-thread-zigbee-hub",
-      "url": "https://www.amazon.com/s?k=Echo+Dot+Max+Thread&tag=domotiq-20"
+      "slug": "amazon-smart-thermostat-alexa",
+      "url": "https://www.amazon.com/s?k=amazon+smart+thermostat&tag=domotiq-20"
     },
     {
       "id": 3,
       "type": "promo",
-      "title": "Philips Hue A19 Matter Thread Smart Bulb White Color 6-Pack Kit",
-      "body": "Protocolo: Matter over Thread nativo, Zigbee 3.0 bridge opcional. 1100 lúmenes, 16M colores, CCT 2200K-6500K. Consumo 9W, standby <0.5W. Dimming hasta 0.2%. Funciona sin Hue Bridge en ecosistemas Matter. Compatible Apple HomeKit, Google Home, Alexa nativo. Ventaja vs WiFi: sin sobrecarga red, sincronización perfecta grupos.",
+      "title": "Echo Show 8 4th Gen Smart Display Zigbee Hub Built-in Compatible Alexa Ecosystem",
+      "body": "Specs técnicas: Pantalla 8\" HD, Zigbee 3.0 hub integrado, Wi-Fi 6, audio mejorado, procesador ARM quad-core, standby 8W. Superior a displays competencia por hub Zigbee incluido, control hasta 100 dispositivos sin hardware adicional.",
       "platform": "Amazon",
-      "price": "$149.99",
-      "originalPrice": "$239.99",
-      "discount": "-38%",
+      "price": "$89.99",
+      "originalPrice": "$149.99",
+      "discount": "-40%",
       "date": "14 de marzo de 2026",
       "featured": true,
-      "protocol": "Matter over Thread + Zigbee",
+      "protocol": "Zigbee 3.0 Hub",
       "compatibility": [
-        "Apple HomeKit",
-        "Google Home",
         "Alexa",
-        "Matter Controllers"
+        "Zigbee devices",
+        "Ring",
+        "Philips Hue"
       ],
-      "slug": "philips-hue-a19-matter-thread-6pack",
-      "url": "https://www.amazon.com/s?k=Philips+Hue+Matter+Thread&tag=domotiq-20"
+      "slug": "echo-show-8-zigbee-hub",
+      "url": "https://www.amazon.com/s?k=echo+show+8+smart+display&tag=domotiq-20"
     },
     {
       "id": 4,
       "type": "promo",
-      "title": "IKEA Kajplats Matter Thread Smart Bulb Successor Trådfri Native Protocol",
-      "body": "Protocolo: Matter over Thread nativo, sin bridge requerido. 1000 lúmenes, temperatura color variable 2200K-4000K. Consumo 8W, standby ultra-bajo <0.3W. Integración directa Apple Home, Google Home, Amazon sin hubs adicionales. Precio ultra-competitivo vs Hue. Ventaja: elimina dependencia bridges propietarios, setup instantáneo.",
+      "title": "Eufy L60 Robot Vacuum Self-Empty Station Zigbee Mapping Compatible Smart Home",
+      "body": "Specs técnicas: Motor 2000Pa, mapeo LiDAR, Wi-Fi 2.4GHz, batería 5200mAh 150min, auto-vaciado 60 días, standby 12W. Mejor que Roombas básicos por mapeo preciso, control app avanzado, integración smart home, mantenimiento mínimo.",
       "platform": "Amazon",
-      "price": "$12.99",
-      "originalPrice": "$19.99",
-      "discount": "-35%",
+      "price": "$199.99",
+      "originalPrice": "$399.99",
+      "discount": "-50%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Matter over Thread",
+      "protocol": "Wi-Fi",
       "compatibility": [
-        "Apple HomeKit",
-        "Google Home",
         "Alexa",
-        "IKEA Home"
+        "Google Home",
+        "EufyHome App"
       ],
-      "slug": "ikea-kajplats-matter-thread-bulb",
-      "url": "https://www.amazon.com/s?k=IKEA+Kajplats+Matter&tag=domotiq-20"
+      "slug": "eufy-l60-robot-vacuum-smart",
+      "url": "https://www.amazon.com/s?k=eufy+robot+vacuum+self+empty&tag=domotiq-20"
     },
     {
       "id": 5,
       "type": "promo",
-      "title": "Zemismart M1 Pro Matter Bridge Zigbee Thread IR Universal Hub",
-      "body": "Protocolo: Matter Controller & Bridge, Zigbee, Thread, IR. Soporta 128 dispositivos Zigbee, Thread adicionales. IR integrado para AC, TV legacy. Convierte dispositivos Zigbee/Thread no-Matter a compatibles. Reduce dependencia múltiples apps/hubs. Compatible Apple Home, Google Home, SmartThings, Home Assistant. Ventaja vs WiFi: unifica protocolos mesh existentes.",
+      "title": "Philips WiFi Smart Door Lock Handle Matter Protocol Compatible Multi-Platform",
+      "body": "Specs técnicas: Matter over Wi-Fi, batería 6 meses, códigos PIN ilimitados, bloqueo auto, app control, standby 0.8W. Superior a cerraduras Zigbee por compatibilidad universal Matter, instalación sin hub, backup físico siempre disponible.",
       "platform": "eBay",
-      "price": "$89.99",
-      "originalPrice": "$129.99",
-      "discount": "-31%",
+      "price": "$104.99",
+      "originalPrice": "$199.99",
+      "discount": "-48%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Matter + Zigbee + Thread",
+      "protocol": "Matter over Wi-Fi",
       "compatibility": [
-        "Apple Home",
+        "Alexa",
         "Google Home",
-        "SmartThings",
-        "Home Assistant",
-        "Tuya"
+        "Apple HomeKit",
+        "SmartThings"
       ],
-      "slug": "zemismart-m1-pro-matter-bridge",
-      "url": "https://www.ebay.com/sch/i.html?_nkw=Zemismart+M1+Pro+Matter"
+      "slug": "philips-smart-door-lock-matter",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=smart+door+lock+matter"
     },
     {
       "id": 6,
       "type": "promo",
-      "title": "Generic Multi-Protocol Smart Home Hub Zigbee Thread Matter Bridge",
-      "body": "Protocolo: Zigbee 3.0, Thread 1.3, Matter Bridge. Soporta hasta 50 dispositivos por protocolo. Certificación CE/FCC. Conectividad 10/100Mbps Ethernet. Temperatura operación -10°C~+45°C. Ideal usuarios mixtos Zigbee/Thread. Compatible ecosistemas principales via Matter. Ventaja vs WiFi: menor latencia, red mesh dedicada, sin interferencias.",
+      "title": "Dr J Professional HEPA Smart WiFi Air Purifier IoT Control Room Automation",
+      "body": "Specs técnicas: HEPA H13, cobertura 800ft², Wi-Fi 2.4GHz, filtros 3-stage, modo auto, consumo 45W máx, standby 3W. Mejor que purificadores básicos por sensores PM2.5 reales, control IoT completo, filtros intercambiables, eficiencia comprobada.",
       "platform": "eBay",
-      "price": "$64.99",
-      "originalPrice": "$89.99",
-      "discount": "-28%",
+      "price": "$89.99",
+      "originalPrice": "$179.99",
+      "discount": "-50%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Zigbee 3.0 + Thread + Matter",
+      "protocol": "Wi-Fi",
       "compatibility": [
-        "Matter Controllers",
-        "Smart Home Apps"
+        "Alexa",
+        "Google Home",
+        "Smart Home App"
       ],
-      "slug": "generic-multi-protocol-hub",
-      "url": "https://www.ebay.com/sch/i.html?_nkw=Matter+Thread+Zigbee+Hub"
+      "slug": "smart-wifi-air-purifier-hepa",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=smart+wifi+air+purifier"
     },
     {
       "id": 7,
       "type": "promo",
-      "title": "Home Assistant SkyConnect ZBT-1 Zigbee Thread USB Stick Dongle",
-      "body": "Protocolo: Zigbee 3.0 nativo, Thread soporte futuro. Potencia transmisión +20dBm alcance extendido. Plug-and-play setup, actualizaciones firmware OTA. Ideal Home Assistant, OpenHAB. Funciona como coordinator Zigbee sin bridges comerciales. Control local total, sin cloud. Ventaja vs WiFi: dedicado IoT, sin congestión red principal.",
+      "title": "Gosund WiFi Smart Plug Mini 15A Matter Compatible Energy Monitoring Socket",
+      "body": "Specs técnicas: Matter over Wi-Fi, 15A/1800W, monitoreo energía real-time, programación avanzada, away mode, standby 0.7W. Superior a enchufes Zigbee por instalación zero-config, compatibilidad universal, medición consumo precisa.",
       "platform": "eBay",
-      "price": "$29.99",
-      "originalPrice": "$39.99",
-      "discount": "-25%",
+      "price": "$12.99",
+      "originalPrice": "$24.99",
+      "discount": "-48%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Zigbee 3.0 + Thread (futuro)",
+      "protocol": "Matter over Wi-Fi",
       "compatibility": [
-        "Home Assistant",
-        "OpenHAB",
-        "Local Controllers"
+        "Alexa",
+        "Google Home",
+        "Apple HomeKit",
+        "SmartThings"
       ],
-      "slug": "home-assistant-skyconnect-zbt1",
-      "url": "https://www.ebay.com/sch/i.html?_nkw=Home+Assistant+SkyConnect+ZBT-1"
+      "slug": "gosund-smart-plug-matter-energy",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=smart+plug+matter+energy+monitoring"
     },
     {
       "id": 8,
       "type": "promo",
-      "title": "ECOSECURE X9 Matter Zigbee 3.0 Smart Security System Z-Wave Platform",
-      "body": "Protocolo: Z-Wave 800, Zigbee 3.0, Matter 1.3 certificado. Encriptación end-to-end AES-256. Batería sensores >24 meses vida real. Conectividad dual Wi-Fi + LTE-M. API RESTful completa, webhooks, integración Home Assistant nativa. Operación local completa offline. Ventaja vs WiFi: redundancia conectividad, mesh dedicado seguridad.",
+      "title": "Tuya WiFi Smart RGB Dimmable E27 9W LED Timer Remote Control Zigbee Gateway",
+      "body": "Specs técnicas: Tuya WiFi, E27 9W, RGB+Warm White, 806 lúmenes, timer programable, 16M colores, standby 0.4W. Mejor que bulbs básicos por protocolo Tuya ecosistema amplio, precio mayorista, calidad industrial, compatibilidad global.",
       "platform": "Alibaba",
-      "price": "$249.99",
-      "originalPrice": "$349.99",
-      "discount": "-29%",
+      "price": "$3.89",
+      "originalPrice": "$7.99",
+      "discount": "-51%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Z-Wave 800 + Zigbee 3.0 + Matter",
+      "protocol": "Tuya WiFi",
       "compatibility": [
-        "Home Assistant",
-        "OpenHAB",
-        "Matter Controllers"
+        "Tuya Smart",
+        "Smart Life",
+        "Alexa",
+        "Google Home"
       ],
-      "slug": "ecosecure-x9-matter-security",
-      "url": "https://www.alibaba.com/product-detail/ECOSECURE-X9-Matter-Security-System"
+      "slug": "tuya-wifi-smart-rgb-led-bulb",
+      "url": "https://www.alibaba.com/product-detail/smart-led-bulb-wifi"
     },
     {
       "id": 9,
       "type": "promo",
-      "title": "NexusGuard SmartHub Pro Matter 1.3 Thread Zigbee Security Gateway",
-      "body": "Protocolo: Matter 1.3 certificado nativo, Thread Border Router, Zigbee 3.0. Control local HomeKit, Google Home sin cloud. Sensores 24+ meses batería condiciones reales. Dual-path Wi-Fi + NB-IoT. Firmware público, release notes transparentes. Integración completa smart assistants localmente. Ventaja vs WiFi: autonomía cloud, latencia ultra-baja.",
+      "title": "Zigbee 3.0 PIR Motion Sensor Battery Wireless Smart Home Automation Hub Required",
+      "body": "Specs técnicas: Zigbee 3.0, batería CR2450 2-años, rango 6m, ángulo 120°, respuesta <3seg, standby 15µA. Superior a sensores WiFi por ultra-bajo consumo, mesh networking robusto, respuesta instantánea, no sobrecarga red doméstica.",
       "platform": "Alibaba",
-      "price": "$199.99",
-      "originalPrice": "$289.99",
-      "discount": "-31%",
+      "price": "$8.99",
+      "originalPrice": "$19.99",
+      "discount": "-55%",
       "date": "14 de marzo de 2026",
       "featured": false,
-      "protocol": "Matter 1.3 + Thread + Zigbee",
+      "protocol": "Zigbee 3.0",
+      "compatibility": [
+        "SmartThings",
+        "Home Assistant",
+        "Hubitat",
+        "Philips Hue"
+      ],
+      "slug": "zigbee-pir-motion-sensor-wireless",
+      "url": "https://www.alibaba.com/product-detail/zigbee-motion-sensor"
+    },
+    {
+      "id": 10,
+      "type": "promo",
+      "title": "WiFi Smart Socket Wall Switch Gang Touch Panel Matter Thread Compatible Control",
+      "body": "Specs técnicas: Matter/Thread dual protocol, touch capacitivo, relay 10A, instalación 2-wire, retroiluminación LED, standby 1.2W. Superior a switches Zigbee por Thread mesh nativo, futuro-proof Matter standard, instalación sin neutral wire.",
+      "platform": "Alibaba",
+      "price": "$16.49",
+      "originalPrice": "$34.99",
+      "discount": "-53%",
+      "date": "14 de marzo de 2026",
+      "featured": false,
+      "protocol": "Matter/Thread",
       "compatibility": [
         "Apple HomeKit",
         "Google Home",
-        "Home Assistant"
+        "Alexa",
+        "SmartThings"
       ],
-      "slug": "nexusguard-smarthub-pro-matter",
-      "url": "https://www.alibaba.com/product-detail/NexusGuard-SmartHub-Pro-Matter"
+      "slug": "matter-thread-smart-wall-switch",
+      "url": "https://www.alibaba.com/product-detail/matter-thread-smart-switch"
     }
   ]
 }

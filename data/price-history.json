@@ -15,6 +15,10 @@
         {
           "date": "2026-03-14",
           "price": 89.99
+        },
+        {
+          "date": "2026-03-15",
+          "price": 89.99
         }
       ]
     },
@@ -305,6 +309,87 @@
         {
           "date": "2026-03-15",
           "price": 199.99
+        }
+      ]
+    },
+    "philips-hue-zigbee-smart-bulb": {
+      "title": "Philips Hue White A19 Zigbee 3.0 Smart Bulb Compatible con Alexa y Google Assistant",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 24.99
+        }
+      ]
+    },
+    "amazon-smart-thermostat-alexa": {
+      "title": "Amazon Smart Thermostat Alexa Voice Control Compatible Wi-Fi Honeywell Tech",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 79
+        }
+      ]
+    },
+    "eufy-l60-robot-vacuum-smart": {
+      "title": "Eufy L60 Robot Vacuum Self-Empty Station Zigbee Mapping Compatible Smart Home",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 199.99
+        }
+      ]
+    },
+    "philips-smart-door-lock-matter": {
+      "title": "Philips WiFi Smart Door Lock Handle Matter Protocol Compatible Multi-Platform",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 104.99
+        }
+      ]
+    },
+    "smart-wifi-air-purifier-hepa": {
+      "title": "Dr J Professional HEPA Smart WiFi Air Purifier IoT Control Room Automation",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 89.99
+        }
+      ]
+    },
+    "gosund-smart-plug-matter-energy": {
+      "title": "Gosund WiFi Smart Plug Mini 15A Matter Compatible Energy Monitoring Socket",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 12.99
+        }
+      ]
+    },
+    "tuya-wifi-smart-rgb-led-bulb": {
+      "title": "Tuya WiFi Smart RGB Dimmable E27 9W LED Timer Remote Control Zigbee Gateway",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 3.89
+        }
+      ]
+    },
+    "zigbee-pir-motion-sensor-wireless": {
+      "title": "Zigbee 3.0 PIR Motion Sensor Battery Wireless Smart Home Automation Hub Required",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 8.99
+        }
+      ]
+    },
+    "matter-thread-smart-wall-switch": {
+      "title": "WiFi Smart Socket Wall Switch Gang Touch Panel Matter Thread Compatible Control",
+      "records": [
+        {
+          "date": "2026-03-15",
+          "price": 16.49
         }
       ]
     }
