@@ -54,6 +54,128 @@ function initCookieBanner() {
   });
 }
 
+
+// ── SISTEMA DE IDIOMA ES/EN ───────────────────────────────────────────────────
+const LANG_STRINGS = {
+  es: {
+    dealsCount: 'ofertas',
+    newsCount: 'noticias',
+    archiveCount: 'items',
+    readMore: 'Leer más',
+    viewDeal: 'Ver oferta',
+    alertPrice: '🔔 Avísame si baja',
+    noDeals: 'Sin ofertas en esta categoría',
+    noNews: 'Sin noticias hoy',
+    noArchive: 'Archivo vacío — se llena cada semana',
+    loading: 'Cargando...',
+    popupTitle: '¿Precio muy alto ahora?',
+    popupDesc: 'Únete a nuestro canal de Telegram. Avisamos al instante cuando',
+    popupDesc2: 'alcance su mínimo histórico.',
+    popupBtn: '✈ Unirse al canal de Telegram',
+    popupClose: 'Ahora no',
+    superDealBadge: '⭐ Súper oferta del día',
+    superDealLive: '🔥 de descuento',
+    superDealBtn: '🛒 Comprar ahora',
+    superDealUpdated: 'Actualizado hoy a las 7:00am',
+    copyOk: '¡Copiado!',
+    articleType: { news: '📡 Noticia', promo: '🏷️ Oferta', review: '⭐ Review', comparativa: '⚖️ Comparativa' }
+  },
+  en: {
+    dealsCount: 'deals',
+    newsCount: 'news',
+    archiveCount: 'items',
+    readMore: 'Read more',
+    viewDeal: 'View deal',
+    alertPrice: '🔔 Notify me if price drops',
+    noDeals: 'No deals in this category',
+    noNews: 'No news today',
+    noArchive: 'Archive empty — fills up weekly',
+    loading: 'Loading...',
+    popupTitle: 'Price too high right now?',
+    popupDesc: 'Join our Telegram channel. We notify you instantly when',
+    popupDesc2: 'reaches its historical minimum price.',
+    popupBtn: '✈ Join Telegram channel',
+    popupClose: 'Not now',
+    superDealBadge: '⭐ Deal of the day',
+    superDealLive: '🔥 off today',
+    superDealBtn: '🛒 Buy now',
+    superDealUpdated: 'Updated today at 7:00am',
+    copyOk: 'Copied!',
+    articleType: { news: '📡 News', promo: '🏷️ Deal', review: '⭐ Review', comparativa: '⚖️ Comparison' }
+  }
+};
+
+let currentLang = 'es';
+
+function detectLang() {
+  // 1. Check localStorage preference
+  const saved = localStorage.getItem('lang');
+  if (saved === 'en' || saved === 'es') return saved;
+  // 2. Check URL param ?lang=en
+  const urlParam = new URLSearchParams(window.location.search).get('lang');
+  if (urlParam === 'en' || urlParam === 'es') return urlParam;
+  // 3. Detect from browser
+  const browserLang = (navigator.language || navigator.userLanguage || 'es').toLowerCase();
+  if (browserLang.startsWith('en')) return 'en';
+  return 'es';
+}
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+
+  // Update button
+  const btn = document.getElementById('lang-btn');
+  if (btn) {
+    btn.textContent = lang === 'es' ? 'EN' : 'ES';
+    btn.title = lang === 'es' ? 'Switch to English' : 'Cambiar a Español';
+  }
+
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+
+  // Update all elements with data-es/data-en
+  document.querySelectorAll('[data-es][data-en]').forEach(el => {
+    el.textContent = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-es');
+  });
+
+  // Update sort select options
+  const sortSelect = document.getElementById('sort-select');
+  if (sortSelect) {
+    const opts = lang === 'en'
+      ? ['Highest discount', 'Price: low to high', 'Price: high to low']
+      : ['Mayor descuento', 'Precio: menor a mayor', 'Precio: mayor a menor'];
+    Array.from(sortSelect.options).forEach((opt, i) => {
+      if (opts[i]) opt.text = opts[i];
+    });
+  }
+
+  // Re-render dynamic content with new language
+  if (allItems.length > 0) {
+    renderDeals(allItems);
+    renderNewsFiltered(allItems);
+  }
+  if (archiveItems.length > 0) {
+    renderArchive(archiveItems);
+  }
+}
+
+function initLang() {
+  const lang = detectLang();
+  applyLang(lang);
+
+  const btn = document.getElementById('lang-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      applyLang(currentLang === 'es' ? 'en' : 'es');
+    });
+  }
+}
+
+function t(key) {
+  return LANG_STRINGS[currentLang][key] || LANG_STRINGS.es[key] || key;
+}
+
 // ── TEMA CLARO/OSCURO ─────────────────────────────────────────────────────────
 function initTheme() {
   const saved = localStorage.getItem('theme');
@@ -73,6 +195,9 @@ function initTheme() {
 
 // ── SÚPER OFERTA DEL DÍA ─────────────────────────────────────────────────────
 function renderSuperDeal(items) {
+  const sdBadge = document.querySelector('#super-deal .sd-badge');
+  if (sdBadge) sdBadge.setAttribute('data-es','⭐ Súper oferta del día');
+  if (sdBadge) sdBadge.setAttribute('data-en','⭐ Deal of the day');
   const sdInner = document.getElementById('sd-inner');
   const sdEmpty = document.getElementById('sd-empty');
   if (!sdInner) return;
@@ -126,7 +251,7 @@ function renderSuperDeal(items) {
 function copyLink(btn, url) {
   navigator.clipboard.writeText(url).then(() => {
     const original = btn.innerHTML;
-    btn.innerHTML = '<span style="font-size:12px;font-weight:700;color:var(--accent,#00d4aa);">¡Copiado!</span>';
+    btn.innerHTML = `<span style="font-size:12px;font-weight:700;color:var(--accent,#00d4aa);">${t('copyOk')}</span>`;
     setTimeout(() => { btn.innerHTML = original; }, 2000);
   }).catch(err => console.error('Error al copiar:', err));
 }
@@ -155,20 +280,20 @@ function showPriceAlert(e, productTitle) {
 
   box.innerHTML = `
     <div style="font-size:36px;margin-bottom:12px;">🔔</div>
-    <div style="font-size:17px;font-weight:700;color:var(--text,#e2e8f0);margin-bottom:8px;line-height:1.3;">¿Precio muy alto ahora?</div>
-    <div style="font-size:13px;color:var(--muted,#94a3b8);line-height:1.6;margin-bottom:20px;">Únete a nuestro canal de Telegram. Avisamos al instante cuando <strong style="color:var(--text,#e2e8f0);">${shortTitle}</strong> alcance su mínimo histórico.</div>
+    <div style="font-size:17px;font-weight:700;color:var(--text,#e2e8f0);margin-bottom:8px;line-height:1.3;">${t('popupTitle')}</div>
+    <div style="font-size:13px;color:var(--muted,#94a3b8);line-height:1.6;margin-bottom:20px;">${t('popupDesc')} <strong style="color:var(--text,#e2e8f0);">${shortTitle}</strong> ${t('popupDesc2')}</div>
   `;
 
   const tgLink = document.createElement('a');
   tgLink.href = 'https://t.me/ofertas_domoticas';
   tgLink.target = '_blank';
   tgLink.rel = 'noopener';
-  tgLink.textContent = '✈ Unirse al canal de Telegram';
+  tgLink.textContent = t('popupBtn');
   tgLink.style.cssText = 'display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:10px;background:#0088cc;color:#fff;font-size:14px;font-weight:600;text-decoration:none;margin-bottom:10px;box-sizing:border-box;';
   tgLink.addEventListener('click', closePriceAlert);
 
   const closeBtn = document.createElement('button');
-  closeBtn.textContent = 'Ahora no';
+  closeBtn.textContent = t('popupClose');
   closeBtn.style.cssText = 'width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:var(--muted,#94a3b8);font-size:13px;cursor:pointer;font-family:var(--font,sans-serif);';
   closeBtn.addEventListener('click', closePriceAlert);
 
@@ -244,7 +369,7 @@ function renderDeals(items) {
   if (count) count.textContent = `(${promos.length} ofertas)`;
 
   if (promos.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">Sin ofertas en esta categoría</div></div>';
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">🏷️</div><div class="empty-title">${t('noDeals')}</div></div>`;
     return;
   }
 
@@ -271,7 +396,7 @@ function renderDeals(items) {
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </span>
           <button class="price-alert-btn" data-title="${safeTitle}" style="font-size:20px;color:var(--muted);background:transparent;border:none;cursor:pointer;padding:2px;font-family:var(--font);" title="Avísame si baja de precio">🔔</button>
-          <span class="dc-btn" style="pointer-events:none;">Ver oferta</span>
+          <span class="dc-btn" style="pointer-events:none;">${t('viewDeal')}</span>
         </div>
       </div>
     </a>`;
@@ -288,7 +413,7 @@ function renderNews(items) {
   if (count) count.textContent = `(${news.length} noticias)`;
 
   if (news.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📡</div><div class="empty-title">Sin noticias hoy</div></div>';
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📡</div><div class="empty-title">${t('noNews')}</div></div>`;
     return;
   }
 
@@ -305,7 +430,7 @@ function renderNews(items) {
       <div class="nc-body">${item.body}</div>
       <div class="nc-footer">
         <span class="nc-source">${item.source||''}</span>
-        <span class="nc-more">Leer más</span>
+        <span class="nc-more">${t('readMore')}</span>
       </div>
     </a>`;
   }).join('');
@@ -321,7 +446,7 @@ function renderArchive(items) {
   if (count) count.textContent = `(${filtered.length} items)`;
 
   if (!filtered || filtered.length === 0) {
-    grid.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div><div class="empty-title">Archivo vacío — se llena cada semana</div></div>';
+    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📚</div><div class="empty-title">${t('noArchive')}</div></div>`;
     return;
   }
 
@@ -335,7 +460,7 @@ function renderArchive(items) {
       <div class="arc-body">${(item.body||'').slice(0,160)}...</div>
       ${item.rating?`<div class="arc-rating">⭐ ${item.rating}/10</div>`:''}
       ${item.winner?`<div class="arc-winner">🏆 ${item.winner}</div>`:''}
-      <div class="arc-more">Ver más →</div>
+      <div class="arc-more">${t('readMore')} →</div>
     </a>`;
   }).join('');
 }
@@ -405,7 +530,7 @@ function renderNewsFiltered(items) {
       <div class="nc-body">${item.body}</div>
       <div class="nc-footer">
         <span class="nc-source">${item.source||''}</span>
-        <span class="nc-more">Leer más</span>
+        <span class="nc-more">${t('readMore')}</span>
       </div>
     </a>`;
   }).join('');
@@ -501,6 +626,7 @@ function initScrollTop() {
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
+  initLang();
   initTheme();
   initControls();
   initAnalytics();
