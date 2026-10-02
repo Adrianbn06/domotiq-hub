@@ -61,13 +61,13 @@ const FILAS_COMPAT = [
   ['Matter', 'matter'], ['Home Assistant', 'homeAssistant'],
 ];
 
-function fichaTecnica(p) {
+export function fichaTecnica(p) {
   return [...FILAS_COMUNES, ...FILAS_CATEGORIA[p.categoria]]
     .map(([label, fn]) => ({ label, ...(fn(p) || {}) }))
     .filter((f) => f.text);
 }
 
-function fichaCompat(p) {
+export function fichaCompat(p) {
   return FILAS_COMPAT.map(([label, key]) => ({ label, ...COMPAT[p.compat[key]] }));
 }
 
@@ -132,9 +132,9 @@ export function cabecera(actual = '') {
     <a href="/" class="logo"><span class="logo-icon">🏠</span>Ofertas<em>Domoticas</em></a>
     <nav aria-label="Principal">
       ${link('/productos/', 'Productos')}
+      ${link('/comparativas/', 'Comparativas')}
       ${link('/comparar', 'Comparar')}
       ${link('/articulos-editoriales/', 'Guías')}
-      ${link('/glosario', 'Glosario')}
     </nav>
   </div>
 </header>`;
@@ -144,7 +144,7 @@ export function pie() {
   return `<footer>
   <div class="w">
     <span>© ${new Date().getFullYear()} OfertasDomoticas.com — Domótica práctica para Latinoamérica</span>
-    <span><a href="/nosotros">Nosotros</a> · <a href="/privacidad">Privacidad</a> · <a href="/contacto">Contacto</a></span>
+    <span><a href="/glosario">Glosario</a> · <a href="/nosotros">Nosotros</a> · <a href="/privacidad">Privacidad</a> · <a href="/contacto">Contacto</a></span>
   </div>
 </footer>`;
 }
@@ -227,7 +227,8 @@ ${filas.map((f) => `<tr><th scope="row">${esc(f.label)}</th><td${f.cls ? ` class
 </tbody></table></div>`;
 }
 
-function paginaProducto(p, data, tiendas) {
+function paginaProducto(p, data, tiendas, comparativas = []) {
+  const enComparativas = comparativas.filter((c) => c.productos.includes(p.slug));
   const cat = data.categorias[p.categoria];
   const otros = data.productos.filter((o) => o.categoria === p.categoria && o.slug !== p.slug);
   const compat = fichaCompat(p);
@@ -258,6 +259,10 @@ ${tabla(compat)}
   <div class="box"><h3 class="yes">Ventajas</h3><ul>${p.pros.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
   <div class="box"><h3 class="no">Desventajas</h3><ul>${p.contras.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
 </div>
+${enComparativas.length ? `<h2>Aparece en estas comparativas</h2>
+<div class="links-list">
+${enComparativas.map((c) => `  <a class="btn secondary" href="/comparativas/${esc(c.slug)}">${esc(c.tituloCorto)}</a>`).join('\n')}
+</div>` : ''}
 <h2>¿Para quién es?</h2>
 <p>${esc(p.idealPara)}</p>
 ${otros.length ? `<h2>Compáralo con otros ${esc(cat.nombre.toLowerCase())}</h2>
@@ -303,6 +308,8 @@ ${AVISO_AFILIADOS}`;
 export function generarCatalogo(root) {
   const data = JSON.parse(fs.readFileSync(path.join(root, 'data', 'productos.json'), 'utf8'));
   const { tiendas } = JSON.parse(fs.readFileSync(path.join(root, 'data', 'tiendas.json'), 'utf8'));
+  const fComp = path.join(root, 'data', 'comparativas.json');
+  const comparativas = fs.existsSync(fComp) ? JSON.parse(fs.readFileSync(fComp, 'utf8')).comparativas : [];
   const outDir = path.join(root, 'public', 'productos');
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
@@ -313,7 +320,7 @@ export function generarCatalogo(root) {
       if (!COMPAT[p.compat?.[key]]) throw new Error(`Compatibilidad "${key}" inválida en ${p.slug}`);
     }
     if (!PRECIO[p.precio]) throw new Error(`Precio inválido en ${p.slug}`);
-    fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaProducto(p, data, tiendas), 'utf8');
+    fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaProducto(p, data, tiendas, comparativas), 'utf8');
   }
   fs.writeFileSync(path.join(outDir, 'index.html'), paginaCatalogo(data), 'utf8');
   fs.writeFileSync(path.join(root, 'public', 'comparar.html'), paginaComparar(data), 'utf8');

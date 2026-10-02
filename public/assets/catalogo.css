@@ -123,6 +123,19 @@ footer a{color:var(--muted);}
 .guide{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px;color:var(--text);text-decoration:none;}
 .table-wrap thead th{color:var(--text);font-weight:600;}
 
+/* Artículos de comparativas */
+.article{max-width:860px;}
+.article p{margin-bottom:14px;}
+.article p.lead{font-size:17px;}
+.article .grid{margin-bottom:8px;}
+.verdict-box{margin:22px 0;border-color:rgba(0,212,170,0.4);}
+.h-inline{margin:0 0 10px;font-size:18px;}
+.verdict{padding-left:18px;font-size:15px;}
+.verdict li{margin-bottom:8px;}
+.faq{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:10px;}
+.faq summary{cursor:pointer;font-weight:600;}
+.faq p{margin:10px 0 0;color:var(--muted);font-size:15px;}
+
 @media(max-width:700px){
   .header-inner{height:auto;flex-wrap:wrap;padding:10px 16px;gap:6px 16px;}
   nav{margin-left:0;width:100%;gap:16px;}

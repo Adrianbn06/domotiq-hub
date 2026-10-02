@@ -8,6 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import { esc, pagina, badges, PRECIO, AVISO_AFILIADOS } from './catalogo.js';
+import { leerComparativas } from './comparativas.js';
 
 // ─── CONTENIDO EDITABLE ───────────────────────────────────────────────────────
 const SELECCION = [
@@ -95,6 +96,11 @@ export function generarPortada(root) {
     return `<li><a href="/comparar?p=${slugs.map(esc).join(',')}"><strong>${esc(titulo)}</strong><span class="muted small">${esc(nombres)}</span></a></li>`;
   }).join('\n');
 
+  const articulos = leerComparativas(root).map((c) => `<a class="guide" href="/comparativas/${esc(c.slug)}">
+  <strong>${esc(c.titulo)}</strong>
+  <span class="muted small">${esc(c.descripcion)}</span>
+</a>`).join('\n');
+
   const guias = GUIAS.map((rel) => leerGuia(root, rel)).map((g) => `<a class="guide" href="${esc(g.url)}">
   <strong>${esc(g.titulo)}</strong>
   <span class="muted small">${esc(g.desc)}</span>
@@ -139,7 +145,14 @@ ${categorias}
 ${seleccion}
 </div>
 
-<h2>Comparativas populares</h2>
+<h2>Comparativas a fondo</h2>
+<div class="guides">
+${articulos}
+</div>
+<p class="small"><a href="/comparativas/">Ver todas las comparativas →</a></p>
+
+<h2>Compara al instante</h2>
+<p class="lead small">Abre el comparador con estas combinaciones o elige tus propios productos.</p>
 <ul class="cmp-list">
 ${comparativas}
 </ul>

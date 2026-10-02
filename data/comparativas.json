@@ -1,0 +1,226 @@
+{
+  "comparativas": [
+    {
+      "slug": "sonoff-vs-tuya-enchufe-inteligente",
+      "titulo": "Sonoff vs Tuya (Smart Life): ¿qué enchufe inteligente comprar en Latinoamérica?",
+      "tituloCorto": "Sonoff vs Tuya: ¿qué enchufe comprar?",
+      "descripcion": "Comparamos los enchufes Sonoff S26R2 y S31 con los enchufes genéricos Tuya / Smart Life: voltaje y clavija por país, funcionamiento sin internet, medición de consumo y Home Assistant.",
+      "actualizado": "2026-10-02",
+      "productos": ["sonoff-s26r2", "sonoff-s31", "enchufe-tuya-wifi"],
+      "intro": [
+        "Si buscas un enchufe inteligente (tomacorriente WiFi) en AliExpress o en una tienda local, casi siempre terminas eligiendo entre dos nombres: Sonoff y Tuya. Parecen marcas rivales, pero no son lo mismo, y entender esa diferencia es lo que te evita comprar algo que no funciona bien en tu casa.",
+        "Sonoff es un fabricante (la empresa ITEAD) que diseña sus propios aparatos y los controla con la app eWeLink. Tuya, en cambio, es una plataforma: vende el chip, la nube y la app Smart Life a cientos de fabricantes que ponen su propia marca en la caja. Por eso hay enchufes «Tuya» de calidades muy distintas."
+      ],
+      "secciones": [
+        {
+          "titulo": "Lo primero en Latinoamérica: voltaje y clavija",
+          "parrafos": [
+            "Antes de mirar funciones, mira tu red eléctrica. En México, Centroamérica, Colombia, Ecuador y Venezuela la red es de 110–127 V con clavija estilo EE.UU. (tipos A y B). En Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay es de 220 V, y la clavija cambia según el país.",
+            "Aquí el Sonoff S26R2 tiene una ventaja clara: se fabrica en versiones distintas para cada país. La TPB es la de EE.UU. (120 V, 15 A); la TPN es la de Brasil, la TPI usa la clavija tipo I de Argentina y la TPL la tipo L de Chile, todas de 250 V. El Sonoff S31, en cambio, solo existe en versión de 120 V con clavija estilo EE.UU.",
+            "Los enchufes Tuya existen para prácticamente cualquier clavija y voltaje, pero como cada vendedor fabrica el suyo, el dato correcto está en el anuncio, no en la marca. Revisa voltaje, clavija y corriente máxima antes de pagar."
+          ]
+        },
+        {
+          "titulo": "¿Funcionan si se cae el internet?",
+          "parrafos": [
+            "El S26R2 permite control por red local (modo LAN) desde la app eWeLink: si se corta internet pero tu WiFi sigue funcionando, puedes seguir encendiéndolo y apagándolo desde el celular dentro de casa.",
+            "Los enchufes Tuya dependen de la nube de Tuya. Sin internet, la app no los controla. Existen integraciones de la comunidad para controlarlos en local con Home Assistant, pero requieren configuración técnica."
+          ]
+        },
+        {
+          "titulo": "Medición de consumo eléctrico",
+          "parrafos": [
+            "Si quieres saber cuánto gasta tu refrigeradora, tu aire acondicionado o tu calentador, necesitas un enchufe con medición de consumo. El Sonoff S31 mide potencia, corriente y voltaje en tiempo real y guarda hasta 100 días de historial en eWeLink. Además soporta 15 A, suficiente para aparatos potentes.",
+            "El S26R2 no mide consumo. Muchos enchufes Tuya sí lo hacen (suelen anunciarse como «con medidor de energía» o «power monitor»), pero la precisión varía según el fabricante."
+          ]
+        },
+        {
+          "titulo": "Alexa, Google y Home Assistant",
+          "parrafos": [
+            "Los tres funcionan con Alexa y Google Home. Ninguno funciona directamente con Apple Home: si usas iPhone y Siri, mira el Kasa EP25 en nuestro catálogo.",
+            "Para Home Assistant, Sonoff tiene ventaja: la integración de Sonoff/eWeLink funciona bien y el S31 es muy popular para flashearlo con ESPHome y controlarlo 100 % en local. Los enchufes Tuya se integran con la integración oficial de Tuya, que funciona a través de la nube."
+          ]
+        },
+        {
+          "titulo": "Calidad y seguridad eléctrica",
+          "parrafos": [
+            "Un enchufe inteligente maneja la corriente de tu casa, así que la calidad importa. El Sonoff S31 tiene certificación ETL y FCC. En los enchufes Tuya genéricos la calidad depende del vendedor: prefiere los que tienen muchas valoraciones, fotos reales de compradores y certificaciones indicadas en el anuncio, y no los uses con cargas por encima de lo que marca la etiqueta."
+          ]
+        }
+      ],
+      "veredicto": [
+        { "perfil": "Quieres lo más barato y ya usas la app Smart Life", "producto": "enchufe-tuya-wifi", "motivo": "Todo queda en la misma app y lo encuentras para cualquier clavija. Elige un vendedor con buenas valoraciones." },
+        { "perfil": "Vives en un país de 220 V (Argentina, Chile, Brasil, Perú…)", "producto": "sonoff-s26r2", "motivo": "Hay una versión con la clavija de tu país y funciona en local aunque se caiga internet." },
+        { "perfil": "Quieres medir el consumo en un país de 110–120 V", "producto": "sonoff-s31", "motivo": "Mide consumo con historial, soporta 15 A y es el favorito de los usuarios de Home Assistant." }
+      ],
+      "faq": [
+        { "p": "¿Puedo tener enchufes Sonoff y Tuya a la vez?", "r": "Sí. Cada uno se configura en su app (eWeLink o Smart Life), pero puedes vincular ambas apps a Alexa o a Google Home y controlarlo todo desde un solo lugar." },
+        { "p": "¿Un enchufe de 220 V funciona en una red de 110 V?", "r": "No lo uses fuera del rango de voltaje que indica su etiqueta. Compra siempre un modelo cuyo voltaje coincida con el de tu país." },
+        { "p": "Mi router es de doble banda. ¿Por qué no encuentra el enchufe?", "r": "Casi todos los enchufes WiFi solo se conectan a la banda de 2,4 GHz. Asegúrate de que tu router tenga la red de 2,4 GHz activada y conecta el celular a esa red durante la configuración." }
+      ]
+    },
+    {
+      "slug": "interruptor-inteligente-sin-neutro-zbmini-l2-vs-minir4-vs-shelly",
+      "titulo": "Interruptor inteligente con o sin neutro: Sonoff ZBMINI-L2 vs MINIR4 vs Shelly 1 Gen4",
+      "tituloCorto": "Relés con o sin neutro: ZBMINI-L2 vs MINIR4 vs Shelly",
+      "descripcion": "¿Tu caja de interruptor no tiene cable neutro? Comparamos el Sonoff ZBMINI-L2 (sin neutro), el Sonoff MINIR4 y el Shelly 1 Gen4 para automatizar luces en Latinoamérica: carga, voltaje, hub y control local.",
+      "actualizado": "2026-10-02",
+      "productos": ["sonoff-zbmini-l2", "sonoff-minir4", "shelly-1-gen4"],
+      "intro": [
+        "Automatizar las luces sin cambiar los interruptores de pared es una de las mejoras más prácticas de la domótica. Se hace con un relé pequeño que se esconde dentro de la caja del interruptor. Pero antes de comprar hay una pregunta que decide todo: ¿tu caja tiene cable neutro?",
+        "En muchas instalaciones de Latinoamérica, sobre todo en casas con algunos años, a la caja del interruptor solo llegan la fase y el retorno hacia la lámpara, sin neutro. Si es tu caso, solo te sirve un relé «sin neutro» como el ZBMINI-L2. Si tienes neutro, las opciones se amplían."
+      ]
+      ,
+      "secciones": [
+        {
+          "titulo": "Primero: ¿cómo sé si tengo neutro?",
+          "parrafos": [
+            "Con el disyuntor (breaker) apagado, retira la tapa del interruptor y cuenta los cables. Si solo hay dos cables conectados al interruptor y no hay ningún otro grupo de cables al fondo de la caja, probablemente no tengas neutro. Los colores varían entre países y entre instalaciones antiguas, así que no te fíes solo del color.",
+            "Si no tienes experiencia con instalaciones eléctricas, no lo hagas tú: un electricista lo comprueba en minutos. Trabajar con la corriente de la casa es peligroso."
+          ]
+        },
+        {
+          "titulo": "Sin neutro: Sonoff ZBMINI-L2",
+          "parrafos": [
+            "El ZBMINI-L2 está diseñado precisamente para cajas sin neutro. Acepta de 100 a 240 V, así que sirve en cualquier país de la región, y es Zigbee: necesitas un hub o coordinador Zigbee (por ejemplo el Sonoff ZBBridge-P, un Echo con Zigbee, SmartThings o Home Assistant).",
+            "Su límite es la carga: 6 A como máximo, y con focos LED hasta 150 W a 120 V o 300 W a 230 V, de sobra para las luces de una habitación. Según Sonoff, funciona con cargas de apenas 3 W sin módulo antiparpadeo. Aun así, si algún foco LED barato parpadea o queda con un brillo tenue al apagarse, Sonoff vende un pequeño accesorio (bypass) que se instala junto a la lámpara y lo soluciona."
+          ]
+        },
+        {
+          "titulo": "Con neutro y WiFi: Sonoff MINIR4",
+          "parrafos": [
+            "Si tienes neutro, el MINIR4 es la opción más económica: funciona por WiFi sin hub, acepta de 100 a 240 V y soporta 10 A. Tiene control por red local (LAN), así que sigue respondiendo dentro de casa aunque se caiga internet.",
+            "Se conecta a tu interruptor de siempre a través de dos bornes dedicados (S1 y S2), y funciona tanto con un solo interruptor como con dos interruptores que controlan la misma luz (escalera). Si te interesa Matter, existe una versión llamada MINIR4M."
+          ]
+        },
+        {
+          "titulo": "Con neutro y 100 % local: Shelly 1 Gen4",
+          "parrafos": [
+            "El Shelly 1 Gen4 es el más versátil. Combina WiFi 6, Zigbee, Matter y Bluetooth, funciona en local sin depender de ninguna nube y permite scripts y MQTT para usuarios avanzados.",
+            "Su relé es de contacto seco de 16 A: no entrega corriente por sí mismo, solo abre y cierra un circuito. Eso lo hace ideal para cosas que no son una lámpara, como el pulsador de un portón eléctrico o el encendido de una caldera. Además de 110–240 V de corriente alterna, se puede alimentar con 24–48 V o 12 V de corriente continua. Necesita neutro cuando se alimenta con corriente alterna."
+          ]
+        }
+      ],
+      "veredicto": [
+        { "perfil": "Tu caja de interruptor no tiene neutro", "producto": "sonoff-zbmini-l2", "motivo": "Es el único de los tres que funciona sin neutro. Recuerda que necesitas un hub o coordinador Zigbee." },
+        { "perfil": "Tienes neutro y quieres lo más barato", "producto": "sonoff-minir4", "motivo": "WiFi sin hub, 10 A y control local, a un precio muy bajo." },
+        { "perfil": "Quieres control 100 % local, Matter o automatizar un portón", "producto": "shelly-1-gen4", "motivo": "Funciona sin nube, es compatible con Matter y su contacto seco de 16 A sirve para mucho más que luces." }
+      ],
+      "faq": [
+        { "p": "¿Puedo seguir usando mi interruptor de pared?", "r": "Sí. Estos relés se conectan al interruptor que ya tienes, que sigue funcionando normalmente; el relé añade el control desde el celular, por voz o por automatizaciones." },
+        { "p": "¿El ZBMINI-L2 funciona sin hub?", "r": "No. Es un dispositivo Zigbee y necesita un hub o coordinador: Sonoff ZBBridge-P, un Echo con hub Zigbee, SmartThings o un coordinador USB con Home Assistant." },
+        { "p": "¿Lo puedo instalar yo?", "r": "Solo si tienes experiencia con instalaciones eléctricas. Siempre con el disyuntor apagado, y ante la duda, contrata a un electricista." }
+      ]
+    },
+    {
+      "slug": "hub-zigbee-aqara-m2-vs-m3-vs-sonoff-zbbridge-p",
+      "titulo": "¿Qué hub Zigbee comprar? Aqara Hub M2 vs Hub M3 vs Sonoff ZBBridge-P",
+      "tituloCorto": "¿Qué hub Zigbee comprar? Aqara vs Sonoff",
+      "descripcion": "Comparamos los hubs Zigbee Aqara Hub M2, Aqara Hub M3 y Sonoff Zigbee Bridge Pro: compatibilidad con otras marcas, Apple Home, Matter, Thread, infrarrojo para el aire acondicionado y precio.",
+      "actualizado": "2026-10-02",
+      "productos": ["sonoff-zbbridge-p", "aqara-hub-m2", "aqara-hub-m3"],
+      "intro": [
+        "Los sensores Zigbee (de puerta, movimiento, temperatura) son baratos y sus pilas duran años, pero necesitan un hub que los conecte a tu WiFi y a Alexa, Google o Apple Home. Elegir el hub es la decisión más importante de tu instalación Zigbee, porque define qué marcas podrás usar después.",
+        "Comparamos los tres hubs más comunes en Latinoamérica: el Sonoff Zigbee Bridge Pro (ZBBridge-P), el Aqara Hub M2 y el Aqara Hub M3."
+      ],
+      "secciones": [
+        {
+          "titulo": "La diferencia clave: ¿acepta otras marcas?",
+          "parrafos": [
+            "Este es el punto que más gente pasa por alto. Los hubs Aqara (M2 y M3) están pensados para dispositivos Aqara y no aceptan oficialmente sensores Zigbee de otras marcas. Si compras un hub Aqara, tus sensores también tendrán que ser Aqara.",
+            "El Sonoff ZBBridge-P sí acepta dispositivos Zigbee 3.0 de otras marcas, además de los de Sonoff. Es más abierto, aunque la lista de dispositivos que funcionan perfectamente no es infinita."
+          ]
+        },
+        {
+          "titulo": "Apple Home y Matter",
+          "parrafos": [
+            "Si usas iPhone, los hubs Aqara tienen una gran ventaja: funcionan con Apple Home, y tus sensores Aqara aparecen en la app Casa de Apple. El ZBBridge-P no es compatible con Apple Home ni con Matter.",
+            "El Hub M2 recibió en 2023 una actualización (firmware 4.0) que lo convierte en puente Matter: expone tus dispositivos Aqara a Apple Home, Google Home, Alexa y SmartThings mediante Matter. El Hub M3 va más allá: es controlador Matter y router de borde Thread, así que también sirve para dispositivos Matter y Thread de otras marcas."
+          ]
+        },
+        {
+          "titulo": "El extra para climas cálidos: infrarrojo",
+          "parrafos": [
+            "Tanto el M2 como el M3 tienen emisor infrarrojo. Eso les permite controlar aires acondicionados y televisores como si fueran un control remoto. Con el M3 y un sensor de temperatura Aqara, el aire puede encenderse solo cuando la habitación pasa de cierta temperatura, algo muy útil en las zonas calurosas de la región. El ZBBridge-P no tiene infrarrojo."
+          ]
+        },
+        {
+          "titulo": "Capacidad y alimentación",
+          "parrafos": [
+            "Los tres manejan alrededor de 128 dispositivos Zigbee (el M3 admite 127 Zigbee y otros 127 Thread). Para una casa normal, la capacidad no será un problema.",
+            "El ZBBridge-P y el M2 se alimentan con un cargador USB de 5 V (el M2 no lo incluye). El M3 usa USB-C o PoE, y además puede conectarse por cable de red, como el M2. El M3 también ejecuta automatizaciones en local, así que siguen funcionando aunque se caiga internet."
+          ]
+        },
+        {
+          "titulo": "¿Y Home Assistant?",
+          "parrafos": [
+            "Si piensas montar Home Assistant, ninguno de estos tres es la mejor opción. Un coordinador USB como el Sonoff ZBDongle-E, conectado al equipo donde corre Home Assistant, acepta Zigbee de casi cualquier marca y funciona 100 % en local, sin nube."
+          ]
+        }
+      ],
+      "veredicto": [
+        { "perfil": "Quieres empezar barato con sensores Sonoff", "producto": "sonoff-zbbridge-p", "motivo": "Es el más económico y acepta Zigbee 3.0 de otras marcas. Funciona con Alexa y Google, pero no con Apple Home." },
+        { "perfil": "Usas iPhone y quieres controlar el aire acondicionado", "producto": "aqara-hub-m2", "motivo": "Funciona con Apple Home, tiene infrarrojo y es puente Matter. Eso sí: solo para dispositivos Aqara." },
+        { "perfil": "Quieres el hub más preparado para Matter y Thread", "producto": "aqara-hub-m3", "motivo": "Zigbee, Thread y Matter en uno, con automatizaciones locales. Es el más caro." }
+      ],
+      "faq": [
+        { "p": "¿Puedo usar sensores Sonoff con un hub Aqara?", "r": "No oficialmente. Los hubs Aqara solo aceptan dispositivos Zigbee de Aqara. Si quieres mezclar marcas, usa el Sonoff ZBBridge-P o un coordinador USB con Home Assistant." },
+        { "p": "¿Mi Echo de Amazon puede ser el hub?", "r": "Algunos modelos de Echo incluyen un hub Zigbee y aceptan sensores Zigbee 3.0 como los Sonoff SNZB. Revisa en la ficha de tu modelo si menciona «hub Zigbee integrado»." },
+        { "p": "¿Necesito un hub para enchufes y focos WiFi?", "r": "No. Los dispositivos WiFi se conectan directamente a tu router. El hub solo hace falta para dispositivos Zigbee o Thread." }
+      ]
+    },
+    {
+      "slug": "focos-inteligentes-wiz-vs-tapo-vs-philips-hue",
+      "titulo": "Focos inteligentes: WiZ vs Tapo vs Philips Hue (versiones de 110 V y 220 V)",
+      "tituloCorto": "Focos inteligentes: WiZ vs Tapo vs Philips Hue",
+      "descripcion": "Comparamos los focos inteligentes WiZ A19, Tapo L535E (110 V), Tapo L530E (220 V) y Philips Hue: brillo, voltaje y rosca, Matter, si necesitan hub y cuál conviene según tu país.",
+      "actualizado": "2026-10-02",
+      "productos": ["wiz-a19-color", "tapo-l535e", "tapo-l530e", "philips-hue-white-color-a19"],
+      "intro": [
+        "Los focos (bombillas) inteligentes son la forma más visible de empezar con la domótica: cambias un foco y ya puedes encenderlo por voz, programarlo o cambiarle el color. Pero en Latinoamérica hay que fijarse en algo que las reseñas en inglés casi nunca mencionan: el voltaje.",
+        "Comparamos tres marcas fáciles de conseguir: WiZ (de Signify, la empresa de Philips), Tapo (de TP-Link) y Philips Hue. Incluimos las dos versiones de Tapo, porque una es para redes de 110–120 V y la otra para 220–240 V."
+      ],
+      "secciones": [
+        {
+          "titulo": "Voltaje y rosca: lo que más importa",
+          "parrafos": [
+            "Los focos para Estados Unidos usan rosca E26 y funcionan a 120 V; los europeos usan rosca E27 y funcionan a 220–240 V. El WiZ A19, el Tapo L535E y el Philips Hue A19 que comparamos son de 120 V, para México, Centroamérica, Colombia, Ecuador y Venezuela.",
+            "El Tapo L530E es la versión de 220–240 V con rosca E27, la que corresponde a Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay. Si vives en uno de esos países y quieres WiZ o Hue, busca específicamente sus versiones europeas (E27, 220–240 V)."
+          ]
+        },
+        {
+          "titulo": "WiFi o Zigbee: cómo se conectan",
+          "parrafos": [
+            "WiZ y Tapo funcionan por WiFi: se conectan directamente al router, sin hub. Es lo más sencillo, pero si llenas la casa de focos WiFi, un router básico de los que entregan los proveedores de internet puede saturarse.",
+            "Philips Hue funciona por Zigbee y Bluetooth. Sin hub, por Bluetooth, controlas hasta 10 focos, pero solo desde cerca y sin control fuera de casa. Con el Hue Bridge desbloqueas el control remoto, las automatizaciones, los accesorios y hasta 50 focos (150 con el Hue Bridge Pro), sin cargar tu WiFi."
+          ]
+        },
+        {
+          "titulo": "Brillo y calidad de luz",
+          "parrafos": [
+            "El Tapo L535E es el más luminoso del grupo, con 1100 lúmenes (equivalente a un foco de 75 W) y un índice de reproducción cromática (CRI) de 90 o más: los colores de tu casa se ven más naturales. El Hue llega también a 1100 lúmenes en su versión de 75 W.",
+            "El WiZ A19 ofrece 800 lúmenes (equivalente a 60 W) y el Tapo L530E 806 lúmenes. Para una habitación normal es suficiente; para una sala grande, considera más de un foco."
+          ]
+        },
+        {
+          "titulo": "Matter y asistentes",
+          "parrafos": [
+            "Los cuatro funcionan con Alexa y Google Home, y todos son compatibles con Matter. En la práctica, eso significa que también puedes usarlos con Apple Home (Siri) y que no quedas atado a una sola app.",
+            "Con Home Assistant, los cuatro tienen integración: WiZ y TP-Link tienen integraciones propias, y Hue funciona en local a través del Bridge."
+          ]
+        }
+      ],
+      "veredicto": [
+        { "perfil": "País de 110–120 V y presupuesto ajustado", "producto": "tapo-l535e", "motivo": "El más luminoso del grupo, con Matter y buena reproducción de color, a precio bajo." },
+        { "perfil": "País de 220–240 V", "producto": "tapo-l530e", "motivo": "Versión E27 de 220–240 V, compatible con Matter y económica." },
+        { "perfil": "Quieres una marca de Signify sin pagar precio Hue", "producto": "wiz-a19-color", "motivo": "Color, Matter y sin hub, con el respaldo del fabricante de Philips." },
+        { "perfil": "Vas a poner muchos focos y quieres lo más fiable", "producto": "philips-hue-white-color-a19", "motivo": "Con el Hue Bridge no carga tu WiFi y tiene el ecosistema más completo. Es el más caro." }
+      ],
+      "faq": [
+        { "p": "¿Un foco E27 entra en un portalámparas E26?", "r": "Físicamente suelen encajar, porque solo se diferencian en 1 mm. Lo que importa es el voltaje: un foco de 220–240 V no funcionará bien a 120 V, y uno de 120 V se puede dañar a 220 V." },
+        { "p": "¿Necesito el Hue Bridge?", "r": "No para empezar: por Bluetooth controlas hasta 10 focos. Pero sin el Bridge no hay control fuera de casa, ni agrupación de focos, ni integración con otras apps." },
+        { "p": "¿Los focos WiFi gastan mucha electricidad apagados?", "r": "Consumen un poco en espera para seguir conectados, normalmente muy poco frente a lo que ahorras al pasar a LED. Si te preocupa el consumo, mide un foco con un enchufe con medición de consumo." }
+      ]
+    }
+  ]
+}

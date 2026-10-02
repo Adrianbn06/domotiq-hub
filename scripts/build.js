@@ -2,6 +2,7 @@
  * scripts/build.js - Prepara el sitio estático antes de publicar
  *
  *  - Genera el catálogo de productos y el comparador (scripts/catalogo.js)
+ *  - Genera las comparativas "X vs Y" (scripts/comparativas.js)
  *  - Genera la portada a partir del catálogo y las guías (scripts/portada.js)
  *  - Genera public/sitemap.xml con todas las páginas indexables
  *
@@ -13,6 +14,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { generarCatalogo } from './catalogo.js';
 import { generarPortada } from './portada.js';
+import { generarComparativas } from './comparativas.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
@@ -55,5 +57,6 @@ ${pages.map(p => `  <url>
 }
 
 generarCatalogo(ROOT);
+generarComparativas(ROOT);
 generarPortada(ROOT);
 generateSitemap();
