@@ -6,4 +6,6 @@ node_modules/
 # Generados por scripts/build.js
 public/data/
 public/sitemap.xml
+public/productos/
+public/comparar.html
 .claude/

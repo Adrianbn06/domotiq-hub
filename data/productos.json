@@ -1,0 +1,930 @@
+{
+  "actualizado": "2026-10-02",
+  "categorias": {
+    "enchufe": {
+      "nombre": "Enchufes inteligentes",
+      "singular": "Enchufe inteligente",
+      "icono": "🔌",
+      "intro": "Los enchufes (tomacorrientes) inteligentes son la forma más barata de empezar: conviertes cualquier aparato en inteligente sin cables nuevos. Lo más importante en Latinoamérica es elegir la versión correcta de voltaje y clavija para tu país."
+    },
+    "bombilla": {
+      "nombre": "Bombillas inteligentes",
+      "singular": "Bombilla inteligente",
+      "icono": "💡",
+      "intro": "Focos y bombillas que puedes encender, atenuar y cambiar de color desde el celular o por voz. Fíjate en el voltaje (110–120 V o 220–240 V) y en la rosca (E26 o E27) antes de comprar."
+    },
+    "sensor": {
+      "nombre": "Sensores",
+      "singular": "Sensor",
+      "icono": "📡",
+      "intro": "Sensores de puerta, movimiento y clima: son los que hacen que tu casa reaccione sola. Casi todos usan Zigbee y pilas de botón, así que necesitan un hub o coordinador Zigbee."
+    },
+    "hub": {
+      "nombre": "Hubs y gateways",
+      "singular": "Hub / gateway",
+      "icono": "🧠",
+      "intro": "El hub es el cerebro que conecta los dispositivos Zigbee o Thread con tu red WiFi y con Alexa, Google o Apple Home. Elegirlo bien define qué marcas podrás usar después."
+    },
+    "interruptor": {
+      "nombre": "Interruptores y relés",
+      "singular": "Interruptor / relé",
+      "icono": "🎛️",
+      "intro": "Módulos que se instalan detrás del interruptor de pared para automatizar luces y ventiladores sin cambiar la decoración. Revisa si tu caja tiene cable neutro: define qué modelo puedes usar. Si no sabes hacer instalaciones eléctricas, contrata a un electricista."
+    }
+  },
+  "productos": [
+    {
+      "slug": "sonoff-s31",
+      "nombre": "Sonoff S31",
+      "marca": "Sonoff",
+      "categoria": "enchufe",
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "eWeLink",
+      "voltaje": "120 V, 60 Hz",
+      "voltajes": [
+        "110"
+      ],
+      "clavija": "Tipo A/B (estilo EE.UU.)",
+      "cargaMax": "15 A / 1800 W",
+      "medicionConsumo": true,
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración Sonoff/eWeLink; también se puede flashear con ESPHome.",
+      "precio": 1,
+      "resumen": "Enchufe WiFi compacto con medición de consumo en tiempo real (potencia, corriente y voltaje) y protección por sobrecarga configurable. Guarda hasta 100 días de historial de consumo en la app eWeLink.",
+      "pros": [
+        "Mide el consumo eléctrico de lo que conectes",
+        "Soporta 15 A: sirve para calefactores o aire acondicionado de ventana",
+        "Muy popular en Home Assistant y fácil de flashear con ESPHome"
+      ],
+      "contras": [
+        "Solo versión de 120 V con clavija estilo EE.UU.",
+        "No es compatible con Apple Home ni con Matter"
+      ],
+      "idealPara": "Quien vive en un país de 110–120 V y quiere saber cuánto gasta cada aparato.",
+      "notaLatam": "Pensado para 120 V: funciona en México, Centroamérica, Colombia, Ecuador y Venezuela. No lo uses en redes de 220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay).",
+      "busqueda": "sonoff s31"
+    },
+    {
+      "slug": "sonoff-s26r2",
+      "nombre": "Sonoff S26R2",
+      "marca": "Sonoff",
+      "categoria": "enchufe",
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "eWeLink",
+      "voltaje": "Según versión: 120 V (EE.UU.) o 250 V (resto)",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "clavija": "Versión por país: TPB (EE.UU.), TPN (Brasil), TPI (tipo I, Argentina), TPL (tipo L, Chile), TPF (Europa)",
+      "cargaMax": "10–16 A según versión",
+      "medicionConsumo": false,
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración Sonoff/eWeLink; tiene control por red local (LAN).",
+      "precio": 1,
+      "resumen": "El enchufe WiFi más vendido de Sonoff. Lo interesante para Latinoamérica es que existe en muchas versiones de clavija y voltaje, así que hay una para casi cada país.",
+      "pros": [
+        "Hay versión para la clavija de casi cada país",
+        "Control por red local (LAN) aunque se caiga internet",
+        "Muy barato"
+      ],
+      "contras": [
+        "No mide consumo eléctrico",
+        "Hay que comprar exactamente la versión de tu país"
+      ],
+      "idealPara": "Automatizar lámparas, ventiladores o el router con el menor gasto posible.",
+      "notaLatam": "Antes de comprar, revisa el código del modelo: TPB es de 120 V (estilo EE.UU.); TPN, TPI y TPL son de 250 V con las clavijas de Brasil, Argentina y Chile.",
+      "busqueda": "sonoff s26r2"
+    },
+    {
+      "slug": "kasa-ep25",
+      "nombre": "TP-Link Kasa EP25",
+      "marca": "TP-Link Kasa",
+      "categoria": "enchufe",
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "Kasa",
+      "voltaje": "120 V",
+      "voltajes": [
+        "110"
+      ],
+      "clavija": "Tipo A/B (estilo EE.UU.)",
+      "cargaMax": "15 A / 1800 W",
+      "medicionConsumo": true,
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "sin-confirmar",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración oficial TP-Link (control local).",
+      "precio": 1,
+      "resumen": "Mini enchufe con medición de consumo y compatibilidad nativa con Apple Home, además de Alexa, Google y SmartThings. Tiene certificación UL.",
+      "pros": [
+        "Funciona con Apple Home (Siri) además de Alexa y Google",
+        "Mide el consumo eléctrico",
+        "Diseño pequeño que no tapa el otro tomacorriente"
+      ],
+      "contras": [
+        "Solo versión de 120 V",
+        "Para controlarlo desde fuera de casa con Apple Home necesitas un HomePod, Apple TV o iPad"
+      ],
+      "idealPara": "Casas con iPhone que quieren controlar enchufes por Siri sin comprar un hub.",
+      "notaLatam": "Solo para redes de 110–120 V con tomacorriente estilo EE.UU.",
+      "busqueda": "kasa ep25"
+    },
+    {
+      "slug": "tapo-p115",
+      "nombre": "TP-Link Tapo P115",
+      "marca": "TP-Link Tapo",
+      "categoria": "enchufe",
+      "protocolos": [
+        "WiFi 2.4 GHz",
+        "Bluetooth (solo configuración)"
+      ],
+      "hub": "No necesita",
+      "app": "Tapo",
+      "voltaje": "100–125 V, 50/60 Hz",
+      "voltajes": [
+        "110"
+      ],
+      "clavija": "Tipo A/B (estilo EE.UU.)",
+      "cargaMax": "15 A / 1800 W",
+      "medicionConsumo": true,
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración oficial TP-Link (incluye dispositivos Tapo).",
+      "precio": 1,
+      "resumen": "Mini enchufe con medición de consumo de la línea económica de TP-Link. Compatible con Alexa, Google y SmartThings. Si necesitas Matter, la versión equivalente es la P125M.",
+      "pros": [
+        "Mide el consumo eléctrico",
+        "Configuración sencilla por Bluetooth",
+        "Muy compacto"
+      ],
+      "contras": [
+        "No es compatible con Matter ni Apple Home",
+        "Solo 100–125 V"
+      ],
+      "idealPara": "Medir el consumo de aparatos con un presupuesto ajustado.",
+      "notaLatam": "Para países de 110–120 V. Acepta 50 y 60 Hz.",
+      "busqueda": "tapo p115"
+    },
+    {
+      "slug": "aqara-smart-plug",
+      "nombre": "Aqara Smart Plug (EE.UU.)",
+      "marca": "Aqara",
+      "categoria": "enchufe",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Hub Aqara o coordinador Zigbee",
+      "app": "Aqara Home",
+      "voltaje": "120 V",
+      "voltajes": [
+        "110"
+      ],
+      "clavija": "Tipo A/B (estilo EE.UU.)",
+      "cargaMax": "15 A",
+      "medicionConsumo": true,
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "via-hub",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 2,
+      "resumen": "Enchufe Zigbee con medición de consumo que además actúa como repetidor Zigbee: refuerza la red para tus sensores de pilas.",
+      "pros": [
+        "Repite la señal Zigbee y mejora la red de sensores",
+        "Mide consumo",
+        "Funciona con Apple Home a través del hub Aqara"
+      ],
+      "contras": [
+        "No funciona sin hub o coordinador Zigbee",
+        "Más caro que un enchufe WiFi"
+      ],
+      "idealPara": "Quien ya tiene (o va a tener) un hub Aqara o Home Assistant con Zigbee.",
+      "notaLatam": "Versión de 120 V con clavija estilo EE.UU.",
+      "busqueda": "aqara smart plug zigbee"
+    },
+    {
+      "slug": "enchufe-tuya-wifi",
+      "nombre": "Enchufe WiFi Tuya / Smart Life (genérico)",
+      "marca": "Genérico (Tuya)",
+      "categoria": "enchufe",
+      "generico": true,
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "Smart Life / Tuya",
+      "voltaje": "Hay versiones de 110 V y de 220 V",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "clavija": "Hay versiones para casi todas las clavijas",
+      "cargaMax": "10–16 A según modelo",
+      "medicionConsumo": "En muchos modelos",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "algunos-modelos",
+        "homeAssistant": "parcial"
+      },
+      "notaHA": "Integración Tuya (en la nube); control local requiere integraciones de la comunidad.",
+      "precio": 1,
+      "resumen": "Decenas de fabricantes venden enchufes con el mismo chip y la misma app (Smart Life). Son la opción más barata en AliExpress y se encuentran para cualquier clavija de Latinoamérica.",
+      "pros": [
+        "Lo más barato que hay",
+        "Existe para cualquier clavija y voltaje",
+        "Todos se controlan desde la misma app Smart Life"
+      ],
+      "contras": [
+        "La calidad varía mucho entre vendedores",
+        "Dependen de la nube de Tuya",
+        "Las especificaciones reales hay que comprobarlas en cada anuncio"
+      ],
+      "idealPara": "Empezar con lo mínimo y probar si la domótica te sirve.",
+      "notaLatam": "Comprueba en el anuncio el voltaje, la clavija y la corriente máxima. Prefiere vendedores con muchas valoraciones y fotos reales.",
+      "busqueda": "enchufe inteligente wifi tuya smart life"
+    },
+    {
+      "slug": "wiz-a19-color",
+      "nombre": "WiZ A19 Color (E26)",
+      "marca": "WiZ (Signify)",
+      "categoria": "bombilla",
+      "protocolos": [
+        "WiFi 2.4 GHz",
+        "Bluetooth"
+      ],
+      "hub": "No necesita",
+      "app": "WiZ",
+      "voltaje": "120 V",
+      "voltajes": [
+        "110"
+      ],
+      "rosca": "E26",
+      "lumenes": "800 lm (60 W equivalentes)",
+      "color": "16 millones de colores + blancos regulables",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "via-matter",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración WiZ o Matter.",
+      "precio": 1,
+      "resumen": "Bombilla de color WiFi de Signify (la empresa de Philips Hue) a precio económico. Es compatible con Matter, así que también funciona con Apple Home.",
+      "pros": [
+        "Compatible con Matter: funciona con Alexa, Google y Apple Home",
+        "No necesita hub",
+        "Marca respaldada por Signify"
+      ],
+      "contras": [
+        "Versión de 120 V con rosca E26",
+        "Muchas bombillas WiFi pueden saturar routers básicos"
+      ],
+      "idealPara": "Iluminación de color sin hub y a buen precio en países de 110–120 V.",
+      "notaLatam": "Rosca E26 y 120 V. Para 220 V busca la versión E27 de 220–240 V de WiZ.",
+      "busqueda": "wiz a19 color smart bulb"
+    },
+    {
+      "slug": "philips-hue-white-color-a19",
+      "nombre": "Philips Hue White and Color Ambiance A19",
+      "marca": "Philips Hue",
+      "categoria": "bombilla",
+      "protocolos": [
+        "Zigbee",
+        "Bluetooth"
+      ],
+      "hub": "Opcional (Hue Bridge recomendado)",
+      "app": "Philips Hue",
+      "voltaje": "120 V (versión EE.UU.)",
+      "voltajes": [
+        "110"
+      ],
+      "rosca": "E26",
+      "lumenes": "Hasta 1100 lm (versión 75 W)",
+      "color": "16 millones de colores + blancos regulables",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración Hue (local, con el Bridge) o ZHA/Zigbee2MQTT.",
+      "precio": 3,
+      "resumen": "La referencia en iluminación inteligente. Funciona por Bluetooth sin hub (hasta 10 bombillas) y con el Hue Bridge desbloquea automatizaciones, control remoto y accesorios.",
+      "pros": [
+        "El ecosistema más completo y estable",
+        "Compatible con Matter y con todos los asistentes",
+        "Funciona en redes Zigbee de otras marcas"
+      ],
+      "contras": [
+        "Es la opción más cara",
+        "Para sacarle todo el partido necesitas el Hue Bridge"
+      ],
+      "idealPara": "Quien quiere iluminación fiable a largo plazo y no le importa pagar más.",
+      "notaLatam": "La versión A19 E26 es de 120 V. En países de 220 V busca la versión europea (A60 E27).",
+      "busqueda": "philips hue white and color ambiance a19"
+    },
+    {
+      "slug": "tapo-l535e",
+      "nombre": "TP-Link Tapo L535E (E26, 120 V)",
+      "marca": "TP-Link Tapo",
+      "categoria": "bombilla",
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "Tapo",
+      "voltaje": "120 V, 60 Hz",
+      "voltajes": [
+        "110"
+      ],
+      "rosca": "E26",
+      "lumenes": "1100 lm (75 W equivalentes)",
+      "color": "16 millones de colores + blancos 2500–6500 K",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "via-matter",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración TP-Link o Matter.",
+      "precio": 1,
+      "resumen": "Bombilla de color con certificación Matter, muy luminosa (1100 lm) y con buena reproducción de color (CRI ≥ 90).",
+      "pros": [
+        "Muy luminosa para su precio",
+        "Certificada Matter: funciona con Apple Home",
+        "Buen índice de reproducción de color (CRI ≥ 90)"
+      ],
+      "contras": [
+        "Solo 120 V con rosca E26"
+      ],
+      "idealPara": "Países de 110–120 V que quieren una bombilla Matter económica.",
+      "notaLatam": "Es la versión para 120 V. En países de 220 V, la equivalente es la Tapo L530E.",
+      "busqueda": "tapo l535e"
+    },
+    {
+      "slug": "tapo-l530e",
+      "nombre": "TP-Link Tapo L530E (E27, 220–240 V)",
+      "marca": "TP-Link Tapo",
+      "categoria": "bombilla",
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "Tapo",
+      "voltaje": "220–240 V, 50/60 Hz",
+      "voltajes": [
+        "220"
+      ],
+      "rosca": "E27",
+      "lumenes": "806 lm",
+      "color": "16 millones de colores + blancos 2500–6500 K",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "via-matter",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración TP-Link o Matter.",
+      "precio": 1,
+      "resumen": "La versión de 220–240 V de la bombilla de color de Tapo. Ideal para los países sudamericanos con red de 220 V.",
+      "pros": [
+        "Pensada para redes de 220 V",
+        "Compatible con Matter",
+        "Precio bajo"
+      ],
+      "contras": [
+        "Menos luminosa que la L535E (806 lm)",
+        "No sirve en redes de 110–120 V"
+      ],
+      "idealPara": "Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay.",
+      "notaLatam": "Usa rosca E27 y 220–240 V. No la instales en redes de 110–120 V.",
+      "busqueda": "tapo l530e"
+    },
+    {
+      "slug": "aqara-sensor-puerta-t1",
+      "nombre": "Aqara Door and Window Sensor T1",
+      "marca": "Aqara",
+      "categoria": "sensor",
+      "tipoSensor": "Puerta / ventana",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Hub Aqara o coordinador Zigbee",
+      "app": "Aqara Home",
+      "bateria": "CR1632 (hasta 2 años)",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "via-hub",
+        "homekit": "via-hub",
+        "matter": "via-hub",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 2,
+      "resumen": "Sensor de apertura muy pequeño (41 × 22 × 11 mm) con actualizaciones de firmware por OTA. Detecta si una puerta o ventana está abierta.",
+      "pros": [
+        "Muy pequeño y discreto",
+        "Actualizable por OTA",
+        "Funciona con Apple Home vía hub Aqara"
+      ],
+      "contras": [
+        "Necesita hub o coordinador Zigbee",
+        "Pila CR1632, menos común que la CR2032"
+      ],
+      "idealPara": "Alarmas caseras y luces que se encienden al abrir una puerta.",
+      "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
+      "busqueda": "aqara door window sensor t1"
+    },
+    {
+      "slug": "aqara-sensor-temperatura-humedad",
+      "nombre": "Aqara Temperature and Humidity Sensor",
+      "marca": "Aqara",
+      "categoria": "sensor",
+      "tipoSensor": "Temperatura y humedad",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Hub Aqara o coordinador Zigbee",
+      "app": "Aqara Home",
+      "bateria": "CR2032 (hasta 2 años)",
+      "precision": "±0,3 °C y ±3 % HR",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "via-hub",
+        "homekit": "via-hub",
+        "matter": "via-hub",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 2,
+      "resumen": "Sensor de clima compacto (36 × 36 × 9 mm) con buena precisión. Con el Hub M3 permite controlar aires acondicionados por infrarrojo según la temperatura.",
+      "pros": [
+        "Buena precisión (±0,3 °C)",
+        "Pila CR2032 fácil de conseguir",
+        "Muy pequeño"
+      ],
+      "contras": [
+        "Sin pantalla",
+        "Necesita hub o coordinador Zigbee"
+      ],
+      "idealPara": "Automatizar el aire acondicionado o un deshumidificador.",
+      "notaLatam": "Rango de -20 a 50 °C: sirve en cualquier clima de la región.",
+      "busqueda": "aqara temperature humidity sensor"
+    },
+    {
+      "slug": "sonoff-snzb-04p",
+      "nombre": "Sonoff SNZB-04P",
+      "marca": "Sonoff",
+      "categoria": "sensor",
+      "tipoSensor": "Puerta / ventana",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Coordinador Zigbee (ZBBridge-P, Echo con Zigbee, SmartThings, Home Assistant)",
+      "app": "eWeLink",
+      "bateria": "CR2477 (más de 5 años)",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "via-hub",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 1,
+      "resumen": "Sensor de apertura Zigbee con pila de larga duración. Funciona con casi cualquier hub Zigbee 3.0, no solo con el de Sonoff.",
+      "pros": [
+        "Pila de más de 5 años",
+        "Compatible con hubs de muchas marcas",
+        "Barato"
+      ],
+      "contras": [
+        "Más grande que el Aqara T1",
+        "No funciona con Apple Home"
+      ],
+      "idealPara": "Sensores de puerta baratos en una red Zigbee abierta (Home Assistant, SmartThings).",
+      "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
+      "busqueda": "sonoff snzb-04p"
+    },
+    {
+      "slug": "sonoff-snzb-02p",
+      "nombre": "Sonoff SNZB-02P",
+      "marca": "Sonoff",
+      "categoria": "sensor",
+      "tipoSensor": "Temperatura y humedad",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Coordinador Zigbee (ZBBridge-P, Echo con Zigbee, SmartThings, Home Assistant)",
+      "app": "eWeLink",
+      "bateria": "CR2477 (hasta 4 años)",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "via-hub",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 1,
+      "resumen": "Sensor de temperatura y humedad Zigbee con pila de hasta 4 años. Una alternativa económica al sensor de Aqara.",
+      "pros": [
+        "Pila de hasta 4 años",
+        "Compatible con muchos hubs Zigbee",
+        "Precio bajo"
+      ],
+      "contras": [
+        "No funciona con Apple Home",
+        "Necesita hub o coordinador Zigbee"
+      ],
+      "idealPara": "Medir el clima de varias habitaciones con poco presupuesto.",
+      "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
+      "busqueda": "sonoff snzb-02p"
+    },
+    {
+      "slug": "sonoff-snzb-03p",
+      "nombre": "Sonoff SNZB-03P",
+      "marca": "Sonoff",
+      "categoria": "sensor",
+      "tipoSensor": "Movimiento (PIR)",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Coordinador Zigbee (ZBBridge-P, Echo con Zigbee, SmartThings, Home Assistant)",
+      "app": "eWeLink",
+      "bateria": "CR2477 (más de 3 años)",
+      "alcance": "6 m, 110°",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "via-hub",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 1,
+      "resumen": "Sensor de movimiento infrarrojo (PIR) de bajo consumo, con alcance de 6 metros y ángulo de 110°.",
+      "pros": [
+        "Pila de más de 3 años",
+        "Buen alcance para habitaciones normales",
+        "Compatible con muchos hubs Zigbee"
+      ],
+      "contras": [
+        "Un PIR no detecta personas quietas",
+        "No funciona con Apple Home"
+      ],
+      "idealPara": "Encender luces de pasillos, baños o cocheras al pasar.",
+      "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
+      "busqueda": "sonoff snzb-03p"
+    },
+    {
+      "slug": "sonoff-zbbridge-p",
+      "nombre": "Sonoff Zigbee Bridge Pro (ZBBridge-P)",
+      "marca": "Sonoff",
+      "categoria": "hub",
+      "protocolos": [
+        "Zigbee 3.0",
+        "WiFi 2.4 GHz",
+        "Bluetooth"
+      ],
+      "app": "eWeLink",
+      "alimentacion": "USB 5 V / 1 A",
+      "capacidad": "Hasta 128 dispositivos Zigbee (26 directos)",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "parcial"
+      },
+      "notaHA": "Vía eWeLink en la nube; para control local es mejor un coordinador USB.",
+      "precio": 2,
+      "resumen": "Hub Zigbee económico de Sonoff que conecta sensores y relés Zigbee a la app eWeLink, Alexa y Google. Acepta dispositivos Zigbee 3.0 de otras marcas.",
+      "pros": [
+        "Barato y sencillo",
+        "Hasta 128 dispositivos con repetidores",
+        "Acepta Zigbee 3.0 de otras marcas"
+      ],
+      "contras": [
+        "Sin Apple Home ni Matter",
+        "Depende de la nube de eWeLink"
+      ],
+      "idealPara": "Empezar con sensores Zigbee de Sonoff sin montar Home Assistant.",
+      "notaLatam": "Se alimenta por USB: sirve en cualquier país con un cargador de celular.",
+      "busqueda": "sonoff zbbridge-p zigbee bridge pro"
+    },
+    {
+      "slug": "aqara-hub-m2",
+      "nombre": "Aqara Hub M2",
+      "marca": "Aqara",
+      "categoria": "hub",
+      "protocolos": [
+        "Zigbee 3.0",
+        "WiFi 2.4 GHz",
+        "Ethernet",
+        "Bluetooth",
+        "Infrarrojo"
+      ],
+      "app": "Aqara Home",
+      "alimentacion": "Micro-USB 5 V (adaptador no incluido)",
+      "capacidad": "Hasta 128 dispositivos Aqara Zigbee",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Vía HomeKit Controller (local) o Matter.",
+      "precio": 3,
+      "resumen": "Hub Zigbee con emisor infrarrojo para controlar aires y televisores, sirena integrada y conexión por cable de red opcional.",
+      "pros": [
+        "Emisor infrarrojo para controlar aires y TVs",
+        "Funciona con Apple Home",
+        "Puede conectarse por cable de red"
+      ],
+      "contras": [
+        "No es router Thread",
+        "No incluye adaptador de corriente"
+      ],
+      "idealPara": "Casas con iPhone y aire acondicionado que quieren un hub completo a precio medio.",
+      "notaLatam": "Se alimenta por USB 5 V: sirve en cualquier país con un cargador de celular.",
+      "busqueda": "aqara hub m2",
+      "notaMatter": "Como puente Matter para dispositivos Aqara (firmware 4.0 o superior); no es router Thread."
+    },
+    {
+      "slug": "aqara-hub-m3",
+      "nombre": "Aqara Hub M3",
+      "marca": "Aqara",
+      "categoria": "hub",
+      "protocolos": [
+        "Zigbee 3.0",
+        "Thread",
+        "Matter",
+        "WiFi 2.4/5 GHz",
+        "Ethernet PoE",
+        "Bluetooth",
+        "Infrarrojo"
+      ],
+      "app": "Aqara Home",
+      "alimentacion": "USB-C o PoE",
+      "capacidad": "127 Zigbee + 127 Thread",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Vía Matter.",
+      "precio": 3,
+      "resumen": "El hub más completo de Aqara: controlador Matter, router de borde Thread y hub Zigbee en uno, con 8 GB de almacenamiento para ejecutar automatizaciones en local.",
+      "pros": [
+        "Zigbee, Thread y Matter en un solo aparato",
+        "Automatizaciones locales aunque se caiga internet",
+        "Alimentación por PoE o USB-C"
+      ],
+      "contras": [
+        "Caro",
+        "Es más de lo que necesita una casa pequeña"
+      ],
+      "idealPara": "Quien quiere un hub preparado para Matter y Thread durante muchos años.",
+      "notaLatam": "Alimentación por USB-C o PoE: no depende del voltaje de tu país.",
+      "busqueda": "aqara hub m3"
+    },
+    {
+      "slug": "sonoff-zbdongle-e",
+      "nombre": "Sonoff ZBDongle-E (Zigbee 3.0 USB Dongle Plus)",
+      "marca": "Sonoff",
+      "categoria": "hub",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "app": "Ninguna (Home Assistant, Zigbee2MQTT u openHAB)",
+      "alimentacion": "USB",
+      "capacidad": "Depende del software (cientos de dispositivos con repetidores)",
+      "compat": {
+        "alexa": "no",
+        "google": "no",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Coordinador para ZHA o Zigbee2MQTT, 100 % local.",
+      "precio": 2,
+      "resumen": "Coordinador Zigbee USB con chip EFR32MG21 y antena externa. No es un hub por sí solo: se conecta a un equipo con Home Assistant (por ejemplo, una Raspberry Pi o un mini PC).",
+      "pros": [
+        "Control 100 % local, sin nube",
+        "Acepta Zigbee de casi cualquier marca",
+        "Antena externa con buen alcance"
+      ],
+      "contras": [
+        "Necesitas un equipo con Home Assistant funcionando",
+        "No tiene app propia"
+      ],
+      "idealPara": "Quien quiere montar Home Assistant y no depender de ninguna marca.",
+      "notaLatam": "Se conecta por USB a tu servidor: no depende del voltaje de tu país.",
+      "busqueda": "sonoff zbdongle-e"
+    },
+    {
+      "slug": "gateway-tuya-zigbee",
+      "nombre": "Gateway Zigbee Tuya / Smart Life (genérico)",
+      "marca": "Genérico (Tuya)",
+      "categoria": "hub",
+      "generico": true,
+      "protocolos": [
+        "Zigbee 3.0",
+        "WiFi 2.4 GHz",
+        "Bluetooth (modelos multimodo)"
+      ],
+      "app": "Smart Life / Tuya",
+      "alimentacion": "USB 5 V (según modelo)",
+      "capacidad": "Varía según modelo",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "algunos-modelos",
+        "homeAssistant": "parcial"
+      },
+      "notaHA": "Integración Tuya (en la nube).",
+      "precio": 1,
+      "resumen": "El hub más barato para usar sensores Zigbee de Tuya con la app Smart Life. Muy común en AliExpress y en tiendas locales de Latinoamérica.",
+      "pros": [
+        "Muy barato",
+        "Todo se controla desde la app Smart Life",
+        "Hay modelos con Zigbee, Bluetooth y WiFi"
+      ],
+      "contras": [
+        "Calidad y firmware variables entre vendedores",
+        "Depende de la nube de Tuya",
+        "Compatibilidad limitada con dispositivos de otras marcas"
+      ],
+      "idealPara": "Quien ya usa Smart Life y quiere añadir sensores Zigbee baratos.",
+      "notaLatam": "Comprueba en el anuncio si es multimodo (Zigbee + Bluetooth) y si trae cargador.",
+      "busqueda": "gateway zigbee tuya smart life"
+    },
+    {
+      "slug": "sonoff-minir4",
+      "nombre": "Sonoff MINIR4 (MINI Extreme)",
+      "marca": "Sonoff",
+      "categoria": "interruptor",
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "eWeLink",
+      "voltaje": "100–240 V, 50/60 Hz",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "cargaMax": "10 A",
+      "neutro": "Sí, necesita neutro",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración Sonoff/eWeLink con control LAN.",
+      "precio": 1,
+      "resumen": "Relé WiFi diminuto que se esconde detrás del interruptor de pared. Acepta cualquier voltaje de 100 a 240 V. Existe una versión con Matter (MINIR4M).",
+      "pros": [
+        "Sirve en redes de 110 V y de 220 V",
+        "Muy pequeño: cabe en casi cualquier caja",
+        "Control local (LAN)"
+      ],
+      "contras": [
+        "Necesita cable neutro en la caja",
+        "Requiere instalación eléctrica"
+      ],
+      "idealPara": "Automatizar luces manteniendo tu interruptor de pared de siempre.",
+      "notaLatam": "Acepta de 100 a 240 V: vale para cualquier país de la región. La instalación eléctrica debe hacerla alguien que sepa.",
+      "busqueda": "sonoff minir4"
+    },
+    {
+      "slug": "sonoff-zbmini-l2",
+      "nombre": "Sonoff ZBMINI-L2 (sin neutro)",
+      "marca": "Sonoff",
+      "categoria": "interruptor",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Coordinador Zigbee",
+      "app": "eWeLink",
+      "voltaje": "100–240 V, 50/60 Hz",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "cargaMax": "6 A (LED: 150 W a 120 V / 300 W a 230 V)",
+      "neutro": "No necesita neutro",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "via-hub",
+        "homekit": "no",
+        "matter": "no",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 1,
+      "resumen": "Relé Zigbee que funciona sin cable neutro, el caso más común en instalaciones antiguas donde la caja del interruptor solo tiene fase.",
+      "pros": [
+        "Funciona sin cable neutro",
+        "Sirve en 110 V y 220 V",
+        "Muy compacto"
+      ],
+      "contras": [
+        "Carga máxima baja (6 A)",
+        "Necesita hub o coordinador Zigbee"
+      ],
+      "idealPara": "Casas con instalación antigua sin neutro en la caja del interruptor.",
+      "notaLatam": "Acepta de 100 a 240 V. Con 120 V, el máximo para LED es de 150 W.",
+      "busqueda": "sonoff zbmini-l2"
+    },
+    {
+      "slug": "shelly-1-gen4",
+      "nombre": "Shelly 1 Gen4",
+      "marca": "Shelly",
+      "categoria": "interruptor",
+      "protocolos": [
+        "WiFi 6",
+        "Zigbee 3.0",
+        "Matter",
+        "Bluetooth"
+      ],
+      "hub": "No necesita",
+      "app": "Shelly Smart Control",
+      "voltaje": "110–240 V CA, 24–48 V CC o 12 V CC",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "cargaMax": "16 A (contacto seco)",
+      "neutro": "Sí, necesita neutro (con alimentación de CA)",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "via-matter",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración Shelly, 100 % local.",
+      "precio": 2,
+      "resumen": "Relé de contacto seco de 16 A con WiFi, Zigbee y Matter. Funciona en local sin nube y admite scripts y MQTT para usuarios avanzados.",
+      "pros": [
+        "Control 100 % local",
+        "Compatible con Matter y Zigbee",
+        "Contacto seco de 16 A: sirve para portones o calderas"
+      ],
+      "contras": [
+        "Más caro que el MINIR4",
+        "Necesita neutro"
+      ],
+      "idealPara": "Quien quiere el relé más versátil y sin depender de la nube.",
+      "notaLatam": "Acepta 110–240 V: vale para cualquier país de la región. La instalación eléctrica debe hacerla alguien que sepa.",
+      "busqueda": "shelly 1 gen4"
+    }
+  ]
+}
