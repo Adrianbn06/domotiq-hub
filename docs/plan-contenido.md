@@ -6,7 +6,6 @@ añadir o borrar temas cuando quiera.
 
 ## Pendientes
 
-- [ ] Comparativa: sensores de puerta Aqara Door and Window Sensor T1 vs Sonoff SNZB-04P (productos ya en el catálogo)
 - [ ] Productos nuevos: 3 sensores — Aqara Motion Sensor P1, un sensor de fuga de agua Zigbee (Aqara o Sonoff) y un sensor de vibración o botón inalámbrico
 - [ ] Comparativa: enchufes con medición de consumo — Sonoff S31 vs Tapo P115 vs Kasa EP25 (productos ya en el catálogo)
 - [ ] Productos nuevos: 3 focos o bombillas para redes de 220–240 V (versiones E27 de WiZ y Philips Hue, y un foco Tuya / Smart Life de 220 V)
@@ -20,3 +19,5 @@ añadir o borrar temas cuando quiera.
 ## Hechos
 
 (La tarea semanal mueve aquí los temas terminados.)
+
+- [x] (2026-10-02) Comparativa: sensores de puerta Aqara Door and Window Sensor T1 vs Sonoff SNZB-04P
