@@ -4,7 +4,6 @@
   "description": "Guías y ofertas de domótica para Latinoamérica",
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.js",
-    "tags": "node generate-tags.js"
+    "build": "node scripts/build.js"
   }
 }
