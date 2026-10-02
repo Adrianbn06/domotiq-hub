@@ -84,7 +84,21 @@ function enlacesTienda(p, tiendas) {
 }
 
 // ─── PLANTILLA ────────────────────────────────────────────────────────────────
+// Google corta los títulos a ~60 caracteres y las descripciones a ~155
+export function tituloSeo(base) {
+  const conMarca = `${base} | OfertasDomoticas`;
+  return conMarca.length <= 60 ? conMarca : base;
+}
+
+export function recortar(texto, max = 155) {
+  const t = String(texto).replace(/\s+/g, ' ').trim();
+  if (t.length <= max) return t;
+  const corte = t.slice(0, max - 1);
+  return corte.slice(0, corte.lastIndexOf(' ')).replace(/[,;:.\s]+$/, '') + '…';
+}
+
 export function pagina({ title, description, canonical, body, scripts = [], breadcrumbs, robots = 'index, follow' }) {
+  description = recortar(description);
   const ld = breadcrumbs ? `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -103,11 +117,19 @@ export function pagina({ title, description, canonical, body, scripts = [], brea
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${SITE_URL}${canonical}">
+  <meta property="og:image" content="${SITE_URL}/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_LA">
+  <meta property="og:site_name" content="OfertasDomoticas.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="/assets/catalogo.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4MP94RSZL"></script>
   <script src="/analytics.js" defer></script>
 ${scripts.map((s) => `  <script src="${s}" defer></script>`).join('\n')}
   ${ld}
@@ -129,7 +151,7 @@ export function cabecera(actual = '') {
   const link = (href, label) => `<a href="${href}"${actual.startsWith(href) ? ' aria-current="page"' : ''}>${label}</a>`;
   return `<header>
   <div class="header-inner">
-    <a href="/" class="logo"><span class="logo-icon">🏠</span>Ofertas<em>Domoticas</em></a>
+    <a href="/" class="logo"><img class="logo-icon" src="/favicon.svg" alt="" width="32" height="32">Ofertas<em>Domoticas</em></a>
     <nav aria-label="Principal">
       ${link('/productos/', 'Productos')}
       ${link('/comparativas/', 'Comparativas')}
@@ -144,12 +166,12 @@ export function pie() {
   return `<footer>
   <div class="w">
     <span>© ${new Date().getFullYear()} OfertasDomoticas.com — Domótica práctica para Latinoamérica</span>
-    <span><a href="/glosario">Glosario</a> · <a href="/nosotros">Nosotros</a> · <a href="/privacidad">Privacidad</a> · <a href="/contacto">Contacto</a></span>
+    <span><a href="/glosario">Glosario</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/aviso-legal">Aviso legal</a> · <a href="/privacidad">Privacidad</a> · <a href="/privacidad#cookies" data-cookies>Configurar cookies</a></span>
   </div>
 </footer>`;
 }
 
-export const AVISO_AFILIADOS =`<p class="disclosure">Algunos enlaces de compra pueden ser de afiliado: si compras a través de ellos podemos recibir una pequeña comisión, sin coste extra para ti. No mostramos precios exactos porque cambian a diario; el rango es orientativo.</p>`;
+export const AVISO_AFILIADOS =`<p class="disclosure">Algunos enlaces de compra pueden ser de afiliado: si compras a través de ellos podemos recibir una pequeña comisión, sin coste extra para ti. No mostramos precios exactos porque cambian a diario; el rango es orientativo. En calidad de afiliado de Amazon, OfertasDomoticas.com obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>`;
 
 export function badges(p) {
   const out = p.protocolos.slice(0, 3).map((x) => `<span class="badge">${esc(x)}</span>`);
@@ -211,7 +233,7 @@ ${bloques}
 ${AVISO_AFILIADOS}`;
 
   return pagina({
-    title: 'Catálogo de domótica para Latinoamérica: enchufes, focos, sensores y hubs',
+    title: tituloSeo('Catálogo de domótica para Latinoamérica'),
     description: `Compara ${productos.length} productos de domótica (Sonoff, Aqara, Tapo, Shelly, WiZ, Hue y Tuya) por voltaje, protocolo y compatibilidad con Alexa, Google, Apple Home y Home Assistant.`,
     canonical: '/productos/',
     scripts: ['/assets/catalogo.js'],
@@ -273,7 +295,7 @@ ${otros.map((o) => `  <a class="btn secondary" href="/comparar?p=${esc(p.slug)},
 ${AVISO_AFILIADOS}`;
 
   return pagina({
-    title: `${p.nombre}: ficha técnica, compatibilidad y opinión | OfertasDomoticas`,
+    title: tituloSeo(`${p.nombre.replace(/\s*\(.*?\)/g, '')}: ficha técnica`),
     description: `${p.resumen.split('. ')[0]}. Voltaje, protocolo, compatibilidad con Alexa, Google, Apple Home y Home Assistant.`.slice(0, 300),
     canonical: `/productos/${p.slug}`,
     breadcrumbs: [['Inicio', '/'], ['Productos', '/productos/'], [p.nombre, `/productos/${p.slug}`]],
@@ -295,7 +317,7 @@ function paginaComparar(data) {
 <p class="muted small">¿No sabes por dónde empezar? Mira el <a href="/productos/">catálogo completo</a> y marca los que quieras comparar. Datos actualizados el ${esc(data.actualizado)}.</p>
 ${AVISO_AFILIADOS}`;
   return pagina({
-    title: 'Comparador de domótica: enchufes, focos, sensores y hubs lado a lado',
+    title: tituloSeo('Comparador de productos de domótica'),
     description: 'Compara hasta 3 productos de domótica: voltaje, protocolo (WiFi, Zigbee, Matter), si necesitan hub y compatibilidad con Alexa, Google, Apple Home y Home Assistant.',
     canonical: '/comparar',
     scripts: ['/assets/comparar.js'],

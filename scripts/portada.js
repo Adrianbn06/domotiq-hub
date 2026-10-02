@@ -178,7 +178,7 @@ ${PAISES.map(([pais, v, c]) => `<tr><td>${esc(pais)}</td><td>${esc(v)}</td><td>$
 ${AVISO_AFILIADOS}`;
 
   const html = pagina({
-    title: 'OfertasDomoticas.com — Domótica práctica para Latinoamérica: catálogo, comparador y guías',
+    title: 'OfertasDomoticas.com: domótica práctica para Latinoamérica',
     description: `Elige enchufes, focos, sensores y hubs inteligentes que funcionen en tu país (110 V o 220 V). ${data.productos.length} productos verificados, comparador y guías de domótica en español.`,
     canonical: '/',
     body,

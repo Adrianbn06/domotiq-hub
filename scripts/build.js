@@ -15,6 +15,7 @@ import { fileURLToPath } from 'url';
 import { generarCatalogo } from './catalogo.js';
 import { generarPortada } from './portada.js';
 import { generarComparativas } from './comparativas.js';
+import { generarPaginas } from './paginas.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
@@ -58,5 +59,6 @@ ${pages.map(p => `  <url>
 
 generarCatalogo(ROOT);
 generarComparativas(ROOT);
+generarPaginas(ROOT);
 generarPortada(ROOT);
 generateSitemap();

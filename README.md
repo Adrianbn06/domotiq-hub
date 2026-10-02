@@ -12,6 +12,8 @@ Sitio 100 % estático publicado en Cloudflare Workers (static assets): cada merg
 | `scripts/catalogo.js` | Genera `/productos/`, una ficha por producto y `/comparar`. |
 | `data/comparativas.json` | Artículos "X vs Y" (texto, veredicto por perfil y preguntas frecuentes). La tabla técnica sale del catálogo. |
 | `scripts/comparativas.js` | Genera `/comparativas/` y un artículo por comparativa. |
+| `scripts/paginas.js` | Genera aviso legal, privacidad, nosotros, contacto y la página 404. |
+| `public/analytics.js` | Aviso de cookies: Google Analytics solo se carga si el visitante acepta. |
 | `scripts/portada.js` | Genera la portada. La selección de productos y las comparativas destacadas se editan al principio del archivo. |
 | `scripts/build.js` | Build completo: catálogo + portada + `sitemap.xml`. |
 | `public/` | Lo que se publica. `public/index.html`, `public/productos/`, `public/comparativas/`, `public/comparar.html` y `public/data/` se generan en el build. |
