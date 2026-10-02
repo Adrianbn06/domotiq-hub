@@ -4,3 +4,9 @@
 /articulos/* /productos/ 301
 /tags /articulos-editoriales/ 301
 /tags/* /articulos-editoriales/ 301
+
+# Guías antiguas duplicadas, fusionadas con la guía equivalente (2026-10)
+/guia-domotica-2026 /articulos-editoriales/que-es-la-domotica-como-empezar-menos-50 301
+/guia-domotica-2026.html /articulos-editoriales/que-es-la-domotica-como-empezar-menos-50 301
+/zigbee-vs-matter-vs-zwave /articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026 301
+/zigbee-vs-matter-vs-zwave.html /articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026 301

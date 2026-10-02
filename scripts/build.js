@@ -38,18 +38,26 @@ function toUrl(file) {
   return `${SITE_URL}/${rel.slice(0, -'.html'.length)}`;
 }
 
+// Fecha real del contenido (dateModified o datePublished del JSON-LD). La fecha del archivo
+// cambia en cada build y Google deja de fiarse de un lastmod que siempre es "hoy"; sin fecha, se omite.
+function contentDate(html) {
+  const m = html.match(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})/) || html.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})/);
+  return m ? m[1] : null;
+}
+
 function generateSitemap() {
   const pages = listHtmlFiles(PUBLIC_DIR)
     .filter(file => path.basename(file) !== '404.html')
-    .filter(file => !/<meta name="robots" content="[^"]*noindex/.test(fs.readFileSync(file, 'utf8')))
-    .map(file => ({ loc: toUrl(file), lastmod: fs.statSync(file).mtime.toISOString().split('T')[0] }))
+    .map(file => ({ file, html: fs.readFileSync(file, 'utf8') }))
+    .filter(({ html }) => !/<meta name="robots" content="[^"]*noindex/.test(html))
+    .map(({ file, html }) => ({ loc: toUrl(file), lastmod: contentDate(html) }))
     .sort((a, b) => a.loc.localeCompare(b.loc));
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map(p => `  <url>
-    <loc>${p.loc}</loc>
-    <lastmod>${p.lastmod}</lastmod>
+    <loc>${p.loc}</loc>${p.lastmod ? `
+    <lastmod>${p.lastmod}</lastmod>` : ''}
   </url>`).join('\n')}
 </urlset>
 `;
