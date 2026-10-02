@@ -172,7 +172,7 @@ function slugify(text) {
 
 // ─── GENERADOR DE PÁGINAS INDIVIDUALES ───────────────────────────────────────
 function generateArticlePage(item, allItems = []) {
-  const canonicalUrl = `https://www.ofertasdomoticas.com/articulos/${item.slug}.html`;
+  const canonicalUrl = `https://www.ofertasdomoticas.com/articulos/${item.slug}`;
   const typeLabels = { news:'Noticia', promo:'Oferta', review:'Review', comparativa:'Comparativa' };
   const typeIcons  = { news:'📡', promo:'🏷️', review:'⭐', comparativa:'⚖️' };
   const typeColors = { news:'#3b82f6', promo:'#f59e0b', review:'#a78bfa', comparativa:'#4ade80' };
@@ -264,7 +264,7 @@ function generateArticlePage(item, allItems = []) {
       <h2 style="font-size:16px;font-weight:700;color:#f59e0b;margin-bottom:16px;">🏷️ Ofertas relacionadas con ${(item.tags||['este tema'])[0]}</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
         ${crossSellOffers.map(o => `
-          <a href="/articulos/${o.slug}.html" target="_blank" rel="sponsored noopener" style="background:#141c2e;border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px;text-decoration:none;display:block;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(245,158,11,0.5)'" onmouseout="this.style.borderColor='rgba(245,158,11,0.2)'">
+          <a href="/articulos/${o.slug}" target="_blank" rel="sponsored noopener" style="background:#141c2e;border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px;text-decoration:none;display:block;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(245,158,11,0.5)'" onmouseout="this.style.borderColor='rgba(245,158,11,0.2)'">
             <div style="font-size:10px;font-weight:700;color:#f59e0b;margin-bottom:6px;letter-spacing:0.5px;">${o.platform||'Oferta'}</div>
             <div style="font-size:13px;font-weight:500;color:#e2e8f0;line-height:1.4;margin-bottom:8px;">${o.title.slice(0,70)}${o.title.length>70?'...':''}</div>
             <div style="font-size:18px;font-weight:800;color:#f59e0b;font-family:monospace;">${o.price}</div>
@@ -279,7 +279,7 @@ function generateArticlePage(item, allItems = []) {
     ? `<section style="margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07);">
         <h2 style="font-size:18px;font-weight:600;color:#e2e8f0;margin-bottom:14px;">Más ${label}s relacionadas</h2>
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
-          ${related.map(r=>`<a href="/articulos/${r.slug}.html" style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;text-decoration:none;color:#e2e8f0;display:block;">
+          ${related.map(r=>`<a href="/articulos/${r.slug}" style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:14px;text-decoration:none;color:#e2e8f0;display:block;">
             <div style="font-size:11px;color:#00d4aa;margin-bottom:6px;">${typeIcons[r.type]||'📄'} ${typeLabels[r.type]||r.type}</div>
             <div style="font-size:13px;font-weight:500;line-height:1.4;">${r.title.slice(0,80)}${r.title.length>80?'...':''}</div>
             ${r.price?`<div style="font-size:14px;font-weight:700;color:#f59e0b;margin-top:8px;">${r.price}</div>`:''}
@@ -327,7 +327,7 @@ function generateArticlePage(item, allItems = []) {
 
   const tags = item.tags ? item.tags.map(t => {
     const slug = t.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
-    return `<a href="/tags/${slug}.html" style="font-size:11px;background:rgba(255,255,255,0.05);color:#94a3b8;padding:3px 10px;border-radius:6px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.color='#00d4aa';this.style.background='rgba(0,212,170,0.08)'" onmouseout="this.style.color='#94a3b8';this.style.background='rgba(255,255,255,0.05)'">${t}</a>`;
+    return `<a href="/tags/${slug}" style="font-size:11px;background:rgba(255,255,255,0.05);color:#94a3b8;padding:3px 10px;border-radius:6px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.color='#00d4aa';this.style.background='rgba(0,212,170,0.08)'" onmouseout="this.style.color='#94a3b8';this.style.background='rgba(255,255,255,0.05)'">${t}</a>`;
   }).join('') : '';
 
   return `<!DOCTYPE html>
@@ -399,7 +399,7 @@ function generateArticlePage(item, allItems = []) {
   ${archiveRelated.length > 0 ? `<section style="margin-top:28px;padding:20px;background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.12);border-radius:12px;">
     <h3 style="font-size:15px;font-weight:700;color:var(--accent2,#3b82f6);margin-bottom:14px;">📚 Del archivo — contenido relacionado</h3>
     <div style="display:flex;flex-direction:column;gap:8px;">
-      ${archiveRelated.map(r => `<a href="/articulos/${r.slug}.html" style="font-size:13px;color:#94a3b8;text-decoration:none;padding:8px 12px;background:#141c2e;border-radius:8px;display:block;border:1px solid rgba(255,255,255,0.05);" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">
+      ${archiveRelated.map(r => `<a href="/articulos/${r.slug}" style="font-size:13px;color:#94a3b8;text-decoration:none;padding:8px 12px;background:#141c2e;border-radius:8px;display:block;border:1px solid rgba(255,255,255,0.05);" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='#94a3b8'">
         ${r.type==='review'?'⭐':r.type==='comparativa'?'⚖️':'📡'} ${r.title.slice(0,90)}${r.title.length>90?'...':''}
       </a>`).join('')}
     </div>
@@ -409,7 +409,7 @@ function generateArticlePage(item, allItems = []) {
   <footer>
     <a href="/">← Volver al inicio</a>
     &nbsp;&nbsp;
-    <a href="/categorias.html" style="margin-left:8px;">Ver categorías</a>
+    <a href="/categorias" style="margin-left:8px;">Ver categorías</a>
   </footer>
 </div>
 </body>
@@ -609,7 +609,7 @@ function generateRSS(items) {
 
   const rssItems = newsItems.map(item => {
     const url = item.slug
-      ? `https://www.ofertasdomoticas.com/articulos/${item.slug}.html`
+      ? `https://www.ofertasdomoticas.com/articulos/${item.slug}`
       : (item.url && item.url !== '#' ? item.url : 'https://www.ofertasdomoticas.com');
     const title = (item.title||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     const desc  = (item.body||'').slice(0,300).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -779,7 +779,7 @@ function renderCardHTML(item, i, priceHistory = null) {
   const icon = p => p === 'Amazon' ? '🛒' : p === 'eBay' ? '🏪' : '🌐';
 
   if (item.type === 'news') {
-    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    const articleUrl = item.slug ? `/articulos/${item.slug}` : (item.url || '#');
     const target = item.slug ? '_self' : '_blank';
     const tags = (item.tags||[]).slice(0,2).map(t => `<span class="tag platform">${t}</span>`).join('');
     return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="${target}" rel="noopener">
@@ -797,7 +797,7 @@ function renderCardHTML(item, i, priceHistory = null) {
   }
 
   if (item.type === 'promo') {
-    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    const articleUrl = item.slug ? `/articulos/${item.slug}` : (item.url || '#');
     const insight = priceHistory ? getPriceInsight(item, priceHistory) : null;
     const insightBadge = insight ? `<div style="background:${insight.color}22;border:1px solid ${insight.color}44;color:${insight.color};padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;margin-top:6px;display:inline-block;">${insight.label}</div>` : '';
     return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_blank" rel="sponsored noopener">
@@ -823,7 +823,7 @@ function renderCardHTML(item, i, priceHistory = null) {
   }
 
   if (item.type === 'review') {
-    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    const articleUrl = item.slug ? `/articulos/${item.slug}` : (item.url || '#');
     return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_self" rel="noopener">
       <div class="card-header">
         <div class="card-tags"><span class="tag review">⭐ Review</span></div>
@@ -838,7 +838,7 @@ function renderCardHTML(item, i, priceHistory = null) {
   }
 
   if (item.type === 'comparativa') {
-    const articleUrl = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    const articleUrl = item.slug ? `/articulos/${item.slug}` : (item.url || '#');
     return `<a class="card" style="animation-delay:${delay}s" href="${articleUrl}" target="_self" rel="noopener">
       <div class="card-header">
         <div class="card-tags"><span class="tag comparativa">⚖️ Comparativa</span></div>

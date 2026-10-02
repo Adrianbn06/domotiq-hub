@@ -371,8 +371,8 @@ function renderDeals(items) {
   }
 
   grid.innerHTML = promos.map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
-    const fullUrl = item.slug ? `https://www.ofertasdomoticas.com/articulos/${item.slug}.html` : (item.url||'https://www.ofertasdomoticas.com');
+    const href = item.slug ? `/articulos/${item.slug}` : (item.url||'#');
+    const fullUrl = item.slug ? `https://www.ofertasdomoticas.com/articulos/${item.slug}` : (item.url||'https://www.ofertasdomoticas.com');
     const pc = platClass(item.platform);
     const pi = platIcon(item.platform);
     const compat = (item.compatibility||[]).slice(0,3).map(c=>`<span class="dc-tag">${c}</span>`).join('');
@@ -414,7 +414,7 @@ function renderNews(items) {
   }
 
   grid.innerHTML = news.map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
+    const href = item.slug ? `/articulos/${item.slug}` : (item.url||'#');
     const target = item.slug ? '_self' : '_blank';
     const tags = (item.tags||[]).slice(0,2).map(t=>`<span class="nc-platform">${t}</span>`).join('');
     return `<a class="news-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener" aria-label="${item.title}">
@@ -448,7 +448,7 @@ function renderArchive(items) {
 
   const labels = { review:'⭐ Review', comparativa:'⚖️ Comparativa', news:'📡 Noticia', promo:'🏷️ Oferta' };
   grid.innerHTML = filtered.slice(0,30).map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : '#';
+    const href = item.slug ? `/articulos/${item.slug}` : '#';
     const label = labels[item.type] || item.type;
     return `<a class="arc-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="_self" rel="noopener">
       <div><span class="arc-badge ${item.type}">${label}</span></div>
@@ -479,7 +479,7 @@ function renderWeeklySummary(items) {
   }
 
   grid.innerHTML = news.slice(0,6).map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
+    const href = item.slug ? `/articulos/${item.slug}` : (item.url||'#');
     const target = item.slug ? '_self' : '_blank';
     const tags = (item.tags||[]).slice(0,2).map(t =>
       `<span style="font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;background:rgba(59,130,246,0.12);color:var(--accent2);">${t}</span>`
@@ -514,7 +514,7 @@ function renderNewsFiltered(items) {
   }
 
   grid.innerHTML = filtered.map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
+    const href = item.slug ? `/articulos/${item.slug}` : (item.url||'#');
     const target = item.slug ? '_self' : '_blank';
     const tags = (item.tags||[]).slice(0,2).map(t=>`<span class="nc-platform">${t}</span>`).join('');
     return `<a class="news-card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener" aria-label="${item.title}">

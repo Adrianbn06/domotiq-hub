@@ -3,6 +3,7 @@
   "framework": null,
   "buildCommand": "node scripts/build.js",
   "outputDirectory": "public",
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",

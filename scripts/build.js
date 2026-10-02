@@ -44,7 +44,8 @@ function toUrl(file) {
   const rel = path.relative(PUBLIC_DIR, file).split(path.sep).join('/');
   if (rel === 'index.html') return `${SITE_URL}/`;
   if (rel.endsWith('/index.html')) return `${SITE_URL}/${rel.slice(0, -'index.html'.length)}`;
-  return `${SITE_URL}/${rel}`;
+  // URLs limpias: /glosario.html se publica como /glosario
+  return `${SITE_URL}/${rel.slice(0, -'.html'.length)}`;
 }
 
 function generateSitemap() {

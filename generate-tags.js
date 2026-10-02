@@ -56,7 +56,7 @@ const typeColor = { news:'#60a5fa', promo:'#f59e0b', review:'#a78bfa', comparati
 
 function buildTagPage(slug, label, tagItems) {
   const cards = tagItems.map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url || '#');
+    const href = item.slug ? `/articulos/${item.slug}` : (item.url || '#');
     const target = item.type === 'promo' ? '_blank' : '_self';
     const rel = item.type === 'promo' ? 'sponsored noopener' : 'noopener';
     const bg = typeBg[item.type] || typeBg.news;
@@ -80,7 +80,7 @@ function buildTagPage(slug, label, tagItems) {
   const relatedTags = [...new Set(tagItems.flatMap(i => i.tags||[]))].filter(t => t !== label).slice(0, 10);
   const relatedHtml = relatedTags.map(t => {
     const s = t.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
-    return `<a href="/tags/${s}.html" style="font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.07);color:#94a3b8;text-decoration:none;background:#141c2e;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,212,170,0.3)';this.style.color='#00d4aa'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.color='#94a3b8'">${t}</a>`;
+    return `<a href="/tags/${s}" style="font-size:12px;padding:5px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.07);color:#94a3b8;text-decoration:none;background:#141c2e;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,212,170,0.3)';this.style.color='#00d4aa'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)';this.style.color='#94a3b8'">${t}</a>`;
   }).join('');
 
   const newsCount = tagItems.filter(i=>i.type==='news').length;
@@ -93,15 +93,15 @@ function buildTagPage(slug, label, tagItems) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${label} — Ofertas y Noticias de Domótica | OfertasDomoticas.com</title>
   <meta name="description" content="Toda la información sobre ${label} en domótica: ${newsCount} noticias y ${promoCount} ofertas. Análisis técnico de ${label} para smart home.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.ofertasdomoticas.com/tags/${slug}.html">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.ofertasdomoticas.com/tags/${slug}">
   <meta property="og:title" content="${label} — OfertasDomoticas.com">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"CollectionPage","name":"${label} — OfertasDomoticas.com","url":"https://www.ofertasdomoticas.com/tags/${slug}.html","description":"Noticias y ofertas sobre ${label} en domótica y smart home","isPartOf":{"@type":"WebSite","url":"https://www.ofertasdomoticas.com"}}
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"${label} — OfertasDomoticas.com","url":"https://www.ofertasdomoticas.com/tags/${slug}","description":"Noticias y ofertas sobre ${label} en domótica y smart home","isPartOf":{"@type":"WebSite","url":"https://www.ofertasdomoticas.com"}}
   </script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
@@ -133,7 +133,7 @@ function buildTagPage(slug, label, tagItems) {
   </div>
 </header>
 <div class="w">
-  <div class="bc"><a href="/">Inicio</a> › <a href="/categorias.html">Categorías</a> › ${label}</div>
+  <div class="bc"><a href="/">Inicio</a> › <a href="/categorias">Categorías</a> › ${label}</div>
 
   <div style="padding:32px 0 20px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;">
     <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,0.08);border:1px solid rgba(0,212,170,0.2);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;color:#00d4aa;margin-bottom:16px;">🏷️ Tag: ${label}</div>
@@ -157,8 +157,8 @@ function buildTagPage(slug, label, tagItems) {
 </div>
 <footer>
   © 2026 OfertasDomoticas.com ·
-  <a href="/">Inicio</a> · <a href="/categorias.html">Categorías</a> ·
-  <a href="/glosario.html">Glosario</a> · <a href="/privacidad.html">Privacidad</a>
+  <a href="/">Inicio</a> · <a href="/categorias">Categorías</a> ·
+  <a href="/glosario">Glosario</a> · <a href="/privacidad">Privacidad</a>
 </footer>
 </body>
 </html>`;
@@ -175,7 +175,7 @@ validTags.forEach(([slug, {label, items: tagItems}]) => {
 const indexCards = validTags.map(([slug, {label, items: tagItems}]) => {
   const n = tagItems.filter(i=>i.type==='news').length;
   const p = tagItems.filter(i=>i.type==='promo').length;
-  return `<a href="/tags/${slug}.html" style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-decoration:none;color:#e2e8f0;display:flex;flex-direction:column;gap:8px;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,212,170,0.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+  return `<a href="/tags/${slug}" style="background:#141c2e;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:16px;text-decoration:none;color:#e2e8f0;display:flex;flex-direction:column;gap:8px;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(0,212,170,0.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
   <div style="font-size:15px;font-weight:600;">${label}</div>
   <div style="display:flex;gap:10px;font-size:12px;color:#64748b;">
     <span>📡 ${n} noticias</span><span>🏷️ ${p} ofertas</span>
@@ -201,7 +201,7 @@ const tagIndex = `<!DOCTYPE html>
   <p style="font-size:15px;color:#94a3b8;margin-bottom:32px;">${generated} etiquetas — ${items.length} artículos indexados</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">${indexCards}</div>
 </div>
-<footer>© 2026 OfertasDomoticas.com · <a href="/">Inicio</a> · <a href="/categorias.html">Categorías</a> · <a href="/privacidad.html">Privacidad</a></footer>
+<footer>© 2026 OfertasDomoticas.com · <a href="/">Inicio</a> · <a href="/categorias">Categorías</a> · <a href="/privacidad">Privacidad</a></footer>
 </body></html>`;
 
 fs.writeFileSync(path.join(tagsDir, 'index.html'), tagIndex, 'utf8');

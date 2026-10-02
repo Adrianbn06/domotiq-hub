@@ -1,0 +1,13 @@
+// Cloudflare Workers (static assets) — sitio 100% estático, sin código de servidor
+{
+  "name": "domotiq-hub",
+  "compatibility_date": "2026-10-01",
+  "build": {
+    "command": "node scripts/build.js"
+  },
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
