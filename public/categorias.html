@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Categorías de Domótica | OfertasDomoticas.com</title>
   <meta name="description" content="Explora ofertas y noticias de domótica por categoría: iluminación inteligente, seguridad, asistentes de voz, redes, energía y robots del hogar.">
-  <link rel="canonical" href="https://ofertasdomoticas.com/categorias.html">
+  <link rel="canonical" href="https://www.ofertasdomoticas.com/categorias">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
@@ -85,6 +85,8 @@
     footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
     footer a:hover{color:var(--accent);}
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J4MP94RSZL"></script>
+  <script src="/analytics.js" defer></script>
 </head>
 <body>
 
@@ -93,8 +95,8 @@
     <a href="/" class="logo"><div class="logo-icon">🏠</div>Ofertas<em>Domoticas</em></a>
     <nav>
       <a href="/">Inicio</a>
-      <a href="/glosario.html">Glosario</a>
-      <a href="/nosotros.html">Nosotros</a>
+      <a href="/glosario">Glosario</a>
+      <a href="/nosotros">Nosotros</a>
     </nav>
   </div>
 </header>
@@ -135,10 +137,10 @@
 <footer>
   © 2026 OfertasDomoticas.com ·
   <a href="/">Inicio</a> ·
-  <a href="/glosario.html">Glosario</a> ·
-  <a href="/nosotros.html">Nosotros</a> ·
-  <a href="/privacidad.html">Privacidad</a> ·
-  <a href="/contacto.html">Contacto</a>
+  <a href="/glosario">Glosario</a> ·
+  <a href="/nosotros">Nosotros</a> ·
+  <a href="/privacidad">Privacidad</a> ·
+  <a href="/contacto">Contacto</a>
 </footer>
 
 <script>
@@ -247,7 +249,7 @@ function renderNews(cat) {
     return;
   }
   grid.innerHTML = filtered.map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
+    const href = item.slug ? `/articulos/${item.slug}` : (item.url||'#');
     const target = item.slug ? '_self' : '_blank';
     const tags = (item.tags||[]).slice(0,2).map(t=>`<span class="tag tag-platform">${t}</span>`).join('');
     return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="${target}" rel="noopener">
@@ -277,25 +279,21 @@ function renderDeals(cat) {
     return;
   }
   grid.innerHTML = filtered.map((item, i) => {
-    const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
+    const href = item.slug ? `/articulos/${item.slug}` : (item.url||'#');
     const pc = platClass(item.platform);
     const pi = platIcon(item.platform);
     const compat = (item.compatibility||[]).slice(0,3).map(c=>`<span class="tag tag-platform">${c}</span>`).join('');
     return `<a class="card" style="animation-delay:${(i*0.04).toFixed(2)}s" href="${href}" target="_blank" rel="sponsored noopener">
       <div class="card-head">
         <span class="card-plat plat-${pc}">${pi} ${item.platform||''}</span>
-        ${item.discount?`<span class="card-disc">${item.discount}</span>`:''}
       </div>
       ${item.protocol?`<span class="tag tag-platform" style="align-self:flex-start;">⬡ ${item.protocol}</span>`:''}
       <div class="card-title">${item.title}</div>
       <div class="card-body">${item.body}</div>
       ${compat?`<div class="card-tags">${compat}</div>`:''}
       <div class="card-footer">
-        <div>
-          <div class="card-price">${item.price||''}</div>
-          ${item.originalPrice?`<div class="card-old">${item.originalPrice}</div>`:''}
-        </div>
-        <span class="card-more">Ver oferta →</span>
+        <div style="font-size:12px;color:var(--muted);">Ver precio actual en la tienda</div>
+        <span class="card-more">Ver producto →</span>
       </div>
     </a>`;
   }).join('');
@@ -325,8 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load data from API
   Promise.all([
-    fetch('/api/content').then(r=>r.json()).catch(()=>({items:[]})),
-    fetch('/api/archive').then(r=>r.json()).catch(()=>({items:[]}))
+    fetch('/data/content.json').then(r=>r.json()).catch(()=>({items:[]})),
+    fetch('/data/archive.json').then(r=>r.json()).catch(()=>({items:[]}))
   ]).then(([content, archive]) => {
     allItems = content.items || [];
     archiveItems = archive.items || [];
