@@ -1,0 +1,6 @@
+# Páginas del sistema antiguo de "ofertas" retiradas en el rediseño (2026-10)
+/categorias /productos/ 301
+/categorias.html /productos/ 301
+/articulos/* /productos/ 301
+/tags /articulos-editoriales/ 301
+/tags/* /articulos-editoriales/ 301

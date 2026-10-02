@@ -10,9 +10,11 @@ Sitio 100 % estático publicado en Cloudflare Workers (static assets): cada merg
 | `data/productos.json` | Catálogo de productos (fuente de verdad). Especificaciones verificadas en fuentes del fabricante. |
 | `data/tiendas.json` | Tiendas y códigos de afiliado. Cambiar aquí el `afiliado` actualiza todos los enlaces. |
 | `scripts/catalogo.js` | Genera `/productos/`, una ficha por producto y `/comparar`. |
-| `scripts/build.js` | Build completo: catálogo + datos de la portada + `sitemap.xml`. |
-| `public/` | Lo que se publica. `public/productos/`, `public/comparar.html` y `public/data/` se generan en el build. |
-| `public/_headers` | Cabeceras de seguridad (CSP estricta en catálogo y comparador). |
+| `scripts/portada.js` | Genera la portada. La selección de productos y las comparativas destacadas se editan al principio del archivo. |
+| `scripts/build.js` | Build completo: catálogo + portada + `sitemap.xml`. |
+| `public/` | Lo que se publica. `public/index.html`, `public/productos/`, `public/comparar.html` y `public/data/` se generan en el build. |
+| `public/_headers` | Cabeceras de seguridad (CSP estricta en portada, catálogo y comparador). |
+| `public/_redirects` | Redirecciones 301 de las páginas antiguas retiradas. |
 | `wrangler.jsonc` | Configuración de Cloudflare Workers. |
 
 ## Añadir o editar un producto

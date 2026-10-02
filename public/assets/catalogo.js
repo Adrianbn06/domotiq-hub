@@ -21,16 +21,25 @@
     count.textContent = visibles === 1 ? 'Mostrando 1 producto' : `Mostrando ${visibles} productos`;
   }
 
-  document.querySelectorAll('.chip').forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const grupo = chip.dataset.group;
-      filtros[grupo] = chip.dataset.value;
-      document.querySelectorAll(`.chip[data-group="${grupo}"]`).forEach((c) => {
-        c.setAttribute('aria-pressed', String(c === chip));
-      });
-      aplicar();
+  function elegir(chip) {
+    const grupo = chip.dataset.group;
+    filtros[grupo] = chip.dataset.value;
+    document.querySelectorAll(`.chip[data-group="${grupo}"]`).forEach((c) => {
+      c.setAttribute('aria-pressed', String(c === chip));
     });
+  }
+
+  document.querySelectorAll('.chip').forEach((chip) => {
+    chip.addEventListener('click', () => { elegir(chip); aplicar(); });
   });
+
+  // Filtros iniciales desde la URL (los enlaces de la portada usan ?volt=220, ?cat=sensor, etc.)
+  new URLSearchParams(location.search).forEach((valor, grupo) => {
+    const chip = [...document.querySelectorAll('.chip')]
+      .find((c) => c.dataset.group === grupo && c.dataset.value === valor);
+    if (chip) elegir(chip);
+  });
+  aplicar();
 
   // ── Comparar ──
   const bar = document.getElementById('compare-bar');

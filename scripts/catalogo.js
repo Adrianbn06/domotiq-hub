@@ -28,7 +28,7 @@ const COMPAT = {
   'sin-confirmar':   { text: 'Sin confirmar', cls: 'partial' },
 };
 
-const PRECIO = {
+export const PRECIO = {
   1: { text: '$ (menos de 15 USD)', corto: '$' },
   2: { text: '$$ (15–40 USD)', corto: '$$' },
   3: { text: '$$$ (más de 40 USD)', corto: '$$$' },
@@ -84,7 +84,7 @@ function enlacesTienda(p, tiendas) {
 }
 
 // ─── PLANTILLA ────────────────────────────────────────────────────────────────
-function pagina({ title, description, canonical, body, scripts = [], breadcrumbs, robots = 'index, follow' }) {
+export function pagina({ title, description, canonical, body, scripts = [], breadcrumbs, robots = 'index, follow' }) {
   const ld = breadcrumbs ? `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -149,9 +149,9 @@ export function pie() {
 </footer>`;
 }
 
-const AVISO_AFILIADOS = `<p class="disclosure">Algunos enlaces de compra pueden ser de afiliado: si compras a través de ellos podemos recibir una pequeña comisión, sin coste extra para ti. No mostramos precios exactos porque cambian a diario; el rango es orientativo.</p>`;
+export const AVISO_AFILIADOS =`<p class="disclosure">Algunos enlaces de compra pueden ser de afiliado: si compras a través de ellos podemos recibir una pequeña comisión, sin coste extra para ti. No mostramos precios exactos porque cambian a diario; el rango es orientativo.</p>`;
 
-function badges(p) {
+export function badges(p) {
   const out = p.protocolos.slice(0, 3).map((x) => `<span class="badge">${esc(x)}</span>`);
   if (p.voltajes) out.push(`<span class="badge volt">${esc(p.voltajes.map((v) => (v === '110' ? '110–120 V' : '220–240 V')).join(' / '))}</span>`);
   if (p.generico) out.push('<span class="badge gen">Genérico</span>');
