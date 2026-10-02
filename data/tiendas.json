@@ -1,0 +1,20 @@
+{
+  "_nota": "Enlaces de compra del catálogo. Cuando tengas cuenta de afiliado, rellena el identificador y se aplicará a todos los productos al publicar.",
+  "tiendas": [
+    {
+      "id": "aliexpress",
+      "nombre": "AliExpress",
+      "busqueda": "https://www.aliexpress.com/w/wholesale-{q}.html",
+      "separador": "-",
+      "afiliado": ""
+    },
+    {
+      "id": "amazon",
+      "nombre": "Amazon",
+      "busqueda": "https://www.amazon.com/s?k={q}",
+      "separador": "+",
+      "afiliado": "domotiq-20",
+      "parametroAfiliado": "tag"
+    }
+  ]
+}
