@@ -45,8 +45,6 @@ const PAISES = [
 
 const GUIAS = [
   'articulos-editoriales/que-es-la-domotica-como-empezar-menos-50.html',
-  'guia-domotica-2026.html',
-  'zigbee-vs-matter-vs-zwave.html',
   'articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026.html',
   'alexa-vs-google-home-vs-homekit.html',
   'articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026.html',
