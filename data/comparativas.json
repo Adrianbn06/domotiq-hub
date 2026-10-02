@@ -221,6 +221,107 @@
         { "p": "¿Necesito el Hue Bridge?", "r": "No para empezar: por Bluetooth controlas hasta 10 focos. Pero sin el Bridge no hay control fuera de casa, ni agrupación de focos, ni integración con otras apps." },
         { "p": "¿Los focos WiFi gastan mucha electricidad apagados?", "r": "Consumen un poco en espera para seguir conectados, normalmente muy poco frente a lo que ahorras al pasar a LED. Si te preocupa el consumo, mide un foco con un enchufe con medición de consumo." }
       ]
+    },
+    {
+      "slug": "aqara-t1-vs-sonoff-snzb-04p-sensor-puerta",
+      "titulo": "Aqara T1 vs Sonoff SNZB-04P: ¿qué sensor de puerta y ventana comprar?",
+      "tituloCorto": "Aqara T1 vs Sonoff SNZB-04P",
+      "descripcion": "Comparamos los sensores de puerta y ventana Aqara Door and Window Sensor T1 y Sonoff SNZB-04P: tamaño, pila, hubs compatibles, Apple Home y Home Assistant.",
+      "actualizado": "2026-10-02",
+      "productos": [
+        "aqara-sensor-puerta-t1",
+        "sonoff-snzb-04p"
+      ],
+      "intro": [
+        "Un sensor de puerta o ventana es de lo más útil y barato que puedes poner en una casa inteligente. Te avisa en el celular si alguien abre la puerta, enciende la luz del pasillo cuando entras o apaga el aire acondicionado si dejaste una ventana abierta. Es un aparato pequeño con dos piezas: el sensor y un imán que se pega en la parte que se mueve.",
+        "Dos de los más buscados son el Aqara Door and Window Sensor T1 y el Sonoff SNZB-04P. Los dos usan Zigbee 3.0 y funcionan con pila, pero se parecen menos de lo que parece: cambian el tamaño, la pila y, sobre todo, con qué hubs y apps se llevan bien. Aquí te contamos las diferencias, incluidos los contras de cada uno."
+      ],
+      "secciones": [
+        {
+          "titulo": "Lo primero: voltaje y clavija no importan aquí",
+          "parrafos": [
+            "Como los dos sensores funcionan con una pila de botón, no dependen del voltaje de tu casa. Da igual si vives en México, Colombia o Centroamérica (110–127 V) o en Perú, Chile o Argentina (220 V): ambos funcionan igual y no necesitas buscar una versión por país.",
+            "Lo que sí tienes que tener es un hub o coordinador Zigbee, porque ninguno se conecta directo al WiFi. Esa es la decisión más importante y la vemos más abajo. Además, ambos son para uso en interiores: el SNZB-04P lo indica Sonoff expresamente, y en el T1 conviene no ponerlo a la intemperie, ya que su rango de temperatura de trabajo llega a unos 45 °C."
+          ]
+        },
+        {
+          "titulo": "Tamaño y diseño",
+          "parrafos": [
+            "El Aqara T1 es muy pequeño: el sensor mide unos 41 × 22 × 11 mm. Se esconde bien en el marco de una puerta o ventana y casi no se nota, algo que se agradece en ventanas delgadas.",
+            "El Sonoff SNZB-04P es más grande: la pieza del sensor mide unos 50,5 × 32 × 21,9 mm y el imán 27 × 12 × 12,4 mm. Funciona igual, pero se ve más. Si el marco es angosto o te importa la estética, el Aqara gana en este punto."
+          ]
+        },
+        {
+          "titulo": "Pila y duración",
+          "parrafos": [
+            "El Aqara T1 usa una pila CR1632 y el fabricante indica que dura más de 2 años con un uso normal. El Sonoff SNZB-04P usa una CR2477, más grande, y Sonoff habla de más de 5 años.",
+            "Esto tiene dos caras. A favor del Sonoff, cambiarás la pila mucho menos veces. En contra, la CR2477 y la CR1632 son menos comunes que la típica CR2032, así que conviene comprar una de repuesto con tiempo y no esperar a que se agote para buscarla en tu ciudad. Las duraciones son las que declaran los fabricantes; en la práctica dependen de cuántas veces se abra la puerta y de la calidad de la señal."
+          ]
+        },
+        {
+          "titulo": "Distancia de detección y alcance",
+          "parrafos": [
+            "El Aqara T1 indica una distancia máxima de detección de 22 mm entre el sensor y el imán, y el Sonoff SNZB-04P indica 20 mm o menos. En ambos casos, pega las dos piezas lo más cerca posible, con la separación mínima que permita cerrar la puerta sin rozar.",
+            "Sonoff declara un alcance de hasta 30 m en interiores. En Zigbee, otros aparatos con corriente (como enchufes o focos Zigbee) hacen de repetidores y ayudan a que la señal llegue más lejos, así que el alcance real depende de tu casa: paredes de concreto o metal lo reducen bastante."
+          ]
+        },
+        {
+          "titulo": "Hubs y apps: la diferencia grande",
+          "parrafos": [
+            "El Aqara T1 está pensado para el ecosistema Aqara. Una vez vinculado a un hub Aqara, se puede compartir con Apple Home, Alexa y Google Home, y también con Matter a través del hub. Si usas iPhone y quieres ver la puerta dentro de la app Casa, el T1 es la opción clara de los dos.",
+            "El Sonoff SNZB-04P es un sensor Zigbee 3.0 que funciona con muchos coordinadores: Sonoff menciona el ZBBridge-P, el ZBDongle-E, Echo con Zigbee y otros hubs Zigbee 3.0. Su ventaja es que no te ata a una marca y es más barato. Su contra es que no tiene soporte para Apple Home en nuestro catálogo, así que si tu casa gira en torno a Siri, no es lo ideal.",
+            "Si tienes Home Assistant con ZHA o Zigbee2MQTT, los dos sirven y funcionan sin nube. Es un buen punto de partida para quien quiere control total y no depender de ninguna aplicación de fabricante."
+          ]
+        },
+        {
+          "titulo": "Funciones extra",
+          "parrafos": [
+            "Sonoff indica que el SNZB-04P incluye alerta de manipulación (te avisa si alguien intenta quitarlo) y que permite escenas locales aunque no haya internet, siempre que el hub las soporte. El Aqara T1 se puede actualizar por OTA, lo que significa que el fabricante puede mejorar su funcionamiento con nuevas versiones del firmware.",
+            "No hemos podido confirmar en fuentes del fabricante si el T1 trae alerta de manipulación, por lo que no la damos por hecha: si te importa esa función, revísala antes de comprar."
+          ]
+        },
+        {
+          "titulo": "Precio",
+          "parrafos": [
+            "En nuestro catálogo el Sonoff SNZB-04P está en el rango más económico (menos de 15 USD) y el Aqara T1 en el rango medio (15–40 USD), de forma orientativa. Si vas a poner sensores en cinco o seis puertas y ventanas, la diferencia se nota en el total. Los precios cambian según el país, la tienda y los costos de importación."
+          ]
+        }
+      ],
+      "veredicto": [
+        {
+          "perfil": "Usas iPhone y Apple Home, o ya tienes un hub Aqara",
+          "producto": "aqara-sensor-puerta-t1",
+          "motivo": "Es muy pequeño, se integra con Apple Home, Alexa y Google vía hub Aqara y se actualiza por OTA."
+        },
+        {
+          "perfil": "Quieres el sensor más barato para muchas puertas y ventanas",
+          "producto": "sonoff-snzb-04p",
+          "motivo": "Cuesta menos, funciona con muchos coordinadores Zigbee 3.0 y su pila dura más según el fabricante."
+        },
+        {
+          "perfil": "Usas Home Assistant con un coordinador Zigbee USB",
+          "producto": "sonoff-snzb-04p",
+          "motivo": "Los dos funcionan, pero el Sonoff sale más barato y no necesitas un hub de marca."
+        }
+      ],
+      "faq": [
+        {
+          "p": "¿Necesito un hub para usar estos sensores?",
+          "r": "Sí. Los dos son Zigbee y necesitan un hub o coordinador Zigbee. El Aqara T1 se usa sobre todo con un hub Aqara; el Sonoff SNZB-04P funciona con varios coordinadores Zigbee 3.0."
+        },
+        {
+          "p": "¿Sirven para puertas de metal o ventanas de aluminio?",
+          "r": "Depende del montaje. Lo importante es que el sensor y el imán queden alineados y a menos de 20–22 mm entre sí. En marcos de metal la señal Zigbee puede debilitarse, así que prueba la ubicación antes de pegarlos definitivamente."
+        },
+        {
+          "p": "¿Puedo mezclar sensores Aqara y Sonoff en la misma casa?",
+          "r": "Sí, si usas un coordinador abierto como Home Assistant con ZHA o Zigbee2MQTT. Con un hub de marca, lo más seguro es quedarte en esa marca."
+        },
+        {
+          "p": "¿Se pueden usar a la intemperie?",
+          "r": "No están pensados para eso. Sonoff indica que el SNZB-04P es para interiores, y el T1 tiene un rango de trabajo de -10 a 45 °C. Para el exterior busca un sensor con protección contra agua y sol."
+        }
+      ]
     }
   ]
 }
