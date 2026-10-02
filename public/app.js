@@ -203,7 +203,7 @@ function renderSuperDeal(items) {
   if (!sdInner) return;
 
   const featured = items
-    .filter(i => i.type === 'promo' && i.featured && i.price)
+    .filter(i => i.type === 'promo' && i.featured)
     .sort((a,b) => parseDiscount(b.discount) - parseDiscount(a.discount));
 
   if (featured.length === 0) {
@@ -226,11 +226,8 @@ function renderSuperDeal(items) {
 
   set('sd-title', deal.title);
   set('sd-desc', deal.body);
-  set('sd-price', deal.price);
-  set('sd-old', deal.originalPrice || '', !!deal.originalPrice);
-  set('sd-disc', deal.discount ? deal.discount + ' HOY' : '', !!deal.discount);
-  set('sd-plat', `${platIcon(deal.platform)} ${deal.platform || ''} · Envío disponible`);
-  set('sd-tag', parseDiscount(deal.discount) > 0 ? `🔥 ${deal.discount} de descuento` : 'Precio mínimo histórico');
+  set('sd-plat', `${platIcon(deal.platform)} ${deal.platform || ''}`);
+  set('sd-tag', 'Producto destacado');
 
   const proto = document.getElementById('sd-proto');
   if (proto) {
@@ -352,7 +349,7 @@ function renderDeals(items) {
   if (!grid) return;
 
   // Excluir la súper oferta del día del grid
-  const featured = items.filter(i => i.type==='promo' && i.featured && i.price)
+  const featured = items.filter(i => i.type==='promo' && i.featured)
     .sort((a,b) => parseDiscount(b.discount)-parseDiscount(a.discount));
   const superSlug = featured.length > 0 ? featured[0].slug : null;
 
@@ -375,22 +372,21 @@ function renderDeals(items) {
 
   grid.innerHTML = promos.map((item, i) => {
     const href = item.slug ? `/articulos/${item.slug}.html` : (item.url||'#');
-    const fullUrl = item.slug ? `https://ofertasdomoticas.com/articulos/${item.slug}.html` : (item.url||'https://ofertasdomoticas.com');
+    const fullUrl = item.slug ? `https://www.ofertasdomoticas.com/articulos/${item.slug}.html` : (item.url||'https://www.ofertasdomoticas.com');
     const pc = platClass(item.platform);
     const pi = platIcon(item.platform);
     const compat = (item.compatibility||[]).slice(0,3).map(c=>`<span class="dc-tag">${c}</span>`).join('');
     const safeTitle = item.title.replace(/'/g,"\\'").replace(/"/g,'&quot;');
-    const waText = encodeURIComponent(`¡Mira esta oferta de domótica! 🤖\n\n${item.title}\n💸 Precio: ${item.price}\n\n👉 Ver aquí: ${fullUrl}`);
+    const waText = encodeURIComponent(`¡Mira esta oferta de domótica! 🤖\n\n${item.title}\n\n👉 Ver aquí: ${fullUrl}`);
     return `<a class="deal-card" style="animation-delay:${(i*0.04).toFixed(2)}s;" href="${href}" target="_blank" rel="sponsored noopener">
       <div class="dc-head">
         <span class="dc-plat ${pc}">${pi} ${item.platform||''}</span>
-        ${item.discount?`<span class="dc-disc">${item.discount}</span>`:''}
       </div>
       ${item.protocol?`<span class="dc-proto">⬡ ${item.protocol}</span>`:''}
       <div class="dc-title">${item.title}</div>
       ${compat?`<div class="dc-compat">${compat}</div>`:''}
       <div class="dc-footer">
-        <div><div class="dc-price">${item.price}</div>${item.originalPrice?`<div class="dc-old">${item.originalPrice}</div>`:''}</div>
+        <div style="font-size:12px;color:var(--muted);">Ver precio actual en la tienda</div>
         <div style="display:flex;align-items:center;gap:12px;">
           <span class="wa-share-btn" data-wa="${waText}" style="color:#25d366;cursor:pointer;display:flex;align-items:center;flex-shrink:0;" title="Compartir en WhatsApp">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -588,7 +584,7 @@ function updateStats(items) {
 
 // ── API FALLBACK ──────────────────────────────────────────────────────────────
 function loadFromAPI() {
-  return fetch('/api/content')
+  return fetch('/data/content.json')
     .then(r => r.json())
     .then(data => {
       if (data && data.items && data.items.length > 0) {
@@ -602,15 +598,6 @@ function loadFromAPI() {
     })
     .catch(() => {});
 }
-
-// ── ANALYTICS ─────────────────────────────────────────────────────────────────
-function initAnalytics() {
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-J4MP94RSZL');
-}
-
 
 // ── BOTÓN VOLVER ARRIBA ───────────────────────────────────────────────────────
 function initScrollTop() {
@@ -629,7 +616,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initLang();
   initTheme();
   initControls();
-  initAnalytics();
   initCookieBanner();
   initScrollTop();
 
@@ -657,7 +643,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Cargar archivo histórico
-  fetch('/api/archive')
+  fetch('/data/archive.json')
     .then(r => r.json())
     .then(data => {
       if (data && data.items && data.items.length > 0) {

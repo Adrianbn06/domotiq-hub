@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ofertasdomoticas.com/sitemap.xml
+Sitemap: https://www.ofertasdomoticas.com/sitemap.xml

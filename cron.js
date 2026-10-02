@@ -172,7 +172,7 @@ function slugify(text) {
 
 // ─── GENERADOR DE PÁGINAS INDIVIDUALES ───────────────────────────────────────
 function generateArticlePage(item, allItems = []) {
-  const canonicalUrl = `https://ofertasdomoticas.com/articulos/${item.slug}.html`;
+  const canonicalUrl = `https://www.ofertasdomoticas.com/articulos/${item.slug}.html`;
   const typeLabels = { news:'Noticia', promo:'Oferta', review:'Review', comparativa:'Comparativa' };
   const typeIcons  = { news:'📡', promo:'🏷️', review:'⭐', comparativa:'⚖️' };
   const typeColors = { news:'#3b82f6', promo:'#f59e0b', review:'#a78bfa', comparativa:'#4ade80' };
@@ -522,7 +522,7 @@ ${icon(deal.platform)} ${deal.platform}
 `;
   });
 
-  message += `📡 Más ofertas y noticias en [OfertasDomoticas.com](https://ofertasdomoticas.com)`;
+  message += `📡 Más ofertas y noticias en [OfertasDomoticas.com](https://www.ofertasdomoticas.com)`;
 
   try {
     const response = await fetch(
@@ -609,8 +609,8 @@ function generateRSS(items) {
 
   const rssItems = newsItems.map(item => {
     const url = item.slug
-      ? `https://ofertasdomoticas.com/articulos/${item.slug}.html`
-      : (item.url && item.url !== '#' ? item.url : 'https://ofertasdomoticas.com');
+      ? `https://www.ofertasdomoticas.com/articulos/${item.slug}.html`
+      : (item.url && item.url !== '#' ? item.url : 'https://www.ofertasdomoticas.com');
     const title = (item.title||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     const desc  = (item.body||'').slice(0,300).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     const tags  = (item.tags||[]).map(t => `<category>${t.replace(/&/g,'&amp;')}</category>`).join('');
@@ -620,7 +620,7 @@ function generateRSS(items) {
       <guid isPermaLink="true">${url}</guid>
       <description>${desc}...</description>
       <pubDate>${now}</pubDate>
-      <source url="https://ofertasdomoticas.com">OfertasDomoticas.com</source>
+      <source url="https://www.ofertasdomoticas.com">OfertasDomoticas.com</source>
       ${tags}
     </item>`;
   }).join('\n');
@@ -629,15 +629,15 @@ function generateRSS(items) {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OfertasDomoticas.com — Noticias de Domótica</title>
-    <link>https://ofertasdomoticas.com</link>
+    <link>https://www.ofertasdomoticas.com</link>
     <description>Las noticias más importantes de domótica y smart home. Zigbee, Matter, Z-Wave, Thread. Actualizado semanalmente.</description>
     <language>es</language>
     <lastBuildDate>${now}</lastBuildDate>
-    <atom:link href="https://ofertasdomoticas.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://www.ofertasdomoticas.com/rss.xml" rel="self" type="application/rss+xml"/>
     <image>
-      <url>https://ofertasdomoticas.com/og-image.png</url>
+      <url>https://www.ofertasdomoticas.com/og-image.png</url>
       <title>OfertasDomoticas.com</title>
-      <link>https://ofertasdomoticas.com</link>
+      <link>https://www.ofertasdomoticas.com</link>
     </image>
 ${rssItems}
   </channel>

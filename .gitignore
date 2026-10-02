@@ -2,3 +2,8 @@ node_modules/
 .env
 *.log
 .DS_Store
+
+# Generados por scripts/build.js
+public/data/
+public/sitemap.xml
+.claude/
