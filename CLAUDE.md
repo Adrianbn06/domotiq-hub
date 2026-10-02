@@ -29,6 +29,11 @@ explica los cambios en lenguaje sencillo.
 - `data/comparativas.json` — artículos "X vs Y". Cada uno: `slug`, `titulo`, `tituloCorto`, `descripcion`,
   `actualizado` (AAAA-MM-DD), `productos` (2–4 slugs que existan en el catálogo), `intro`, `secciones`,
   `veredicto` (perfil → producto del catálogo → motivo) y `faq`. Unas 900–1300 palabras.
+  `tituloCorto` se usa como título para Google: máximo 60 caracteres. `descripcion`: máximo 155 caracteres
+  (la plantilla recorta lo que pase de ahí, pero es mejor escribirla completa dentro del límite).
+- `scripts/paginas.js` — aviso legal, privacidad, nosotros, contacto y 404 (textos fijos).
+- `public/analytics.js` — aviso de cookies: Google Analytics solo se carga si el visitante acepta. No añadas
+  etiquetas de Google Analytics directamente en las páginas.
 - `scripts/portada.js` — la selección destacada de la portada (no hace falta tocarla cada semana).
 - `docs/plan-contenido.md` — lista de temas pendientes.
 

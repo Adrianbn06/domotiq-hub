@@ -10,7 +10,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, pagina, badges, fichaTecnica, fichaCompat, PRECIO, AVISO_AFILIADOS } from './catalogo.js';
+import { esc, pagina, badges, fichaTecnica, fichaCompat, PRECIO, AVISO_AFILIADOS, tituloSeo } from './catalogo.js';
 
 const SITE_URL = 'https://www.ofertasdomoticas.com';
 
@@ -94,7 +94,7 @@ ${AVISO_AFILIADOS}`;
   };
 
   return pagina({
-    title: `${c.titulo} | OfertasDomoticas`,
+    title: tituloSeo(c.tituloCorto),
     description: c.descripcion,
     canonical: `/comparativas/${c.slug}`,
     breadcrumbs: [['Inicio', '/'], ['Comparativas', '/comparativas/'], [c.tituloCorto, `/comparativas/${c.slug}`]],
@@ -111,7 +111,7 @@ ${comparativas.map((c) => `<a class="guide" href="/comparativas/${esc(c.slug)}">
 </div>
 ${AVISO_AFILIADOS}`;
   return pagina({
-    title: 'Comparativas de domótica para Latinoamérica | OfertasDomoticas',
+    title: tituloSeo('Comparativas de domótica para Latinoamérica'),
     description: 'Sonoff vs Tuya, hubs Zigbee, relés con o sin neutro y focos inteligentes: comparativas pensadas para el voltaje y las tiendas de Latinoamérica.',
     canonical: '/comparativas/',
     breadcrumbs: [['Inicio', '/'], ['Comparativas', '/comparativas/']],
