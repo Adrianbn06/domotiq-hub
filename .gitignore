@@ -11,3 +11,7 @@ public/comparar.html
 .claude/
 public/index.html
 public/comparativas/
+
+# Notas locales para agentes de IA (no se suben)
+AGENTS.md
+MEMORY.md
