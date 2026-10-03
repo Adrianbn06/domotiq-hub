@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T001 Técnico + Guía: formato de guías prácticas (`data/guias.json` + `scripts/guias.js`, como las comparativas: intro, secciones, preguntas frecuentes y productos del catálogo relacionados) y primera guía: reescribir "Qué es la domótica y cómo empezar con menos de 50 USD" con datos verificados (mantener la misma URL)
 - [ ] T002 Comparativa: enchufes con medición de consumo — Sonoff S31 vs Tapo P115 vs Kasa EP25 (productos ya en el catálogo)
 - [ ] T003 Guía: el enchufe o foco inteligente no se conecta al WiFi (red de 5 GHz, Smart Life / eWeLink / Tapo): solución paso a paso
 - [ ] T004 Guía: los primeros 5 dispositivos para empezar tu casa inteligente en Latinoamérica
@@ -159,5 +158,6 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-03) T001 Técnico + Guía: formato de guías (`data/guias.json` + `scripts/guias.js`) y guía "Qué es la domótica y cómo empezar con menos de 50 USD" reescrita con datos verificados
 - [x] (2026-10-02) Comparativa: sensores de puerta Aqara Door and Window Sensor T1 vs Sonoff SNZB-04P
 - [x] (2026-10-02) SEO: quitar de las guías antiguas las "ofertas" con precios inventados, fusionar 2 guías duplicadas (301), fechas reales en el sitemap y etiquetas para compartir

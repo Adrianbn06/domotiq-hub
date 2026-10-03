@@ -1,0 +1,126 @@
+{
+  "guias": [
+    {
+      "slug": "que-es-la-domotica-como-empezar-menos-50",
+      "titulo": "¿Qué es la domótica y cómo empezar con menos de 50 USD en Latinoamérica?",
+      "tituloCorto": "Qué es la domótica y cómo empezar con poco",
+      "descripcion": "Qué es la domótica, qué necesitas para empezar sin obras, qué revisar en Latinoamérica (voltaje, clavija, WiFi de 2,4 GHz) y un kit inicial por menos de 50 USD.",
+      "publicado": "2026-03-15",
+      "actualizado": "2026-10-03",
+      "intro": [
+        "La domótica (también llamada casa inteligente o hogar inteligente) suena a algo caro y complicado, pero hoy se puede empezar con un enchufe o tomacorriente y un par de focos, sin romper paredes y sin hub. Esta guía explica qué es, qué necesitas de verdad y qué mirar antes de comprar en tu país.",
+        "No prometemos que todo salga perfecto a la primera: los dispositivos baratos también tienen contras, y las decimos más abajo."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué es la domótica, en simple",
+          "parrafos": [
+            "Según Repsol, la domótica es la gestión inteligente de los aspectos de seguridad, bienestar y comodidad de una casa o edificio mediante sistemas automatizados. En la práctica, es lograr que aparatos de tu casa se enciendan, se apaguen o avisen solos, o que puedas controlarlos desde el celular o con la voz.",
+            "Todo se reduce a tres piezas: un sensor o una orden (movimiento, un horario, un botón en la app), un controlador que decide qué hacer (la app del fabricante, un parlante con asistente o un hub) y un actuador que ejecuta la acción (un foco, un enchufe, un relé). Para empezar, el actuador es suficiente: un enchufe inteligente ya te permite programar horarios y apagar cosas desde cualquier lugar."
+          ],
+          "lista": [
+            "Programar que la lámpara de la sala se encienda al anochecer.",
+            "Apagar desde el celular un ventilador o un cargador que dejaste conectado.",
+            "Con un enchufe que mide consumo, ver cuánta electricidad gasta un aparato (solo algunos modelos lo hacen, por ejemplo el Tapo P115 o el Sonoff S31)."
+          ]
+        },
+        {
+          "titulo": "Primero, tu red eléctrica: voltaje y clavija",
+          "parrafos": [
+            "Es el error más caro de comprar domótica por internet. En México, Centroamérica, Colombia, Ecuador y Venezuela la red es de 110–127 V; en Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay es de 220 V; en Brasil depende de la ciudad (127 V o 220 V). Si el producto no está hecho para tu voltaje, no funcionará bien o se dañará.",
+            "Muchos enchufes están pensados solo para 110–120 V con clavija estilo EE.UU.: el Tapo P115, por ejemplo, es de 100–125 V. Otros, como el Sonoff S26R2, existen en versiones por país (clavija de EE.UU., Brasil, Argentina, Chile o Europa): hay que comprar exactamente la versión de tu país. Con los focos pasa igual: fíjate en el voltaje y en la rosca (E26 o E27). Por ejemplo, el Tapo L535E es de 120 V con rosca E26 y el Tapo L530E es de 220–240 V con rosca E27."
+          ],
+          "aviso": "Antes de pagar, revisa tres cosas en la ficha del producto: voltaje, tipo de clavija o rosca, y corriente máxima."
+        },
+        {
+          "titulo": "WiFi de 2,4 GHz: lo que más falla al configurar",
+          "parrafos": [
+            "Casi todos los enchufes y focos baratos se conectan directo al WiFi, sin hub, y usan la banda de 2,4 GHz. TP-Link indica, por ejemplo, que sus enchufes Tapo son compatibles con cualquier router que tenga la banda de 2,4 GHz. Si tu router mezcla las dos bandas con el mismo nombre y el celular se conecta a la de 5 GHz, la configuración puede fallar: durante la instalación conecta el celular a la red de 2,4 GHz (o desactiva temporalmente la de 5 GHz si tu router lo permite).",
+            "Otra ventaja de empezar así: no gastas en un hub. El inconveniente es que, con muchos dispositivos WiFi, un router básico puede quedar justo; por eso a partir de varios aparatos se suele pasar a dispositivos Zigbee, que sí necesitan un hub o coordinador."
+          ]
+        },
+        {
+          "titulo": "Kit inicial por menos de 50 USD",
+          "parrafos": [
+            "En nuestro catálogo, un enchufe WiFi y un foco inteligente de las marcas económicas están en el rango 1 (menos de 15 USD cada uno, orientativo; el precio real cambia por país y tienda). Con eso, un kit de un enchufe y dos focos queda por debajo de 50 USD."
+          ],
+          "lista": [
+            "Un enchufe inteligente WiFi de tu voltaje y clavija (Tapo P115, Sonoff S26R2 o un enchufe Tuya / Smart Life genérico).",
+            "Uno o dos focos inteligentes de tu voltaje y rosca (por ejemplo WiZ A19 Color o Tapo L535E en 110–120 V; Tapo L530E en 220–240 V).",
+            "La app del fabricante y, si ya tienes uno, tu parlante con Alexa o Google (no es obligatorio: las apps funcionan solas)."
+          ]
+        },
+        {
+          "titulo": "Para qué no sirve un kit barato (los contras)",
+          "parrafos": [
+            "Dependencia de la nube: muchos dispositivos económicos funcionan a través de los servidores del fabricante; si cae el internet o el servicio, puede fallar el control remoto. Algunos modelos tienen control por red local: según nuestra ficha, el Sonoff S26R2 se puede controlar por LAN aunque se caiga internet.",
+            "Cortes de luz: al volver la energía, el dispositivo puede quedar encendido o apagado. En los enchufes Tapo existe el ajuste «Estado predeterminado» (Default State) en la app, que permite elegir qué hacer al volver la luz; según TP-Link se añadió con actualizaciones de firmware, así que mantén el firmware al día. Revísalo en cada marca antes de dejar encendido un aparato que no debería prender solo.",
+            "Marcas genéricas: los enchufes Tuya / Smart Life genéricos son los más baratos, pero la calidad varía mucho entre vendedores y hay que comprobar las especificaciones reales en cada anuncio."
+          ]
+        },
+        {
+          "titulo": "Hubs, Zigbee y Matter: cuándo importan",
+          "parrafos": [
+            "Los sensores de puerta, movimiento o temperatura de nuestro catálogo usan Zigbee con pilas, y necesitan un hub o coordinador Zigbee. Cuando ya tengas un par de dispositivos y quieras sensores, ahí conviene comprar uno (los hay en el catálogo en la categoría hubs).",
+            "Matter es un estándar de conectividad para casa inteligente basado en IP; según la Connectivity Standards Alliance funciona sobre WiFi y Thread, y usa Bluetooth de bajo consumo para la configuración inicial. Está respaldado por Amazon, Apple, Google y Samsung SmartThings. Si compras algo con Matter, es más fácil que funcione con distintas apps, pero para empezar no es un requisito."
+          ]
+        },
+        {
+          "titulo": "Seguridad eléctrica",
+          "parrafos": [
+            "Los enchufes y focos de esta guía se conectan sin tocar cables ni el tablero. Aun así, respeta la corriente máxima indicada (el Tapo P115, por ejemplo, indica 15 A / 1800 W) y no conectes aparatos que superen ese límite. Si más adelante quieres instalar relés o interruptores inteligentes dentro de la pared, hazlo con un electricista si no tienes experiencia."
+          ]
+        }
+      ],
+      "productos": [
+        "tapo-p115",
+        "sonoff-s26r2",
+        "enchufe-tuya-wifi",
+        "wiz-a19-color",
+        "tapo-l535e",
+        "tapo-l530e",
+        "sonoff-snzb-03p"
+      ],
+      "faq": [
+        {
+          "p": "¿Necesito un parlante con Alexa o Google para usar domótica?",
+          "r": "No. Los enchufes y focos WiFi se controlan con la app de su fabricante (Tapo, eWeLink, Smart Life, WiZ). El parlante es un extra para controlar por voz."
+        },
+        {
+          "p": "¿Necesito hacer obras o cambiar cables?",
+          "r": "No para enchufes y focos: se conectan en el tomacorriente o en la rosca. Solo los relés e interruptores de pared requieren instalación eléctrica, y en ese caso conviene un electricista."
+        },
+        {
+          "p": "¿Funciona mi dispositivo si se cae el internet?",
+          "r": "Depende del modelo. Los que dependen de la nube del fabricante pierden el control remoto; algunos tienen control por red local. Revisa la ficha de cada producto."
+        },
+        {
+          "p": "¿Qué pasa con mi dispositivo cuando se va la luz?",
+          "r": "Depende de la marca y del ajuste. En los enchufes Tapo puedes elegir el estado al volver la energía en la app (Estado predeterminado), si el firmware lo permite."
+        },
+        {
+          "p": "¿Puedo usar un enchufe de 110 V en un país de 220 V?",
+          "r": "No es recomendable. Compra la versión hecha para el voltaje y la clavija de tu país."
+        }
+      ],
+      "fuentes": [
+        {
+          "texto": "Repsol: qué es la domótica",
+          "url": "https://www.repsol.com/es/energia-avanzar/innovacion/que-es-la-domotica/index.cshtml"
+        },
+        {
+          "texto": "TP-Link: compatibilidad de los enchufes Tapo con la banda de 2,4 GHz",
+          "url": "https://www.tp-link.com/us/support/faq/3417/"
+        },
+        {
+          "texto": "TP-Link Community: estado predeterminado tras un corte de energía en enchufes Tapo",
+          "url": "https://community.tp-link.com/en/smart-home/forum/topic/275292"
+        },
+        {
+          "texto": "Connectivity Standards Alliance: qué es Matter",
+          "url": "https://csa-iot.org/all-solutions/matter/"
+        }
+      ]
+    }
+  ]
+}
