@@ -81,6 +81,13 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
 - **Sin estilos ni scripts en línea** (atributos `style`, `<style>`, `onclick`…): la CSP de `public/_headers`
   los bloquea. Los comportamientos van en archivos de `public/assets/`.
 - El contenido nuevo (productos, comparativas, guías) no necesita tocar el diseño: la plantilla lo aplica sola.
+- **Tu país** (`public/assets/pais.js`): el visitante elige su país (se guarda solo en su navegador) y cada
+  tarjeta y ficha dice si el producto funciona con su red. Sale de `voltajes` y `voltaje` de cada producto:
+  rellénalos bien (dos voltajes + "Según versión…" = hay versiones por país; dos voltajes con un rango como
+  "100–240 V" = sirve en todas; sin `voltajes` = va a pilas o por USB). La lista de países está en `PAISES`
+  de `scripts/catalogo.js` (única fuente).
+- Las páginas antiguas escritas a mano (`<body class="legado">`) reciben la cabecera y el pie actuales en cada
+  build (`scripts/legado.js`); al reescribirlas con `data/guias.json` dejan de necesitarlo.
 
 ## Antes de abrir un pull request
 

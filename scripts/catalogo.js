@@ -28,6 +28,7 @@ const ICONOS = {
   check: '<path d="M20 6 9 17l-5-5"/>',
   x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
   'chev-r': '<path d="m9 18 6-6-6-6"/>',
+  'chev-d': '<path d="m6 9 6 6 6-6"/>',
   info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
   alerta: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
   verificado: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
@@ -53,7 +54,31 @@ const ICONOS = {
   reloj: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
   bolsa: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
   rayo: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+  ubicacion: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
 };
+
+// ─── PAÍSES ───────────────────────────────────────────────────────────────────
+// Voltaje y clavijas habituales (IEC). Varía en algunas zonas: confírmalo en tu casa.
+// [país, código, voltaje, clavijas, grupo: 110 | 220 | br (depende de la ciudad)]
+// Única fuente: la portada los muestra y public/assets/pais.js los lee de cada página.
+export const PAISES = [
+  ['México', 'MX', '127', 'A, B', '110'], ['Centroamérica y Rep. Dominicana', 'CA', '120', 'A, B', '110'],
+  ['Colombia', 'CO', '120', 'A, B', '110'], ['Venezuela', 'VE', '120', 'A, B', '110'], ['Ecuador', 'EC', '120', 'A, B', '110'],
+  ['Perú', 'PE', '220', 'A, B, C', '220'], ['Bolivia', 'BO', '220', 'A, B, C', '220'], ['Chile', 'CL', '220', 'C, L', '220'],
+  ['Argentina', 'AR', '220', 'C, I', '220'], ['Uruguay', 'UY', '220', 'C, F, I, L', '220'], ['Paraguay', 'PY', '220', 'C', '220'],
+  ['Brasil', 'BR', '127/220', 'C, N', 'br'],
+];
+
+// Bloque de datos (no se ejecuta: la CSP lo permite) que lee public/assets/pais.js
+export const DATOS_PAISES = `<script type="application/json" id="od-paises">${JSON.stringify(PAISES.map(([nombre, codigo, v, clavijas, grupo]) => ({ nombre, codigo, v, clavijas, grupo }))).replace(/</g, '\\u003c')}</script>`;
+
+// Qué necesita saber pais.js de un producto para decir si funciona en el país elegido
+export function atributosPais(p) {
+  const tipo = !p.voltajes?.length ? 'independiente'
+    : p.voltajes.length > 1 ? (/versi/i.test(p.voltaje || '') ? 'versiones' : 'universal')
+    : 'unico';
+  return ` data-red="${esc((p.voltajes || []).join(' '))}" data-tipo="${tipo}" data-voltaje="${esc(p.voltaje || '')}"`;
+}
 
 export function icono(nombre, clase = '') {
   if (!ICONOS[nombre]) throw new Error(`Icono desconocido: ${nombre}`);
@@ -89,7 +114,7 @@ export function focoColgante() {
 </svg>`;
 }
 
-const SPRITE = `<svg class="sprite" aria-hidden="true" focusable="false"><defs>
+export const SPRITE = `<svg class="sprite" aria-hidden="true" focusable="false"><defs>
 <linearGradient id="g-plastico" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E3E6EB"/></linearGradient>
 <linearGradient id="g-metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A3A8B0"/><stop offset=".45" stop-color="#F1F2F4"/><stop offset="1" stop-color="#989DA6"/></linearGradient>
 ${Object.entries(ICONOS).map(([k, v]) => `<symbol id="i-${k}" viewBox="0 0 24 24">${v}</symbol>`).join('\n')}
@@ -221,11 +246,13 @@ export function pagina({ title, description, canonical, body, scripts = [], brea
   ${FUENTES}
   <link rel="stylesheet" href="/assets/catalogo.css">
   <script src="/analytics.js" defer></script>
+  <script src="/assets/pais.js" defer></script>
 ${scripts.map((s) => `  <script src="${s}" defer></script>`).join('\n')}
   ${ld}
 </head>
 <body>
 ${SPRITE}
+${DATOS_PAISES}
 ${cabecera(canonical)}
 <main>
 <div class="w">
@@ -243,6 +270,7 @@ export function cabecera(actual = '') {
   return `<header class="top">
   <div class="top-in">
     <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada">${MARCA}<span class="wm">ofertas <span>domóticas</span></span></a>
+    <button type="button" class="chip-pais" data-abrir-pais aria-expanded="false" hidden>${icono('ubicacion')}<span data-chip-pais>Tu país</span></button>
     <nav aria-label="Principal">
       ${link('/productos/', 'Catálogo')}
       ${link('/comparativas/', 'Comparativas')}
@@ -293,12 +321,13 @@ export function pila(categorias) {
 // Tarjeta de producto con su dibujo sobre el color de la categoría
 export function tarjetaProducto(p, cats, { texto, comparar = false, datos = '' } = {}) {
   const url = `/productos/${esc(p.slug)}`;
-  return `<article class="card"${datos}>
+  return `<article class="card"${datos}${atributosPais(p)}>
   <a class="stage card-stage k-${esc(p.categoria)}" href="${url}" tabindex="-1" aria-hidden="true">${ilustracion(p.categoria)}<span class="card-tag">${esc(cats[p.categoria].singular)}</span><span class="card-price" title="Rango de precio orientativo">${esc(PRECIO[p.precio].corto)}</span></a>
   <div class="card-body">
     <h3><a href="${url}">${esc(p.nombre)}</a></h3>
     <div class="badges">${badges(p)}</div>
     <p>${esc(texto ?? p.idealPara)}</p>
+    <p class="veredicto-mini" data-veredicto hidden></p>
     <div class="card-actions">
       <a href="${url}">Ver ficha${icono('chev-r')}</a>${comparar ? `
       <label><input type="checkbox" class="cmp-check" value="${esc(p.slug)}" aria-label="Comparar ${esc(p.nombre)}"> Comparar</label>` : ''}
@@ -392,6 +421,7 @@ function paginaProducto(p, data, tiendas, comparativas = []) {
     <h1>${esc(p.nombre)}</h1>
     <p class="lead">${esc(p.resumen)}</p>
     <div class="badges">${badges(p)}</div>
+    <div class="veredicto" data-veredicto-ficha${atributosPais(p)} aria-live="polite" hidden></div>
     <div class="buy" aria-label="Dónde comprar">
       <p class="precio"><span class="num">${esc(PRECIO[p.precio].corto)}</span> Precio orientativo: ${esc(PRECIO[p.precio].text.replace(/^\S+\s*/, '').replace(/[()]/g, ''))}</p>
 ${tiendasP.map((e, i) => `      ${boton(e, i)}`).join('\n')}
