@@ -16,9 +16,6 @@
   <meta property="og:locale" content="es_LA">
   <meta property="og:site_name" content="OfertasDomoticas.com">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,45 +33,27 @@
     }
   }
   </script>
-  <style>
-    :root { --bg:#0a0e1a; --card:#141c2e; --accent:#00d4aa; --accent2:#3b82f6; --text:#e2e8f0; --muted:#94a3b8; --border:rgba(255,255,255,0.07); }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { font-family:'Space Grotesk',sans-serif; background:var(--bg); color:var(--text); }
-    body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(0,212,170,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,170,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
-    header { background:rgba(10,14,26,0.95); border-bottom:1px solid var(--border); padding:0 20px; position:sticky; top:0; z-index:100; }
-    .header-inner { max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:64px; }
-    .logo { display:flex; align-items:center; gap:10px; font-size:20px; font-weight:700; text-decoration:none; color:var(--text); }
-    .logo-icon { width:34px; height:34px; background:linear-gradient(135deg,var(--accent),var(--accent2)); border-radius:8px; display:flex; align-items:center; justify-content:center; }
-    .logo span { color:var(--accent); }
-    .wrapper { max-width:900px; margin:0 auto; padding:48px 20px 80px; position:relative; z-index:1; }
-    h1 { font-size:clamp(28px,4vw,42px); font-weight:700; letter-spacing:-1px; margin-bottom:12px; }
-    .subtitle { color:var(--muted); font-size:16px; margin-bottom:32px; line-height:1.6; }
-    .alpha-nav { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:40px; }
-    .alpha-btn { padding:6px 12px; border-radius:8px; border:1px solid var(--border); background:var(--card); color:var(--muted); font-size:13px; font-weight:600; text-decoration:none; transition:all 0.2s; font-family:'Space Grotesk',sans-serif; cursor:pointer; }
-    .alpha-btn:hover { border-color:rgba(0,212,170,0.4); color:var(--accent); }
-    .letter-section { margin-bottom:40px; }
-    .letter-header { font-size:28px; font-weight:700; color:var(--accent); margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid rgba(0,212,170,0.2); font-family:monospace; }
-    .term-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:10px; }
-    .term-name { font-size:16px; font-weight:600; color:var(--text); margin-bottom:6px; display:flex; align-items:center; gap:10px; }
-    .term-type { font-size:10px; font-weight:600; padding:2px 8px; border-radius:4px; font-family:monospace; }
-    .term-def { font-size:14px; color:var(--muted); line-height:1.7; }
-    .term-example { font-size:13px; color:#64748b; margin-top:8px; font-style:italic; border-left:2px solid rgba(0,212,170,0.3); padding-left:10px; }
-    .search-box { display:flex; gap:10px; margin-bottom:32px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:8px 8px 8px 16px; }
-    .search-box input { flex:1; background:transparent; border:none; outline:none; color:var(--text); font-size:15px; font-family:'Space Grotesk',sans-serif; }
-    .search-box input::placeholder { color:var(--muted); }
-    footer { border-top:1px solid var(--border); padding:24px 20px; text-align:center; font-size:13px; color:var(--muted); }
-  </style>
   <script src="/analytics.js" defer></script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#f6f6f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/catalogo.css">
 </head>
-<body>
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo"><div class="logo-icon">🏠</div>Ofertas<span>Domoticas</span></a>
-    <a href="/" style="color:var(--muted);text-decoration:none;font-size:14px;">← Inicio</a>
+<body class="legado">
+<header class="top">
+  <div class="top-in">
+    <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada"><span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7.5" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><rect x="14.1" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><path d="M9.6 17.5a2.4 2.4 0 0 1 4.8 0v1.6H9.6z" fill="currentColor"/></svg></span><span class="wm">ofertas <span>domóticas</span></span></a>
+    <nav aria-label="Principal">
+      <a href="/productos/">Catálogo</a>
+      <a href="/comparativas/">Comparativas</a>
+      <a href="/comparar">Comparar</a>
+      <a href="/articulos-editoriales/">Guías</a>
+    </nav>
   </div>
 </header>
 
@@ -257,8 +236,18 @@
   </div><!-- end terms-container -->
 </div>
 
-<footer>
-  <p>© 2026 OfertasDomoticas.com · <a href="/privacidad" style="color:var(--muted);">Privacidad</a> · <a href="/contacto" style="color:var(--muted);">Contacto</a> · <a href="/productos/" style="color:var(--muted);">Productos</a></p>
+<footer class="pie">
+  <div class="w pie-in">
+    <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada"><span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7.5" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><rect x="14.1" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><path d="M9.6 17.5a2.4 2.4 0 0 1 4.8 0v1.6H9.6z" fill="currentColor"/></svg></span><span class="wm">ofertas <span>domóticas</span></span></a>
+    <p class="pie-lema">Domótica práctica para Latinoamérica: fichas verificadas, comparativas y guías para redes de 110 V y 220 V.</p>
+    <nav aria-label="Secciones">
+      <a href="/productos/">Catálogo</a><a href="/comparativas/">Comparativas</a><a href="/comparar">Comparar</a><a href="/articulos-editoriales/">Guías</a><a href="/glosario">Glosario</a>
+    </nav>
+    <nav aria-label="Información">
+      <a href="/nosotros">Nosotros</a><a href="/contacto">Contacto</a><a href="/aviso-legal">Aviso legal</a><a href="/privacidad">Privacidad</a><a href="/privacidad#cookies" data-cookies>Configurar cookies</a>
+    </nav>
+    <small>© 2026 OfertasDomoticas.com</small>
+  </div>
 </footer>
 
 <script>

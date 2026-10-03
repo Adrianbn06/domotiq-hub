@@ -7,7 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, pagina, badges, PRECIO, AVISO_AFILIADOS } from './catalogo.js';
+import { esc, pagina, AVISO_AFILIADOS, icono, ilustracion, focoColgante, tarjetaProducto, fila, pila, recortar } from './catalogo.js';
 import { leerComparativas } from './comparativas.js';
 
 // ─── CONTENIDO EDITABLE ───────────────────────────────────────────────────────
@@ -28,19 +28,21 @@ const COMPARATIVAS = [
   ['Relés: con neutro, sin neutro o 100 % local', ['sonoff-minir4', 'sonoff-zbmini-l2', 'shelly-1-gen4']],
 ];
 
+// [dibujo (categoría), icono, nivel, título, texto, enlace, texto del enlace]
 const RUTAS = [
-  ['📶', 'Sin hub, solo WiFi', 'Lo más fácil: enchufes y focos que se configuran con el celular en 5 minutos. Ideal para empezar.', '/productos/?proto=wifi&sinhub=1', 'Ver productos WiFi sin hub'],
-  ['🕸️', 'Con Zigbee', 'Sensores a pilas que duran años y una red que no satura tu WiFi. Necesitas un hub o coordinador.', '/productos/?proto=zigbee', 'Ver productos Zigbee'],
-  ['🏠', 'Con Home Assistant', 'Control 100 % local, sin depender de la nube ni de una marca. Requiere un equipo encendido en casa.', '/productos/sonoff-zbdongle-e', 'Ver el coordinador USB'],
+  ['enchufe', 'wifi', 'Fácil', 'Sin hub, solo WiFi', 'Lo más fácil: enchufes y focos que se configuran con el celular en 5 minutos. Ideal para empezar.', '/productos/?proto=wifi&sinhub=1', 'Ver productos WiFi sin hub'],
+  ['sensor', 'red', 'Intermedio', 'Con Zigbee', 'Sensores a pilas que duran años y una red que no satura tu WiFi. Necesitas un hub o coordinador.', '/productos/?proto=zigbee', 'Ver productos Zigbee'],
+  ['hub', 'casa', 'Avanzado', 'Con Home Assistant', 'Control 100 % local, sin depender de la nube ni de una marca. Requiere un equipo encendido en casa.', '/productos/sonoff-zbdongle-e', 'Ver el coordinador USB'],
 ];
 
 // Voltaje y clavijas habituales (IEC). Varía en algunas zonas: confírmalo en tu casa.
+// [país, voltaje, clavijas, grupo: 110 | 220 | br (depende de la ciudad)]
 const PAISES = [
-  ['México', '127 V', 'A, B'], ['Centroamérica y Rep. Dominicana', '120 V', 'A, B'],
-  ['Colombia', '120 V', 'A, B'], ['Venezuela', '120 V', 'A, B'], ['Ecuador', '120 V', 'A, B'],
-  ['Perú', '220 V', 'A, B, C'], ['Bolivia', '220 V', 'A, B, C'], ['Chile', '220 V', 'C, L'],
-  ['Argentina', '220 V', 'C, I'], ['Uruguay', '220 V', 'C, F, I, L'], ['Paraguay', '220 V', 'C'],
-  ['Brasil', '127 V o 220 V según la ciudad', 'C, N'],
+  ['México', '127', 'A, B', '110'], ['Centroamérica y Rep. Dominicana', '120', 'A, B', '110'],
+  ['Colombia', '120', 'A, B', '110'], ['Venezuela', '120', 'A, B', '110'], ['Ecuador', '120', 'A, B', '110'],
+  ['Perú', '220', 'A, B, C', '220'], ['Bolivia', '220', 'A, B, C', '220'], ['Chile', '220', 'C, L', '220'],
+  ['Argentina', '220', 'C, I', '220'], ['Uruguay', '220', 'C, F, I, L', '220'], ['Paraguay', '220', 'C', '220'],
+  ['Brasil', '127/220', 'C, N', 'br'],
 ];
 
 const GUIAS = [
@@ -55,10 +57,15 @@ function leerGuia(root, rel) {
   const html = fs.readFileSync(path.join(root, 'public', rel), 'utf8');
   const dec = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   const titulo = dec((html.match(/<title>([^<]*)<\/title>/) || [])[1] || rel)
-    .replace(/\s*[|—–]\s*OfertasDomoticas\.com\s*$/i, '').trim();
+    .replace(/\s*[|—–]\s*OfertasDomoticas(\.com)?\s*$/i, '').trim();
   const desc = dec((html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '');
   return { url: '/' + rel.replace(/\.html$/, ''), titulo, desc };
 }
+
+const cabezaSeccion = (titulo, texto, enlace) => `<div class="sec-head">
+  <div><h2>${esc(titulo)}</h2>${texto ? `<p>${esc(texto)}</p>` : ''}</div>
+  ${enlace ? `<a class="mas" href="${esc(enlace[0])}">${esc(enlace[1])}${icono('chev-r')}</a>` : ''}
+</div>`;
 
 // ─── PÁGINA ───────────────────────────────────────────────────────────────────
 export function generarPortada(root) {
@@ -68,111 +75,134 @@ export function generarPortada(root) {
     if (!porSlug[slug]) throw new Error(`Portada: el producto "${slug}" no existe en data/productos.json`);
     return porSlug[slug];
   };
+  const comparativasArt = leerComparativas(root);
+  const guias = GUIAS.map((rel) => leerGuia(root, rel));
+  const foco = usar('tapo-l535e');
 
   const categorias = Object.entries(data.categorias).map(([id, c]) => {
     const n = data.productos.filter((p) => p.categoria === id).length;
-    return `<a class="tile" href="/productos/?cat=${esc(id)}">
-    <span class="tile-icon">${esc(c.icono)}</span>
+    return `<a class="tile tinte k-${esc(id)}" href="/productos/?cat=${esc(id)}">
+    <span class="dibujo">${ilustracion(id)}</span>
     <strong>${esc(c.nombre)}</strong>
-    <span class="muted small">${n} productos</span>
+    <span><span class="num">${n}</span> productos</span>
   </a>`;
   }).join('\n');
 
-  const seleccion = SELECCION.map(([slug, motivo]) => {
-    const p = usar(slug);
-    return `<article class="card">
-  <div class="card-top"><span>${esc(data.categorias[p.categoria].icono)} ${esc(data.categorias[p.categoria].singular)}</span><span class="price" title="Rango de precio orientativo">${esc(PRECIO[p.precio].corto)}</span></div>
-  <h3><a href="/productos/${esc(p.slug)}">${esc(p.nombre)}</a></h3>
-  <div class="badges">${badges(p)}</div>
-  <p>${esc(motivo)}</p>
-  <div class="card-actions"><a href="/productos/${esc(p.slug)}">Ver ficha →</a></div>
-</article>`;
+  const seleccion = SELECCION.map(([slug, motivo]) => tarjetaProducto(usar(slug), data.categorias, { texto: motivo })).join('\n');
+
+  const comparaciones = COMPARATIVAS.map(([titulo, slugs]) => {
+    const prods = slugs.map(usar);
+    return fila({ href: `/comparar?p=${slugs.join(',')}`, titulo, sub: prods.map((p) => p.nombre).join(' vs '), inicio: pila(prods.map((p) => p.categoria)) });
   }).join('\n');
 
-  const comparativas = COMPARATIVAS.map(([titulo, slugs]) => {
-    const nombres = slugs.map((s) => usar(s).nombre).join(' vs ');
-    return `<li><a href="/comparar?p=${slugs.map(esc).join(',')}"><strong>${esc(titulo)}</strong><span class="muted small">${esc(nombres)}</span></a></li>`;
+  const articulos = comparativasArt.map((c) => fila({
+    href: `/comparativas/${c.slug}`, titulo: c.tituloCorto, sub: recortar(c.descripcion, 110),
+    inicio: pila(c.productos.filter((s) => porSlug[s]).map((s) => porSlug[s].categoria)),
+  })).join('\n');
+
+  const listaGuias = guias.map((g) => fila({ href: g.url, titulo: g.titulo, sub: recortar(g.desc, 110), icono: 'libro' })).join('\n');
+
+  const rutas = RUTAS.map(([dibujo, ic, nivel, titulo, texto, href, cta]) => `<article class="path tinte k-${dibujo}">
+  <span class="nivel">${icono(ic)}${esc(nivel)}</span>
+  <div><h3>${esc(titulo)}</h3><p>${esc(texto)}</p><a class="mas" href="${esc(href)}">${esc(cta)}${icono('chev-r')}</a></div>
+  <div class="dibujo">${ilustracion(dibujo)}</div>
+</article>`).join('\n');
+
+  const mapa = PAISES.map(([pais, v, clavijas, g]) => {
+    const href = g === 'br' ? '/productos/' : `/productos/?volt=${g}`;
+    return `<a class="vt" href="${href}"><span class="n"><i class="dot g${g}"></i>${esc(pais)}</span><span><span class="cifra${g === 'br' ? ' sm' : ''}">${esc(v)}<small> V</small></span><span class="pl">Clavija ${esc(clavijas)}${g === 'br' ? ' · según la ciudad' : ''}</span></span></a>`;
   }).join('\n');
-
-  const articulos = leerComparativas(root).map((c) => `<a class="guide" href="/comparativas/${esc(c.slug)}">
-  <strong>${esc(c.titulo)}</strong>
-  <span class="muted small">${esc(c.descripcion)}</span>
-</a>`).join('\n');
-
-  const guias = GUIAS.map((rel) => leerGuia(root, rel)).map((g) => `<a class="guide" href="${esc(g.url)}">
-  <strong>${esc(g.titulo)}</strong>
-  <span class="muted small">${esc(g.desc)}</span>
-</a>`).join('\n');
-
-  const rutas = RUTAS.map(([icono, titulo, texto, href, cta]) => `<div class="box path">
-  <span class="tile-icon">${icono}</span>
-  <h3>${esc(titulo)}</h3>
-  <p class="muted small">${esc(texto)}</p>
-  <a href="${esc(href)}">${esc(cta)} →</a>
-</div>`).join('\n');
 
   const body = `<section class="hero">
-  <p class="eyebrow">Domótica práctica para Latinoamérica</p>
-  <h1>Haz tu casa inteligente sin comprar algo que no funcione en tu país</h1>
-  <p class="lead">Fichas con especificaciones verificadas, un comparador y guías pensadas para redes de 110 V y 220 V, y para comprar en AliExpress o Amazon con envío a Latinoamérica.</p>
-  <div class="hero-cta">
-    <a class="btn" href="/productos/">Ver el catálogo (${data.productos.length} productos)</a>
-    <a class="btn secondary" href="/comparar">Comparar productos</a>
+  <div>
+    <p class="eyebrow">Domótica práctica · Latinoamérica</p>
+    <h1>Domótica que funciona en tu país.</h1>
+    <p class="lead">Fichas con especificaciones verificadas, comparativas honestas y guías para redes de 110 V y 220 V. Sin precios inventados: te llevamos a AliExpress o Amazon para verlos.</p>
+    <div class="volt-card">
+      <p class="eyebrow">¿Qué voltaje usa tu país?</p>
+      <div class="volt-opts">
+        <a class="volt-opt" href="/productos/?volt=110"><span class="v">110–127<small> V</small></span><span>México, Centroamérica, Colombia, Ecuador, Venezuela</span>${icono('chev-r', 'chev')}</a>
+        <a class="volt-opt" href="/productos/?volt=220"><span class="v">220<small> V</small></span><span>Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay</span>${icono('chev-r', 'chev')}</a>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn" href="/productos/">Ver el catálogo</a>
+      <a class="btn secondary" href="/comparar">Comparar productos</a>
+    </div>
+    <dl class="strip">
+      <div><dt>Productos</dt><dd>${data.productos.length}</dd></div>
+      <div><dt>Comparativas</dt><dd>${comparativasArt.length}</dd></div>
+      <div><dt>Guías</dt><dd>${guias.length}</dd></div>
+      <div><dt>Países</dt><dd>${PAISES.length}</dd></div>
+    </dl>
   </div>
-  <div class="volt-picker" role="group" aria-label="Elige el voltaje de tu país">
-    <span class="muted small">¿Qué voltaje usa tu país?</span>
-    <a class="chip-link" href="/productos/?volt=110">110–120 V<span>México, Centroamérica, Colombia, Ecuador, Venezuela</span></a>
-    <a class="chip-link" href="/productos/?volt=220">220–240 V<span>Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay</span></a>
-  </div>
+  <figure class="noche">
+    ${focoColgante()}
+    <figcaption>
+      <div><p class="eyebrow">Del catálogo · 120 V</p><strong>${esc(foco.nombre.replace(/\s*\(.*?\)/g, ''))}: blancos de 2500 a 6500 K</strong></div>
+      <a href="/productos/${esc(foco.slug)}">Ver ficha${icono('chev-r')}</a>
+    </figcaption>
+  </figure>
 </section>
 
-<h2>¿Por dónde empiezo?</h2>
+<section class="sec" aria-labelledby="h-empezar">
+<div class="sec-head"><div><h2 id="h-empezar">Empieza por aquí</h2><p>Tres caminos, de lo más fácil a lo más completo. ¿Primera vez? Lee <a href="/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50">qué es la domótica y cómo empezar con menos de 50 USD</a>.</p></div></div>
 <div class="paths">
 ${rutas}
 </div>
-<p class="small muted">¿Primera vez? Lee <a href="/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50">qué es la domótica y cómo empezar con menos de 50 USD</a>.</p>
+<div class="callout warn aviso-elec">${icono('alerta')}<p>Relés e interruptores van conectados a la instalación eléctrica de tu casa. Si no tienes experiencia, contrata a un electricista.</p></div>
+</section>
 
-<h2>Explora por categoría</h2>
+<section class="sec" aria-labelledby="h-catalogo">
+${cabezaSeccion('El catálogo', `${data.productos.length} productos con fichas verificadas, ordenados por categoría.`, ['/productos/', `Ver los ${data.productos.length} productos`]).replace('<h2>', '<h2 id="h-catalogo">')}
 <div class="tiles">
 ${categorias}
 </div>
-
-<h2>Nuestra selección para empezar</h2>
-<p class="lead small">Productos con buena relación calidad-precio y disponibles con envío a Latinoamérica. Revisa siempre la versión de voltaje antes de comprar.</p>
-<div class="grid">
+<div class="sub-h"><h3>Nuestra selección para empezar</h3><span class="muted small">Revisa siempre la versión de voltaje antes de comprar.</span></div>
+<div class="grid tres">
 ${seleccion}
 </div>
+</section>
 
-<h2>Comparativas a fondo</h2>
-<div class="guides">
+<section class="sec" aria-labelledby="h-comparar">
+${cabezaSeccion('Compara en un toque', 'Abre el comparador con estas combinaciones o elige tus propios productos.', ['/comparar', 'Abrir el comparador']).replace('<h2>', '<h2 id="h-comparar">')}
+<div class="group">
+${comparaciones}
+</div>
+</section>
+
+<section class="sec dos-col">
+  <div>
+${cabezaSeccion('Comparativas a fondo', 'Escritas a mano, con los contras de cada producto.', ['/comparativas/', 'Ver todas'])}
+    <div class="group">
 ${articulos}
+    </div>
+  </div>
+  <div>
+${cabezaSeccion('Guías', 'Para entender antes de comprar.', ['/articulos-editoriales/', 'Ver todas'])}
+    <div class="group">
+${listaGuias}
+    </div>
+    <p class="muted small nota-datos"><a href="/glosario">Glosario de domótica</a>: los términos explicados en sencillo.</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="h-paises">
+<div class="sec-head"><div><h2 id="h-paises">Voltaje y clavija por país</h2><p>Lo primero que hay que mirar antes de comprar un enchufe, foco o relé. Son los valores habituales: confírmalos en tu casa.</p></div></div>
+<div class="leyenda"><span><i class="dot g110"></i>110–127 V</span><span><i class="dot g220"></i>220 V</span><span><i class="dot gbr"></i>Depende de la ciudad</span></div>
+<div class="vmap">
+${mapa}
 </div>
-<p class="small"><a href="/comparativas/">Ver todas las comparativas →</a></p>
+</section>
 
-<h2>Compara al instante</h2>
-<p class="lead small">Abre el comparador con estas combinaciones o elige tus propios productos.</p>
-<ul class="cmp-list">
-${comparativas}
-</ul>
-
-<h2>Guías</h2>
-<div class="guides">
-${guias}
+<section class="sec" aria-labelledby="h-trabajo">
+<div class="sec-head"><div><h2 id="h-trabajo">Cómo trabajamos</h2></div></div>
+<div class="group">
+  <div class="fila"><span class="ib">${icono('verificado')}</span><span class="fila-t"><strong>Datos del fabricante</strong><span>Las especificaciones salen de las fichas de los fabricantes y de las tiendas.</span></span></div>
+  <div class="fila"><span class="ib">${icono('prohibido')}</span><span class="fila-t"><strong>Sin precios inventados</strong><span>Los precios cambian a diario, así que te enviamos a la tienda para verlos. Solo damos un rango orientativo.</span></span></div>
+  <div class="fila"><span class="ib">${icono('ayuda')}</span><span class="fila-t"><strong>Lo dudoso, marcado</strong><span>Lo que no pudimos verificar aparece como «sin confirmar». Más detalles en <a href="/nosotros">quiénes somos</a>.</span></span></div>
 </div>
-<p class="small"><a href="/articulos-editoriales/">Ver todas las guías →</a> · <a href="/glosario">Glosario de domótica →</a></p>
-
-<h2>Voltaje y clavija por país</h2>
-<p class="lead small">Lo primero que hay que mirar antes de comprar un enchufe, foco o relé. Son los valores habituales: confírmalos en tu casa.</p>
-<div class="table-wrap"><table>
-<thead><tr><th scope="col">País</th><th scope="col">Voltaje</th><th scope="col">Clavijas habituales</th></tr></thead>
-<tbody>
-${PAISES.map(([pais, v, c]) => `<tr><td>${esc(pais)}</td><td>${esc(v)}</td><td>${esc(c)}</td></tr>`).join('\n')}
-</tbody></table></div>
-
-<h2>Cómo trabajamos</h2>
-<div class="box">
-  <p class="small">Las especificaciones salen de las fichas de los fabricantes y de las tiendas, y marcamos como «sin confirmar» lo que no pudimos verificar. No inventamos precios ni descuentos: los precios cambian a diario, así que te enviamos a la tienda para verlos. Más detalles en <a href="/nosotros">quiénes somos</a>.</p>
-</div>
+</section>
 ${AVISO_AFILIADOS}`;
 
   const html = pagina({

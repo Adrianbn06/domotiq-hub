@@ -33,7 +33,7 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
   "Hoy en día", "En resumen".
 - **Formato:** H2 (secciones) y H3 (bloques `{ "h3": … }`), listas, **negritas** en los conceptos clave
   (`**texto**`) y tablas comparativas cuando aporten (`{ "tabla": { "columnas", "filas" } }`). Recuadros:
-  `{ "nota": … }` (💡) y `{ "aviso": … }` (⚠️). Enlaces internos con `[texto](/ruta)`.
+  `{ "nota": … }` (consejo) y `{ "aviso": … }` (advertencia). Enlaces internos con `[texto](/ruta)`.
 - **3 recomendaciones de producto** repartidas por el texto con `{ "oferta": "<slug del catálogo>", "motivo": … }`
   (sustituyen a los antiguos `[INSERTAR_OFERTA: …]`; enlazan a la ficha, donde están los enlaces de tienda).
   Exactamente 3: el build lo comprueba. Si falta el producto adecuado, primero añade su ficha al catálogo.
@@ -53,7 +53,9 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
 - `data/productos.json` — catálogo. Copia la estructura de un producto de la misma categoría.
   Compatibilidad permitida: `si`, `no`, `via-hub`, `via-matter`, `parcial`, `algunos-modelos`, `sin-confirmar`.
   Categorías existentes: `enchufe`, `bombilla`, `sensor`, `hub`, `interruptor`. Para crear una categoría
-  nueva también hay que añadir sus filas en `FILAS_CATEGORIA` de `scripts/catalogo.js`.
+  nueva también hay que añadir en `scripts/catalogo.js` sus filas (`FILAS_CATEGORIA`), su icono (`ICONOS`)
+  y su dibujo (`ILUSTRACIONES`), y su color en `public/assets/catalogo.css` (`--c-<categoría>` y `.k-<categoría>`).
+  El build falla si faltan las filas, el icono o el dibujo.
 - `data/guias.json` — guías prácticas (`/articulos-editoriales/<slug>`), con la estructura del estilo editorial
   de arriba. Las genera `scripts/guias.js`, que valida longitudes, las 3 recomendaciones y las expresiones prohibidas.
 - `data/comparativas.json` — artículos "X vs Y". Cada uno: `slug`, `titulo`, `tituloCorto`, `descripcion`,
@@ -66,6 +68,19 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
   etiquetas de Google Analytics directamente en las páginas.
 - `scripts/portada.js` — la selección destacada de la portada (no hace falta tocarla cada semana).
 - `docs/plan-contenido.md` — lista de temas pendientes.
+
+## Diseño (sistema "Vitrina Obsidian")
+
+- Una sola hoja de estilos para todo el sitio: `public/assets/catalogo.css`. Claro = blanco sobre blanco
+  (capas separadas por sombra); oscuro = negro sobre negro (borde de 1 px tenue). 90 % neutro y **un solo
+  acento azul**; verde, ámbar y rojo solo para estados (compatible / atención / no compatible), nunca para decorar.
+- Letras: Sora (títulos y cifras), IBM Plex Sans (texto) e IBM Plex Mono (datos en filas), desde Google Fonts.
+- Iconos con `icono('nombre')` y dibujos de producto con `ilustracion('<categoría>')` (los dos en
+  `scripts/catalogo.js`). **Sin emojis** como iconos y **sin fotos** de fabricantes.
+- Piezas reutilizables: `tarjetaProducto()`, `fila()` (lista agrupada), `pila()` (miniaturas) y `estado()`.
+- **Sin estilos ni scripts en línea** (atributos `style`, `<style>`, `onclick`…): la CSP de `public/_headers`
+  los bloquea. Los comportamientos van en archivos de `public/assets/`.
+- El contenido nuevo (productos, comparativas, guías) no necesita tocar el diseño: la plantilla lo aplica sola.
 
 ## Antes de abrir un pull request
 
