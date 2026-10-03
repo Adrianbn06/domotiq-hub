@@ -158,6 +158,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-03) Formato de guías con el estilo de los artículos originales (prompt editorial en `CLAUDE.md`): índice, H3, tablas, ventajas y desventajas, 3 recomendaciones del catálogo y veredicto por perfil. Guía de inicio reescrita así
 - [x] (2026-10-03) T001 Técnico + Guía: formato de guías (`data/guias.json` + `scripts/guias.js`) y guía "Qué es la domótica y cómo empezar con menos de 50 USD" reescrita con datos verificados
 - [x] (2026-10-02) Comparativa: sensores de puerta Aqara Door and Window Sensor T1 vs Sonoff SNZB-04P
 - [x] (2026-10-02) SEO: quitar de las guías antiguas las "ofertas" con precios inventados, fusionar 2 guías duplicadas (301), fechas reales en el sitemap y etiquetas para compartir
