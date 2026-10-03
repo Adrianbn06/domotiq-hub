@@ -7,7 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, pagina, AVISO_AFILIADOS, icono, ilustracion, focoColgante, tarjetaProducto, fila, pila, recortar } from './catalogo.js';
+import { esc, pagina, AVISO_AFILIADOS, icono, ilustracion, focoColgante, tarjetaProducto, fila, pila, recortar, PAISES } from './catalogo.js';
 import { leerComparativas } from './comparativas.js';
 
 // ─── CONTENIDO EDITABLE ───────────────────────────────────────────────────────
@@ -35,15 +35,8 @@ const RUTAS = [
   ['hub', 'casa', 'Avanzado', 'Con Home Assistant', 'Control 100 % local, sin depender de la nube ni de una marca. Requiere un equipo encendido en casa.', '/productos/sonoff-zbdongle-e', 'Ver el coordinador USB'],
 ];
 
-// Voltaje y clavijas habituales (IEC). Varía en algunas zonas: confírmalo en tu casa.
-// [país, voltaje, clavijas, grupo: 110 | 220 | br (depende de la ciudad)]
-const PAISES = [
-  ['México', '127', 'A, B', '110'], ['Centroamérica y Rep. Dominicana', '120', 'A, B', '110'],
-  ['Colombia', '120', 'A, B', '110'], ['Venezuela', '120', 'A, B', '110'], ['Ecuador', '120', 'A, B', '110'],
-  ['Perú', '220', 'A, B, C', '220'], ['Bolivia', '220', 'A, B, C', '220'], ['Chile', '220', 'C, L', '220'],
-  ['Argentina', '220', 'C, I', '220'], ['Uruguay', '220', 'C, F, I, L', '220'], ['Paraguay', '220', 'C', '220'],
-  ['Brasil', '127/220', 'C, N', 'br'],
-];
+// El foco del escenario nocturno: uno por cada red (pais.js cambia al de 220 V si tu país lo es)
+const FOCOS = { 110: 'tapo-l535e', 220: 'tapo-l530e' };
 
 const GUIAS = [
   'articulos-editoriales/que-es-la-domotica-como-empezar-menos-50.html',
@@ -77,7 +70,10 @@ export function generarPortada(root) {
   };
   const comparativasArt = leerComparativas(root);
   const guias = GUIAS.map((rel) => leerGuia(root, rel));
-  const foco = usar('tapo-l535e');
+  const foco = usar(FOCOS[110]);
+  const foco220 = usar(FOCOS[220]);
+  const nombreFoco = (p) => `${p.nombre.replace(/\s*\(.*?\)/g, '')}: blancos de 2500 a 6500 K`;
+  const sirven = (g) => data.productos.filter((p) => !p.voltajes?.length || p.voltajes.includes(g)).length;
 
   const categorias = Object.entries(data.categorias).map(([id, c]) => {
     const n = data.productos.filter((p) => p.categoria === id).length;
@@ -108,22 +104,23 @@ export function generarPortada(root) {
   <div class="dibujo">${ilustracion(dibujo)}</div>
 </article>`).join('\n');
 
-  const mapa = PAISES.map(([pais, v, clavijas, g]) => {
+  const mapa = PAISES.map(([pais, codigo, v, clavijas, g]) => {
     const href = g === 'br' ? '/productos/' : `/productos/?volt=${g}`;
-    return `<a class="vt" href="${href}"><span class="n"><i class="dot g${g}"></i>${esc(pais)}</span><span><span class="cifra${g === 'br' ? ' sm' : ''}">${esc(v)}<small> V</small></span><span class="pl">Clavija ${esc(clavijas)}${g === 'br' ? ' · según la ciudad' : ''}</span></span></a>`;
+    return `<a class="vt" href="${href}" data-elegir-pais="${codigo}"><span class="n"><i class="dot g${g}"></i>${esc(pais)}</span><span><span class="cifra${g === 'br' ? ' sm' : ''}">${esc(v)}<small> V</small></span><span class="pl">Clavija ${esc(clavijas)}${g === 'br' ? ' · según la ciudad' : ''}</span></span></a>`;
   }).join('\n');
 
   const body = `<section class="hero">
   <div>
     <p class="eyebrow">Domótica práctica · Latinoamérica</p>
-    <h1>Domótica que funciona en tu país.</h1>
+    <h1>Domótica que funciona en <button type="button" class="h1-pais" data-abrir-pais aria-label="Elegir tu país"><span data-pais-nombre>tu país</span>${icono('chev-d')}</button>.</h1>
     <p class="lead">Fichas con especificaciones verificadas, comparativas honestas y guías para redes de 110 V y 220 V. Sin precios inventados: te llevamos a AliExpress o Amazon para verlos.</p>
-    <div class="volt-card">
+    <div class="volt-card" data-sirven-110="${sirven('110')}" data-sirven-220="${sirven('220')}" data-total="${data.productos.length}">
       <p class="eyebrow">¿Qué voltaje usa tu país?</p>
       <div class="volt-opts">
-        <a class="volt-opt" href="/productos/?volt=110"><span class="v">110–127<small> V</small></span><span>México, Centroamérica, Colombia, Ecuador, Venezuela</span>${icono('chev-r', 'chev')}</a>
-        <a class="volt-opt" href="/productos/?volt=220"><span class="v">220<small> V</small></span><span>Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay</span>${icono('chev-r', 'chev')}</a>
+        <a class="volt-opt" href="/productos/?volt=110" data-grupo="110"><span class="v">110–127<small> V</small></span><span>México, Centroamérica, Colombia, Ecuador, Venezuela</span>${icono('chev-r', 'chev')}</a>
+        <a class="volt-opt" href="/productos/?volt=220" data-grupo="220"><span class="v">220<small> V</small></span><span>Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay</span>${icono('chev-r', 'chev')}</a>
       </div>
+      <p class="sirven" data-sirven hidden></p>
     </div>
     <div class="hero-cta">
       <a class="btn" href="/productos/">Ver el catálogo</a>
@@ -136,11 +133,21 @@ export function generarPortada(root) {
       <div><dt>Países</dt><dd>${PAISES.length}</dd></div>
     </dl>
   </div>
-  <figure class="noche">
+  <figure class="noche" data-foco-220-nombre="${esc(nombreFoco(foco220))}" data-foco-220-url="/productos/${esc(foco220.slug)}" data-foco-220-red="${esc(foco220.voltaje.replace(/,.*$/, ''))}">
     ${focoColgante()}
     <figcaption>
-      <div><p class="eyebrow">Del catálogo · 120 V</p><strong>${esc(foco.nombre.replace(/\s*\(.*?\)/g, ''))}: blancos de 2500 a 6500 K</strong></div>
-      <a href="/productos/${esc(foco.slug)}">Ver ficha${icono('chev-r')}</a>
+      <div class="noche-fila">
+        <div><p class="eyebrow">Del catálogo · <span data-foco-red>${esc(foco.voltaje.replace(/,.*$/, ''))}</span></p><strong data-foco-nombre>${esc(nombreFoco(foco))}</strong></div>
+        <a href="/productos/${esc(foco.slug)}" data-foco-url>Ver ficha${icono('chev-r')}</a>
+      </div>
+      <div class="noche-controles" data-foco-controles hidden>
+        <div class="noche-fila">
+          <span class="kout" data-kout>2700 K · luz cálida</span>
+          <button type="button" class="sw" role="switch" aria-checked="true" aria-label="Encender o apagar el foco" data-foco-sw></button>
+        </div>
+        <input class="kel" type="range" min="2500" max="6500" step="100" value="2700" aria-label="Temperatura de color, en kelvin" data-foco-k>
+        <div class="kscale"><span>2500 K</span><span>6500 K</span></div>
+      </div>
     </figcaption>
   </figure>
 </section>

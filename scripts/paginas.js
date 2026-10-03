@@ -9,7 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import { pagina, tituloSeo, AVISO_AFILIADOS } from './catalogo.js';
 
-const ACTUALIZADO = '2 de octubre de 2026';
+const ACTUALIZADO = '3 de octubre de 2026';
 const CORREO = 'casainteligente06@hotmail.com';
 const TELEGRAM = 'https://t.me/ofertas_domoticas';
 const correo = `<a href="mailto:${CORREO}">${CORREO}</a>`;
@@ -81,6 +81,7 @@ const PAGINAS = {
 <tr><td>_ga_&lt;id&gt;</td><td>Google Analytics</td><td>Mantener el estado de la sesión de estadísticas</td><td>2 años</td></tr>
 </tbody></table></div>
 <p>Tu elección (aceptar o rechazar) se guarda en el almacenamiento local de tu navegador para no volver a preguntarte. Puedes cambiarla en cualquier momento: <a href="/privacidad#cookies" data-cookies>configurar cookies</a>. También puedes borrar las cookies desde la configuración de tu navegador.</p>
+<p>Si eliges tu país (botón «Tu país» de la cabecera), también se guarda solo en el almacenamiento local de tu navegador, para mostrarte qué productos funcionan con tu red eléctrica. No es una cookie, no se envía a ningún servidor y puedes borrarlo con «Olvidar mi país».</p>
 
 <h2>4. Enlaces a tiendas y servicios externos</h2>
 <p>Cuando haces clic en un enlace a Amazon, AliExpress u otra tienda, sales de este sitio. Esas tiendas pueden usar sus propias cookies (por ejemplo, para atribuir una compra a un enlace de afiliado) y se rigen por sus propias políticas de privacidad. Lo mismo ocurre con el canal de Telegram.</p>

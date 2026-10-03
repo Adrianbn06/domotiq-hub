@@ -158,6 +158,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-03) Diseño, paso 2 "Tu país": el visitante elige su país y cada tarjeta y ficha dice si el producto funciona con su red; título de la portada con el país, foco regulable de 2500 a 6500 K y catálogo filtrado por su voltaje
 - [x] (2026-10-03) Diseño, paso 1: sistema visual "Vitrina Obsidian" en todo el sitio (colores, letras, iconos, dibujos de producto, portada, fichas, catálogo, comparativas, guías y las 4 páginas antiguas)
 - [x] (2026-10-03) Formato de guías con el estilo de los artículos originales (prompt editorial en `CLAUDE.md`): índice, H3, tablas, ventajas y desventajas, 3 recomendaciones del catálogo y veredicto por perfil. Guía de inicio reescrita así
 - [x] (2026-10-03) T001 Técnico + Guía: formato de guías (`data/guias.json` + `scripts/guias.js`) y guía "Qué es la domótica y cómo empezar con menos de 50 USD" reescrita con datos verificados

@@ -39,6 +39,15 @@
       .find((c) => c.dataset.group === grupo && c.dataset.value === valor);
     if (chip) elegir(chip);
   });
+
+  // Tu país (public/assets/pais.js): si la URL no trae un voltaje, se filtra por el de tu red
+  function voltajeDelPais(pais) {
+    const valor = pais && (pais.grupo === '110' || pais.grupo === '220') ? pais.grupo : 'todos';
+    const chip = document.querySelector(`.chip[data-group="volt"][data-value="${valor}"]`);
+    if (chip) elegir(chip);
+  }
+  if (!new URLSearchParams(location.search).has('volt') && window.odPais && window.odPais()) voltajeDelPais(window.odPais());
+  document.addEventListener('od:pais', (e) => { voltajeDelPais(e.detail); aplicar(); });
   aplicar();
 
   // ── Comparar ──
