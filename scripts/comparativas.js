@@ -10,7 +10,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, pagina, badges, fichaTecnica, fichaCompat, PRECIO, AVISO_AFILIADOS, tituloSeo } from './catalogo.js';
+import { esc, pagina, fichaTecnica, fichaCompat, PRECIO, AVISO_AFILIADOS, tituloSeo, icono, tarjetaProducto, fila, pila } from './catalogo.js';
 
 const SITE_URL = 'https://www.ofertasdomoticas.com';
 
@@ -38,7 +38,7 @@ ${cuerpo}
 <p class="legend"><span></span>Filas resaltadas: los productos se diferencian en esa característica.</p>`;
 }
 
-function paginaComparativa(c, porSlug) {
+function paginaComparativa(c, porSlug, cats) {
   const prods = c.productos.map((s) => {
     if (!porSlug[s]) throw new Error(`Comparativa ${c.slug}: el producto "${s}" no existe`);
     return porSlug[s];
@@ -54,27 +54,25 @@ function paginaComparativa(c, porSlug) {
 <p class="muted small">Actualizado el ${esc(c.actualizado)} · Especificaciones verificadas en fuentes de los fabricantes</p>
 ${c.intro.map((t) => `<p class="lead">${esc(t)}</p>`).join('\n')}
 
-<div class="box verdict-box">
-  <h2 class="h-inline">Resumen rápido</h2>
-  <ul class="verdict">
-${c.veredicto.map((v) => `    <li><strong>${esc(v.perfil)}:</strong> <a href="/productos/${esc(v.producto)}">${esc(porSlug[v.producto].nombre)}</a>. <span class="muted">${esc(v.motivo)}</span></li>`).join('\n')}
-  </ul>
+<h2>Resumen rápido</h2>
+<div class="group">
+${c.veredicto.map((v) => fila({ href: `/productos/${v.producto}`, antetitulo: v.perfil, titulo: porSlug[v.producto].nombre, sub: v.motivo, inicio: pila([porSlug[v.producto].categoria]) })).join('\n')}
 </div>
 
 <h2>Los productos de un vistazo</h2>
 <div class="grid">
-${prods.map((p) => `<div class="card"><h3><a href="/productos/${esc(p.slug)}">${esc(p.nombre)}</a></h3><div class="badges">${badges(p)}</div><p>${esc(p.idealPara)}</p></div>`).join('\n')}
+${prods.map((p) => tarjetaProducto(p, cats)).join('\n')}
 </div>
 
 <h2>Tabla comparativa</h2>
 ${tablaComparativa(prods)}
-<p class="small"><a class="btn secondary" href="/comparar?p=${esc(enComparador)}">Abrir en el comparador interactivo</a></p>
+<p class="links-list"><a class="btn secondary" href="/comparar?p=${esc(enComparador)}">${icono('columnas')}Abrir en el comparador interactivo</a></p>
 
 ${c.secciones.map((s) => `<h2>${esc(s.titulo)}</h2>\n${s.parrafos.map((t) => `<p>${esc(t)}</p>`).join('\n')}`).join('\n\n')}
 
 <h2>¿Cuál elegir?</h2>
 <div class="grid">
-${c.veredicto.map((v) => `<div class="card"><span class="card-top"><span>${esc(v.perfil)}</span></span><h3><a href="/productos/${esc(v.producto)}">${esc(porSlug[v.producto].nombre)}</a></h3><p>${esc(v.motivo)}</p></div>`).join('\n')}
+${c.veredicto.map((v) => `<div class="card"><div class="card-body"><p class="eyebrow">${esc(v.perfil)}</p><h3><a href="/productos/${esc(v.producto)}">${esc(porSlug[v.producto].nombre)}</a></h3><p>${esc(v.motivo)}</p></div></div>`).join('\n')}
 </div>
 
 <h2>Preguntas frecuentes</h2>
@@ -102,12 +100,13 @@ ${AVISO_AFILIADOS}`;
   }).replace('</head>', `  <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>\n</head>`);
 }
 
-function paginaIndice(comparativas) {
+function paginaIndice(comparativas, porSlug) {
   const body = `<div class="bc"><a href="/">Inicio</a> › Comparativas</div>
+<p class="eyebrow">Comparativas</p>
 <h1>Comparativas de domótica</h1>
 <p class="lead">Comparaciones escritas para decidir entre productos parecidos, pensando en lo que importa en Latinoamérica: voltaje y clavija de tu país, si necesitas hub y si funcionan sin internet. ¿Quieres comparar otros productos? Usa el <a href="/comparar">comparador interactivo</a>.</p>
-<div class="guides">
-${comparativas.map((c) => `<a class="guide" href="/comparativas/${esc(c.slug)}"><strong>${esc(c.titulo)}</strong><span class="muted small">${esc(c.descripcion)}</span></a>`).join('\n')}
+<div class="group lista-articulos">
+${comparativas.map((c) => fila({ href: `/comparativas/${c.slug}`, titulo: c.titulo, sub: c.descripcion, inicio: pila(c.productos.filter((s) => porSlug[s]).map((s) => porSlug[s].categoria)) })).join('\n')}
 </div>
 ${AVISO_AFILIADOS}`;
   return pagina({
@@ -121,14 +120,14 @@ ${AVISO_AFILIADOS}`;
 
 export function generarComparativas(root) {
   const comparativas = leerComparativas(root);
-  const { productos } = JSON.parse(fs.readFileSync(path.join(root, 'data', 'productos.json'), 'utf8'));
+  const { productos, categorias } = JSON.parse(fs.readFileSync(path.join(root, 'data', 'productos.json'), 'utf8'));
   const porSlug = Object.fromEntries(productos.map((p) => [p.slug, p]));
   const outDir = path.join(root, 'public', 'comparativas');
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
   for (const c of comparativas) {
-    fs.writeFileSync(path.join(outDir, `${c.slug}.html`), paginaComparativa(c, porSlug), 'utf8');
+    fs.writeFileSync(path.join(outDir, `${c.slug}.html`), paginaComparativa(c, porSlug, categorias), 'utf8');
   }
-  fs.writeFileSync(path.join(outDir, 'index.html'), paginaIndice(comparativas), 'utf8');
+  fs.writeFileSync(path.join(outDir, 'index.html'), paginaIndice(comparativas, porSlug), 'utf8');
   console.log(`⚖️  Comparativas: ${comparativas.length} artículos`);
 }

@@ -35,17 +35,12 @@
     });
   }
 
-  function estilos(el, props) { Object.keys(props).forEach(function (k) { el.style[k] = props[k]; }); return el; }
-
+  // El aspecto lo da la hoja de estilos del sitio (.cookies, .btn): aquí solo se crea el marcado
   function boton(texto, principal, alPulsar) {
     var b = document.createElement('button');
     b.type = 'button';
+    b.className = principal ? 'btn sm' : 'btn sm secondary';
     b.textContent = texto;
-    estilos(b, {
-      font: '600 14px system-ui, sans-serif', padding: '9px 16px', borderRadius: '10px', cursor: 'pointer',
-      border: principal ? '0' : '1px solid rgba(0,212,170,0.6)',
-      background: principal ? '#00d4aa' : 'transparent', color: principal ? '#03130f' : '#00d4aa',
-    });
     b.addEventListener('click', alPulsar);
     return b;
   }
@@ -54,25 +49,21 @@
     var previo = document.getElementById('od-cookies');
     if (previo) previo.remove();
 
-    var caja = estilos(document.createElement('div'), {
-      position: 'fixed', left: '12px', right: '12px', bottom: '12px', zIndex: '1000', margin: '0 auto', maxWidth: '760px',
-      background: '#172035', color: '#e2e8f0', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '14px',
-      padding: '16px', boxShadow: '0 8px 30px rgba(0,0,0,0.45)', font: '14px/1.5 system-ui, sans-serif',
-    });
+    var caja = document.createElement('div');
     caja.id = 'od-cookies';
+    caja.className = 'cookies';
     caja.setAttribute('role', 'dialog');
     caja.setAttribute('aria-label', 'Preferencias de cookies');
 
     var texto = document.createElement('p');
-    estilos(texto, { margin: '0 0 12px' });
     texto.append('Usamos Google Analytics para saber qué páginas te resultan útiles. Solo se activa si aceptas, y puedes cambiar de opinión cuando quieras. ');
     var enlace = document.createElement('a');
     enlace.href = '/privacidad#cookies';
     enlace.textContent = 'Más información';
-    estilos(enlace, { color: '#00d4aa' });
     texto.append(enlace);
 
-    var acciones = estilos(document.createElement('div'), { display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'flex-end' });
+    var acciones = document.createElement('div');
+    acciones.className = 'acciones';
     acciones.append(
       boton('Rechazar', false, function () { guardar('rechazado'); desactivarAnalytics(); caja.remove(); }),
       boton('Aceptar', true, function () { guardar('aceptado'); cargarAnalytics(); caja.remove(); })

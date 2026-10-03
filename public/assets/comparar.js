@@ -71,7 +71,7 @@
     pickers.forEach((sel, i) => {
       sel.append(el('option', { value: '' }, i < 2 ? '— Elige un producto —' : '— (Opcional) —'));
       Object.entries(datos.categorias).forEach(([id, c]) => {
-        const grupo = el('optgroup', { label: `${c.icono} ${c.nombre}` });
+        const grupo = el('optgroup', { label: c.nombre });
         datos.productos.filter((p) => p.categoria === id)
           .forEach((p) => grupo.append(el('option', { value: p.slug }, p.nombre)));
         sel.append(grupo);

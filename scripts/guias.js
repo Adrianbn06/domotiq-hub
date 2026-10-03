@@ -19,7 +19,10 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, pagina, badges, AVISO_AFILIADOS, tituloSeo, recortar } from './catalogo.js';
+import { esc, pagina, badges, AVISO_AFILIADOS, tituloSeo, recortar, icono, ilustracion, fila } from './catalogo.js';
+
+// La etiqueta de una guía puede traer un emoji delante: el diseño usa iconos, no emojis
+const sinEmoji = (t) => String(t).replace(/^[\p{Extended_Pictographic}️‍\s]+/u, '');
 
 const SITE_URL = 'https://www.ofertasdomoticas.com';
 const DIR = 'articulos-editoriales';
@@ -88,18 +91,19 @@ ${b.tabla.filas.map((f) => `<tr>${f.map((c) => `<td>${fmt(c)}</td>`).join('')}</
 </tbody>
 </table></div>`;
   }
-  if (b.nota) return `<div class="highlight">💡 ${fmt(b.nota)}</div>`;
-  if (b.aviso) return `<div class="warning">⚠️ ${fmt(b.aviso)}</div>`;
+  if (b.nota) return `<div class="highlight con-icono">${icono('bombilla')}<div>${fmt(b.nota)}</div></div>`;
+  if (b.aviso) return `<div class="warning con-icono">${icono('alerta')}<div>${fmt(b.aviso)}</div></div>`;
   if (b.oferta) {
     const p = porSlug[b.oferta];
     return `<div class="product-card">
-  <div>
-    <span class="product-badge">🛒 En nuestro catálogo</span>
+  <a class="stage pc-stage k-${esc(p.categoria)}" href="/productos/${esc(p.slug)}" tabindex="-1" aria-hidden="true">${ilustracion(p.categoria)}</a>
+  <div class="pc-body">
+    <span class="product-badge">${icono('bolsa')}En nuestro catálogo</span>
     <p class="product-name"><a href="/productos/${esc(p.slug)}">${esc(p.nombre)}</a></p>
     <div class="badges">${badges(p)}</div>
     <p>${fmt(b.motivo || p.idealPara)}</p>
   </div>
-  <a href="/productos/${esc(p.slug)}" class="btn">Ver ficha y dónde comprar →</a>
+  <a href="/productos/${esc(p.slug)}" class="btn sm">Ver ficha y dónde comprar${icono('chev-r')}</a>
 </div>`;
   }
   throw new Error(`Bloque desconocido: ${JSON.stringify(b).slice(0, 80)}`);
@@ -125,13 +129,13 @@ ${s.bloques.map((b) => bloque(b, porSlug)).join('\n')}`).join('\n\n');
 
   const body = `<div class="bc"><a href="/">Inicio</a> › <a href="/${DIR}/">Guías</a> › ${esc(g.tituloCorto)}</div>
 <article class="article guia">
-<span class="article-badge">${esc(g.etiqueta || '🧭 Guía práctica')} · ${esc(g.actualizado.slice(0, 4))}</span>
+<span class="article-badge">${icono('brujula')}${esc(sinEmoji(g.etiqueta || 'Guía práctica'))} · ${esc(g.actualizado.slice(0, 4))}</span>
 <h1>${esc(g.titulo)}</h1>
 <div class="meta">
-  <span>✍️ Equipo OfertasDomoticas</span>
-  <span>📅 ${esc(fechaLarga(g.publicado))}</span>
-  <span>🔄 Actualizado el ${esc(fechaLarga(g.actualizado))}</span>
-  <span>⏱ ${minutosLectura(g)} min de lectura</span>
+  <span>${icono('lapiz')}Equipo OfertasDomoticas</span>
+  <span>${icono('calendario')}${esc(fechaLarga(g.publicado))}</span>
+  <span>${icono('actualizado')}Actualizado el ${esc(fechaLarga(g.actualizado))}</span>
+  <span>${icono('reloj')}${minutosLectura(g)} min de lectura</span>
 </div>
 ${g.intro.map((t) => `<p class="lead">${fmt(t)}</p>`).join('\n')}
 
@@ -146,12 +150,12 @@ ${secciones}
 
 <h2 id="ventajas-y-desventajas">Ventajas y desventajas</h2>
 <div class="proscons">
-  <div class="box"><h3>✅ Ventajas</h3><ul>
-${g.ventajas.map((t) => `<li>${fmt(t)}</li>`).join('\n')}
-  </ul></div>
-  <div class="box"><h3>❌ Desventajas</h3><ul>
-${g.desventajas.map((t) => `<li>${fmt(t)}</li>`).join('\n')}
-  </ul></div>
+  <div><h3>Ventajas</h3><div class="group">
+${g.ventajas.map((t) => `<div class="fila"><span class="ib ok">${icono('check')}</span><span class="fila-t"><strong>${fmt(t)}</strong></span></div>`).join('\n')}
+  </div></div>
+  <div><h3>Desventajas</h3><div class="group">
+${g.desventajas.map((t) => `<div class="fila"><span class="ib bad">${icono('x')}</span><span class="fila-t"><strong>${fmt(t)}</strong></span></div>`).join('\n')}
+  </div></div>
 </div>
 
 <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
@@ -163,10 +167,10 @@ ${g.veredicto.intro ? `<p>${fmt(g.veredicto.intro)}</p>` : ''}
 ${g.veredicto.perfiles.map((p) => `  <div class="profile-card">
     <p class="profile-title">${fmt(p.perfil)}</p>
     <p>${fmt(p.texto)}</p>${p.producto ? `
-    <a href="/productos/${esc(p.producto)}">Ver ${esc(porSlug[p.producto].nombre)} →</a>` : ''}
+    <a href="/productos/${esc(p.producto)}">Ver ${esc(porSlug[p.producto].nombre)}</a>` : ''}
   </div>`).join('\n')}
 </div>
-${g.veredicto.alternativa ? `<div class="highlight">💡 <strong>Mejor alternativa:</strong> ${fmt(g.veredicto.alternativa)}</div>` : ''}
+${g.veredicto.alternativa ? `<div class="highlight con-icono">${icono('bombilla')}<div><strong>Mejor alternativa:</strong> ${fmt(g.veredicto.alternativa)}</div></div>` : ''}
 
 ${g.fuentes?.length ? `<h2 id="fuentes">Fuentes</h2>
 <ul class="small">
@@ -175,7 +179,7 @@ ${g.fuentes.map((f) => `<li><a href="${esc(f.url)}" rel="noopener nofollow">${es
 
 <div class="cta-box">
   <p>¿Quieres ver más opciones con voltaje, clavija y compatibilidad revisados?</p>
-  <a href="/productos/" class="btn">📚 Ver el catálogo</a> <a href="/comparar" class="btn secondary">⚖️ Comparar productos</a>
+  <div class="links-list"><a href="/productos/" class="btn">Ver el catálogo</a><a href="/comparar" class="btn secondary">${icono('columnas')}Comparar productos</a></div>
 </div>
 </article>
 ${AVISO_AFILIADOS}`;
@@ -220,10 +224,11 @@ function paginaIndice(dir) {
     .sort()
     .map((f) => ({ slug: f.replace(/\.html$/, ''), ...resumenDe(path.join(dir, f)) }));
   const body = `<div class="bc"><a href="/">Inicio</a> › Guías</div>
+<p class="eyebrow">Guías</p>
 <h1>Guías de domótica para Latinoamérica</h1>
 <p class="lead">Guías prácticas con datos revisados en fuentes de los fabricantes: voltaje y clavija de tu país, qué necesitas de verdad y qué errores evitar. ¿Prefieres comparar productos? Mira las <a href="/comparativas/">comparativas</a>.</p>
-<div class="guides">
-${items.map((i) => `<a class="guide" href="/${DIR}/${esc(i.slug)}"><strong>${esc(i.titulo)}</strong><span class="muted small">${esc(recortar(i.desc))}</span></a>`).join('\n')}
+<div class="group lista-articulos">
+${items.map((i) => fila({ href: `/${DIR}/${i.slug}`, titulo: i.titulo, sub: recortar(i.desc), icono: 'libro' })).join('\n')}
 </div>
 ${AVISO_AFILIADOS}`;
   return pagina({

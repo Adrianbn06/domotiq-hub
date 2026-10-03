@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Qué es la domótica y cómo empezar con poco (2026)</title>
   <meta name="description" content="Qué es la domótica, cómo funciona por dentro (WiFi, Zigbee, Matter) y un kit inicial por menos de 50 USD revisado para el voltaje de tu país.">
   <meta name="robots" content="index, follow">
@@ -17,12 +17,14 @@
   <meta property="og:locale" content="es_LA">
   <meta property="og:site_name" content="OfertasDomoticas.com">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f6f6f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/assets/catalogo.css">
   <script src="/analytics.js" defer></script>
 
@@ -31,11 +33,43 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Necesito un parlante con Alexa o Google para usar domótica?","acceptedAnswer":{"@type":"Answer","text":"No. Los enchufes y focos WiFi se controlan con la app de su fabricante (Tapo, eWeLink, Smart Life, WiZ). El parlante es un extra para controlar por voz."}},{"@type":"Question","name":"¿Necesito hacer obras o cambiar cables?","acceptedAnswer":{"@type":"Answer","text":"No para enchufes y focos: se conectan en el tomacorriente o en la rosca. Solo los relés e interruptores de pared requieren instalación eléctrica, y en ese caso conviene un electricista."}},{"@type":"Question","name":"¿Funciona mi dispositivo si se cae el internet?","acceptedAnswer":{"@type":"Answer","text":"Depende del modelo. Los que dependen de la nube del fabricante pierden el control remoto; algunos, como el Sonoff S26R2, aceptan control por red local. Revisa la ficha de cada producto."}},{"@type":"Question","name":"¿Qué pasa con mi dispositivo cuando se va la luz?","acceptedAnswer":{"@type":"Answer","text":"Depende de la marca y del ajuste. En los enchufes Tapo puedes elegir el estado al volver la energía en la app (Estado predeterminado), si el firmware lo permite."}},{"@type":"Question","name":"¿Puedo usar un enchufe de 110 V en un país de 220 V?","acceptedAnswer":{"@type":"Answer","text":"No es recomendable. Compra la versión hecha para el voltaje y la clavija de tu país."}}]}</script>
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo"><img class="logo-icon" src="/favicon.svg" alt="" width="32" height="32">Ofertas<em>Domoticas</em></a>
+<svg class="sprite" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="g-plastico" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E3E6EB"/></linearGradient>
+<linearGradient id="g-metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A3A8B0"/><stop offset=".45" stop-color="#F1F2F4"/><stop offset="1" stop-color="#989DA6"/></linearGradient>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+<symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-verificado" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-ayuda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-prohibido" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></symbol>
+<symbol id="i-enchufe" viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></symbol>
+<symbol id="i-bombilla" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
+<symbol id="i-sensor" viewBox="0 0 24 24"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></symbol>
+<symbol id="i-hub" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6.01 18H6"/><path d="M10.01 18H10"/><path d="M15 10v4"/><path d="M17.84 7.17a4 4 0 0 0-5.66 0"/><path d="M20.66 4.34a8 8 0 0 0-11.31 0"/></symbol>
+<symbol id="i-interruptor" viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="6"/><circle cx="16" cy="12" r="2"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></symbol>
+<symbol id="i-red" viewBox="0 0 24 24"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></symbol>
+<symbol id="i-casa" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-columnas" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 3v18"/></symbol>
+<symbol id="i-libro" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="i-balanza" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+<symbol id="i-brujula" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol>
+<symbol id="i-externo" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+<symbol id="i-globo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+<symbol id="i-lapiz" viewBox="0 0 24 24"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+<symbol id="i-calendario" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+<symbol id="i-actualizado" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+<symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-bolsa" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+<symbol id="i-rayo" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+</defs></svg>
+<header class="top">
+  <div class="top-in">
+    <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada"><span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7.5" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><rect x="14.1" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><path d="M9.6 17.5a2.4 2.4 0 0 1 4.8 0v1.6H9.6z" fill="currentColor"/></svg></span><span class="wm">ofertas <span>domóticas</span></span></a>
     <nav aria-label="Principal">
-      <a href="/productos/">Productos</a>
+      <a href="/productos/">Catálogo</a>
       <a href="/comparativas/">Comparativas</a>
       <a href="/comparar">Comparar</a>
       <a href="/articulos-editoriales/" aria-current="page">Guías</a>
@@ -46,13 +80,13 @@
 <div class="w">
 <div class="bc"><a href="/">Inicio</a> › <a href="/articulos-editoriales/">Guías</a> › Qué es la domótica y cómo empezar con poco (2026)</div>
 <article class="article guia">
-<span class="article-badge">🧭 Guía para empezar · 2026</span>
+<span class="article-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-brujula"/></svg>Guía para empezar · 2026</span>
 <h1>Qué es la domótica y cómo empezar con menos de 50 USD en 2026 (guía para Latinoamérica)</h1>
 <div class="meta">
-  <span>✍️ Equipo OfertasDomoticas</span>
-  <span>📅 15 de marzo de 2026</span>
-  <span>🔄 Actualizado el 3 de octubre de 2026</span>
-  <span>⏱ 9 min de lectura</span>
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>Equipo OfertasDomoticas</span>
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-calendario"/></svg>15 de marzo de 2026</span>
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-actualizado"/></svg>Actualizado el 3 de octubre de 2026</span>
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg>9 min de lectura</span>
 </div>
 <p class="lead">Quieres que la lámpara se encienda sola al anochecer o apagar el ventilador desde el trabajo, pero cada video que ves empieza con un hub caro, cables y aplicaciones que no conoces. El problema real casi nunca es el dinero: es <strong>comprar el aparato equivocado</strong> para tu voltaje, tu clavija o tu WiFi.</p>
 <p class="lead">En esta guía analizamos qué es la domótica, cómo funciona por dentro (protocolos, topologías de red y lógica de automatización) y con qué kit empezar por menos de 50 USD sin romper paredes. Revisamos cada dato en la web del fabricante y también te decimos los contras.</p>
@@ -91,20 +125,21 @@
 <p>El protocolo es el idioma en que se hablan tus dispositivos. Define si necesitas un hub, cómo viaja la señal por la casa y cuánta energía gasta cada aparato. Elegirlo bien al principio te ahorra tener que reemplazar cosas después.</p>
 <h3>WiFi: topología en estrella, sin hub</h3>
 <p>Cada foco o enchufe WiFi se conecta <strong>directamente a tu router</strong>, como un celular más: es una red en estrella. Por eso no necesitas comprar un hub. Casi todos los dispositivos económicos usan la banda de <strong>2,4 GHz</strong>: TP-Link indica, por ejemplo, que sus enchufes Tapo funcionan con cualquier router que tenga esa banda.</p>
-<div class="warning">⚠️ Si tu router mezcla las dos bandas con el mismo nombre y el celular se conecta a la de 5 GHz, la configuración puede fallar. Durante la instalación conecta el celular a la red de 2,4 GHz (o desactiva un momento la de 5 GHz si tu router lo permite).</div>
+<div class="warning con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-alerta"/></svg><div>Si tu router mezcla las dos bandas con el mismo nombre y el celular se conecta a la de 5 GHz, la configuración puede fallar. Durante la instalación conecta el celular a la red de 2,4 GHz (o desactiva un momento la de 5 GHz si tu router lo permite).</div></div>
 <p>El punto débil: todo depende del router. Cada aparato WiFi es un cliente más, y un router básico, como el que suele entregar el proveedor de internet, puede quedarse corto cuando sumas muchos dispositivos.</p>
 <h3>Zigbee: red en malla con coordinador</h3>
 <p>Zigbee está pensado para domótica. La Connectivity Standards Alliance (CSA) lo describe como una red en <strong>malla que se organiza y se repara sola</strong>, optimizada para <strong>bajo consumo</strong>. Necesita un <strong>coordinador</strong> (un hub o un adaptador USB) que hace de puente con tu WiFi.</p>
 <p>Según la documentación de Home Assistant, la mayoría de los aparatos Zigbee conectados a la corriente, como enchufes o focos, <strong>actúan como routers</strong> de la red: repiten la señal y la llevan más lejos. Los sensores a pilas, en cambio, son dispositivos finales que dependen de esos routers. Por eso una red Zigbee se vuelve más estable cuantos más aparatos enchufados tiene.</p>
-<div class="highlight">💡 Zigbee y el WiFi comparten la banda de 2,4 GHz. Si notas cortes, la documentación de Home Assistant recomienda empezar por fijar un canal WiFi estático en tu router.</div>
+<div class="highlight con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bombilla"/></svg><div>Zigbee y el WiFi comparten la banda de 2,4 GHz. Si notas cortes, la documentación de Home Assistant recomienda empezar por fijar un canal WiFi estático en tu router.</div></div>
 <div class="product-card">
-  <div>
-    <span class="product-badge">🛒 En nuestro catálogo</span>
+  <a class="stage pc-stage k-hub" href="/productos/sonoff-zbbridge-p" tabindex="-1" aria-hidden="true"><svg class="ill" viewBox="0 0 200 230" aria-hidden="true" focusable="false"><rect x="32" y="48" width="136" height="136" rx="42" fill="url(#g-plastico)" stroke="#D3D7DE" stroke-width="1.5"/><circle cx="100" cy="116" r="40" fill="none" stroke="#B9D4FF" stroke-width="18" opacity=".45"/><circle cx="100" cy="116" r="40" fill="none" stroke="#5C95FF" stroke-width="6"/><circle cx="100" cy="116" r="27" fill="#F2F3F6"/><circle cx="100" cy="116" r="5" fill="#C5CAD2"/></svg></a>
+  <div class="pc-body">
+    <span class="product-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bolsa"/></svg>En nuestro catálogo</span>
     <p class="product-name"><a href="/productos/sonoff-zbbridge-p">Sonoff Zigbee Bridge Pro (ZBBridge-P)</a></p>
     <div class="badges"><span class="badge">Zigbee 3.0</span><span class="badge">WiFi 2.4 GHz</span><span class="badge">Bluetooth</span></div>
     <p>Hub Zigbee económico para cuando quieras sumar sensores: hasta 128 dispositivos Zigbee con repetidores y se alimenta por USB, así que sirve en cualquier país.</p>
   </div>
-  <a href="/productos/sonoff-zbbridge-p" class="btn">Ver ficha y dónde comprar →</a>
+  <a href="/productos/sonoff-zbbridge-p" class="btn sm">Ver ficha y dónde comprar<svg class="i" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
 </div>
 <h3>Thread y Matter: el estándar común</h3>
 <p><strong>Thread</strong> es otra red en malla de bajo consumo, basada en IPv6 y en el estándar de radio IEEE 802.15.4, según el Thread Group. <strong>Matter</strong> no es una radio: es un estándar de conectividad basado en IP que, según la CSA, funciona sobre WiFi y Thread y usa Bluetooth de bajo consumo solo para la configuración inicial. Lo respaldan Amazon, Apple, Google y Samsung SmartThings.</p>
@@ -133,15 +168,16 @@
 </table></div>
 <p>Muchos enchufes están hechos solo para 110–120 V: el Tapo P115, por ejemplo, es de 100–125 V. Otros, como el Sonoff S26R2, existen <strong>en versiones por país</strong> (clavija de EE.UU., Brasil, Argentina, Chile o Europa) y hay que comprar exactamente la tuya. Con los focos pasa lo mismo: el Tapo L535E es de 120 V con rosca E26 y el Tapo L530E es de 220–240 V con rosca E27.</p>
 <div class="product-card">
-  <div>
-    <span class="product-badge">🛒 En nuestro catálogo</span>
+  <a class="stage pc-stage k-enchufe" href="/productos/sonoff-s26r2" tabindex="-1" aria-hidden="true"><svg class="ill" viewBox="0 0 200 230" aria-hidden="true" focusable="false"><rect x="38" y="22" width="124" height="180" rx="40" fill="url(#g-plastico)" stroke="#D3D7DE" stroke-width="1.5"/><rect x="56" y="62" width="88" height="104" rx="28" fill="#F4F5F8" stroke="#E0E3E8" stroke-width="1.5"/><rect x="79" y="88" width="9" height="30" rx="3" fill="#2E3138"/><rect x="112" y="88" width="9" height="30" rx="3" fill="#2E3138"/><path d="M92 146a8 8 0 0 1 16 0v8h-16z" fill="#2E3138"/><circle cx="100" cy="42" r="4.5" fill="#34D399"/><rect x="160" y="96" width="6" height="32" rx="3" fill="#C9CDD4"/></svg></a>
+  <div class="pc-body">
+    <span class="product-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bolsa"/></svg>En nuestro catálogo</span>
     <p class="product-name"><a href="/productos/sonoff-s26r2">Sonoff S26R2</a></p>
     <div class="badges"><span class="badge">WiFi 2.4 GHz</span><span class="badge volt">110–120 V / 220–240 V</span></div>
     <p>El enchufe WiFi con versión para casi cada país de la región, y con control por red local si se cae internet. No mide consumo.</p>
   </div>
-  <a href="/productos/sonoff-s26r2" class="btn">Ver ficha y dónde comprar →</a>
+  <a href="/productos/sonoff-s26r2" class="btn sm">Ver ficha y dónde comprar<svg class="i" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
 </div>
-<div class="warning">⚠️ Antes de pagar, revisa tres cosas en la ficha del producto: <strong>voltaje</strong>, <strong>tipo de clavija o rosca</strong> y <strong>corriente máxima</strong>.</div>
+<div class="warning con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-alerta"/></svg><div>Antes de pagar, revisa tres cosas en la ficha del producto: <strong>voltaje</strong>, <strong>tipo de clavija o rosca</strong> y <strong>corriente máxima</strong>.</div></div>
 
 <h2 id="kit-inicial-por-menos-de-50-usd-paso-a-paso">Kit inicial por menos de 50 USD, paso a paso</h2>
 <p>En nuestro catálogo, un enchufe WiFi y un foco inteligente de las marcas económicas están en el <strong>rango 1</strong> (menos de 15 USD cada uno, orientativo; el precio real cambia por país y tienda). Con eso, un kit de un enchufe y dos focos queda por debajo de 50 USD.</p>
@@ -161,13 +197,14 @@
 <li>Si ya tienes un parlante con Alexa o Google, vincula la app para usar la voz (es opcional).</li>
 </ol>
 <div class="product-card">
-  <div>
-    <span class="product-badge">🛒 En nuestro catálogo</span>
+  <a class="stage pc-stage k-bombilla" href="/productos/tapo-l535e" tabindex="-1" aria-hidden="true"><svg class="ill" viewBox="0 0 200 230" aria-hidden="true" focusable="false"><path class="glass" d="M72 160C72 140 36 126 36 88A64 64 0 1 1 164 88C164 126 128 140 128 160Z"/><ellipse cx="74" cy="72" rx="9" ry="21" transform="rotate(28 74 72)" fill="#FFFFFF" opacity=".7"/><rect x="70" y="158" width="60" height="13" rx="4" fill="#E6E8EC"/><path d="M74 171h52v30a9 9 0 0 1-9 9H83a9 9 0 0 1-9-9z" fill="url(#g-metal)"/><path d="M74 180l52-4M74 190l52-4M74 200l52-4" stroke="#8C919A" stroke-width="2.4" stroke-linecap="round"/><path d="M90 209h20l-4 9h-12z" fill="#33363D"/></svg></a>
+  <div class="pc-body">
+    <span class="product-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bolsa"/></svg>En nuestro catálogo</span>
     <p class="product-name"><a href="/productos/tapo-l535e">TP-Link Tapo L535E (E26, 120 V)</a></p>
     <div class="badges"><span class="badge">WiFi 2.4 GHz</span><span class="badge volt">110–120 V</span></div>
     <p>Foco de color con Matter, 1100 lúmenes y rosca E26 para redes de 120 V. Si tu país es de 220 V, su equivalente es el Tapo L530E (E27).</p>
   </div>
-  <a href="/productos/tapo-l535e" class="btn">Ver ficha y dónde comprar →</a>
+  <a href="/productos/tapo-l535e" class="btn sm">Ver ficha y dónde comprar<svg class="i" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
 </div>
 <h3>Seguridad eléctrica</h3>
 <p>Los enchufes y focos de este kit se conectan sin tocar cables ni el tablero. Aun así, respeta la corriente máxima indicada (el Tapo P115, por ejemplo, indica 15 A / 1800 W) y no conectes aparatos que la superen. Si más adelante quieres instalar relés o interruptores inteligentes dentro de la pared, <strong>hazlo con un electricista</strong> si no tienes experiencia.</p>
@@ -175,19 +212,19 @@
 
 <h2 id="ventajas-y-desventajas">Ventajas y desventajas</h2>
 <div class="proscons">
-  <div class="box"><h3>✅ Ventajas</h3><ul>
-<li><strong>Sin obras:</strong> enchufes y focos se instalan en el tomacorriente o en la rosca.</li>
-<li><strong>Sin hub</strong> al principio: los dispositivos WiFi se conectan directo al router.</li>
-<li>Precio de entrada bajo: un enchufe y dos focos de gama económica quedan por debajo de 50 USD.</li>
-<li>Crece por partes: después puedes sumar sensores Zigbee con un hub, sin tirar lo que ya tienes.</li>
-  </ul></div>
-  <div class="box"><h3>❌ Desventajas</h3><ul>
-<li><strong>Dependencia de la nube:</strong> muchos dispositivos económicos pierden el control remoto si cae el internet o el servicio del fabricante.</li>
-<li><strong>Cortes de luz:</strong> al volver la energía el aparato puede quedar encendido o apagado. En los enchufes Tapo existe el ajuste «Estado predeterminado»; según TP-Link llegó con actualizaciones de firmware.</li>
-<li><strong>Router básico:</strong> con muchos aparatos WiFi la red de casa puede quedarse corta.</li>
-<li><strong>Marcas genéricas:</strong> los enchufes Tuya / Smart Life son los más baratos, pero la calidad varía mucho entre vendedores.</li>
-<li><strong>Seguridad:</strong> cada aparato conectado es un equipo más en tu red. Usa una contraseña WiFi robusta y mantén el firmware actualizado.</li>
-  </ul></div>
+  <div><h3>Ventajas</h3><div class="group">
+<div class="fila"><span class="ib ok"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span class="fila-t"><strong><strong>Sin obras:</strong> enchufes y focos se instalan en el tomacorriente o en la rosca.</strong></span></div>
+<div class="fila"><span class="ib ok"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span class="fila-t"><strong><strong>Sin hub</strong> al principio: los dispositivos WiFi se conectan directo al router.</strong></span></div>
+<div class="fila"><span class="ib ok"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span class="fila-t"><strong>Precio de entrada bajo: un enchufe y dos focos de gama económica quedan por debajo de 50 USD.</strong></span></div>
+<div class="fila"><span class="ib ok"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span class="fila-t"><strong>Crece por partes: después puedes sumar sensores Zigbee con un hub, sin tirar lo que ya tienes.</strong></span></div>
+  </div></div>
+  <div><h3>Desventajas</h3><div class="group">
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Dependencia de la nube:</strong> muchos dispositivos económicos pierden el control remoto si cae el internet o el servicio del fabricante.</strong></span></div>
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Cortes de luz:</strong> al volver la energía el aparato puede quedar encendido o apagado. En los enchufes Tapo existe el ajuste «Estado predeterminado»; según TP-Link llegó con actualizaciones de firmware.</strong></span></div>
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Router básico:</strong> con muchos aparatos WiFi la red de casa puede quedarse corta.</strong></span></div>
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Marcas genéricas:</strong> los enchufes Tuya / Smart Life son los más baratos, pero la calidad varía mucho entre vendedores.</strong></span></div>
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Seguridad:</strong> cada aparato conectado es un equipo más en tu red. Usa una contraseña WiFi robusta y mantén el firmware actualizado.</strong></span></div>
+  </div></div>
 </div>
 
 <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
@@ -203,30 +240,30 @@
   <div class="profile-card">
     <p class="profile-title">Solo quiero probar</p>
     <p>Un enchufe WiFi de tu voltaje y clavija para programar una lámpara o un ventilador.</p>
-    <a href="/productos/sonoff-s26r2">Ver Sonoff S26R2 →</a>
+    <a href="/productos/sonoff-s26r2">Ver Sonoff S26R2</a>
   </div>
   <div class="profile-card">
     <p class="profile-title">Quiero ver cuánto gastan mis aparatos (110–120 V)</p>
     <p>Un enchufe con medición de consumo y la app Tapo.</p>
-    <a href="/productos/tapo-p115">Ver TP-Link Tapo P115 →</a>
+    <a href="/productos/tapo-p115">Ver TP-Link Tapo P115</a>
   </div>
   <div class="profile-card">
     <p class="profile-title">Quiero luces de colores (110–120 V)</p>
     <p>Un foco con Matter que funcione con Alexa, Google y Apple Home.</p>
-    <a href="/productos/tapo-l535e">Ver TP-Link Tapo L535E (E26, 120 V) →</a>
+    <a href="/productos/tapo-l535e">Ver TP-Link Tapo L535E (E26, 120 V)</a>
   </div>
   <div class="profile-card">
     <p class="profile-title">Vivo en un país de 220 V</p>
     <p>La versión E27 de 220–240 V del foco de Tapo, y un enchufe de la versión de tu país.</p>
-    <a href="/productos/tapo-l530e">Ver TP-Link Tapo L530E (E27, 220–240 V) →</a>
+    <a href="/productos/tapo-l530e">Ver TP-Link Tapo L530E (E27, 220–240 V)</a>
   </div>
   <div class="profile-card">
     <p class="profile-title">Ya tengo varios aparatos y quiero sensores</p>
     <p>Un hub Zigbee y sensores a pila, por ejemplo de movimiento.</p>
-    <a href="/productos/sonoff-snzb-03p">Ver Sonoff SNZB-03P →</a>
+    <a href="/productos/sonoff-snzb-03p">Ver Sonoff SNZB-03P</a>
   </div>
 </div>
-<div class="highlight">💡 <strong>Mejor alternativa:</strong> si prefieres control total y sin depender de la nube, el camino es Home Assistant con un coordinador USB como el <a href="/productos/sonoff-zbdongle-e">Sonoff ZBDongle-E</a>. Pide más tiempo de configuración, así que conviene después de dominar lo básico.</div>
+<div class="highlight con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bombilla"/></svg><div><strong>Mejor alternativa:</strong> si prefieres control total y sin depender de la nube, el camino es Home Assistant con un coordinador USB como el <a href="/productos/sonoff-zbdongle-e">Sonoff ZBDongle-E</a>. Pide más tiempo de configuración, así que conviene después de dominar lo básico.</div></div>
 
 <h2 id="fuentes">Fuentes</h2>
 <ul class="small">
@@ -242,16 +279,23 @@
 
 <div class="cta-box">
   <p>¿Quieres ver más opciones con voltaje, clavija y compatibilidad revisados?</p>
-  <a href="/productos/" class="btn">📚 Ver el catálogo</a> <a href="/comparar" class="btn secondary">⚖️ Comparar productos</a>
+  <div class="links-list"><a href="/productos/" class="btn">Ver el catálogo</a><a href="/comparar" class="btn secondary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-columnas"/></svg>Comparar productos</a></div>
 </div>
 </article>
 <p class="disclosure">Algunos enlaces de compra pueden ser de afiliado: si compras a través de ellos podemos recibir una pequeña comisión, sin coste extra para ti. No mostramos precios exactos porque cambian a diario; el rango es orientativo. En calidad de afiliado de Amazon, OfertasDomoticas.com obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>
 </div>
 </main>
-<footer>
-  <div class="w">
-    <span>© 2026 OfertasDomoticas.com — Domótica práctica para Latinoamérica</span>
-    <span><a href="/glosario">Glosario</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/aviso-legal">Aviso legal</a> · <a href="/privacidad">Privacidad</a> · <a href="/privacidad#cookies" data-cookies>Configurar cookies</a></span>
+<footer class="pie">
+  <div class="w pie-in">
+    <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada"><span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7.5" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><rect x="14.1" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><path d="M9.6 17.5a2.4 2.4 0 0 1 4.8 0v1.6H9.6z" fill="currentColor"/></svg></span><span class="wm">ofertas <span>domóticas</span></span></a>
+    <p class="pie-lema">Domótica práctica para Latinoamérica: fichas verificadas, comparativas y guías para redes de 110 V y 220 V.</p>
+    <nav aria-label="Secciones">
+      <a href="/productos/">Catálogo</a><a href="/comparativas/">Comparativas</a><a href="/comparar">Comparar</a><a href="/articulos-editoriales/">Guías</a><a href="/glosario">Glosario</a>
+    </nav>
+    <nav aria-label="Información">
+      <a href="/nosotros">Nosotros</a><a href="/contacto">Contacto</a><a href="/aviso-legal">Aviso legal</a><a href="/privacidad">Privacidad</a><a href="/privacidad#cookies" data-cookies>Configurar cookies</a>
+    </nav>
+    <small>© 2026 OfertasDomoticas.com</small>
   </div>
 </footer>
 </body>
