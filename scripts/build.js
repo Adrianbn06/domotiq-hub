@@ -3,6 +3,7 @@
  *
  *  - Genera el catálogo de productos y el comparador (scripts/catalogo.js)
  *  - Genera las comparativas "X vs Y" (scripts/comparativas.js)
+ *  - Genera las guías prácticas (scripts/guias.js)
  *  - Genera la portada a partir del catálogo y las guías (scripts/portada.js)
  *  - Genera public/sitemap.xml con todas las páginas indexables
  *
@@ -16,6 +17,7 @@ import { generarCatalogo } from './catalogo.js';
 import { generarPortada } from './portada.js';
 import { generarComparativas } from './comparativas.js';
 import { generarPaginas } from './paginas.js';
+import { generarGuias } from './guias.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
@@ -67,6 +69,7 @@ ${pages.map(p => `  <url>
 
 generarCatalogo(ROOT);
 generarComparativas(ROOT);
+generarGuias(ROOT);
 generarPaginas(ROOT);
 generarPortada(ROOT);
 generateSitemap();
