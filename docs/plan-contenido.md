@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T002 Comparativa: enchufes con medición de consumo — Sonoff S31 vs Tapo P115 vs Kasa EP25 (productos ya en el catálogo)
 - [ ] T003 Guía: el enchufe o foco inteligente no se conecta al WiFi (red de 5 GHz, Smart Life / eWeLink / Tapo): solución paso a paso
 - [ ] T004 Guía: los primeros 5 dispositivos para empezar tu casa inteligente en Latinoamérica
 - [ ] T005 Guía: 110–127 V o 220 V: qué revisar antes de comprar domótica (voltaje, clavija, rosca E26/E27, versiones por país)
@@ -158,6 +157,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-05) T002 Comparativa: enchufes con medición de consumo — Sonoff S31 vs Tapo P115 vs Kasa EP25
 - [x] (2026-10-03) Diseño, paso 2 "Tu país": el visitante elige su país y cada tarjeta y ficha dice si el producto funciona con su red; título de la portada con el país, foco regulable de 2500 a 6500 K y catálogo filtrado por su voltaje
 - [x] (2026-10-03) Diseño, paso 1: sistema visual "Vitrina Obsidian" en todo el sitio (colores, letras, iconos, dibujos de producto, portada, fichas, catálogo, comparativas, guías y las 4 páginas antiguas)
 - [x] (2026-10-03) Formato de guías con el estilo de los artículos originales (prompt editorial en `CLAUDE.md`): índice, H3, tablas, ventajas y desventajas, 3 recomendaciones del catálogo y veredicto por perfil. Guía de inicio reescrita así
