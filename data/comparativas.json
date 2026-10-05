@@ -322,6 +322,107 @@
           "r": "No están pensados para eso. Sonoff indica que el SNZB-04P es para interiores, y el T1 tiene un rango de trabajo de -10 a 45 °C. Para el exterior busca un sensor con protección contra agua y sol."
         }
       ]
+    },
+    {
+      "slug": "sonoff-s31-vs-tapo-p115-vs-kasa-ep25-enchufes-consumo",
+      "titulo": "Sonoff S31 vs Tapo P115 vs Kasa EP25: ¿qué enchufe con medición de consumo comprar?",
+      "tituloCorto": "Sonoff S31 vs Tapo P115 vs Kasa EP25",
+      "descripcion": "Comparamos tres enchufes WiFi que miden el consumo: Sonoff S31, TP-Link Tapo P115 y Kasa EP25. Voltaje, carga, apps, Apple Home y qué país los necesita.",
+      "actualizado": "2026-10-05",
+      "productos": [
+        "sonoff-s31",
+        "tapo-p115",
+        "kasa-ep25"
+      ],
+      "intro": [
+        "Un enchufe inteligente con medición de consumo te dice cuántos vatios gasta lo que conectas: el refrigerador viejo, el calentador, el cargador que nunca desenchufas. Con ese dato puedes decidir qué aparato cambiar o apagar, en lugar de adivinar por qué sube el recibo de la luz.",
+        "Tres modelos baratos y muy buscados son el Sonoff S31, el TP-Link Tapo P115 y el TP-Link Kasa EP25. Los tres son WiFi de 2,4 GHz, no necesitan hub y miden consumo, pero cambian en las apps, en la compatibilidad con Apple Home y, sobre todo, en el voltaje de cada versión. Te contamos las diferencias y también los contras."
+      ],
+      "secciones": [
+        {
+          "titulo": "Lo primero: el voltaje de tu país",
+          "parrafos": [
+            "Esta es la decisión que más errores causa. Las versiones de estos tres enchufes que se venden con clavija estilo Estados Unidos están hechas para redes de 110–127 V: sirven en México, Centroamérica, Colombia, Ecuador y Venezuela. Según las fichas de los fabricantes, el Sonoff S31 de clavija americana trabaja a 120 V 60 Hz, el Kasa EP25 a 100–120 V y el Tapo P115 de la web de Estados Unidos a 100–125 V.",
+            "Si vives en Perú, Chile, Argentina, Bolivia, Uruguay o Paraguay (220 V), no conectes estas versiones en tu red. Con el Tapo P115 hay una salida: la página internacional de TP-Link muestra una versión (V1.20) con entrada de 100–240 V y 16 A. Sonoff también indica que el S31 existe con otras clavijas (A, B, E, F, G, H, I, J, L, N, D). En ambos casos revisa en la ficha del vendedor el voltaje y la clavija exactos antes de comprar, porque no confirmamos cuál se vende en cada país. Brasil usa 127/220 V según la región, así que ahí también conviene mirar la etiqueta."
+          ]
+        },
+        {
+          "titulo": "Medición de consumo: qué te muestra cada uno",
+          "parrafos": [
+            "El Sonoff S31 muestra potencia, corriente y voltaje de lo que conectas, guarda 100 días de historial y calcula un pronóstico de la cuenta mensual. Además permite fijar un límite de sobrecarga que corta la corriente. Su versión Lite no mide consumo, así que fíjate en no comprar la equivocada.",
+            "El Tapo P115 enseña la potencia en vivo (se actualiza cada cinco segundos según TP-Link), el consumo de hoy y de los últimos 30 días. Puedes poner la tarifa de tu compañía eléctrica para estimar el gasto; TP-Link advierte que ese costo es solo una referencia. Un detalle: la ficha del producto habla de 7 días de historial y una página de ayuda de TP-Link, de hasta tres meses, así que no prometemos una cifra exacta.",
+            "El Kasa EP25 muestra consumo en tiempo real y el histórico diario, semanal y mensual en la app Kasa Smart. Es el que menos detalle técnico publica en su ficha, pero cumple lo básico."
+          ]
+        },
+        {
+          "titulo": "Apps y asistentes",
+          "parrafos": [
+            "El Sonoff se maneja con eWeLink y funciona con Alexa y Google Home. Tiene una limitación: IFTTT exige el plan avanzado de pago de eWeLink. No tiene soporte para Apple Home ni para Matter.",
+            "El Tapo P115 usa la app Tapo y se conecta a Alexa, Google y SmartThings. TP-Link dice que mantiene el control en red local si se cae internet. La ficha no menciona HomeKit ni Matter; si necesitas Matter, tendrás que buscar otro modelo.",
+            "El Kasa EP25 es el único de los tres que se anuncia con Apple Home, además de Alexa, Google y Siri. Si tu casa gira alrededor de un iPhone, esa es su gran ventaja. Para configurar cualquiera de los tres necesitas una red de 2,4 GHz: TP-Link confirma que sus enchufes Tapo solo admiten esa banda. Si tu router une 2,4 y 5 GHz con el mismo nombre y falla la vinculación, separa las redes un momento."
+          ]
+        },
+        {
+          "titulo": "Tamaño y diseño",
+          "parrafos": [
+            "El Tapo P115 y el Kasa EP25 son compactos: TP-Link indica que el P115 está diseñado para no bloquear el tomacorriente de al lado, y que el EP25 permite apilar dos enchufes en la misma toma. Sonoff dice que el S31 tampoco bloquea el contiguo, aunque es el más largo de los tres (75,7 mm). Si tu tomacorriente tiene poco espacio entre tomas, mide antes."
+          ]
+        },
+        {
+          "titulo": "Seguridad eléctrica",
+          "parrafos": [
+            "Los tres admiten hasta 15 A. Eso no significa que sea buena idea conectarles cualquier cosa de forma continua: calefactores, planchas, bombas o aires acondicionados grandes exigen una instalación en buen estado. Las fichas de TP-Link indican la carga resistiva (1800 W) y un máximo de 1/6 HP para motores, mucho menos que una bomba de agua o un aire acondicionado típico. Si dudas, consulta a un electricista."
+          ]
+        },
+        {
+          "titulo": "Cómo elegir según tu país y tu celular",
+          "parrafos": [
+            "Si estás en México, Colombia, Ecuador o Centroamérica, los tres sirven con la clavija estilo Estados Unidos y la decisión pasa por el ecosistema: iPhone con Apple Home, Kasa; Android o Alexa con presupuesto mínimo, Tapo o Sonoff.",
+            "Si estás en un país de 220 V, empieza por descartar las versiones de 120 V. La única opción de estas tres que vemos documentada para 100–240 V es la versión internacional del Tapo P115, y aun así debes comprobar que su clavija coincida con tus tomacorrientes, porque nosotros no hemos confirmado qué variante llega a cada tienda. Un adaptador de clavija no cambia el voltaje del aparato."
+          ]
+        },
+        {
+          "titulo": "Precio",
+          "parrafos": [
+            "En nuestro catálogo los tres están en el rango más económico (menos de 15 USD), de forma orientativa. El Kasa suele venderse en paquetes de varias unidades según la tienda, y los precios cambian según el país, el envío y los impuestos de importación."
+          ]
+        }
+      ],
+      "veredicto": [
+        {
+          "perfil": "Usas iPhone y Apple Home, y vives en un país de 110–127 V",
+          "producto": "kasa-ep25",
+          "motivo": "Es el único de los tres con Apple Home anunciado por el fabricante y además mide el consumo."
+        },
+        {
+          "perfil": "Quieres medir consumo con el menor presupuesto y una app sencilla",
+          "producto": "tapo-p115",
+          "motivo": "Es muy compacto, muestra potencia en vivo y estimación de gasto y mantiene el control local si se cae internet, según TP-Link."
+        },
+        {
+          "perfil": "Quieres un límite de sobrecarga configurable y más de 100 días de historial",
+          "producto": "sonoff-s31",
+          "motivo": "Permite fijar un límite de sobrecarga y guarda 100 días de historial, según Sonoff."
+        }
+      ],
+      "faq": [
+        {
+          "p": "¿Estos enchufes funcionan en 220 V?",
+          "r": "No las versiones de clavija americana: son para 100–127 V. Del Tapo P115 existe una versión internacional de 100–240 V, y el Sonoff S31 se ofrece con otras clavijas. Confirma voltaje y clavija en la ficha del vendedor."
+        },
+        {
+          "p": "¿Necesito un hub?",
+          "r": "No. Los tres se conectan por WiFi de 2,4 GHz directo a tu router."
+        },
+        {
+          "p": "¿Cuál es la diferencia entre el Sonoff S31 y el S31 Lite?",
+          "r": "El S31 mide el consumo y tiene protección por sobrecarga; el S31 Lite no tiene esas dos funciones, según Sonoff."
+        },
+        {
+          "p": "¿La factura que muestra la app es exacta?",
+          "r": "No. TP-Link aclara que el costo estimado es solo una referencia; el valor real depende de tu empresa eléctrica."
+        }
+      ]
     }
   ]
 }
