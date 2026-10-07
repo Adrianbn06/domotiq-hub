@@ -10,3 +10,21 @@
 /guia-domotica-2026.html /articulos-editoriales/que-es-la-domotica-como-empezar-menos-50 301
 /zigbee-vs-matter-vs-zwave /articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026 301
 /zigbee-vs-matter-vs-zwave.html /articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026 301
+
+# Direcciones antiguas con .html que Google tenía indexadas: cambio permanente (301) a la
+# dirección limpia. Sin estas reglas Cloudflare las quita solo, pero con un 307 (temporal).
+/index.html / 301
+/nosotros.html /nosotros 301
+/privacidad.html /privacidad 301
+/contacto.html /contacto 301
+/glosario.html /glosario 301
+/alexa-vs-google-home-vs-homekit.html /alexa-vs-google-home-vs-homekit 301
+/articulos-editoriales/index.html /articulos-editoriales/ 301
+/articulos-editoriales/articulos-index.html /articulos-editoriales/ 301
+/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50.html /articulos-editoriales/que-es-la-domotica-como-empezar-menos-50 301
+/articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026.html /articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026 301
+/articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026.html /articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026 301
+
+# Antiguo índice de guías (enlazado desde las páginas viejas; hoy daba 404)
+/guias /articulos-editoriales/ 301
+/guias.html /articulos-editoriales/ 301
