@@ -147,6 +147,224 @@
         { "texto": "Google Nest: qué es un Thread Border Router", "url": "https://support.google.com/googlenest/answer/9249088" },
         { "texto": "Thread Group: qué es Thread", "url": "https://www.threadgroup.org/What-is-Thread/Overview" }
       ]
+    },
+    {
+      "slug": "enchufe-foco-inteligente-no-conecta-wifi",
+      "etiqueta": "🔧 Solución de problemas",
+      "titulo": "Mi enchufe o foco inteligente no se conecta al WiFi: solución paso a paso (Smart Life, eWeLink y Tapo)",
+      "tituloCorto": "Enchufe o foco inteligente no conecta al WiFi: solución",
+      "descripcion": "Por qué falla la conexión al WiFi de enchufes y focos inteligentes (2,4 GHz, 5 GHz, modo EZ o AP) y cómo arreglarlo en Smart Life, eWeLink y Tapo.",
+      "publicado": "2026-10-07",
+      "actualizado": "2026-10-07",
+      "intro": [
+        "Compraste un enchufe o un foco inteligente, abres la app, escribes la clave del WiFi y el proceso se queda congelado o termina en «error de conexión». Casi siempre **el aparato no está roto**: el fallo viene de que la configuración se envió por la banda equivocada del router.",
+        "En esta guía analizamos por qué ocurre, revisamos la documentación de TP-Link (Tapo), Tuya (Smart Life) y eWeLink (Sonoff) y comparamos los métodos para arreglarlo, del más sencillo al más técnico. Si apenas empiezas, antes puedes leer [qué es la domótica y cómo empezar](/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50)."
+      ],
+      "secciones": [
+        {
+          "titulo": "Por qué falla la conexión: el problema de las dos bandas",
+          "bloques": [
+            {
+              "p": "Los enchufes y focos WiFi económicos trabajan en la banda de **2,4 GHz** y no en la de 5 GHz. TP-Link lo dice de forma explícita para Tapo: el dispositivo no admite 5 GHz y su enchufe es compatible con cualquier router que tenga 2,4 GHz. La documentación de Tuya y la de eWeLink indican lo mismo para sus aparatos."
+            },
+            {
+              "h3": "Cómo se envía la clave al aparato"
+            },
+            {
+              "p": "Durante la instalación, el celular le entrega al dispositivo el nombre (SSID) y la clave de tu WiFi. La comunidad de eWeLink explica el fallo típico: si el router usa **un mismo nombre para las dos bandas** (función que suele llamarse Smart Connect o band steering), el celular puede quedar conectado a la de 5 GHz y emitir los datos por ahí, mientras el aparato espera en 2,4 GHz. Los datos nunca llegan."
+            },
+            {
+              "aviso": "Si escribes mal la clave, el aparato puede aparecer como «agregado» en la app pero quedar fuera de línea, porque la clave se transmite directamente al dispositivo. Revísala antes de culpar al router."
+            },
+            {
+              "h3": "Otras causas habituales"
+            },
+            {
+              "lista": [
+                "**Distancia:** el aparato está lejos del router y la señal es débil.",
+                "**Router saturado:** TP-Link recuerda comprobar que el router no haya llegado a su límite de dispositivos conectados.",
+                "**Seguridad del router:** Tapo solo admite WPA-PSK, WPA2-PSK y WPA3; las redes con portal de acceso (tipo hotel) no sirven.",
+                "**Filtros:** eWeLink recomienda desactivar temporalmente el filtro de direcciones MAC, el aislamiento de clientes (AP isolation) y los cortafuegos, y tener DHCP activado.",
+                "**Nombre de red con símbolos raros:** eWeLink aconseja un SSID con solo letras y números."
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Preparación en el celular antes de empezar",
+          "bloques": [
+            {
+              "lista": [
+                "Actualiza la app y el sistema del celular (TP-Link lo recomienda en su guía de fallos de configuración).",
+                "Conecta el celular a la red de **2,4 GHz** de tu casa, no a la de 5 GHz.",
+                "Concede a la app los permisos que pide. En Smart Life la documentación de Tuya indica que hace falta el permiso de **ubicación** para encontrar las redes WiFi automáticamente; los Tapo como el P115 usan Bluetooth solo para la configuración, según TP-Link.",
+                "Acerca el aparato y el celular al router durante la instalación.",
+                "Enciende un aparato nuevo a la vez para que la app no se confunda."
+              ]
+            },
+            {
+              "nota": "El permiso de ubicación no es para espiarte: el sistema del celular lo exige a las apps para poder leer los nombres de las redes cercanas. Si no lo concedes, la app puede no mostrar tu WiFi."
+            }
+          ]
+        },
+        {
+          "titulo": "Método 1: separar las dos bandas del router",
+          "bloques": [
+            {
+              "p": "Es la solución más limpia. Entra a la configuración del router y busca la sección WiFi. Si hay un solo nombre para las dos bandas, **desactiva Smart Connect / band steering** o ponle un nombre distinto a cada banda (por ejemplo «MiCasa» y «MiCasa-5G»). Luego conecta el celular a la de 2,4 GHz y repite la instalación."
+            },
+            {
+              "p": "Mientras lo haces, aprovecha los ajustes que recomienda TP-Link para Tapo cuando no encuentra la red: canal **1, 6 u 11**, ancho de banda de **20 MHz** y cifrado **WPA2**."
+            },
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Si quieres evitar muchos dolores de cabeza, el Tapo P115 se configura por Bluetooth desde la app y mide el consumo. Es solo para países de 110–120 V (clavija tipo A/B)."
+            },
+            {
+              "aviso": "Cambiar la configuración del router puede dejarte sin internet un momento. Anota los valores originales antes de tocar nada. Si tu proveedor de internet bloquea el acceso al router, usa el método 3."
+            }
+          ]
+        },
+        {
+          "titulo": "Método 2: apagar 5 GHz un momento o forzar 2,4 GHz",
+          "bloques": [
+            {
+              "p": "Si el router no deja separar las bandas pero sí apagar una, **desactiva la de 5 GHz solo durante la instalación**. Es una solución práctica y reversible. Cuando el aparato ya esté en línea, vuelve a activarla: el dispositivo seguirá conectado a 2,4 GHz."
+            },
+            {
+              "oferta": "sonoff-s26r2",
+              "motivo": "El Sonoff S26R2 es un enchufe WiFi de 2,4 GHz con app eWeLink y control por red local. Existe en versiones por país: revisa el código del modelo (TPB es de 120 V; TPN, TPI y TPL son de 250 V) antes de comprar."
+            },
+            {
+              "h3": "Usar el celular como punto de acceso"
+            },
+            {
+              "p": "Cuando no puedes tocar el router, TP-Link sugiere en su guía probar la conexión a través de la **zona WiFi (hotspot) del celular**. Si el celular que usarás de hotspot permite elegir la banda 2,4 GHz, activa esa opción, conecta el celular de instalación a ese hotspot y configura el aparato. Después tendrás que cambiarlo a tu WiFi real desde la app."
+            }
+          ]
+        },
+        {
+          "titulo": "Método 3: cambiar el modo de emparejamiento",
+          "bloques": [
+            {
+              "p": "Casi todos los aparatos tienen dos modos. Cada marca los llama distinto, pero el principio es el mismo:"
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "App",
+                  "Modo rápido",
+                  "Modo alternativo",
+                  "Cuándo usar el alternativo"
+                ],
+                "filas": [
+                  [
+                    "Smart Life / Tuya",
+                    "Modo EZ (por defecto). El indicador parpadea rápido.",
+                    "Modo AP. El indicador parpadea lento y el celular se une a una red temporal que empieza por «SmartLife».",
+                    "Cuando el EZ falla: Tuya explica que el EZ exige más compatibilidad del router y el AP exige menos."
+                  ],
+                  [
+                    "eWeLink (Sonoff)",
+                    "Emparejamiento rápido",
+                    "Emparejamiento compatible",
+                    "Cuando el router mezcla 2,4 y 5 GHz con el mismo nombre, según la comunidad de eWeLink. También existe emparejamiento por Bluetooth y por código QR en algunos modelos."
+                  ],
+                  [
+                    "Tapo",
+                    "Configuración desde la app (Bluetooth o WiFi según el modelo)",
+                    "Seguir el asistente de la app; si falla, reiniciar el aparato",
+                    "TP-Link indica que para el enchufe 5 segundos de botón entran al modo de configuración y 10 segundos lo reinician."
+                  ]
+                ]
+              }
+            },
+            {
+              "p": "Los tiempos exactos de pulsación y el patrón de luz cambian según el modelo. Sigue siempre las instrucciones que muestra la app para tu producto."
+            },
+            {
+              "oferta": "enchufe-tuya-wifi",
+              "motivo": "Los enchufes Tuya / Smart Life son los más baratos y se consiguen en todos los voltajes, pero la calidad varía entre vendedores: confirma voltaje, clavija y corriente máxima en el anuncio."
+            },
+            {
+              "nota": "Si ves que el aparato pasa a modo «Local Only» en la app Tapo, TP-Link propone cambiar el DNS del router a 8.8.8.8 y 8.8.4.4 como solución."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Casi todos los fallos se arreglan sin comprar nada:** el 2,4 GHz y el modo de emparejamiento resuelven la mayoría de los casos.",
+        "Los métodos van de lo más sencillo a lo más técnico, y ninguno requiere abrir el aparato.",
+        "Una vez conectado, el aparato recuerda la red y no hace falta repetir el proceso."
+      ],
+      "desventajas": [
+        "**Algunos routers de operador no dejan cambiar la configuración**, y entonces hay que recurrir al hotspot del celular.",
+        "**Separar las bandas** puede obligar a reconectar otros equipos de la casa.",
+        "**Cada marca usa nombres y tiempos distintos**, así que no existe una receta única.",
+        "Si el router está saturado de dispositivos, el problema puede reaparecer y habrá que cambiar de router."
+      ],
+      "faq": [
+        {
+          "p": "¿Mi enchufe o foco inteligente funciona con WiFi de 5 GHz?",
+          "r": "No, en general. Tapo, Tuya y Sonoff indican que sus aparatos WiFi económicos trabajan en 2,4 GHz. Tu router puede tener ambas bandas, pero el aparato solo se conecta a la de 2,4 GHz."
+        },
+        {
+          "p": "¿Tengo que dejar activado el Bluetooth y la ubicación del celular?",
+          "r": "Durante la instalación, sí. Smart Life necesita el permiso de ubicación para encontrar redes WiFi, y los Tapo como el P115 usan Bluetooth para la configuración inicial. Los Tapo usan el Bluetooth solo para la configuración, según TP-Link."
+        },
+        {
+          "p": "¿Qué diferencia hay entre modo EZ y modo AP?",
+          "r": "El EZ envía la clave por el aire y el indicador parpadea rápido; el AP hace que el celular se conecte a una red temporal del aparato y el indicador parpadea lento. El AP funciona con más routers, según Tuya."
+        },
+        {
+          "p": "Se agregó el aparato pero aparece sin conexión, ¿qué hago?",
+          "r": "Revisa la clave del WiFi, acércalo al router, comprueba que sea la red de 2,4 GHz y que el router no haya alcanzado su límite de dispositivos. Si no funciona, restablece el aparato y repite la instalación."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué hacer según tu situación",
+        "intro": "Prueba los métodos en este orden y detente cuando el aparato conecte:",
+        "perfiles": [
+          {
+            "perfil": "Puedo entrar a la configuración del router",
+            "texto": "Separa las bandas o desactiva 5 GHz un momento. Es la solución más estable.",
+            "producto": "tapo-p115"
+          },
+          {
+            "perfil": "Uso Sonoff y mi router mezcla las bandas",
+            "texto": "Cambia al emparejamiento compatible o apaga 5 GHz durante la instalación.",
+            "producto": "sonoff-s26r2"
+          },
+          {
+            "perfil": "Tengo un aparato Tuya / Smart Life que no avanza en EZ",
+            "texto": "Prueba el modo AP con el indicador en parpadeo lento.",
+            "producto": "enchufe-tuya-wifi"
+          }
+        ],
+        "alternativa": "si el router sigue dando problemas, un router o repetidor con bandas configurables o un punto de acceso extra solo de 2,4 GHz resuelve el problema de raíz. Antes de comprar nada, consulta [qué es la domótica y cómo empezar](/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50) para planear tu red."
+      },
+      "fuentes": [
+        {
+          "texto": "TP-Link: preguntas frecuentes del enchufe Tapo (2,4 GHz, botón de configuración y reinicio)",
+          "url": "https://www.tp-link.com/us/support/faq/3417/"
+        },
+        {
+          "texto": "TP-Link: qué hacer si falla la configuración del enchufe Tapo",
+          "url": "https://www.tp-link.com/us/support/faq/2615/"
+        },
+        {
+          "texto": "TP-Link: ficha del Tapo P115 (2,4 GHz y Bluetooth solo para configuración)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-plug/tapo-p115/"
+        },
+        {
+          "texto": "Tuya Developer: manual de la app SmartLife (2,4 GHz, ubicación, modos EZ y AP)",
+          "url": "https://developer.tuya.com/en/docs/iot/user-manual-for-tuya-smart-v3177?id=K9obrofrfk4sk"
+        },
+        {
+          "texto": "eWeLink Community: fallos de emparejamiento y modos rápido y compatible",
+          "url": "https://forum.ewelink.cc/t/paring-failed-read-this-before-you-try-again/77"
+        }
+      ]
     }
   ]
 }
