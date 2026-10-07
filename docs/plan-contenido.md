@@ -156,6 +156,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-07) SEO: redirecciones permanentes (301) de las direcciones antiguas con `.html` a la dirección limpia (antes Cloudflare usaba 307, temporal) y de `/guias` al índice de guías
 - [x] (2026-10-07) T003 Guía: el enchufe o foco inteligente no se conecta al WiFi (red de 5 GHz, Smart Life / eWeLink / Tapo): solución paso a paso
 - [x] (2026-10-05) T002 Comparativa: enchufes con medición de consumo — Sonoff S31 vs Tapo P115 vs Kasa EP25
 - [x] (2026-10-03) Diseño, paso 2 "Tu país": el visitante elige su país y cada tarjeta y ficha dice si el producto funciona con su red; título de la portada con el país, foco regulable de 2500 a 6500 K y catálogo filtrado por su voltaje
