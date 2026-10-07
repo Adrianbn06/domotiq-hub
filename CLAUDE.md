@@ -67,6 +67,10 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
 - `public/analytics.js` — aviso de cookies: Google Analytics solo se carga si el visitante acepta. No añadas
   etiquetas de Google Analytics directamente en las páginas.
 - `scripts/portada.js` — la selección destacada de la portada (no hace falta tocarla cada semana).
+- Comparador (`/comparar`): las "comparaciones frecuentes" están en `PRESETS_COMPARADOR` de `scripts/catalogo.js`
+  (el build comprueba que los productos existan); lo dibuja `public/assets/comparar.js` con los datos que
+  genera el build en `public/data/productos.json`. Si una comparativa escrita incluye los productos elegidos,
+  el comparador la enlaza solo.
 - `docs/plan-contenido.md` — lista de temas pendientes.
 
 ## Diseño (sistema "Vitrina Obsidian")

@@ -156,6 +156,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-07) Diseño, paso 3: comparador nuevo (comparaciones frecuentes, productos con su dibujo, "¿te sirve?" para tu país, datos por secciones, "Solo lo que cambia", barra fija y enlace a la comparativa escrita)
 - [x] (2026-10-07) Arreglo de diseño: los dibujos de las categorías de la portada tapaban el texto (y la misma regla para todos los dibujos del sitio)
 - [x] (2026-10-07) SEO: redirecciones permanentes (301) de las direcciones antiguas con `.html` a la dirección limpia (antes Cloudflare usaba 307, temporal) y de `/guias` al índice de guías
 - [x] (2026-10-07) T003 Guía: el enchufe o foco inteligente no se conecta al WiFi (red de 5 GHz, Smart Life / eWeLink / Tapo): solución paso a paso

@@ -55,6 +55,9 @@ const ICONOS = {
   bolsa: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
   rayo: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
   ubicacion: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+  cambiar: '<path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/>',
+  mas: '<path d="M5 12h14"/><path d="M12 5v14"/>',
+  buscar: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
 };
 
 // ─── PAÍSES ───────────────────────────────────────────────────────────────────
@@ -73,12 +76,26 @@ export const PAISES = [
 export const DATOS_PAISES = `<script type="application/json" id="od-paises">${JSON.stringify(PAISES.map(([nombre, codigo, v, clavijas, grupo]) => ({ nombre, codigo, v, clavijas, grupo }))).replace(/</g, '\\u003c')}</script>`;
 
 // Qué necesita saber pais.js de un producto para decir si funciona en el país elegido
-export function atributosPais(p) {
-  const tipo = !p.voltajes?.length ? 'independiente'
+// independiente (pilas o USB) | versiones (una por país) | universal (acepta 100–240 V) | unico
+export function tipoRed(p) {
+  return !p.voltajes?.length ? 'independiente'
     : p.voltajes.length > 1 ? (/versi/i.test(p.voltaje || '') ? 'versiones' : 'universal')
     : 'unico';
-  return ` data-red="${esc((p.voltajes || []).join(' '))}" data-tipo="${tipo}" data-voltaje="${esc(p.voltaje || '')}"`;
 }
+
+export function atributosPais(p) {
+  return ` data-red="${esc((p.voltajes || []).join(' '))}" data-tipo="${tipoRed(p)}" data-voltaje="${esc(p.voltaje || '')}"`;
+}
+
+// Comparaciones frecuentes del comparador (/comparar): [texto del botón, productos]
+export const PRESETS_COMPARADOR = [
+  ['Medir el consumo', ['sonoff-s31', 'tapo-p115', 'kasa-ep25']],
+  ['Focos de color 110 V', ['wiz-a19-color', 'tapo-l535e', 'philips-hue-white-color-a19']],
+  ['Sensores de puerta', ['aqara-sensor-puerta-t1', 'sonoff-snzb-04p']],
+  ['¿Qué hub Zigbee?', ['sonoff-zbbridge-p', 'aqara-hub-m2', 'aqara-hub-m3']],
+  ['Relés con o sin neutro', ['sonoff-minir4', 'sonoff-zbmini-l2', 'shelly-1-gen4']],
+  ['Sonoff vs Tuya', ['sonoff-s26r2', 'sonoff-s31', 'enchufe-tuya-wifi']],
+];
 
 export function icono(nombre, clase = '') {
   if (!ICONOS[nombre]) throw new Error(`Icono desconocido: ${nombre}`);
@@ -314,8 +331,8 @@ export function fila({ href, titulo, sub, icono: ic, inicio, antetitulo }) {
 }
 
 // Miniaturas superpuestas de varios productos (por categoría)
-export function pila(categorias) {
-  return `<span class="pila">${categorias.slice(0, 3).map((c) => `<span class="stage k-${esc(c)}">${ilustracion(c)}</span>`).join('')}</span>`;
+export function pila(categorias, clase = '') {
+  return `<span class="pila${clase ? ` ${clase}` : ''}">${categorias.slice(0, 3).map((c) => `<span class="stage k-${esc(c)}">${ilustracion(c)}</span>`).join('')}</span>`;
 }
 
 // Tarjeta de producto con su dibujo sobre el color de la categoría
@@ -469,16 +486,18 @@ ${tiendasP.length ? `<div class="buybar" hidden><span class="num">${esc(PRECIO[p
 
 // ─── COMPARADOR ───────────────────────────────────────────────────────────────
 function paginaComparar(data) {
+  const cat = (s) => data.productos.find((p) => p.slug === s).categoria;
+  const presets = PRESETS_COMPARADOR.map(([texto, slugs]) => `<a class="preset" href="/comparar?p=${slugs.join(',')}" data-preset="${slugs.join(',')}">${pila(slugs.map(cat), 'chica')}${esc(texto)}</a>`).join('\n');
   const body = `<div class="bc"><a href="/">Inicio</a> › Comparar</div>
 <p class="eyebrow">Comparador</p>
 <h1>Compara productos de domótica</h1>
-<p class="lead">Elige hasta 3 productos y compara lado a lado su voltaje, protocolo, si necesitan hub y su compatibilidad con Alexa, Google, Apple Home, Matter y Home Assistant. Las filas resaltadas muestran en qué se diferencian.</p>
-<div class="pickers">
-  <label>Producto 1<select class="picker" aria-label="Producto 1"></select></label>
-  <label>Producto 2<select class="picker" aria-label="Producto 2"></select></label>
-  <label>Producto 3<select class="picker" aria-label="Producto 3"></select></label>
+<p class="lead">Elige hasta 3 productos y mira lado a lado si sirven en tu país, qué necesitan y con qué funcionan. Las filas resaltadas son las que cambian entre ellos.</p>
+<div class="cmp-presets" role="group" aria-label="Comparaciones frecuentes">
+${presets}
 </div>
-<div id="cmp-out" aria-live="polite"><p class="muted">Cargando productos…</p></div>
+<div id="cmp" class="cmp-raiz" aria-live="polite"><p class="muted">Cargando productos…</p></div>
+<noscript><div class="callout info"><p>El comparador necesita JavaScript activado. Mientras tanto, mira el <a href="/productos/">catálogo completo</a>.</p></div></noscript>
+${Object.keys(ILUSTRACIONES).map((c) => `<template id="ill-${c}">${ilustracion(c)}</template>`).join('\n')}
 <p class="muted small nota-datos">¿No sabes por dónde empezar? Mira el <a href="/productos/">catálogo completo</a> y marca los que quieras comparar. Datos actualizados el ${esc(data.actualizado)}.</p>
 ${AVISO_AFILIADOS}`;
   return pagina({
@@ -506,6 +525,9 @@ export function generarCatalogo(root) {
     if (!ICONOS[id]) throw new Error(`Categoría "${id}": falta su icono en ICONOS (scripts/catalogo.js)`);
     if (!ILUSTRACIONES[id]) throw new Error(`Categoría "${id}": falta su dibujo en ILUSTRACIONES (scripts/catalogo.js)`);
   }
+  for (const [texto, slugs] of PRESETS_COMPARADOR) {
+    for (const s of slugs) if (!data.productos.some((p) => p.slug === s)) throw new Error(`Comparador: "${texto}" usa el producto "${s}", que no existe (PRESETS_COMPARADOR)`);
+  }
   for (const p of data.productos) {
     if (!data.categorias[p.categoria]) throw new Error(`Categoría desconocida en ${p.slug}: ${p.categoria}`);
     for (const key of FILAS_COMPAT.map(([, k]) => k)) {
@@ -517,16 +539,23 @@ export function generarCatalogo(root) {
   fs.writeFileSync(path.join(outDir, 'index.html'), paginaCatalogo(data), 'utf8');
   fs.writeFileSync(path.join(root, 'public', 'comparar.html'), paginaComparar(data), 'utf8');
 
-  // Datos listos para el comparador: el navegador solo los muestra, no los interpreta como HTML
+  // Datos listos para el comparador (public/assets/comparar.js): el navegador solo los muestra con
+  // textContent, nunca los interpreta como HTML. Todo sale de data/productos.json.
+  const filas = (lista, p) => lista.map(([label, fn]) => ({ label, ...(fn(p) || {}) })).filter((f) => f.text);
   const paraComparador = {
     actualizado: data.actualizado,
-    categorias: Object.fromEntries(Object.entries(data.categorias).map(([id, c]) => [id, { nombre: c.nombre, icono: c.icono }])),
+    categorias: Object.fromEntries(Object.entries(data.categorias).map(([id, c]) => [id, { nombre: c.nombre, singular: c.singular }])),
     productos: data.productos.map((p) => ({
       slug: p.slug, nombre: p.nombre, categoria: p.categoria,
-      precio: PRECIO[p.precio].text,
-      filas: [...fichaTecnica(p), ...fichaCompat(p)],
+      precio: { corto: PRECIO[p.precio].corto, texto: PRECIO[p.precio].text.replace(/^\S+\s*/, '').replace(/[()]/g, '') },
+      red: (p.voltajes || []).join(' '), tipo: tipoRed(p), voltaje: p.voltaje || '',
+      esencial: filas(FILAS_COMUNES, p),
+      tecnicas: filas(FILAS_CATEGORIA[p.categoria], p),
+      compat: fichaCompat(p),
+      pros: p.pros, contras: p.contras, idealPara: p.idealPara,
       tiendas: enlacesTienda(p, tiendas),
     })),
+    comparativas: comparativas.map((c) => ({ slug: c.slug, titulo: c.tituloCorto, productos: c.productos })),
   };
   fs.mkdirSync(path.join(root, 'public', 'data'), { recursive: true });
   fs.writeFileSync(path.join(root, 'public', 'data', 'productos.json'), JSON.stringify(paraComparador), 'utf8');
