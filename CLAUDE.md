@@ -96,3 +96,5 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
 3. En la descripción del pull request: qué se añadió, en lenguaje sencillo; la lista de **fuentes**
    usadas para cada producto o dato; y qué conviene revisar.
 4. Marca el tema como hecho en `docs/plan-contenido.md` dentro del mismo pull request.
+5. **Sin firmas automáticas.** El repositorio es público: no añadas líneas `Co-Authored-By:`, `Claude-Session:`
+   ni enlaces a sesiones de Claude en los commits, en la descripción del pull request ni en ningún archivo.
