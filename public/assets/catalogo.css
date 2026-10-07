@@ -150,11 +150,15 @@ h3{font:600 1.0625rem/1.3 var(--f-display);letter-spacing:-.02em;margin-bottom:8
 .stage::after{content:"";position:absolute;left:28%;right:28%;bottom:9%;height:8%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.18),transparent)}
 .ill{display:block;height:76%;width:auto;max-width:100%;position:relative;z-index:1;overflow:visible}
 .ill .glass{fill:#ffe4a0;stroke:#f2cb74;stroke-width:1.5}
+/* El dibujo se coloca sobre su caja y la ocupa exacta (el SVG mantiene sus proporciones y queda
+   centrado). Un alto en % dentro de una rejilla o un flex no siempre se puede calcular, y entonces
+   el dibujo crece con el ancho y tapa el texto. */
+.stage>.ill{position:absolute;left:0;top:12%;width:100%;height:76%}
 .pila{display:flex;flex:none}
 .pila .stage{width:38px;height:38px;border-radius:var(--r-sm);margin-left:-10px;box-shadow:0 0 0 2px var(--surface)}
 .pila .stage:first-child{margin-left:0}
 .pila .stage::after{display:none}
-.pila .ill{height:80%}
+.pila .stage>.ill{top:10%;height:80%}
 
 /* ── Fichas de dato y estados ─────────────────────────────────────────── */
 .badges{display:flex;flex-wrap:wrap;gap:6px}
@@ -219,8 +223,7 @@ a.fila:focus-visible{outline-offset:-2px}
 .card-stage{aspect-ratio:16/10;text-decoration:none}
 /* El dibujo se posiciona sobre el escenario: así su alto en % no depende de cómo calcula
    el navegador la altura de una caja con aspect-ratio dentro de un flex */
-.card-stage .ill,.ficha-stage .ill{position:absolute;left:0;right:0;top:12%;width:100%;height:76%}
-.ficha-stage .ill{top:17%;height:66%}
+.ficha-stage>.ill{top:17%;height:66%}
 .card-tag,.card-price{position:absolute;top:12px;z-index:2;padding:7px 11px;border-radius:999px;background:var(--glass);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--t1)}
 .card-tag{left:12px;font:550 .6875rem/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase}
 .card-price{right:12px;font:600 .8125rem/1 var(--f-num)}
@@ -438,8 +441,8 @@ ul.verdict li{margin-bottom:10px}
 .tiles::-webkit-scrollbar{display:none}
 .tile{scroll-snap-align:start;display:grid;gap:4px;padding:12px 16px 16px;border-radius:var(--r-xl);border:1px solid var(--edge);color:var(--t1);text-decoration:none;transition:transform 140ms var(--ease)}
 .tile:active{transform:scale(.98)}
-.tile .dibujo{height:104px;display:grid;place-items:center}
-.tile .dibujo .ill{height:100%}
+.tile .dibujo{display:block;position:relative;height:104px;margin-bottom:6px}
+.tile .dibujo .ill{position:absolute;inset:0;width:100%;height:100%}
 .tile strong{font:650 1.0625rem/1.25 var(--f-display);letter-spacing:-.02em}
 .tile span{font:500 .8125rem/1.3 var(--f-body);color:var(--t2)}
 .tile .num{color:var(--t1);font-weight:600}
