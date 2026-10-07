@@ -39,12 +39,15 @@
 
   // ── Veredicto de un producto para el país elegido ─────────────────────────
   // d: data-red ("110", "220", "110 220" o vacío), data-tipo y data-voltaje del producto
+  // Devuelve el tono, el título y el texto completos (fichas) y una versión corta (corto + breve)
+  // para columnas estrechas como las del comparador.
   function veredicto(d, p) {
     var redes = (d.red || '').split(' ').filter(Boolean);
     var volt = d.voltaje;
     var g = p.grupo;
     if (d.tipo === 'independiente') {
-      return { tono: 'info', titulo: 'No depende del voltaje', texto: 'Funciona a pilas o se alimenta por USB, así que sirve en ' + p.nombre + '.' };
+      return { tono: 'info', titulo: 'No depende del voltaje', texto: 'Funciona a pilas o se alimenta por USB, así que sirve en ' + p.nombre + '.',
+        corto: 'Te sirve', breve: 'Funciona a pilas o por USB.' };
     }
     if (d.tipo === 'versiones') {
       return {
@@ -52,20 +55,26 @@
         texto: g === 'br'
           ? 'Elige la versión para la red de tu ciudad (127 o 220 V) con clavija ' + p.clavijas + '.'
           : 'Elige la versión de ' + red(p) + ' con clavija ' + p.clavijas + ': revisa el modelo en el anuncio antes de comprar.',
+        corto: 'Hay versión',
+        breve: g === 'br' ? 'Elige la de tu ciudad, clavija ' + p.clavijas + '.' : 'Elige la de ' + red(p) + ', clavija ' + p.clavijas + '.',
       };
     }
     if (d.tipo === 'universal') {
-      return { tono: 'si', titulo: 'Funciona en ' + p.nombre, texto: 'Acepta ' + volt + ', así que sirve con la red de ' + red(p) + '.' };
+      return { tono: 'si', titulo: 'Funciona en ' + p.nombre, texto: 'Acepta ' + volt + ', así que sirve con la red de ' + red(p) + '.',
+        corto: 'Te sirve', breve: 'Acepta ' + volt + '.' };
     }
     if (g === 'br') {
-      return { tono: 'depende', titulo: 'Depende de tu ciudad', texto: 'En Brasil hay ciudades de 127 V y de 220 V. Este producto es de ' + volt + '.' };
+      return { tono: 'depende', titulo: 'Depende de tu ciudad', texto: 'En Brasil hay ciudades de 127 V y de 220 V. Este producto es de ' + volt + '.',
+        corto: 'Depende', breve: 'Este producto es de ' + volt + '.' };
     }
     if (redes.indexOf(g) >= 0) {
-      return { tono: 'si', titulo: 'Funciona en ' + p.nombre, texto: 'Tu red es de ' + red(p) + ' y este producto es de ' + volt + '.' };
+      return { tono: 'si', titulo: 'Funciona en ' + p.nombre, texto: 'Tu red es de ' + red(p) + ' y este producto es de ' + volt + '.',
+        corto: 'Te sirve', breve: 'Tu red: ' + red(p) + '. Producto: ' + volt + '.' };
     }
     return {
       tono: 'no', titulo: 'No es para tu red de ' + red(p),
       texto: 'Este producto es de ' + volt + '. Busca la versión para ' + (g === '220' ? '220–240 V' : '110–127 V') + '.',
+      corto: 'No te sirve', breve: 'Este producto es de ' + volt + '.',
     };
   }
 
@@ -265,6 +274,7 @@
 
   // Para otros scripts del sitio (por ejemplo, el filtro de voltaje del catálogo)
   window.odPais = function () { return pais; };
+  window.odVeredicto = veredicto; // (producto con red, tipo y voltaje; país) → veredicto (lo usa el comparador)
 
   pintar();
   iniciarFoco();
