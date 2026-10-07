@@ -174,7 +174,7 @@
       "titulo": "Focos inteligentes: WiZ vs Tapo vs Philips Hue (versiones de 110 V y 220 V)",
       "tituloCorto": "Focos inteligentes: WiZ vs Tapo vs Philips Hue",
       "descripcion": "Comparamos los focos inteligentes WiZ A19, Tapo L535E (110 V), Tapo L530E (220 V) y Philips Hue: brillo, voltaje y rosca, Matter, si necesitan hub y cuál conviene según tu país.",
-      "actualizado": "2026-10-02",
+      "actualizado": "2026-10-07",
       "productos": ["wiz-a19-color", "tapo-l535e", "tapo-l530e", "philips-hue-white-color-a19"],
       "intro": [
         "Los focos (bombillas) inteligentes son la forma más visible de empezar con la domótica: cambias un foco y ya puedes encenderlo por voz, programarlo o cambiarle el color. Pero en Latinoamérica hay que fijarse en algo que las reseñas en inglés casi nunca mencionan: el voltaje.",
@@ -205,14 +205,15 @@
         {
           "titulo": "Matter y asistentes",
           "parrafos": [
-            "Los cuatro funcionan con Alexa y Google Home, y todos son compatibles con Matter. En la práctica, eso significa que también puedes usarlos con Apple Home (Siri) y que no quedas atado a una sola app.",
+            "Los cuatro funcionan con Alexa y Google Home. El WiZ A19, el Tapo L535E y el Philips Hue son compatibles con Matter: también puedes usarlos con Apple Home (Siri) y no quedas atado a una sola app.",
+            "El Tapo L530E no tiene Matter: la web de TP-Link solo menciona Alexa y Google Home. Si vives en un país de 220 V y quieres Matter, TP-Link vende en otros mercados una versión del L535E de 220–240 V con rosca E27.",
             "Con Home Assistant, los cuatro tienen integración: WiZ y TP-Link tienen integraciones propias, y Hue funciona en local a través del Bridge."
           ]
         }
       ],
       "veredicto": [
         { "perfil": "País de 110–120 V y presupuesto ajustado", "producto": "tapo-l535e", "motivo": "El más luminoso del grupo, con Matter y buena reproducción de color, a precio bajo." },
-        { "perfil": "País de 220–240 V", "producto": "tapo-l530e", "motivo": "Versión E27 de 220–240 V, compatible con Matter y económica." },
+        { "perfil": "País de 220–240 V", "producto": "tapo-l530e", "motivo": "Versión E27 de 220–240 V, económica y sin hub. Funciona con Alexa y Google Home, pero no con Matter ni Apple Home." },
         { "perfil": "Quieres una marca de Signify sin pagar precio Hue", "producto": "wiz-a19-color", "motivo": "Color, Matter y sin hub, con el respaldo del fabricante de Philips." },
         { "perfil": "Vas a poner muchos focos y quieres lo más fiable", "producto": "philips-hue-white-color-a19", "motivo": "Con el Hue Bridge no carga tu WiFi y tiene el ecosistema más completo. Es el más caro." }
       ],

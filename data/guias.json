@@ -7,7 +7,7 @@
       "tituloCorto": "Qué es la domótica y cómo empezar con poco (2026)",
       "descripcion": "Qué es la domótica, cómo funciona por dentro (WiFi, Zigbee, Matter) y un kit inicial por menos de 50 USD revisado para el voltaje de tu país.",
       "publicado": "2026-03-15",
-      "actualizado": "2026-10-03",
+      "actualizado": "2026-10-07",
       "intro": [
         "Quieres que la lámpara se encienda sola al anochecer o apagar el ventilador desde el trabajo, pero cada video que ves empieza con un hub caro, cables y aplicaciones que no conoces. El problema real casi nunca es el dinero: es **comprar el aparato equivocado** para tu voltaje, tu clavija o tu WiFi.",
         "En esta guía analizamos qué es la domótica, cómo funciona por dentro (protocolos, topologías de red y lógica de automatización) y con qué kit empezar por menos de 50 USD sin romper paredes. Revisamos cada dato en la web del fabricante y también te decimos los contras."
@@ -98,7 +98,7 @@
               "Crea tu primera rutina con horario: por ejemplo, encender la lámpara a las 19:00.",
               "Si ya tienes un parlante con Alexa o Google, vincula la app para usar la voz (es opcional)."
             ], "ordenada": true },
-            { "oferta": "tapo-l535e", "motivo": "Foco de color con Matter, 1100 lúmenes y rosca E26 para redes de 120 V. Si tu país es de 220 V, su equivalente es el Tapo L530E (E27)." },
+            { "oferta": "tapo-l535e", "motivo": "Foco de color con Matter, 1100 lúmenes y rosca E26 para redes de 120 V. Si tu país es de 220 V, el Tapo L530E (E27) es de 220–240 V pero no tiene Matter; TP-Link vende en otros mercados una L535E de 220–240 V con rosca E27." },
             { "h3": "Seguridad eléctrica" },
             { "p": "Los enchufes y focos de este kit se conectan sin tocar cables ni el tablero. Aun así, respeta la corriente máxima indicada (el Tapo P115, por ejemplo, indica 15 A / 1800 W) y no conectes aparatos que la superen. Si más adelante quieres instalar relés o interruptores inteligentes dentro de la pared, **hazlo con un electricista** si no tienes experiencia." },
             { "p": "¿Dudas entre marcas? Mira nuestras comparativas de [enchufes Sonoff vs Tuya](/comparativas/sonoff-vs-tuya-enchufe-inteligente) y de [focos WiZ vs Tapo vs Philips Hue](/comparativas/focos-inteligentes-wiz-vs-tapo-vs-philips-hue)." }
@@ -364,6 +364,325 @@
           "texto": "eWeLink Community: fallos de emparejamiento y modos rápido y compatible",
           "url": "https://forum.ewelink.cc/t/paring-failed-read-this-before-you-try-again/77"
         }
+      ]
+    },
+    {
+      "slug": "zigbee-vs-zwave-vs-wifi-2026",
+      "etiqueta": "Comparativa técnica",
+      "titulo": "Zigbee vs Z-Wave vs WiFi en 2026: qué protocolo elegir para tu casa inteligente en Latinoamérica",
+      "tituloCorto": "Zigbee vs Z-Wave vs WiFi (2026): ¿cuál elegir?",
+      "descripcion": "Comparamos Zigbee, Z-Wave y WiFi: topología, consumo, hub, seguridad y la frecuencia Z-Wave de cada país. Cuál conviene para tu casa en Latinoamérica.",
+      "publicado": "2026-03-19",
+      "actualizado": "2026-10-07",
+      "intro": [
+        "El error más caro al empezar en domótica no es comprar un mal aparato: es **elegir el protocolo equivocado**. El protocolo decide si necesitas un hub, cuánto duran las pilas de tus sensores, si tu WiFi se satura y si podrás sumar otras marcas más adelante.",
+        "En esta comparativa analizamos cómo funcionan por debajo WiFi, Zigbee y Z-Wave (topología, frecuencia, consumo y seguridad) y revisamos cada dato en la documentación de la Connectivity Standards Alliance (CSA), Silicon Labs, TP-Link y Home Assistant. Incluimos algo que casi nadie explica: **Z-Wave usa una frecuencia distinta según el país**, y en Latinoamérica hay tres grupos."
+      ],
+      "secciones": [
+        {
+          "titulo": "Estrella o malla: cómo viaja la señal por tu casa",
+          "bloques": [
+            { "p": "Un protocolo es el idioma en que se hablan tus dispositivos, pero también define la **topología** de la red: el camino que sigue cada orden desde el celular hasta el foco." },
+            { "tabla": {
+              "columnas": ["Topología", "Cómo funciona", "Quién la usa"],
+              "filas": [
+                ["Estrella", "Cada aparato habla directamente con un punto central (el router o el hub)", "WiFi y Z-Wave Long Range"],
+                ["Malla", "Los aparatos enchufados repiten la señal de los demás y la llevan más lejos", "Zigbee, Z-Wave clásico y Thread"]
+              ]
+            } },
+            { "p": "En una red en estrella todo depende del punto central: si el router se satura, lo notan todos los aparatos. En una malla, la señal tiene varios caminos: la CSA describe la red Zigbee como **autoorganizada y autorreparable**, sin un único punto de falla, y cada aparato enchufado que sumas puede reforzarla." }
+          ]
+        },
+        {
+          "titulo": "WiFi: el más fácil, pero todo pasa por el router",
+          "bloques": [
+            { "p": "Cada enchufe o foco WiFi se conecta **directamente a tu router**, como un celular más, dentro de la red IP de tu casa. Por eso no necesitas comprar un hub. Los modelos económicos trabajan en la banda de **2,4 GHz**: TP-Link lo indica, por ejemplo, para sus enchufes Tapo." },
+            { "h3": "Lo bueno y lo malo en la práctica" },
+            { "lista": [
+              "**Sin hub:** lo instalas con la app del fabricante en pocos minutos.",
+              "**Compatibilidad amplia:** la mayoría funciona con Alexa y Google Home desde su app.",
+              "**Para aparatos enchufados:** en nuestro catálogo, todos los sensores a pilas usan Zigbee; WiFi se queda en enchufes y focos.",
+              "**Depende del router:** cada aparato es un cliente más de tu red."
+            ] },
+            { "aviso": "Ningún fabricante da una cifra única de cuántos aparatos aguanta un router: depende del modelo. TP-Link recomienda comprobar si el router llegó a su **límite de dispositivos conectados** cuando un aparato no logra conectarse. Si tienes el router básico del proveedor de internet y piensas sumar muchos aparatos WiFi, tenlo en cuenta." },
+            { "oferta": "sonoff-s26r2", "motivo": "Para empezar con WiFi en casi cualquier país: el S26R2 existe en versión de 120 V (TPB, estilo EE.UU.) y de 250 V con las clavijas de Brasil, Argentina y Chile, y acepta control por red local si se cae internet." },
+            { "p": "Si un aparato WiFi no se deja configurar, revisa nuestra guía [enchufe o foco inteligente que no se conecta al WiFi](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi)." }
+          ]
+        },
+        {
+          "titulo": "Zigbee: malla de bajo consumo con coordinador",
+          "bloques": [
+            { "p": "Zigbee nació para la domótica. Según la CSA, que mantiene el estándar, trabaja en **2,4 GHz y en bandas sub-GHz**, forma una malla autorreparable que **escala a miles de nodos**, está optimizado para **bajo consumo** y cifra los mensajes con **AES de 128 bits**. Los hubs y sensores Zigbee de nuestro catálogo (Sonoff, Aqara y Tuya) usan Zigbee 3.0." },
+            { "h3": "Coordinador, routers y dispositivos finales" },
+            { "lista": [
+              "**Coordinador:** el hub o adaptador USB que crea la red y hace de puente con tu WiFi. Sin él, un aparato Zigbee no funciona.",
+              "**Routers:** según Home Assistant, la mayoría de los aparatos Zigbee conectados a la corriente (enchufes, focos, relés) repiten la señal automáticamente.",
+              "**Dispositivos finales:** los sensores a pilas. No repiten la señal y dependen de los routers, a cambio de un consumo muy bajo: Sonoff indica más de 3 años de pila para su sensor de movimiento SNZB-03P (un valor teórico de laboratorio; el real depende del uso)."
+            ] },
+            { "nota": "Zigbee y el WiFi comparten la banda de 2,4 GHz. La documentación de Home Assistant recomienda alejar el coordinador de los puntos de acceso WiFi, conectarlo a un puerto **USB 2.0** (no USB 3) con un cable alargador blindado y, si hay interferencias, probar primero a cambiar el canal del WiFi. Para Zigbee aconseja los canales 15, 20 o 25." },
+            { "oferta": "sonoff-zbbridge-p", "motivo": "Hub Zigbee económico: hasta 128 dispositivos con repetidores (26 conectados directamente), acepta Zigbee 3.0 de otras marcas y se alimenta por USB, así que sirve en cualquier país." }
+          ]
+        },
+        {
+          "titulo": "Z-Wave: sub-GHz y una frecuencia distinta en cada país",
+          "bloques": [
+            { "p": "Z-Wave trabaja **por debajo de 1 GHz**, lejos de la banda de 2,4 GHz que usan el WiFi y Zigbee. Según la documentación de Silicon Labs, el fabricante de los chips Z-Wave, la versión clásica forma una **malla de hasta 232 nodos**, y la variante **Z-Wave Long Range** usa una topología en estrella que el estándar permite llevar hasta 4000 nodos. En seguridad, Z-Wave Long Range solo admite el marco **S2**; la versión clásica admite S0 y S2." },
+            { "h3": "La trampa para Latinoamérica: la frecuencia" },
+            { "p": "Cada país autoriza su propia frecuencia, y Silicon Labs aclara que cada producto debe usar la aprobada en su región. Un aparato Z-Wave para Estados Unidos viene en la frecuencia de EE.UU., que no es la de todos los países de la región:" },
+            { "tabla": {
+              "columnas": ["Frecuencia Z-Wave", "Países de Latinoamérica (según Silicon Labs)"],
+              "filas": [
+                ["908,4 / 916 MHz (la de EE.UU.)", "México, Guatemala, Honduras, Nicaragua, Panamá, Colombia, Argentina y Bolivia"],
+                ["919,8 / 921,4 MHz (la de Australia y Nueva Zelanda)", "Brasil, Chile, Ecuador, Perú, Paraguay, Uruguay, Venezuela, El Salvador y República Dominicana"],
+                ["922,5 / 923,9 / 926,3 MHz (la de Japón)", "Costa Rica"]
+              ]
+            } },
+            { "aviso": "Silicon Labs advierte que su tabla es **solo de referencia**. Antes de comprar Z-Wave, confirma en la ficha del producto que la frecuencia sea la de tu país: un aparato y un controlador con frecuencias distintas no se entienden entre sí, y una frecuencia no autorizada puede no estar permitida." },
+            { "p": "Por eso **en nuestro catálogo todavía no incluimos productos Z-Wave**: para la mayoría de las casas de la región, WiFi y Zigbee cubren lo mismo con menos complicaciones." }
+          ]
+        },
+        {
+          "titulo": "Comparativa técnica directa",
+          "bloques": [
+            { "tabla": {
+              "columnas": ["", "WiFi", "Zigbee", "Z-Wave"],
+              "filas": [
+                ["Topología", "Estrella (todo pasa por el router)", "Malla", "Malla (clásico) o estrella (Long Range)"],
+                ["Frecuencia", "2,4 GHz en los aparatos económicos", "2,4 GHz y sub-GHz", "Sub-GHz; cambia según el país"],
+                ["¿Necesita hub?", "No", "Sí, un coordinador", "Sí, un controlador Z-Wave"],
+                ["Tamaño de red", "Lo que soporte tu router", "Miles de nodos según la CSA (cada hub tiene su límite: 128 en el ZBBridge-P)", "232 nodos (clásico); hasta 4000 (Long Range)"],
+                ["Comparte banda con tu WiFi", "Sí", "Sí (2,4 GHz)", "No"],
+                ["Cifrado", "El de tu red WiFi (WPA2 o WPA3)", "AES de 128 bits", "Marco S2 (S0 en equipos antiguos)"],
+                ["En nuestro catálogo", "Enchufes y focos", "Sensores, hubs, enchufes e interruptores", "Sin productos por ahora"]
+              ]
+            } },
+            { "p": "No incluimos cifras de latencia porque no encontramos mediciones comparables publicadas por los fabricantes. Lo que sí cambia mucho la respuesta es si la orden viaja a la **nube del fabricante** o se queda en tu **red local**: revisa en cada ficha si el aparato acepta control local." }
+          ]
+        },
+        {
+          "titulo": "¿Dónde entra Matter?",
+          "bloques": [
+            { "p": "Matter no es una radio más: según la CSA, es un estándar basado en IP que funciona **sobre WiFi y Thread** y usa Bluetooth de bajo consumo solo para la configuración. Thread es otra malla de bajo consumo, basada en IPv6 y en la radio IEEE 802.15.4, en la que Matter funciona de forma nativa." },
+            { "p": "Zigbee y Z-Wave no hablan Matter directamente: la CSA explica que entran a través de un **puente Matter** (Matter Bridge) que traduce de un protocolo a otro." },
+            { "lista": [
+              "**WiFi:** muchos focos y enchufes nuevos ya traen Matter, como el Tapo L535E o el WiZ A19 Color.",
+              "**Zigbee:** sigue funcionando por su cuenta; para verlo en Matter necesitas un hub que actúe como puente.",
+              "**Z-Wave:** también a través de un puente Matter.",
+              "**Thread:** se integra con Matter sin puente, pero necesita un Thread Border Router."
+            ] },
+            { "oferta": "aqara-hub-m3", "motivo": "Un solo aparato para todo: hub Zigbee, controlador Matter y Thread Border Router a la vez, con automatizaciones locales. Es caro y más de lo que necesita una casa pequeña." },
+            { "p": "Lo explicamos a fondo en nuestra guía de [Matter en 2026](/articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026)." }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**WiFi:** sin hub y con la instalación más sencilla; ideal para tus primeros enchufes y focos.",
+        "**Zigbee:** sensores a pila que duran años y una malla que se refuerza con cada aparato enchufado.",
+        "**Z-Wave:** no compite con tu WiFi por la banda de 2,4 GHz.",
+        "**Se pueden mezclar:** WiFi para enchufes y focos, Zigbee para sensores, y Matter como capa común."
+      ],
+      "desventajas": [
+        "**WiFi:** todo depende del router, y un router básico puede llegar a su límite de dispositivos.",
+        "**Zigbee:** necesitas un coordinador, y comparte la banda de 2,4 GHz con tu WiFi.",
+        "**Z-Wave:** la frecuencia cambia según el país y hay que verificarla antes de comprar.",
+        "**Hubs y nube:** con algunos hubs económicos, el control desde fuera de casa y la integración con otras apps pasan por la nube del fabricante.",
+        "**Seguridad:** cada aparato es un equipo más en tu red. Mantén el firmware al día y usa una clave WiFi robusta."
+      ],
+      "faq": [
+        { "p": "¿Cuál es el mejor protocolo para empezar?", "r": "WiFi: no necesitas hub y se configura con la app del fabricante. Cuando quieras sensores a pila, suma un hub Zigbee." },
+        { "p": "¿Puedo mezclar Zigbee y WiFi en la misma casa?", "r": "Sí, y es lo más común: enchufes y focos WiFi, y sensores Zigbee con su hub. Home Assistant o las apps de Alexa y Google Home pueden controlar ambos desde un solo lugar." },
+        { "p": "¿Zigbee interfiere con mi WiFi?", "r": "Pueden molestarse porque comparten 2,4 GHz. Home Assistant recomienda alejar el coordinador del router, usar un cable alargador USB y, si hace falta, cambiar el canal del WiFi o usar los canales Zigbee 15, 20 o 25." },
+        { "p": "¿Vale la pena Z-Wave en Latinoamérica?", "r": "Solo si consigues el aparato y el controlador en la frecuencia de tu país. Para la mayoría de las casas, WiFi y Zigbee cubren lo mismo con menos complicaciones." },
+        { "p": "¿Qué protocolo conviene para comprar a futuro?", "r": "Matter, que funciona sobre WiFi y Thread. Si ya tienes Zigbee, no hace falta tirarlo: un hub que actúe como puente Matter lo integra." }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué protocolo elegir según tu perfil",
+        "intro": "No hay un protocolo ganador para todo: depende de cuántos aparatos tendrás y de si quieres sensores.",
+        "perfiles": [
+          { "perfil": "Estoy empezando", "texto": "WiFi: un enchufe o un foco de tu voltaje, sin hub.", "producto": "sonoff-s26r2" },
+          { "perfil": "Quiero sensores a pila", "texto": "Zigbee con un hub sencillo y sensores como el SNZB-03P.", "producto": "sonoff-zbbridge-p" },
+          { "perfil": "Uso Home Assistant", "texto": "Un coordinador Zigbee USB para control 100 % local.", "producto": "sonoff-zbdongle-e" },
+          { "perfil": "Pienso en el futuro", "texto": "Un hub con Zigbee, Thread y Matter en uno.", "producto": "aqara-hub-m3" },
+          { "perfil": "Me interesa Z-Wave", "texto": "Confirma primero la frecuencia de tu país en la tabla de Silicon Labs y en la ficha del producto." }
+        ],
+        "alternativa": "si no quieres elegir protocolo todavía, empieza con focos y enchufes **Matter sobre WiFi**: no necesitan hub y funcionan con Alexa, Google Home y Apple Home. Revisa siempre el voltaje de tu país."
+      },
+      "fuentes": [
+        { "texto": "Connectivity Standards Alliance: características de Zigbee", "url": "https://csa-iot.org/all-solutions/zigbee/" },
+        { "texto": "Connectivity Standards Alliance: qué es Matter", "url": "https://csa-iot.org/all-solutions/matter/" },
+        { "texto": "Connectivity Standards Alliance: cómo funciona una casa Matter (puentes, controladores, Border Routers)", "url": "https://csa-iot.org/newsroom/peeking-under-the-hood-of-your-matter-smart-home/" },
+        { "texto": "Silicon Labs: frecuencias Z-Wave por país", "url": "https://www.silabs.com/wireless/z-wave/global-regions" },
+        { "texto": "Silicon Labs: Z-Wave y Z-Wave Long Range (nodos, topología y seguridad)", "url": "https://docs.silabs.com/z-wave/7.24.3/z-wave-performance-report/overview" },
+        { "texto": "Home Assistant (ZHA): routers Zigbee e interferencias con el WiFi", "url": "https://www.home-assistant.io/integrations/zha/" },
+        { "texto": "Thread Group: fundamentos de la red Thread", "url": "https://www.threadgroup.org/Portals/0/documents/support/Thread%20Network%20Fundamentals_v3.pdf" },
+        { "texto": "TP-Link: compatibilidad de los enchufes Tapo con la banda de 2,4 GHz", "url": "https://www.tp-link.com/us/support/faq/3417/" },
+        { "texto": "TP-Link: qué hacer si falla la configuración (límite de dispositivos del router)", "url": "https://www.tp-link.com/us/support/faq/2615/" },
+        { "texto": "Sonoff: Zigbee Bridge Pro (capacidad de dispositivos)", "url": "https://sonoff.tech/en-us/products/sonoff-zigbee-bridge-pro" },
+        { "texto": "Sonoff: sensor de movimiento SNZB-03P", "url": "https://sonoff.tech/en-us/products/sonoff-zigbee-motion-sensor-snzb-03p" }
+      ]
+    },
+    {
+      "slug": "matter-1-4-estandar-unifica-smart-home-2026",
+      "etiqueta": "Análisis técnico",
+      "titulo": "Matter en 2026: qué trajo la versión 1.4, qué añadieron la 1.5 y la 1.6, y si vale la pena para tu casa",
+      "tituloCorto": "Matter 1.4, 1.5 y 1.6: qué cambia y si vale la pena",
+      "descripcion": "Qué es Matter, cómo funciona por dentro (WiFi, Thread y puentes), qué cambiaron las versiones 1.4, 1.5 y 1.6 y qué revisar antes de comprar.",
+      "publicado": "2026-03-19",
+      "actualizado": "2026-10-07",
+      "intro": [
+        "El problema más frustrante de la domótica no es el precio ni la instalación: es la **incompatibilidad**. Compras un sensor que funciona con una app, un foco que funciona con otra y un asistente de voz que solo reconoce algunos aparatos.",
+        "Matter nació para resolver eso. En esta guía analizamos cómo funciona por dentro, qué trajo la versión 1.4 y qué añadieron la 1.5 y la 1.6, que la Connectivity Standards Alliance (CSA) publicó después. Revisamos cada dato en la web de la CSA y de los fabricantes, y también te contamos sus límites."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué es Matter y qué problema resuelve",
+          "bloques": [
+            { "p": "Matter es un estándar de conectividad para la casa inteligente creado por la CSA, la misma organización que mantiene Zigbee. Lo respaldan, entre otros, **Amazon, Apple, Google y Samsung**, además de marcas como IKEA, Philips Hue o Eve. La idea: que un aparato certificado funcione con cualquier plataforma compatible sin integraciones hechas a medida." },
+            { "p": "No es una radio nueva. Matter es un lenguaje común **basado en IP** que viaja sobre redes que ya conoces:" },
+            { "tabla": {
+              "columnas": ["Red", "Para qué la usa Matter"],
+              "filas": [
+                ["WiFi", "Aparatos conectados a tu router, como muchos focos y enchufes"],
+                ["Thread", "Malla de bajo consumo para sensores y aparatos pequeños (necesita un Thread Border Router)"],
+                ["Ethernet", "Equipos con cable, como hubs y puentes"],
+                ["Bluetooth de bajo consumo", "Solo para la configuración inicial"]
+              ]
+            } },
+            { "h3": "Multi-Admin: un aparato, varias apps" },
+            { "p": "Con la función **Multi-Admin**, un mismo aparato Matter puede estar a la vez en Alexa, Google Home y Apple Home. Según la CSA, cada plataforma administra su propia red virtual, llamada **fabric**, y el aparato puede pertenecer a varias." }
+          ]
+        },
+        {
+          "titulo": "Cómo funciona por dentro: fabric, controladores y puentes",
+          "bloques": [
+            { "lista": [
+              "**Dispositivo Matter:** el foco, enchufe o sensor con firmware Matter.",
+              "**Controlador:** quien da las órdenes. Según la CSA, puede ser un hub siempre encendido (que da control local y remoto), el celular o un parlante inteligente.",
+              "**Fabric:** la red virtual privada por la que se comunican aparatos, administradores y controladores.",
+              "**Thread Border Router:** conecta la red Thread con tu red local para que los aparatos Thread hablen con los que usan WiFi o Ethernet.",
+              "**Puente Matter (bridge):** traduce desde otro protocolo, como Zigbee o Z-Wave, para que esos aparatos aparezcan en Matter."
+            ] },
+            { "h3": "Una automatización local, paso a paso" },
+            { "lista": [
+              "Un sensor Thread detecta movimiento.",
+              "Avisa al controlador por la red de tu casa.",
+              "El controlador ejecuta la automatización.",
+              "El foco, por WiFi o por Thread, se enciende."
+            ], "ordenada": true },
+            { "p": "La CSA destaca la **conectividad local**, constante y con buena respuesta, como uno de los pilares de Matter: la orden no tiene que salir a los servidores del fabricante. Un matiz importante: para automatizaciones y control desde fuera de casa necesitas un **controlador siempre encendido**. Apple, por ejemplo, pide un concentrador (HomePod o Apple TV) para automatizar o controlar a distancia los accesorios Thread." },
+            { "oferta": "tapo-l535e", "motivo": "Foco de color con certificación Matter sobre WiFi: no necesita hub ni Thread Border Router y funciona con Alexa, Google Home y Apple Home. Esta versión es de 120 V con rosca E26; TP-Link vende en otros mercados una L535E de 220–240 V con rosca E27." }
+          ]
+        },
+        {
+          "titulo": "Thread y los Thread Border Routers",
+          "bloques": [
+            { "p": "Thread es un estándar abierto **basado en IPv6** que usa la radio de bajo consumo **IEEE 802.15.4**. Según el Thread Group, forma una malla que se configura y se repara sola, y admite **varios Border Routers en la misma red** para que no haya un único punto de falla. Como cada aparato tiene dirección IP, Matter funciona sobre Thread sin traducción." },
+            { "p": "Para que un aparato Thread hable con tu celular o con aparatos WiFi necesitas un **Thread Border Router**. Es posible que ya tengas uno:" },
+            { "tabla": {
+              "columnas": ["Marca", "Equipos con Thread Border Router (según el fabricante)"],
+              "filas": [
+                ["Apple", "HomePod mini, HomePod (2.ª gen.), Apple TV 4K (3.ª gen.) Wi-Fi + Ethernet y Apple TV 4K (2.ª gen.)"],
+                ["Google", "Nest Hub (2.ª gen.), Nest Hub Max, Nest Wifi Pro, Google TV Streamer y Google Home Speaker"],
+                ["Amazon", "Echo (4.ª gen.), Echo Hub, Echo Show 10 (3.ª gen.), Echo Show 15 (2.ª gen.) y otros modelos recientes, además de varios routers eero"],
+                ["Aqara", "Hub M3 (que además es hub Zigbee y controlador Matter)"]
+              ]
+            } },
+            { "aviso": "Si tienes Border Routers de varias marcas, puedes terminar con **varias redes Thread separadas**. La CSA habla de esa fragmentación al presentar Matter 1.4, que añadió routers y puntos de acceso (HRAP) capaces de guardar y compartir las credenciales de la red Thread. Si mezclas marcas, revisa en sus apps que compartan la misma red." },
+            { "oferta": "aqara-hub-m3", "motivo": "Hub Zigbee, controlador Matter y Thread Border Router en un solo aparato, con automatizaciones locales. Se alimenta por USB-C o PoE, así que no depende del voltaje de tu país." }
+          ]
+        },
+        {
+          "titulo": "Seguridad: certificados y cifrado",
+          "bloques": [
+            { "p": "La seguridad es una de las partes mejor resueltas de Matter. Según la documentación de Silicon Labs, fabricante de chips Matter:" },
+            { "lista": [
+              "**Sin uniones anónimas:** para añadir un aparato hay que demostrar que lo tienes, con el código de su QR o de su etiqueta.",
+              "**Certificado de fábrica (DAC):** cada aparato trae una identidad única firmada por el fabricante, que se comprueba contra un registro de productos certificados por la CSA (el Distributed Compliance Ledger).",
+              "**Credenciales solo después de verificar:** la clave de tu WiFi o de la red Thread no se entrega hasta comprobar el certificado del aparato.",
+              "**Cifrado de mensajes:** AES-CCM con claves de 128 bits."
+            ] },
+            { "nota": "El código QR funciona como contraseña inicial durante la configuración. Guarda la etiqueta o una foto del código: la puedes necesitar para volver a añadir el aparato si lo restableces." }
+          ]
+        },
+        {
+          "titulo": "De Matter 1.4 a 1.6: qué cambió en cada versión",
+          "bloques": [
+            { "tabla": {
+              "columnas": ["Versión", "Fecha (CSA)", "Novedades principales"],
+              "filas": [
+                ["1.4", "7 de noviembre de 2024", "Multi-Admin mejorado (un solo consentimiento para varias plataformas), routers y puntos de acceso con Thread Border Router (HRAP), protocolo Long Idle Time para alargar la batería, interruptores de pared para cargas fijas y energía: paneles solares, baterías, bombas de calor y calentadores de agua"],
+                ["1.4.1 y 1.4.2", "2025", "Versiones de mantenimiento centradas en la calidad"],
+                ["1.5", "20 de noviembre de 2025", "Cámaras (video y audio con WebRTC), cierres (persianas, cortinas, toldos, portones y puertas de garaje), sensores de suelo, tarifas eléctricas y transporte TCP para datos grandes"],
+                ["1.6", "17 de junio de 2026", "Configuración por NFC (por ejemplo, un foco antes de enroscarlo), Joint Fabric para que varios controladores administren una misma red y sugerencias de termostato"]
+              ]
+            } },
+            { "aviso": "Que exista una versión nueva no significa que tu app o tu aparato ya la soporten: cada fabricante y cada plataforma la adopta a su ritmo. Antes de comprar una cámara o una persiana «Matter», confirma en la ficha que tu plataforma ya admite ese tipo de aparato." }
+          ]
+        },
+        {
+          "titulo": "Matter en Latinoamérica: qué revisar antes de comprar",
+          "bloques": [
+            { "p": "Matter resuelve la compatibilidad entre apps, **no la eléctrica**. Un foco Matter de 120 V sigue siendo de 120 V. Pasa con la misma familia de Tapo: el L535E de nuestro catálogo es de 120 V con rosca E26, la L535E que TP-Link vende en otros mercados es de 220–240 V con rosca E27, y el Tapo L530E, también de 220–240 V, **no tiene Matter**." },
+            { "lista": [
+              "**Voltaje y clavija o rosca:** igual que con cualquier aparato.",
+              "**Red:** revisa en la ficha si el aparato usa Matter sobre WiFi o sobre Thread; si es Thread, necesitas un Border Router.",
+              "**Tu plataforma:** confirma que tu asistente ya admite ese tipo de aparato.",
+              "**Lo que ya tienes:** tus aparatos Zigbee no se tiran; un hub que actúe como puente Matter los integra."
+            ] },
+            { "oferta": "aqara-hub-m2", "motivo": "Si ya tienes sensores Aqara Zigbee, el Hub M2 los lleva a Matter como puente (firmware 4.0 o superior). Ojo: no es Thread Border Router y no incluye el adaptador de corriente." },
+            { "p": "¿Todavía no sabes qué protocolo elegir? Lee nuestra comparativa [Zigbee vs Z-Wave vs WiFi](/articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026)." }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Interoperabilidad:** un mismo aparato funciona con Alexa, Google Home, Apple Home y SmartThings.",
+        "**Control local:** las órdenes no tienen que pasar por la nube del fabricante.",
+        "**Seguridad de base:** certificado por aparato, verificación con el registro de la CSA y cifrado AES de 128 bits.",
+        "**No obliga a tirar lo que tienes:** Zigbee y Z-Wave entran mediante puentes.",
+        "**Sigue creciendo:** la 1.5 añadió cámaras y cierres, y la 1.6, la configuración por NFC."
+      ],
+      "desventajas": [
+        "**Thread necesita un Border Router**, y si mezclas marcas puedes terminar con varias redes Thread separadas.",
+        "**Las plataformas van más lentas que la especificación:** no todas admiten todavía todos los tipos de aparato.",
+        "**Automatizaciones y control remoto** requieren un controlador siempre encendido, como un parlante o un hub.",
+        "**No resuelve el voltaje:** sigues necesitando la versión de 110–120 V o de 220 V de tu país.",
+        "**Puentes con matices:** un aparato Zigbee que entra por un puente depende de que ese hub siga encendido."
+      ],
+      "faq": [
+        { "p": "¿Necesito cambiar todos mis aparatos para usar Matter?", "r": "No. Puedes sumar aparatos Matter poco a poco, y tus aparatos Zigbee o Z-Wave pueden entrar a Matter a través de un hub que actúe como puente." },
+        { "p": "¿Matter funciona sin internet?", "r": "El control dentro de casa es local y no depende de la nube del fabricante. Para controlar desde fuera o ejecutar automatizaciones necesitas un controlador siempre encendido, como un parlante inteligente o un hub." },
+        { "p": "¿Qué es un Thread Border Router y lo necesito?", "r": "Es el equipo que conecta la red Thread con tu WiFi. Solo lo necesitas para aparatos Matter sobre Thread; los Matter sobre WiFi se conectan directo al router." },
+        { "p": "¿Qué asistentes son compatibles con Matter?", "r": "Amazon Alexa, Google Home, Apple Home y Samsung SmartThings. Gracias a Multi-Admin, un aparato puede estar en varios a la vez." },
+        { "p": "¿Cuál es la versión más reciente de Matter?", "r": "La 1.6, publicada por la CSA el 17 de junio de 2026. Añadió la configuración por NFC y Joint Fabric, entre otras mejoras." }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: ¿vale la pena Matter en 2026?",
+        "intro": "Sí para compras nuevas, sin prisa por reemplazar lo que ya funciona. Según tu perfil:",
+        "perfiles": [
+          { "perfil": "Empiezo desde cero (110–120 V)", "texto": "Focos y enchufes Matter sobre WiFi: sin hub y compatibles con todas las plataformas.", "producto": "tapo-l535e" },
+          { "perfil": "Empiezo desde cero (220 V)", "texto": "Busca la versión de 220–240 V con rosca E27 de un foco Matter, como la L535E que TP-Link vende en otros mercados. El Tapo L530E sirve para tu red, pero no tiene Matter.", "producto": "tapo-l530e" },
+          { "perfil": "Ya tengo sensores Aqara Zigbee", "texto": "Un hub que los lleve a Matter como puente, sin cambiar los sensores.", "producto": "aqara-hub-m2" },
+          { "perfil": "Quiero Thread, Zigbee y Matter en un solo aparato", "texto": "Un hub que haga de Border Router, controlador Matter y hub Zigbee.", "producto": "aqara-hub-m3" },
+          { "perfil": "Tengo un HomePod mini, un Nest Hub (2.ª gen.) o un Echo (4.ª gen.)", "texto": "Ya tienes un Thread Border Router: puedes sumar aparatos Matter sobre Thread directamente." }
+        ],
+        "alternativa": "si prefieres control total y local, Home Assistant también funciona como controlador Matter y admite Zigbee con un coordinador como el [Sonoff ZBDongle-E](/productos/sonoff-zbdongle-e). Para aparatos Thread también necesita un Border Router, y pide más tiempo de configuración."
+      },
+      "fuentes": [
+        { "texto": "Connectivity Standards Alliance: qué es Matter", "url": "https://csa-iot.org/all-solutions/matter/" },
+        { "texto": "Connectivity Standards Alliance: cómo funciona una casa Matter (fabric, controladores, puentes y Border Routers)", "url": "https://csa-iot.org/newsroom/peeking-under-the-hood-of-your-matter-smart-home/" },
+        { "texto": "Connectivity Standards Alliance: novedades de Matter 1.4", "url": "https://csa-iot.org/newsroom/matter-1-4-enables-more-capable-smart-homes/" },
+        { "texto": "Connectivity Standards Alliance: novedades de Matter 1.5", "url": "https://csa-iot.org/newsroom/matter-1-5-introduces-cameras-closures-and-enhanced-energy-management-capabilities/" },
+        { "texto": "Connectivity Standards Alliance: novedades de Matter 1.6", "url": "https://csa-iot.org/newsroom/matter-1-6-enables-more-intuitive-setup-multi-ecosystem-experiences-and-context-driven-control/" },
+        { "texto": "Silicon Labs: seguridad en Matter (certificados y cifrado)", "url": "https://docs.silabs.com/matter/1.0.4/matter-overview-guides/security" },
+        { "texto": "Thread Group: fundamentos de la red Thread", "url": "https://www.threadgroup.org/Portals/0/documents/support/Thread%20Network%20Fundamentals_v3.pdf" },
+        { "texto": "Apple: Thread Border Routers y concentradores para la app Casa", "url": "https://support.apple.com/en-us/102078" },
+        { "texto": "Google Nest: qué es un Thread Border Router y qué equipos lo tienen", "url": "https://support.google.com/googlenest/answer/9249088" },
+        { "texto": "Amazon: dispositivos Echo y eero con Thread Border Router", "url": "https://developer.amazon.com/en-US/docs/alexa/smarthome/thread-support.html" },
+        { "texto": "Home Assistant: integración Matter", "url": "https://www.home-assistant.io/integrations/matter/" },
+        { "texto": "TP-Link: Tapo L535E de 220–240 V con Matter (Reino Unido)", "url": "https://www.tp-link.com/uk/home-networking/smart-bulb/tapo-l535e/" },
+        { "texto": "TP-Link: Tapo L530E (sin Matter)", "url": "https://www.tp-link.com/uk/home-networking/smart-bulb/tapo-l530e/" },
+        { "texto": "Aqara: Hub M3 (controlador Matter y Thread Border Router)", "url": "https://us.aqara.com/products/hub-m3" },
+        { "texto": "Aqara: actualización Matter del Hub M2", "url": "https://www.aqara.com/en/aqara-hub-m2-matter-update-has-started-to-roll-out/" }
       ]
     }
   ]

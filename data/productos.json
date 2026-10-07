@@ -393,10 +393,10 @@
         "Buen índice de reproducción de color (CRI ≥ 90)"
       ],
       "contras": [
-        "Solo 120 V con rosca E26"
+        "Esta versión es solo de 120 V con rosca E26"
       ],
       "idealPara": "Países de 110–120 V que quieren una bombilla Matter económica.",
-      "notaLatam": "Es la versión para 120 V. En países de 220 V, la equivalente es la Tapo L530E.",
+      "notaLatam": "Esta ficha es la versión de 120 V con rosca E26. TP-Link vende en otros mercados (por ejemplo, Reino Unido) una L535E de 220–240 V con rosca E27 y 1055 lm, también con Matter: es la que corresponde a redes de 220 V. La Tapo L530E también es de 220–240 V, pero no tiene Matter.",
       "busqueda": "tapo l535e"
     },
     {
@@ -419,19 +419,20 @@
       "compat": {
         "alexa": "si",
         "google": "si",
-        "homekit": "via-matter",
-        "matter": "si",
+        "homekit": "no",
+        "matter": "no",
         "homeAssistant": "si"
       },
-      "notaHA": "Integración TP-Link o Matter.",
+      "notaHA": "Integración TP-Link.",
       "precio": 1,
-      "resumen": "La versión de 220–240 V de la bombilla de color de Tapo. Ideal para los países sudamericanos con red de 220 V.",
+      "resumen": "La bombilla de color de Tapo de 220–240 V con rosca E27. Funciona con Alexa y Google Home, sin hub. Ideal para los países sudamericanos con red de 220 V.",
       "pros": [
         "Pensada para redes de 220 V",
-        "Compatible con Matter",
+        "Funciona con Alexa y Google Home sin hub",
         "Precio bajo"
       ],
       "contras": [
+        "No es compatible con Matter ni con Apple Home (la versión con Matter es la L535E de 220–240 V)",
         "Menos luminosa que la L535E (806 lm)",
         "No sirve en redes de 110–120 V"
       ],
