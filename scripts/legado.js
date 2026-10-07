@@ -16,8 +16,6 @@ import { cabecera, pie, SPRITE, DATOS_PAISES } from './catalogo.js';
 const PAGINAS = [
   ['public/glosario.html', '/glosario'],
   ['public/alexa-vs-google-home-vs-homekit.html', '/articulos-editoriales/'],
-  ['public/articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026.html', '/articulos-editoriales/'],
-  ['public/articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026.html', '/articulos-editoriales/'],
 ];
 
 const INICIO = '<!-- plantilla: inicio -->';

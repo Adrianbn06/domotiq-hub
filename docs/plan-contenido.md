@@ -39,12 +39,10 @@ Cómo leer la lista:
 - [ ] T017 Guía: cómo instalar un relé o interruptor inteligente con y sin neutro (con aviso de electricista)
 - [ ] T018 Comparativa: relés con neutro — Shelly 1 Gen4 vs Sonoff MINIR4 (productos ya en el catálogo)
 - [ ] T019 Guía: Smart Life vs Tuya vs eWeLink: qué app usar y si se pueden mezclar marcas
-- [ ] T020 Reescribir guía antigua: Zigbee vs Z-Wave vs WiFi, verificando cada dato (Z-Wave casi no se vende en Latinoamérica: decirlo) (mantener la URL)
 - [ ] T021 Guía: mitos y verdades de los focos inteligentes (consumo en espera, interruptor de pared, WiFi)
 - [ ] T022 Productos nuevos: 3 interruptores — Sonoff MINIR4M (Matter), un interruptor táctil de pared Zigbee Tuya/MOES y un relé de 2 canales
 - [ ] T023 Guía: domótica en departamentos alquilados: instalaciones sin obras
 - [ ] T024 Comparativa: Home Assistant con coordinador USB (Sonoff ZBDongle-E) vs hub Sonoff ZBBridge-P
-- [ ] T025 Reescribir guía antigua: Matter 1.4, verificando cada dato con la web de la CSA (mantener la URL)
 - [ ] T026 Guía: crea tu primera rutina en Alexa desde cero
 - [ ] T027 Productos nuevos: 2–3 enchufes con Matter (por ejemplo Tapo P125M o equivalentes verificados)
 - [ ] T028 Comparativa: enchufes con Matter vs enchufes WiFi clásicos (requiere T027)
@@ -156,6 +154,8 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-07) T025 Reescribir guía antigua: Matter 1.4 → "Matter 1.4, 1.5 y 1.6" con el formato nuevo y datos de la CSA (misma URL). Corrección del catálogo: el Tapo L530E no tiene Matter
+- [x] (2026-10-07) T020 Reescribir guía antigua: Zigbee vs Z-Wave vs WiFi con el formato nuevo, datos verificados y frecuencias Z-Wave por país (misma URL)
 - [x] (2026-10-07) Diseño, paso 3: comparador nuevo (comparaciones frecuentes, productos con su dibujo, "¿te sirve?" para tu país, datos por secciones, "Solo lo que cambia", barra fija y enlace a la comparativa escrita)
 - [x] (2026-10-07) Arreglo de diseño: los dibujos de las categorías de la portada tapaban el texto (y la misma regla para todos los dibujos del sitio)
 - [x] (2026-10-07) SEO: redirecciones permanentes (301) de las direcciones antiguas con `.html` a la dirección limpia (antes Cloudflare usaba 307, temporal) y de `/guias` al índice de guías
