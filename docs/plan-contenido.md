@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T004 Guía: los primeros 5 dispositivos para empezar tu casa inteligente en Latinoamérica
 - [ ] T005 Guía: 110–127 V o 220 V: qué revisar antes de comprar domótica (voltaje, clavija, rosca E26/E27, versiones por país)
 - [ ] T006 Comparativa: interruptor inteligente vs foco inteligente: cuál conviene en cada caso
 - [ ] T007 Guía: qué es un hub domótico y cuándo lo necesitas (y cuándo no)
@@ -154,6 +153,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-09) T004 Guía: los primeros 5 dispositivos para empezar tu casa inteligente en Latinoamérica
 - [x] (2026-10-07) T025 Reescribir guía antigua: Matter 1.4 → "Matter 1.4, 1.5 y 1.6" con el formato nuevo y datos de la CSA (misma URL). Corrección del catálogo: el Tapo L530E no tiene Matter
 - [x] (2026-10-07) T020 Reescribir guía antigua: Zigbee vs Z-Wave vs WiFi con el formato nuevo, datos verificados y frecuencias Z-Wave por país (misma URL)
 - [x] (2026-10-07) Diseño, paso 3: comparador nuevo (comparaciones frecuentes, productos con su dibujo, "¿te sirve?" para tu país, datos por secciones, "Solo lo que cambia", barra fija y enlace a la comparativa escrita)

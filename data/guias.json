@@ -684,6 +684,227 @@
         { "texto": "Aqara: Hub M3 (controlador Matter y Thread Border Router)", "url": "https://us.aqara.com/products/hub-m3" },
         { "texto": "Aqara: actualización Matter del Hub M2", "url": "https://www.aqara.com/en/aqara-hub-m2-matter-update-has-started-to-roll-out/" }
       ]
+    },
+    {
+      "slug": "primeros-5-dispositivos-casa-inteligente-latinoamerica",
+      "etiqueta": "🧭 Guía para empezar",
+      "titulo": "Los primeros 5 dispositivos para empezar tu casa inteligente en Latinoamérica (2026)",
+      "tituloCorto": "5 primeros dispositivos para tu casa inteligente",
+      "descripcion": "Qué comprar primero para tu casa inteligente en Latinoamérica: 5 dispositivos sin obras, con voltaje, rosca y WiFi bien revisados antes de pagar.",
+      "publicado": "2026-10-09",
+      "actualizado": "2026-10-09",
+      "intro": [
+        "Quieres empezar con la domótica, pero entre parlantes, focos, sensores y hubs no sabes **qué comprar primero** ni en qué orden. Y si vives en un departamento alquilado, además no puedes romper paredes ni tocar cables.",
+        "En esta guía analizamos cinco dispositivos que **no requieren obras**, cómo se hablan entre sí por debajo (WiFi, Zigbee, infrarrojo) y qué revisar de tu país antes de pagar: voltaje, clavija y rosca. También te contamos los contras de cada uno."
+      ],
+      "secciones": [
+        {
+          "titulo": "Cómo elegir tus primeros dispositivos",
+          "bloques": [
+            {
+              "p": "La mejor compra inicial es la que **resuelve algo que haces todos los días** y no te obliga a cambiar nada de la instalación. Usamos cuatro criterios para armar esta lista:"
+            },
+            {
+              "lista": [
+                "**Sin obras:** se enchufan, se enroscan o se pegan; no tocan cables vivos ni el tablero.",
+                "**Voltaje y clavija de tu país:** un aparato de 110–127 V no sirve en una red de 220 V, y al revés.",
+                "**Pocas piezas extra:** idealmente WiFi directo al router, sin comprar un hub desde el primer día.",
+                "**Crecer sin tirar lo comprado:** que luego se pueda sumar a otras apps o a un hub."
+              ]
+            },
+            {
+              "aviso": "Los cinco dispositivos de esta lista son de conexión superficial (enchufe, rosca, adhesivo). Si más adelante quieres cambiar un interruptor de pared o instalar un relé, eso sí implica tocar cables: **contrata a un electricista** si no tienes experiencia."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo se conectan por debajo: WiFi, Zigbee e infrarrojo",
+          "bloques": [
+            {
+              "p": "Tres tecnologías distintas conviven en esta lista y conviene entender qué hace cada una."
+            },
+            {
+              "h3": "WiFi: directo al router, sin hub"
+            },
+            {
+              "p": "El enchufe y el foco de esta lista se conectan **directamente a tu router**, como un celular más (topología en estrella). TP-Link indica que sus enchufes y focos Tapo usan solo la banda de **2,4 GHz** y que no necesitan hub para el uso básico. Por eso son el mejor punto de partida: pagas el aparato y nada más."
+            },
+            {
+              "aviso": "Si tu router une las bandas de 2,4 y 5 GHz con el mismo nombre y el celular se conecta a la de 5 GHz, la configuración puede fallar. Durante la instalación usa la red de 2,4 GHz."
+            },
+            {
+              "h3": "Zigbee: red en malla con un coordinador"
+            },
+            {
+              "p": "Los sensores baratos a pilas suelen ser Zigbee. El Sonoff SNZB-04P, por ejemplo, es Zigbee 3.0 y **necesita un hub o coordinador Zigbee** para funcionar: no se conecta al router. A cambio, gasta muy poca energía (las tiendas indican una pila CR2477 de unos 5 años) y las órdenes entre sensor y hub se resuelven **en la red local**, sin salir a internet."
+            },
+            {
+              "h3": "Infrarrojo: el truco para equipos que ya tienes"
+            },
+            {
+              "p": "Un control infrarrojo (IR) WiFi **copia las órdenes del control remoto** de tu aire acondicionado split o televisor y las repite desde el celular o la voz. No cambia el equipo: solo reemplaza el control. La integración de Broadlink en Home Assistant, por ejemplo, soporta IR en los modelos RM4 mini y RM4 pro, y radiofrecuencia solo en los modelos \"pro\". La limitación es física: el IR necesita **línea de vista** con el aparato."
+            },
+            {
+              "nota": "Un control IR solo envía órdenes. No sabe si el aire acondicionado ya estaba encendido, así que la app puede mostrar un estado distinto al real si alguien usa el control original."
+            }
+          ]
+        },
+        {
+          "titulo": "Los 5 dispositivos, uno por uno",
+          "bloques": [
+            {
+              "h3": "1. Parlante con asistente (Alexa o Google)"
+            },
+            {
+              "p": "Sirve de **controlador** de la casa: escucha tus órdenes y ejecuta rutinas. Es el único de la lista que no necesitas el primer día; con un solo usuario, el celular alcanza. En una familia, en cambio, el parlante permite que todos den órdenes sin instalar nada. Antes de comprar, confirma en la página del fabricante que el asistente esté disponible en tu país y en tu idioma. No cuantificamos precios porque aún no está en nuestro catálogo."
+            },
+            {
+              "h3": "2. Enchufe o tomacorriente inteligente"
+            },
+            {
+              "p": "Es la forma más barata de **automatizar lo que ya tienes**: una lámpara, un ventilador o un cargador. El Tapo P115 funciona con 100–125 V, soporta hasta 15 A y 1800 W de carga resistiva y, además, **mide el consumo** de lo que conectes. Según TP-Link, no es para cualquier carga: las lámparas incandescentes se limitan a 8 A y los motores a 1/6 HP."
+            },
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Enchufe WiFi de 100–125 V que además mide el consumo. Solo sirve en países de 110–120 V; en 220 V busca un enchufe de la versión de tu país, como el Sonoff S26R2."
+            },
+            {
+              "h3": "3. Foco o bombilla inteligente"
+            },
+            {
+              "p": "Cambias la bombilla por una WiFi y ya puedes regular la luz, programarla o cambiar el tono. Pero **el voltaje y la rosca varían por mercado**: en nuestro catálogo, el Tapo L530E figura como 220–240 V con rosca E27, mientras que la página de TP-Link para Estados Unidos de ese modelo indica 120 V y una ficha que mezcla E26 y E27. Por eso la regla es una sola: **lee la ficha de la versión exacta que compras**, no el nombre del modelo."
+            },
+            {
+              "oferta": "tapo-l530e",
+              "motivo": "Bombilla de color sin hub, solo WiFi 2,4 GHz y compatible con Alexa y Google. Confirma voltaje y rosca de la versión que te venden antes de pagar."
+            },
+            {
+              "h3": "4. Control infrarrojo WiFi"
+            },
+            {
+              "p": "Para las casas con **aire acondicionado split** y televisor tradicional, este suele ser el dispositivo con más impacto: conviertes en inteligentes equipos que no lo son. Al ir a pilas o por USB, no depende del voltaje de tu país, pero sí de que el equipo se maneje con un control IR. No hay un control IR en nuestro catálogo todavía, así que no te recomendamos un modelo concreto."
+            },
+            {
+              "h3": "5. Sensor de puerta o ventana"
+            },
+            {
+              "p": "Detecta si algo está abierto o cerrado y **dispara una automatización**: encender una luz al entrar, avisarte si se abre una ventana. Este es el único que casi siempre necesita un hub Zigbee, por lo que es el último de la lista. Si ya tienes un hub, es una compra de bajo costo."
+            },
+            {
+              "oferta": "sonoff-snzb-04p",
+              "motivo": "Sensor Zigbee 3.0 a pila de larga duración, de los más baratos del catálogo. Necesita un coordinador Zigbee, como el Sonoff ZBBridge-P o Home Assistant con un dongle."
+            }
+          ]
+        },
+        {
+          "titulo": "Tu primera rutina y los errores que conviene evitar",
+          "bloques": [
+            {
+              "p": "Una rutina siempre tiene la misma lógica: **disparador → controlador → actuador**. Dos ejemplos que puedes montar con lo de esta lista:"
+            },
+            {
+              "lista": [
+                "**Buenas noches:** al decir la frase (disparador), tu app o parlante (controlador) apaga el foco de la sala y el enchufe de la lámpara (actuadores).",
+                "**Salir de casa:** un toque en el celular apaga el enchufe del ventilador y envía por IR la orden de apagado al aire acondicionado."
+              ]
+            },
+            {
+              "h3": "Errores típicos"
+            },
+            {
+              "lista": [
+                "Comprar por el nombre del modelo sin revisar la versión: el mismo foco puede venir en 120 V o en 220–240 V.",
+                "Empezar con sensores Zigbee sin tener un hub.",
+                "Conectar un aparato de mucha potencia a un enchufe inteligente sin revisar su carga máxima.",
+                "Intentar instalar un interruptor o un relé por tu cuenta sin experiencia."
+              ]
+            },
+            {
+              "nota": "Si vives en arriendo, estos cinco dispositivos se llevan contigo al mudarte: no modifican la instalación del edificio."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Sin obras:** nada de lo recomendado toca cables ni el tablero.",
+        "**Pocas piezas:** con WiFi directo (enchufe y foco) no necesitas hub el primer día.",
+        "**Se queda contigo:** si te mudas, lo desenchufas o lo desenroscas.",
+        "**Crece por etapas:** puedes sumar el control IR o el sensor cuando quieras."
+      ],
+      "desventajas": [
+        "**Muchos aparatos WiFi pueden saturar un router básico**, como el que entrega el proveedor de internet.",
+        "**Dependen de la nube del fabricante** en la mayoría de los modelos económicos: si se cae el internet, pierdes el control remoto.",
+        "**El sensor Zigbee exige un hub** que no está incluido.",
+        "**El voltaje y la rosca varían por país**, así que equivocarse al comprar es fácil.",
+        "**El infrarrojo necesita línea de vista** y no informa el estado real del equipo."
+      ],
+      "faq": [
+        {
+          "p": "¿Hace falta un hub para empezar?",
+          "r": "No. Los enchufes y focos WiFi de esta lista se conectan directo a tu router. El hub solo es necesario para sensores Zigbee como el SNZB-04P."
+        },
+        {
+          "p": "¿Necesito un electricista para instalarlos?",
+          "r": "No para estos cinco: se enchufan, se enroscan o se pegan. Sí lo necesitas para interruptores o relés de pared si no tienes experiencia."
+        },
+        {
+          "p": "¿Puedo usarlos si vivo en arriendo?",
+          "r": "Sí. Ninguno modifica cables ni paredes, y todos se pueden retirar al mudarte."
+        },
+        {
+          "p": "¿Funciona un enchufe de 110 V en un país de 220 V?",
+          "r": "No. El Tapo P115, por ejemplo, es de 100–125 V. En redes de 220 V necesitas una versión hecha para ese voltaje."
+        },
+        {
+          "p": "¿Por cuál empiezo si solo puedo comprar uno?",
+          "r": "Por el enchufe inteligente: es el más versátil y barato para probar la domótica con aparatos que ya tienes."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: ¿por dónde empezar?",
+        "intro": "Depende de qué quieres resolver primero:",
+        "perfiles": [
+          {
+            "perfil": "Quiero probar con lo mínimo (110–127 V)",
+            "texto": "Un enchufe inteligente que además mida el consumo de tus aparatos.",
+            "producto": "tapo-p115"
+          },
+          {
+            "perfil": "Quiero mejorar la iluminación",
+            "texto": "Una bombilla WiFi sin hub; revisa voltaje y rosca de la versión que te venden.",
+            "producto": "tapo-l530e"
+          },
+          {
+            "perfil": "Ya tengo hub Zigbee y quiero alertas",
+            "texto": "Un sensor de puerta o ventana a pila para disparar luces o avisos.",
+            "producto": "sonoff-snzb-04p"
+          },
+          {
+            "perfil": "Vivo en 220 V y quiero un enchufe",
+            "texto": "Busca la versión de tu país, por ejemplo la del Sonoff S26R2.",
+            "producto": "sonoff-s26r2"
+          }
+        ],
+        "alternativa": "si ya tienes un aire acondicionado split y un televisor, empieza por un control infrarrojo WiFi antes que por el sensor. Para entender los protocolos, lee [Zigbee vs Z-Wave vs WiFi](/articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026)."
+      },
+      "fuentes": [
+        {
+          "texto": "TP-Link: enchufe inteligente Tapo P115 (100–125 V, 15 A, medición de consumo, 2,4 GHz)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-plug/tapo-p115/"
+        },
+        {
+          "texto": "TP-Link: bombilla Tapo L530E (WiFi 2,4 GHz, sin hub, Alexa y Google)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-bulb/tapo-l530e/"
+        },
+        {
+          "texto": "Zigbee2MQTT: Sonoff SNZB-04P (sensor de contacto Zigbee con alerta de batería y antisabotaje)",
+          "url": "https://www.zigbee2mqtt.io/devices/SNZB-04P.html"
+        },
+        {
+          "texto": "Home Assistant: integración Broadlink (infrarrojo en RM4 mini y RM4 pro; radiofrecuencia solo en modelos pro)",
+          "url": "https://www.home-assistant.io/integrations/broadlink/"
+        }
+      ]
     }
   ]
 }
