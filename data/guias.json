@@ -905,6 +905,306 @@
           "url": "https://www.home-assistant.io/integrations/broadlink/"
         }
       ]
+    },
+    {
+      "slug": "voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica",
+      "etiqueta": "⚡ Guía de compra",
+      "titulo": "110–127 V o 220 V: qué revisar antes de comprar domótica en Latinoamérica (2026)",
+      "tituloCorto": "110–127 V o 220 V: qué revisar antes de comprar domótica",
+      "descripcion": "Voltaje, clavija y rosca E26/E27: la lista de revisión para no comprar un enchufe o foco inteligente que no funciona en tu país de Latinoamérica.",
+      "publicado": "2026-10-12",
+      "actualizado": "2026-10-12",
+      "intro": [
+        "Compraste un enchufe o un foco inteligente en una tienda extranjera y, al llegar, **no entra en tu tomacorriente** o no enrosca en tu portalámparas. Peor: tiene el voltaje de otro país. En domótica este es el error de compra más caro y más evitable.",
+        "En esta guía revisamos las **tres cosas que cambian de un país a otro**: el voltaje de tu red, la forma de la clavija y la rosca del foco. Analizamos cómo está repartida la región, qué dicen los fabricantes de sus propias versiones y qué comprobar en el anuncio antes de pagar."
+      ],
+      "secciones": [
+        {
+          "titulo": "Por qué el voltaje y la clavija cambian de un país a otro",
+          "bloques": [
+            {
+              "p": "La región está dividida en dos grandes grupos eléctricos, más el caso especial de Brasil. Según la lista de voltajes y enchufes de WorldStandards, así quedan los países más consultados:"
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "País",
+                  "Voltaje",
+                  "Frecuencia",
+                  "Clavijas"
+                ],
+                "filas": [
+                  [
+                    "México",
+                    "127 V",
+                    "60 Hz",
+                    "A / B"
+                  ],
+                  [
+                    "Guatemala, Costa Rica, Panamá, Ecuador, Venezuela, Rep. Dominicana",
+                    "120 V",
+                    "60 Hz",
+                    "A / B"
+                  ],
+                  [
+                    "Colombia",
+                    "110 V",
+                    "60 Hz",
+                    "A / B"
+                  ],
+                  [
+                    "Perú",
+                    "230 V",
+                    "60 Hz",
+                    "A / B / C"
+                  ],
+                  [
+                    "Chile",
+                    "230 V",
+                    "50 Hz",
+                    "C / L"
+                  ],
+                  [
+                    "Argentina",
+                    "230 V",
+                    "50 Hz",
+                    "I"
+                  ],
+                  [
+                    "Bolivia",
+                    "230 V",
+                    "50 Hz",
+                    "A / B / C"
+                  ],
+                  [
+                    "Uruguay",
+                    "230 V",
+                    "50 Hz",
+                    "C / F / L"
+                  ],
+                  [
+                    "Paraguay",
+                    "230 V",
+                    "50 Hz",
+                    "A / B / C / N"
+                  ],
+                  [
+                    "Brasil",
+                    "127 V o 220 V (según la zona)",
+                    "60 Hz",
+                    "C / N"
+                  ]
+                ]
+              }
+            },
+            {
+              "p": "En la práctica, hablamos de **redes de 110–127 V** (México, Centroamérica, Colombia, Ecuador, Venezuela) y **redes de 220 V** (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay). Los listados oficiales muestran 230 V como valor nominal; los aparatos de 220–240 V cubren ese rango."
+            },
+            {
+              "aviso": "Un aparato diseñado solo para 100–125 V **no está pensado** para conectarse a 220–240 V, y al revés. Que la clavija entre físicamente no significa que el voltaje sea el correcto: revisa siempre la etiqueta o la ficha técnica."
+            }
+          ]
+        },
+        {
+          "titulo": "La clavija: qué forma tiene el tomacorriente de tu país",
+          "bloques": [
+            {
+              "p": "WorldStandards describe los tipos así: la **clavija A** (dos patas, sin tierra, 15 A) y la **B** (tres patas con tierra, 15 A) son las de 100–127 V; un tomacorriente B acepta clavijas A y B. La **C** (dos patas, 220–240 V) es muy común en Sudamérica. La **I** es la de Argentina, la **L** se usa en Chile (y en Italia) y la **N** es la de Brasil."
+            },
+            {
+              "lista": [
+                "**Tipo L (Chile):** el tomacorriente de 10 A acepta clavijas C y L de 10 A; el de 16 A solo acepta la L de 16 A.",
+                "**Tipo N (Brasil):** su tomacorriente acepta clavijas C y N. La norma brasileña es la NBR 14136, basada en la IEC 60906-1, con versiones de 10 A y 20 A.",
+                "**Tipo I (Argentina):** forma propia; un adaptador pensado para Chile no sirve."
+              ]
+            },
+            {
+              "h3": "Brasil: el caso especial"
+            },
+            {
+              "p": "En Brasil **no hay un voltaje único**. WorldStandards indica que alrededor del 60 % de los hogares usa 127 V, que algunos estados (sobre todo del Nordeste) usan 220 V y que la tensión puede variar dentro de un mismo estado. Además, advierte que **no se distingue un tomacorriente de 127 V de uno de 220 V a simple vista**, porque comparten el mismo formato."
+            },
+            {
+              "nota": "Si vives en Brasil, confirma el voltaje en tu factura de luz o con tu distribuidora, y prefiere aparatos de 100–240 V."
+            }
+          ]
+        },
+        {
+          "titulo": "La rosca del foco: E26 y E27",
+          "bloques": [
+            {
+              "p": "Los focos inteligentes añaden un tercer dato. Según Wikipedia, la rosca **E26** (26 mm) es el estándar para lámparas de 120 V en Norteamérica y la **E27** (27 mm) es la habitual en los 230 V de Europa continental y China. El mismo artículo dice que ambas suelen ser intercambiables, porque solo se diferencian en 1 mm."
+            },
+            {
+              "aviso": "Que una E27 enrosque en un portalámparas E26 **no cambia su voltaje**. Un foco E27 de 220–240 V enroscado en una red de 120 V no es una combinación prevista por el fabricante. Mira siempre el voltaje de la ficha, no solo la rosca."
+            },
+            {
+              "p": "El mismo modelo puede traer bases distintas según el mercado. La página oficial de especificaciones del Tapo L530E, por ejemplo, indica una entrada de **220–240 V, 50/60 Hz** y lista la base **E27 para la versión EU/TW** y **E26 para la versión US/KR/JP**."
+            },
+            {
+              "oferta": "tapo-l530e",
+              "motivo": "Bombilla WiFi de color sin hub. La ficha oficial habla de 220–240 V con base E27 (versión EU/TW): es para redes de 220 V, no para 110–127 V."
+            }
+          ]
+        },
+        {
+          "titulo": "Productos de ejemplo: uno para cada red",
+          "bloques": [
+            {
+              "h3": "Red de 110–127 V: enchufe con rango declarado"
+            },
+            {
+              "p": "El Tapo P115 declara **100–125 V, 50/60 Hz y 15 A**, con 1800 W para carga resistiva. TP-Link limita a 8 A las lámparas incandescentes y a 1/6 HP los motores. Es un buen ejemplo de ficha clara: da el rango de voltaje, la corriente y las excepciones de carga."
+            },
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Enchufe WiFi de 100–125 V y 15 A con medición de consumo. Pensado para México, Centroamérica, Colombia, Ecuador y Venezuela."
+            },
+            {
+              "h3": "Cualquier red: aparato con rango amplio"
+            },
+            {
+              "p": "Algunos relés aceptan **100–240 V**, lo que simplifica la compra. Un anuncio del Sonoff MINIR4 lista 100–240 V, 50/60 Hz, 10 A máximo y WiFi de 2,4 GHz. Aun así, un relé se instala **dentro de la caja del interruptor, con cables de la casa**. Si no tienes experiencia, **contrata a un electricista**."
+            },
+            {
+              "oferta": "sonoff-minir4",
+              "motivo": "Relé WiFi que acepta 100–240 V, así que sirve en cualquier país de la región. Su instalación eléctrica la debe hacer alguien con experiencia."
+            }
+          ]
+        },
+        {
+          "titulo": "Lista de revisión antes de pagar",
+          "bloques": [
+            {
+              "lista": [
+                "**Voltaje de tu país:** busca en la ficha el rango (por ejemplo 100–125 V, 220–240 V o 100–240 V).",
+                "**Frecuencia:** 50 o 60 Hz; si la ficha acepta 50/60 Hz, no hay problema.",
+                "**Clavija:** compara el tipo (A/B, C, I, L, N) con la de tu tomacorriente.",
+                "**Rosca:** E26 o E27, y recuerda que la rosca no garantiza el voltaje.",
+                "**Versiones por país:** si el modelo existe en varias, confirma el código exacto.",
+                "**Anuncios genéricos:** pide el voltaje y la corriente máxima por escrito al vendedor.",
+                "**Corriente y carga:** revisa los amperios y vatios máximos, y las excepciones (motores, incandescentes)."
+              ]
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Si tu red es de…",
+                  "Busca en la ficha…",
+                  "Evita…"
+                ],
+                "filas": [
+                  [
+                    "110–127 V (México, Centroamérica, Colombia, Ecuador, Venezuela)",
+                    "100–125 V o 100–240 V; clavija A/B; rosca E26",
+                    "Fichas de solo 220–240 V"
+                  ],
+                  [
+                    "220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay)",
+                    "220–240 V o 100–240 V; clavija de tu país; rosca E27",
+                    "Fichas de solo 100–125 V"
+                  ],
+                  [
+                    "Brasil",
+                    "100–240 V o la versión de tu zona; clavija N",
+                    "Asumir 127 V o 220 V sin confirmar"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Evitas devoluciones:** revisar tres datos antes de pagar ahorra envíos de vuelta.",
+        "**Compras con más opciones:** entender los rangos te permite aprovechar productos de tiendas internacionales.",
+        "**Menos riesgos:** un aparato con el voltaje correcto trabaja dentro de lo previsto por el fabricante.",
+        "**Sirve para todas las marcas:** la misma lista funciona con cualquier enchufe, foco o relé."
+      ],
+      "desventajas": [
+        "**Las fichas no siempre son claras:** los anuncios genéricos suelen omitir voltaje o amperios.",
+        "**Un mismo modelo tiene varias versiones:** puedes pedir el correcto y que el vendedor envíe otro.",
+        "**Brasil no tiene un voltaje único:** hay que confirmar por zona.",
+        "**La devolución internacional es lenta:** equivocarte con una compra de AliExpress cuesta tiempo."
+      ],
+      "faq": [
+        {
+          "p": "¿Puedo usar un aparato de 120 V en un tomacorriente de 220 V con un adaptador?",
+          "r": "El adaptador solo cambia la forma de la clavija, no el voltaje. Si el aparato es solo de 100–125 V, no está pensado para 220–240 V."
+        },
+        {
+          "p": "¿Un foco E27 sirve en un portalámparas E26?",
+          "r": "Físicamente suelen ser intercambiables, porque solo se diferencian en 1 mm, pero el voltaje del foco debe coincidir con tu red."
+        },
+        {
+          "p": "¿Cómo sé qué voltaje tengo en casa?",
+          "r": "Mira la etiqueta de tus electrodomésticos, tu factura de luz o consulta a la distribuidora. En Brasil conviene confirmarlo, porque cambia entre zonas."
+        },
+        {
+          "p": "¿Qué significa 100–240 V en la ficha?",
+          "r": "Que el aparato está diseñado para trabajar en todo ese rango y sirve tanto en redes de 110–127 V como de 220–240 V."
+        },
+        {
+          "p": "¿Los sensores a pilas también tienen este problema?",
+          "r": "No. Funcionan con batería y no dependen del voltaje de tu país, aunque el hub que los conecta sí puede necesitar un cargador."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué comprar según tu red",
+        "intro": "Elige según el voltaje que tienes en casa:",
+        "perfiles": [
+          {
+            "perfil": "Vivo en México, Centroamérica, Colombia, Ecuador o Venezuela",
+            "texto": "Un enchufe de 100–125 V que además mida el consumo.",
+            "producto": "tapo-p115"
+          },
+          {
+            "perfil": "Vivo en una red de 220 V y quiero un foco",
+            "texto": "Una bombilla de 220–240 V con rosca E27; confirma la versión exacta del anuncio.",
+            "producto": "tapo-l530e"
+          },
+          {
+            "perfil": "No estoy seguro del voltaje (por ejemplo, en Brasil)",
+            "texto": "Un relé de 100–240 V, instalado por un electricista si no tienes experiencia.",
+            "producto": "sonoff-minir4"
+          }
+        ],
+        "alternativa": "si recién empiezas, mira la guía de [los primeros 5 dispositivos](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica) y la de [cómo solucionar que no conecte al WiFi](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi)."
+      },
+      "fuentes": [
+        {
+          "texto": "WorldStandards: enchufes y voltaje por país (voltaje, frecuencia y clavijas)",
+          "url": "https://www.worldstandards.eu/electricity/plug-voltage-by-country/"
+        },
+        {
+          "texto": "WorldStandards: tipos de enchufes y compatibilidad entre clavijas y tomacorrientes",
+          "url": "https://www.worldstandards.eu/electricity/plugs-and-sockets/"
+        },
+        {
+          "texto": "WorldStandards: Brasil, voltaje por estado y norma NBR 14136",
+          "url": "https://www.worldstandards.eu/?p=9490"
+        },
+        {
+          "texto": "Interpower: Brasil, norma NBR 14136 (10 A y 20 A, 250 V, 60 Hz)",
+          "url": "http://www.interpower.com/ic/designers/designing-for-export/national-power-mains/brazil.html"
+        },
+        {
+          "texto": "Wikipedia: rosca Edison (E26 y E27)",
+          "url": "https://en.wikipedia.org/wiki/Edison_screw"
+        },
+        {
+          "texto": "Tapo: especificaciones del L530E (220–240 V, base E27 o E26 según versión)",
+          "url": "https://www.tapo.com/au/product/tapo-l530e-smart-light-bulb/specs/"
+        },
+        {
+          "texto": "TP-Link: enchufe Tapo P115 (100–125 V, 15 A, medición de consumo)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-plug/tapo-p115/"
+        },
+        {
+          "texto": "Xmart: ficha del Sonoff MINIR4 (100–240 V, 10 A, 2,4 GHz)",
+          "url": "https://www.xmart.jo/en/products/sonoff-mini-extreme-wi-fi-smart-switch-minir4"
+        }
+      ]
     }
   ]
 }
