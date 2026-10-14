@@ -424,6 +424,106 @@
           "r": "No. TP-Link aclara que el costo estimado es solo una referencia; el valor real depende de tu empresa eléctrica."
         }
       ]
+    },
+    {
+      "slug": "interruptor-inteligente-vs-foco-inteligente",
+      "titulo": "Interruptor inteligente vs foco inteligente: ¿cuál conviene en cada caso?",
+      "tituloCorto": "Interruptor inteligente vs foco inteligente",
+      "descripcion": "Relé detrás del interruptor o foco WiFi: comparamos Sonoff MINIR4 y ZBMINI-L2 con Tapo L535E y WiZ A19. Costo, instalación, voltaje y contras.",
+      "actualizado": "2026-10-14",
+      "productos": [
+        "sonoff-minir4",
+        "sonoff-zbmini-l2",
+        "tapo-l535e",
+        "wiz-a19-color"
+      ],
+      "intro": [
+        "Quieres encender las luces con el celular o con la voz, y tienes dos caminos: cambiar el foco por uno inteligente o dejar los focos de siempre y automatizar el interruptor de pared con un relé. Los dos funcionan, pero resuelven problemas distintos y fallan de maneras distintas.",
+        "Comparamos un foco WiFi de color (Tapo L535E y WiZ A19) con dos relés Sonoff que se esconden detrás del interruptor (MINIR4 por WiFi y ZBMINI-L2 por Zigbee). Te contamos qué hace cada opción bien, cuáles son sus contras y cuándo conviene llamar a un electricista."
+      ],
+      "secciones": [
+        {
+          "titulo": "La diferencia de fondo: dónde vive la inteligencia",
+          "parrafos": [
+            "En el foco inteligente, la inteligencia está dentro de la bombilla: tiene su propio chip de WiFi, controla el color y la intensidad, y se instala enroscándola, sin tocar cables. En el interruptor inteligente (un relé), la inteligencia está en la caja de la pared: el relé corta o deja pasar la corriente, y el foco que pongas debajo puede ser cualquier foco común.",
+            "Eso tiene una consecuencia práctica: el foco inteligente puede cambiar de color y de tono de blanco, pero un relé solo enciende y apaga el circuito completo. Si quieres luz de ambiente en rojo o verde, necesitas el foco; si solo quieres que la sala se encienda a las 6 de la tarde, el relé basta y es más simple."
+          ]
+        },
+        {
+          "titulo": "El problema del interruptor de pared apagado",
+          "parrafos": [
+            "El contra más importante del foco inteligente es que depende de tener corriente siempre. Si alguien lo apaga con el interruptor de la pared, el foco deja de estar disponible: Philips Hue explica que, al cortar la corriente en el interruptor, la app, las rutinas y los asistentes de voz ya no pueden controlarlo hasta que se vuelva a encender. Es un comportamiento general de los focos conectados, no una falla de una marca, y la solución habitual es dejar el interruptor encendido y usar la app, la voz o un botón inalámbrico.",
+            "En una casa con niños, invitados o familiares que apagan por costumbre, esto genera frustración rápido. El relé evita el problema por diseño: el foco queda debajo del relé y el interruptor de la pared sigue funcionando. Sonoff indica que el MINIR4 se puede conectar a los interruptores de pared tradicionales para el manejo manual y además ofrece un modo de relé independiente (\"detach relay\") para que la luz inteligente no quede fuera de línea al pulsar el interruptor."
+          ]
+        },
+        {
+          "titulo": "Instalación y seguridad eléctrica",
+          "parrafos": [
+            "Cambiar un foco no requiere herramientas. Instalar un relé sí: se abren la caja del interruptor y se conectan cables de la red eléctrica de la casa. Si no tienes experiencia, **contrata a un electricista**: un error aquí puede causar un cortocircuito o un incendio, y siempre hay que cortar el breaker antes de tocar nada.",
+            "Hay dos temas técnicos que conviene conocer antes de comprar. Primero, el cable neutro: muchas instalaciones antiguas solo tienen fase en la caja del interruptor. El Sonoff ZBMINI-L2 está pensado para ese caso (Sonoff lo vende como \"sin neutro\"), mientras que en nuestro catálogo el MINIR4 figura como un relé que sí necesita neutro; confirma en el manual del modelo exacto. Segundo, la carga: según Sonoff, el MINIR4 admite hasta 10 A y el ZBMINI-L2 hasta 6 A, por lo que no sirven para cualquier aparato de gran consumo. Además, el relé sin neutro toma la poca corriente que necesita a través de la lámpara conectada, así que revisa en su ficha qué cargas mínimas y de tipo LED admite."
+          ]
+        },
+        {
+          "titulo": "Voltaje y clavija: qué sirve en tu país",
+          "parrafos": [
+            "Aquí hay una ventaja clara del relé. Según Sonoff, tanto el MINIR4 como el ZBMINI-L2 aceptan de 100 a 240 V a 50/60 Hz, así que el mismo modelo sirve en México, Colombia o Centroamérica (110–127 V) y en Perú, Chile, Argentina o Uruguay (220 V). El relé no usa clavija: va dentro de la caja de pared.",
+            "Los focos, en cambio, dependen de la versión. El Tapo L535E y el WiZ A19 de nuestro catálogo son de 120 V con rosca E26, para países de 110–127 V. En países de 220 V hay que buscar la versión de 220–240 V con rosca E27 (TP-Link vende una L535E así en otros mercados, y WiZ tiene una versión E27). Una bombilla de 120 V conectada a 220 V se quema, así que revisa voltaje y rosca en la ficha del vendedor."
+          ]
+        },
+        {
+          "titulo": "Conectividad: WiFi frente a Zigbee",
+          "parrafos": [
+            "El MINIR4, el Tapo L535E y el WiZ A19 usan WiFi de 2,4 GHz y no necesitan hub, lo que hace la puesta en marcha muy sencilla. El contra es que cada dispositivo WiFi ocupa un lugar en tu router; con muchos focos, un router básico de proveedor puede saturarse. El ZBMINI-L2 usa Zigbee 3.0 y requiere un hub o coordinador Zigbee, pero a cambio no carga el WiFi. Para decidir entre ambos protocolos puedes leer nuestra guía de [Zigbee vs Z-Wave vs WiFi](/articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026).",
+            "En asistentes: según el catálogo, los dos focos funcionan con Alexa, Google y Matter (con lo cual también llegan a Apple Home), mientras que el MINIR4 funciona con Alexa y Google, pero no con Matter ni HomeKit. El ZBMINI-L2 necesita un hub Zigbee para hablar con Alexa y Google."
+          ]
+        },
+        {
+          "titulo": "Cuántos puntos de luz tienes importa más que la marca",
+          "parrafos": [
+            "Piensa en la cantidad. Una lámpara de lectura con un solo foco: el foco inteligente es lo más barato y cómodo. Una sala con tres o cuatro focos en un mismo interruptor: un solo relé automatiza todo el circuito y es normalmente más económico que cuatro focos inteligentes, aunque pierdes el color y el control individual. En el catálogo, los dos focos y el MINIR4 y el ZBMINI-L2 están en el rango de precio más bajo (menos de 15 USD, orientativo), pero la cuenta final cambia según cuántos puntos de luz debas cubrir."
+          ]
+        }
+      ],
+      "veredicto": [
+        {
+          "perfil": "Quieres luz de color o tonos de blanco, no tocas cables y vives en un país de 110–127 V",
+          "producto": "tapo-l535e",
+          "motivo": "Es una bombilla WiFi de color con Matter y 1100 lm, y se instala enroscándola; esta versión es de 120 V con rosca E26."
+        },
+        {
+          "perfil": "Quieres un foco de color con Matter en un departamento o casa de 110–127 V, sin hub y con una marca de Signify",
+          "producto": "wiz-a19-color",
+          "motivo": "Es WiFi sin hub y compatible con Matter; también es de 120 V con rosca E26."
+        },
+        {
+          "perfil": "Tienes varios focos en un mismo interruptor, vives en cualquier país de la región y puedes contratar a un electricista",
+          "producto": "sonoff-minir4",
+          "motivo": "Acepta 100–240 V, conserva el interruptor de pared y usa WiFi sin hub; revisa que tu caja tenga neutro."
+        },
+        {
+          "perfil": "Tu instalación es antigua y no hay neutro en la caja del interruptor",
+          "producto": "sonoff-zbmini-l2",
+          "motivo": "Sonoff lo ofrece para funcionar sin neutro, pero tiene una carga máxima baja (6 A) y necesita un hub Zigbee."
+        }
+      ],
+      "faq": [
+        {
+          "p": "¿Qué pasa con un foco inteligente si apagan el interruptor de la pared?",
+          "r": "Se queda sin corriente y no responde a la app, a las rutinas ni a la voz hasta que se vuelva a encender el interruptor. Lo habitual es dejarlo encendido y usar la app, la voz o un botón inalámbrico."
+        },
+        {
+          "p": "¿Puedo instalar un interruptor inteligente yo mismo?",
+          "r": "Solo si tienes experiencia: hay que manipular cables de la red eléctrica. Si no la tienes, contrata a un electricista y corta siempre el breaker antes de empezar."
+        },
+        {
+          "p": "¿Un interruptor inteligente sirve en 110 V y en 220 V?",
+          "r": "Los Sonoff MINIR4 y ZBMINI-L2 aceptan de 100 a 240 V según el fabricante, así que sirven en toda la región. Los focos dependen de la versión: la de rosca E26 y 120 V no es para redes de 220 V."
+        },
+        {
+          "p": "¿Qué conviene si tengo varios focos en el mismo interruptor?",
+          "r": "Normalmente un relé: automatiza todo el circuito con un solo aparato. Si quieres color o control individual por foco, necesitas focos inteligentes."
+        }
+      ]
     }
   ]
 }
