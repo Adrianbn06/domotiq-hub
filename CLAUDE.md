@@ -63,6 +63,8 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
   `veredicto` (perfil → producto del catálogo → motivo) y `faq`. Unas 900–1300 palabras.
   `tituloCorto` se usa como título para Google: máximo 60 caracteres. `descripcion`: máximo 155 caracteres
   (la plantilla recorta lo que pase de ahí, pero es mejor escribirla completa dentro del límite).
+  En `intro`, `secciones`, `veredicto` y `faq` se puede usar `**negrita**` y `[texto](/ruta)`, como en las guías.
+  El build falla si queda formato sin convertir en cualquier página (se vería tal cual en la web).
 - `scripts/paginas.js` — aviso legal, privacidad, nosotros, contacto y 404 (textos fijos).
 - `public/analytics.js` — aviso de cookies: Google Analytics solo se carga si el visitante acepta. No añadas
   etiquetas de Google Analytics directamente en las páginas.

@@ -69,10 +69,26 @@ ${pages.map(p => `  <url>
   console.log(`🗺️  Sitemap: ${pages.length} URLs`);
 }
 
+// ─── FORMATO SIN CONVERTIR ────────────────────────────────────────────────────
+// Un **texto** o [texto](/ruta) que llega tal cual a la página significa que la plantilla de ese
+// campo no aplica fmt(): el lector vería los asteriscos y corchetes. Mejor fallar aquí que publicarlo.
+function comprobarFormato() {
+  const crudo = /\*\*[^*\s][^*]*?\*\*|\[[^\]]+\]\(\/[^)\s]*\)/;
+  const malos = listHtmlFiles(PUBLIC_DIR).flatMap(file => {
+    const html = fs.readFileSync(file, 'utf8').replace(/<script\b[\s\S]*?<\/script>/g, '');
+    const m = html.match(crudo);
+    return m ? [`${path.relative(PUBLIC_DIR, file)}: "${m[0]}"`] : [];
+  });
+  if (malos.length) {
+    throw new Error(`Formato sin convertir (se vería tal cual en la web):\n  ${malos.join('\n  ')}`);
+  }
+}
+
 generarCatalogo(ROOT);
 generarComparativas(ROOT);
 generarGuias(ROOT);
 actualizarLegado(ROOT);
 generarPaginas(ROOT);
 generarPortada(ROOT);
+comprobarFormato();
 generateSitemap();
