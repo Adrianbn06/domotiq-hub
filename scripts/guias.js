@@ -19,7 +19,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, pagina, badges, AVISO_AFILIADOS, tituloSeo, recortar, icono, ilustracion, fila } from './catalogo.js';
+import { esc, fmt, plano, pagina, badges, AVISO_AFILIADOS, tituloSeo, recortar, icono, ilustracion, fila } from './catalogo.js';
 
 // La etiqueta de una guía puede traer un emoji delante: el diseño usa iconos, no emojis
 const sinEmoji = (t) => String(t).replace(/^[\p{Extended_Pictographic}️‍\s]+/u, '');
@@ -33,18 +33,6 @@ const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', '
 export function leerGuias(root) {
   const f = path.join(root, 'data', 'guias.json');
   return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')).guias : [];
-}
-
-// **negrita** y [texto](/ruta-interna), después de escapar
-function fmt(t) {
-  return esc(t)
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '<a href="$2">$1</a>');
-}
-
-// Texto plano para JSON-LD y para contar palabras
-function plano(t) {
-  return String(t).replace(/\*\*(.+?)\*\*/g, '$1').replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '$1');
 }
 
 function idDe(t) {
