@@ -1205,6 +1205,219 @@
           "url": "https://www.xmart.jo/en/products/sonoff-mini-extreme-wi-fi-smart-switch-minir4"
         }
       ]
+    },
+    {
+      "slug": "que-es-un-hub-domotico-cuando-lo-necesitas",
+      "etiqueta": "🧭 Guía de compra",
+      "titulo": "¿Qué es un hub domótico y cuándo lo necesitas? (y cuándo no) 2026",
+      "tituloCorto": "Qué es un hub domótico y cuándo lo necesitas",
+      "descripcion": "Qué hace un hub o puente Zigbee, cuándo sí vale la pena y cuándo basta con dispositivos WiFi. Opciones del catálogo para Latinoamérica.",
+      "publicado": "2026-10-16",
+      "actualizado": "2026-10-16",
+      "intro": [
+        "Ves sensores de puerta o de temperatura muy baratos y todos dicen **«requiere hub»**. ¿Es una trampa para gastar más o de verdad hace falta? La respuesta depende de qué quieres automatizar.",
+        "En esta guía analizamos qué hace un hub, cuándo compensa y cuándo puedes saltártelo. Revisamos las fichas de los fabricantes y la documentación de Home Assistant y de la Connectivity Standards Alliance (CSA), y comparamos tres caminos del catálogo."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué hace un hub por debajo",
+          "bloques": [
+            {
+              "p": "Los enchufes y focos **WiFi** se conectan directo a tu router. Los sensores **Zigbee** usan otra radio, así que necesitan un aparato que hable Zigbee y además esté en tu red: eso es el hub (también llamado puente, gateway o coordinador)."
+            },
+            {
+              "p": "Según la CSA, Zigbee forma una **red en malla** que se organiza sola, funciona en 2,4 GHz y está optimizada para gastar poca energía y alargar la vida de la batería. Por eso los sensores Zigbee duran con una pila pequeña."
+            },
+            {
+              "h3": "Coordinador y repetidores"
+            },
+            {
+              "p": "La documentación de Home Assistant explica que el **coordinador** es el radio que crea y administra la red Zigbee, y que una red solo puede tener uno. Los dispositivos conectados a la corriente (enchufes, interruptores) hacen de **repetidores**: extienden la malla y permiten más dispositivos. Aqara indica lo mismo para su hub: para llegar a 128 dispositivos hacen falta repetidores, como enchufes o interruptores con neutro."
+            },
+            {
+              "aviso": "Mezclar una malla Zigbee con un router saturado de dispositivos WiFi suele dar problemas de conexión en 2,4 GHz. Si tu router es básico, un hub Zigbee descarga trabajo de tu WiFi."
+            },
+            {
+              "h3": "Hub, controlador Matter y router Thread"
+            },
+            {
+              "p": "Matter es un estándar de la CSA para que aparatos de distintas marcas trabajen juntos con conectividad local; su primera versión corre sobre WiFi y Thread, y usa Bluetooth para la configuración. Aqara indica que sus accesorios Matter sobre Thread necesitan un controlador Matter como el Hub M3. En otras palabras: «hub» hoy puede significar puente Zigbee, controlador Matter o ambos en una sola caja."
+            }
+          ]
+        },
+        {
+          "titulo": "Cuándo NO necesitas un hub",
+          "bloques": [
+            {
+              "lista": [
+                "**Empiezas con 2 a 5 dispositivos WiFi:** enchufes y focos que se configuran desde su propia app, sin hub.",
+                "**No usas sensores Zigbee:** si tu automatización es «encender y apagar» desde el celular o por voz, el WiFi basta.",
+                "**Tu router es bueno y tienes pocos aparatos:** el límite de conexiones suele aparecer con muchos dispositivos."
+              ]
+            },
+            {
+              "p": "Si es tu caso, empieza por la guía de [los primeros 5 dispositivos](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica) y no gastes en un hub todavía."
+            },
+            {
+              "nota": "Un hub no es obligatorio para tener domótica. Es obligatorio solo para los dispositivos que usan una radio distinta del WiFi."
+            }
+          ]
+        },
+        {
+          "titulo": "Cuándo sí conviene un hub",
+          "bloques": [
+            {
+              "lista": [
+                "**Quieres sensores a pilas** (puerta, temperatura, movimiento, fugas) que duren mucho y reaccionen rápido.",
+                "**Pasas de unos 8 a 10 aparatos WiFi:** repartir los sensores en Zigbee alivia el router.",
+                "**Quieres automatizaciones que sigan funcionando sin internet:** Aqara indica que las automatizaciones locales de su Hub M2 siguen funcionando si cae la conexión."
+              ]
+            },
+            {
+              "h3": "Tres caminos del catálogo"
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Camino",
+                  "Cómo funciona",
+                  "Lo bueno",
+                  "Lo malo"
+                ],
+                "filas": [
+                  [
+                    "Hub de marca (Aqara Hub M2)",
+                    "Zigbee 3.0, WiFi, cable de red e infrarrojo; hasta 128 dispositivos con repetidores",
+                    "Funciona con Apple Home, Alexa y Google; controla aires por infrarrojo",
+                    "Pensado para dispositivos Aqara; el control infrarrojo no pasa a Apple Home"
+                  ],
+                  [
+                    "Puente barato (Sonoff ZBBridge-P)",
+                    "Zigbee 3.0 y WiFi 2,4 GHz; según tiendas, 26 dispositivos directos y 128 con repetidores",
+                    "Económico y sencillo con la app eWeLink",
+                    "Sin Apple Home ni Matter; depende de la nube de eWeLink"
+                  ],
+                  [
+                    "Coordinador USB (Sonoff ZBDongle-E)",
+                    "Se conecta a un equipo con Home Assistant; control local",
+                    "Sin nube y con Zigbee de casi cualquier marca",
+                    "Necesitas un equipo siempre encendido y paciencia al configurar"
+                  ]
+                ]
+              }
+            },
+            {
+              "oferta": "aqara-hub-m2",
+              "motivo": "Hub Zigbee con infrarrojo y soporte para Apple Home, Alexa y Google. Se alimenta con un cargador micro-USB de 5 V 1 A, así que no depende del voltaje de tu país."
+            },
+            {
+              "oferta": "sonoff-zbbridge-p",
+              "motivo": "Puente Zigbee económico con app eWeLink. Se alimenta por USB de 5 V; recuerda que depende de la nube y no trae Matter."
+            },
+            {
+              "oferta": "sonoff-zbdongle-e",
+              "motivo": "Para quien quiere control local con Home Assistant. No es un hub por sí solo: requiere un equipo con Home Assistant funcionando."
+            }
+          ]
+        },
+        {
+          "titulo": "Qué mirar antes de comprar (Latinoamérica)",
+          "bloques": [
+            {
+              "lista": [
+                "**Alimentación:** estos hubs usan USB; solo necesitas un cargador de celular que funcione con la clavija de tu país. Revisa si el cargador viene incluido, porque el Aqara no siempre lo trae.",
+                "**Cable de red:** si tu router queda lejos, un hub con puerto Ethernet da más estabilidad.",
+                "**Dónde ponerlo:** en un punto central de la casa, lejos de routers y del microondas, y con repetidores a mano.",
+                "**Un solo ecosistema:** si ya usas Alexa o Google, confirma que el hub sea compatible antes de comprarlo."
+              ]
+            },
+            {
+              "aviso": "Los enchufes y relés que sirven de repetidores se conectan a la red eléctrica. Instalar un interruptor o relé dentro de la pared requiere conocimientos: si no tienes experiencia, **contrata a un electricista**."
+            },
+            {
+              "p": "Si piensas en Matter y Thread a futuro, el Aqara Hub M3 aparece en la documentación del fabricante como controlador Matter para accesorios Matter sobre Thread, con alimentación de 5 V 2 A o PoE. Está en el catálogo, pero para empezar suele ser más de lo necesario."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Sensores baratos y de larga duración:** Zigbee está pensado para gastar poca energía.",
+        "**Menos carga para tu router:** los sensores dejan de competir por el WiFi.",
+        "**Automatizaciones locales:** con un hub adecuado siguen funcionando sin internet.",
+        "**Una sola app para muchos sensores:** todo queda en un lugar."
+      ],
+      "desventajas": [
+        "**Un aparato más:** cuesta dinero y ocupa un enchufe y un puerto.",
+        "**Dependencia de la marca:** no todos los sensores funcionan con todos los hubs.",
+        "**Nube y privacidad:** varios hubs económicos dependen de la nube del fabricante.",
+        "**Configuración extra:** el coordinador USB exige un equipo con Home Assistant."
+      ],
+      "faq": [
+        {
+          "p": "¿Puedo tener domótica sin hub?",
+          "r": "Sí. Los enchufes y focos WiFi se configuran desde su app sin hub. El hub solo es necesario para dispositivos Zigbee."
+        },
+        {
+          "p": "¿Un hub sirve para cualquier sensor Zigbee?",
+          "r": "No siempre. Algunos hubs aceptan Zigbee de otras marcas y otros se limitan a la suya; confirma la compatibilidad en la ficha."
+        },
+        {
+          "p": "¿Cuántos hubs necesito?",
+          "r": "Una red Zigbee solo puede tener un coordinador. Más hubs de la misma marca no suman, salvo que el fabricante lo indique."
+        },
+        {
+          "p": "¿Qué pasa con el hub si se cae el internet?",
+          "r": "Depende del modelo. Aqara indica que las automatizaciones locales del Hub M2 siguen funcionando; los puentes que dependen de la nube pueden perder funciones."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué hub según tu perfil",
+        "intro": "Elige según lo que quieres lograr:",
+        "perfiles": [
+          {
+            "perfil": "Tengo iPhone o uso varios asistentes y quiero algo listo para usar",
+            "texto": "Un hub con Apple Home, Alexa y Google, y control infrarrojo para el aire.",
+            "producto": "aqara-hub-m2"
+          },
+          {
+            "perfil": "Quiero sensores Zigbee a bajo costo y uso la app eWeLink",
+            "texto": "Un puente económico, sabiendo que depende de la nube.",
+            "producto": "sonoff-zbbridge-p"
+          },
+          {
+            "perfil": "Me gusta configurar y quiero control local sin nube",
+            "texto": "Un coordinador USB con Home Assistant.",
+            "producto": "sonoff-zbdongle-e"
+          }
+        ],
+        "alternativa": "si aún no usas sensores Zigbee, empieza con [la guía para solucionar que el dispositivo no conecte al WiFi](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi) y vuelve aquí cuando necesites sensores."
+      },
+      "fuentes": [
+        {
+          "texto": "CSA: qué es Zigbee (malla, 2,4 GHz, bajo consumo)",
+          "url": "https://csa-iot.org/all-solutions/zigbee/"
+        },
+        {
+          "texto": "CSA: qué es Matter (multimarca, conectividad local, WiFi y Thread)",
+          "url": "https://csa-iot.org/all-solutions/matter/"
+        },
+        {
+          "texto": "Home Assistant: ZHA y coordinador Zigbee USB",
+          "url": "https://www.home-assistant.io/integrations/zha/"
+        },
+        {
+          "texto": "Aqara: Hub M2 (128 dispositivos, USB 5 V 1 A, Ethernet, infrarrojo, automatizaciones locales)",
+          "url": "https://www.aqara.com/en/product/hub-m2"
+        },
+        {
+          "texto": "Aqara: Hub M3, especificaciones (controlador Matter, 5 V 2 A o PoE)",
+          "url": "https://www.aqara.com/en/product/hub-m3-specs/"
+        },
+        {
+          "texto": "Xmart: ficha del Sonoff Zigbee Bridge Pro (tienda, no fabricante)",
+          "url": "https://www.xmart.jo/en/products/sonoff-zigbee-bridge-pro-zb-bridge-p"
+        }
+      ]
     }
   ]
 }
