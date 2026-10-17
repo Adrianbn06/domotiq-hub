@@ -21,6 +21,18 @@ export const esc = (s) => String(s ?? '')
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
+// Formato mínimo de guías y comparativas: **negrita** y [texto](/ruta-interna), después de escapar
+export function fmt(t) {
+  return esc(t)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '<a href="$2">$1</a>');
+}
+
+// El mismo texto sin formato, para JSON-LD, resúmenes y contar palabras
+export function plano(t) {
+  return String(t).replace(/\*\*(.+?)\*\*/g, '$1').replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '$1');
+}
+
 // ─── ICONOS ───────────────────────────────────────────────────────────────────
 // Trazos de Lucide (una sola familia, trazo 1.75 desde el CSS). Van en un sprite al inicio de
 // cada página y se usan con icono('nombre'). Cada categoría del catálogo necesita su icono.

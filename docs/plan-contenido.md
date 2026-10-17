@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T006 Comparativa: interruptor inteligente vs foco inteligente: cuál conviene en cada caso
 - [ ] T008 Productos nuevos: 3 sensores — Aqara Motion Sensor P1, un sensor de fuga de agua Zigbee (Aqara o Sonoff) y un sensor de vibración o botón inalámbrico
 - [ ] T009 Guía: qué pasa con tu casa inteligente cuando se cae el internet, y alternativas que funcionan en local
 - [ ] T010 Comparativa: sensores de movimiento Aqara Motion P1 vs Sonoff SNZB-03P (requiere T008)
@@ -151,6 +150,8 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-16) T007 Guía: qué es un hub domótico y cuándo lo necesitas (y cuándo no)
+- [x] (2026-10-14) T006 Comparativa: interruptor inteligente vs foco inteligente: cuál conviene en cada caso
 - [x] (2026-10-12) T005 Guía: 110–127 V o 220 V: qué revisar antes de comprar domótica (voltaje, clavija, rosca E26/E27, versiones por país)
 - [x] (2026-10-09) T004 Guía: los primeros 5 dispositivos para empezar tu casa inteligente en Latinoamérica
 - [x] (2026-10-07) T025 Reescribir guía antigua: Matter 1.4 → "Matter 1.4, 1.5 y 1.6" con el formato nuevo y datos de la CSA (misma URL). Corrección del catálogo: el Tapo L530E no tiene Matter
@@ -161,7 +162,6 @@ Cómo leer la lista:
 - [x] (2026-10-07) T003 Guía: el enchufe o foco inteligente no se conecta al WiFi (red de 5 GHz, Smart Life / eWeLink / Tapo): solución paso a paso
 - [x] (2026-10-05) T002 Comparativa: enchufes con medición de consumo — Sonoff S31 vs Tapo P115 vs Kasa EP25
 - [x] (2026-10-03) Diseño, paso 2 "Tu país": el visitante elige su país y cada tarjeta y ficha dice si el producto funciona con su red; título de la portada con el país, foco regulable de 2500 a 6500 K y catálogo filtrado por su voltaje
-- [x] (2026-10-16) T007 Guía: qué es un hub domótico y cuándo lo necesitas (y cuándo no)
 - [x] (2026-10-03) Diseño, paso 1: sistema visual "Vitrina Obsidian" en todo el sitio (colores, letras, iconos, dibujos de producto, portada, fichas, catálogo, comparativas, guías y las 4 páginas antiguas)
 - [x] (2026-10-03) Formato de guías con el estilo de los artículos originales (prompt editorial en `CLAUDE.md`): índice, H3, tablas, ventajas y desventajas, 3 recomendaciones del catálogo y veredicto por perfil. Guía de inicio reescrita así
 - [x] (2026-10-03) T001 Técnico + Guía: formato de guías (`data/guias.json` + `scripts/guias.js`) y guía "Qué es la domótica y cómo empezar con menos de 50 USD" reescrita con datos verificados
