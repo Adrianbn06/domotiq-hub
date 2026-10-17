@@ -2,6 +2,11 @@
 {
   "name": "domotiq-hub",
   "compatibility_date": "2026-10-01",
+  // El sitio solo se sirve en www.ofertasdomoticas.com: sin esto, cada publicación vuelve a
+  // encender la copia pública en domotiq-hub.<cuenta>.workers.dev
+  "workers_dev": false,
+  // Enlaces de vista previa de cada rama o PR (Cloudflare les pone X-Robots-Tag: noindex)
+  "preview_urls": true,
   "build": {
     "command": "node scripts/build.js"
   },
@@ -9,5 +14,8 @@
     "directory": "./public",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  // Las ramas que no son main se publican con `npx wrangler preview`, que exige este bloque.
+  // Vacío = la vista previa usa la misma configuración que producción (sitio estático, sin bindings)
+  "previews": {}
 }
