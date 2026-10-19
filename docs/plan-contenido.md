@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T008 Productos nuevos: 3 sensores — Aqara Motion Sensor P1, un sensor de fuga de agua Zigbee (Aqara o Sonoff) y un sensor de vibración o botón inalámbrico
 - [ ] T009 Guía: qué pasa con tu casa inteligente cuando se cae el internet, y alternativas que funcionan en local
 - [ ] T010 Comparativa: sensores de movimiento Aqara Motion P1 vs Sonoff SNZB-03P (requiere T008)
 - [ ] T011 Guía: comprar domótica en Amazon o AliExpress desde Latinoamérica — versión correcta, envío, aduana y garantía
@@ -150,6 +149,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-19) T008 Productos nuevos: 3 sensores — Aqara Motion Sensor P1, Sonoff SNZB-05P (fuga de agua) y Sonoff SNZB-01P (botón)
 - [x] (2026-10-16) T007 Guía: qué es un hub domótico y cuándo lo necesitas (y cuándo no)
 - [x] (2026-10-14) T006 Comparativa: interruptor inteligente vs foco inteligente: cuál conviene en cada caso
 - [x] (2026-10-12) T005 Guía: 110–127 V o 220 V: qué revisar antes de comprar domótica (voltaje, clavija, rosca E26/E27, versiones por país)

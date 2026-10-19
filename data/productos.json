@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-10-02",
+  "actualizado": "2026-10-19",
   "categorias": {
     "enchufe": {
       "nombre": "Enchufes inteligentes",
@@ -926,6 +926,115 @@
       "idealPara": "Quien quiere el relé más versátil y sin depender de la nube.",
       "notaLatam": "Acepta 110–240 V: vale para cualquier país de la región. La instalación eléctrica debe hacerla alguien que sepa.",
       "busqueda": "shelly 1 gen4"
+    },
+    {
+      "slug": "aqara-motion-sensor-p1",
+      "nombre": "Aqara Motion Sensor P1",
+      "marca": "Aqara",
+      "categoria": "sensor",
+      "tipoSensor": "Movimiento (PIR) + luz",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Hub Aqara (Zigbee 3.0)",
+      "app": "Aqara Home",
+      "bateria": "2 × CR2450 (hasta 5 años con LED apagado y tiempo de espera de 30 s o más)",
+      "alcance": "170° hasta 2 m, 150° hasta 7 m",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "sin-confirmar",
+        "homekit": "via-hub",
+        "matter": "sin-confirmar",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con Zigbee2MQTT, sin nube.",
+      "precio": 2,
+      "resumen": "Sensor de movimiento con sensor de luz integrado, tiempo de espera configurable de 1 a 200 segundos y tres niveles de sensibilidad.",
+      "pros": [
+        "Sensor de luz: enciende solo cuando está oscuro",
+        "Tiempo de espera y sensibilidad ajustables",
+        "Soporte de rótula de 360° para orientarlo"
+      ],
+      "contras": [
+        "Necesita un hub Aqara para el tiempo de espera y las automatizaciones de luz",
+        "Usa dos pilas CR2450",
+        "Compatibilidad con Matter anunciada como futura: sin confirmar"
+      ],
+      "idealPara": "Luces de pasillo o baño que solo deben encenderse de noche.",
+      "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
+      "busqueda": "aqara motion sensor p1"
+    },
+    {
+      "slug": "sonoff-snzb-05p",
+      "nombre": "Sonoff SNZB-05P",
+      "marca": "Sonoff",
+      "categoria": "sensor",
+      "tipoSensor": "Fuga de agua",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Coordinador Zigbee (ZBBridge-P, iHost, SmartThings, Home Assistant)",
+      "app": "eWeLink",
+      "bateria": "CR2477 (unos 5 años con 50 activaciones al día; la pila no viene incluida)",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "sin-confirmar",
+        "homekit": "sin-confirmar",
+        "matter": "sin-confirmar",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT y un coordinador USB, sin nube.",
+      "precio": 1,
+      "resumen": "Sensor de fuga de agua Zigbee con protección IP67. Avisa por la app y puede activar la alarma de un hub compatible.",
+      "pros": [
+        "Resistente al agua (IP67)",
+        "Pila de larga duración",
+        "Funciona con hubs de varias marcas"
+      ],
+      "contras": [
+        "Necesita un coordinador Zigbee",
+        "La pila no viene incluida",
+        "No cierra el agua por sí solo: solo avisa"
+      ],
+      "idealPara": "Debajo del lavadero, lavadora, calentador o tinaco para enterarte a tiempo de una fuga.",
+      "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
+      "busqueda": "sonoff snzb-05p"
+    },
+    {
+      "slug": "sonoff-snzb-01p",
+      "nombre": "Sonoff SNZB-01P",
+      "marca": "Sonoff",
+      "categoria": "sensor",
+      "tipoSensor": "Botón inalámbrico",
+      "protocolos": [
+        "Zigbee 3.0"
+      ],
+      "hub": "Coordinador Zigbee 3.0 (NSPanel Pro, ZB Bridge Pro, ZBDongle-E, Home Assistant)",
+      "app": "eWeLink",
+      "bateria": "CR2477 (hasta 5 años según Sonoff)",
+      "compat": {
+        "alexa": "via-hub",
+        "google": "sin-confirmar",
+        "homekit": "via-matter",
+        "matter": "via-matter",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Con ZHA o Zigbee2MQTT, sin nube.",
+      "precio": 1,
+      "resumen": "Botón Zigbee de una pulsación, doble pulsación y pulsación larga; cada una puede lanzar una acción distinta.",
+      "pros": [
+        "Tres acciones por botón",
+        "Se pega en cualquier pared o mesita",
+        "Pila de larga duración"
+      ],
+      "contras": [
+        "Necesita un hub Zigbee",
+        "Con Matter en otras plataformas solo funciona la pulsación simple",
+        "Doble pulsación: menos de 0,5 s entre toques"
+      ],
+      "idealPara": "Un interruptor extra junto a la cama o la puerta para escenas como «buenas noches».",
+      "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
+      "busqueda": "sonoff snzb-01p"
     }
   ]
 }
