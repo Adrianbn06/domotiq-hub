@@ -214,7 +214,7 @@ ${AVISO_AFILIADOS}`;
 
   const html = pagina({
     title: 'OfertasDomoticas.com: domótica práctica para Latinoamérica',
-    description: `Elige enchufes, focos, sensores y hubs inteligentes que funcionen en tu país (110 V o 220 V). ${data.productos.length} productos verificados, comparador y guías de domótica en español.`,
+    description: `Elige enchufes, focos, sensores y hubs que funcionen en tu país (110 V o 220 V): ${data.productos.length} productos verificados, comparador y guías de domótica en español.`,
     canonical: '/',
     body,
   });

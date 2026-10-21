@@ -148,6 +148,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-21) SEO: descripción de la portada dentro de los 155 caracteres (Google la mostraba cortada con "…")
 - [x] (2026-10-19) T008 Productos nuevos: 3 sensores — Aqara Motion Sensor P1, Sonoff SNZB-05P (fuga de agua) y Sonoff SNZB-01P (botón)
 - [x] (2026-10-16) T007 Guía: qué es un hub domótico y cuándo lo necesitas (y cuándo no)
 - [x] (2026-10-14) T006 Comparativa: interruptor inteligente vs foco inteligente: cuál conviene en cada caso
