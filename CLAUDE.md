@@ -95,9 +95,14 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
 - Las páginas antiguas escritas a mano (`<body class="legado">`) reciben la cabecera y el pie actuales en cada
   build (`scripts/legado.js`); al reescribirlas con `data/guias.json` dejan de necesitarlo.
 
+## Gestor de paquetes: pnpm
+
+- Usa siempre **pnpm**, nunca npm ni npx: `pnpm run build`, `pnpm install`, `pnpm dlx` (en vez de `npx`),
+  `pnpm audit`. También en la documentación y en las instrucciones que escribas.
+
 ## Antes de abrir un pull request
 
-1. `npm run build` debe terminar sin errores (valida datos, slugs y compatibilidades).
+1. `pnpm run build` debe terminar sin errores (valida datos, slugs y compatibilidades).
 2. Un pull request por tarea, en una rama `contenido/AAAA-MM-DD-tema`.
 3. En la descripción del pull request: qué se añadió, en lenguaje sencillo; la lista de **fuentes**
    usadas para cada producto o dato; y qué conviene revisar.
