@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T009 Guía: qué pasa con tu casa inteligente cuando se cae el internet, y alternativas que funcionan en local
 - [ ] T010 Comparativa: sensores de movimiento Aqara Motion P1 vs Sonoff SNZB-03P (requiere T008)
 - [ ] T011 Guía: comprar domótica en Amazon o AliExpress desde Latinoamérica — versión correcta, envío, aduana y garantía
 - [ ] T012 Guía: cortes de luz: cómo reaccionan los enchufes, focos y relés inteligentes al volver la energía, y cómo protegerlos (estado tras el corte, UPS)
@@ -167,3 +166,4 @@ Cómo leer la lista:
 - [x] (2026-10-03) T001 Técnico + Guía: formato de guías (`data/guias.json` + `scripts/guias.js`) y guía "Qué es la domótica y cómo empezar con menos de 50 USD" reescrita con datos verificados
 - [x] (2026-10-02) Comparativa: sensores de puerta Aqara Door and Window Sensor T1 vs Sonoff SNZB-04P
 - [x] (2026-10-02) SEO: quitar de las guías antiguas las "ofertas" con precios inventados, fusionar 2 guías duplicadas (301), fechas reales en el sitemap y etiquetas para compartir
+- [x] (2026-10-21) T009 Guía: qué pasa con tu casa inteligente cuando se cae el internet, y alternativas que funcionan en local
