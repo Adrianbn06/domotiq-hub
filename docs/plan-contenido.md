@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T010 Comparativa: sensores de movimiento Aqara Motion P1 vs Sonoff SNZB-03P (requiere T008)
 - [ ] T011 Guía: comprar domótica en Amazon o AliExpress desde Latinoamérica — versión correcta, envío, aduana y garantía
 - [ ] T012 Guía: cortes de luz: cómo reaccionan los enchufes, focos y relés inteligentes al volver la energía, y cómo protegerlos (estado tras el corte, UPS)
 - [ ] T013 Reescribir guía antigua: Alexa vs Google Home vs Apple HomeKit, verificando cada dato y la disponibilidad en Latinoamérica (mantener la URL)
@@ -148,6 +147,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-23) T010 Comparativa: sensores de movimiento Aqara Motion P1 vs Sonoff SNZB-03P
 - [x] (2026-10-21) SEO: descripción de la portada dentro de los 155 caracteres (Google la mostraba cortada con "…")
 - [x] (2026-10-19) T008 Productos nuevos: 3 sensores — Aqara Motion Sensor P1, Sonoff SNZB-05P (fuga de agua) y Sonoff SNZB-01P (botón)
 - [x] (2026-10-16) T007 Guía: qué es un hub domótico y cuándo lo necesitas (y cuándo no)
