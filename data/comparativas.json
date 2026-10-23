@@ -524,6 +524,101 @@
           "r": "Normalmente un relé: automatiza todo el circuito con un solo aparato. Si quieres color o control individual por foco, necesitas focos inteligentes."
         }
       ]
+    },
+    {
+      "slug": "aqara-motion-p1-vs-sonoff-snzb-03p-sensor-movimiento",
+      "titulo": "Aqara Motion P1 vs Sonoff SNZB-03P: ¿qué sensor de movimiento comprar?",
+      "tituloCorto": "Aqara Motion P1 vs Sonoff SNZB-03P",
+      "descripcion": "Comparamos los sensores de movimiento Aqara Motion Sensor P1 y Sonoff SNZB-03P: sensor de luz, alcance, pilas, hubs, Apple Home y Home Assistant.",
+      "actualizado": "2026-10-23",
+      "productos": [
+        "aqara-motion-sensor-p1",
+        "sonoff-snzb-03p"
+      ],
+      "intro": [
+        "Un sensor de movimiento es de las piezas más útiles de una casa inteligente: enciende la luz del pasillo cuando pasas, avisa si hay movimiento en una habitación vacía o activa un ventilador en el baño. Es pequeño, funciona con pilas y no necesitas obras para instalarlo.",
+        "Comparamos dos de los más buscados: el **Aqara Motion Sensor P1** y el **Sonoff SNZB-03P**. Los dos usan Zigbee 3.0 y detección infrarroja pasiva (PIR), pero se diferencian en lo que más importa al decidir: el sensor de luz, el hub que necesitas y el precio. Aquí van las diferencias, con los contras de cada uno."
+      ],
+      "secciones": [
+        {
+          "titulo": "Voltaje y clavija: no importan aquí",
+          "parrafos": [
+            "Los dos sensores van a pilas, así que no dependen del voltaje de tu casa. Funcionan igual en países de 110–127 V (México, Centroamérica, Colombia) que en los de 220 V (Perú, Chile, Argentina), y no hay versiones por país que buscar.",
+            "Lo que sí necesitas es un hub o coordinador Zigbee, porque ninguno se conecta directo al WiFi. Esa decisión pesa más que cualquier otra y la vemos más abajo. Tampoco requieren instalación eléctrica, por lo que no hace falta electricista."
+          ]
+        },
+        {
+          "titulo": "La diferencia clave: el sensor de luz",
+          "parrafos": [
+            "El Aqara P1 trae un **sensor de luz integrado**, con un umbral que se configura en la app (30 lux por defecto según Aqara). Eso permite una regla muy práctica: encender la luz solo si hay movimiento **y** está oscuro. En un pasillo con ventana, evita que se encienda a mediodía.",
+            "En la información del Sonoff SNZB-03P que revisamos no aparece un sensor de luz, así que no lo damos por hecho. Con Home Assistant u otro hub puedes combinarlo con un sensor de luz aparte, pero es un paso más. Si quieres la lógica 'solo de noche' lista de fábrica, el Aqara lleva ventaja."
+          ]
+        },
+        {
+          "titulo": "Alcance y ángulo de detección",
+          "parrafos": [
+            "Según Aqara, el P1 detecta con 170° hasta 2 m, o con 150° hasta 7 m, e incluye una rótula de 360° para orientarlo. También permite elegir entre sensibilidad alta, media y baja, que cambia la distancia a la que se activa.",
+            "El Sonoff SNZB-03P declara 6 m y 110° de ángulo, según las fichas de las tiendas que lo venden. Para una habitación normal alcanza; el Aqara cubre un campo más ancho y ofrece más ajustes. Como en todo sensor PIR, ninguno detecta bien a una persona completamente quieta: si buscas presencia real, mira un sensor de presencia, que es otra tecnología."
+          ]
+        },
+        {
+          "titulo": "Pilas y duración",
+          "parrafos": [
+            "El Aqara P1 usa **dos pilas CR2450**. Aqara indica hasta 5 años, pero solo con el LED apagado y un tiempo de espera de 30 segundos o más; con otros ajustes durará menos. El Sonoff usa una sola **CR2477**, y las tiendas citan unos 3 años (dato del fabricante, no medido por nosotros).",
+            "Ninguna de las dos pilas es tan común como la CR2032. Conviene tener repuesto y comprobar que se consigue en tu ciudad antes de que se agote la primera."
+          ]
+        },
+        {
+          "titulo": "Hubs y apps: lo que más cambia",
+          "parrafos": [
+            "El Aqara P1 necesita un hub Aqara Zigbee 3.0 para configurar el tiempo de espera (de 1 a 200 segundos) y la función de luz. Una vez vinculado, Aqara lo lista como compatible con Apple HomeKit y Alexa. Matter aparece como futuro en su página, así que no lo damos por hecho, y Google Home no figura en su lista.",
+            "El Sonoff SNZB-03P es Zigbee 3.0 estándar y se usa con coordinadores como el ZBDongle-E o con Home Assistant; lo ven como compatible también hubs de Sonoff y Echo con Zigbee según las tiendas. Su contra: no tiene soporte para Apple Home en nuestro catálogo, y funciona con la app eWeLink.",
+            "Con Home Assistant (ZHA o Zigbee2MQTT) los dos funcionan sin nube. Es la ruta más flexible si quieres mezclar marcas."
+          ]
+        },
+        {
+          "titulo": "Tamaño, uso y precio",
+          "parrafos": [
+            "El Sonoff mide 44 × 44 × 65 mm según una tienda y trabaja de -10 a 60 °C; es para interiores. Aqara no publica en su página las dimensiones ni la temperatura de trabajo, así que si el espacio es justo, revisa el empaque.",
+            "En el catálogo, el Sonoff está en el rango más económico (menos de 15 USD) y el Aqara en el medio (15–40 USD), de forma orientativa. Si necesitas cinco o seis sensores, la diferencia se nota; si los necesitas solo en pasillos con luz natural, el sensor de luz del Aqara puede justificarla. Los precios cambian por país, tienda e impuestos de importación."
+          ]
+        }
+      ],
+      "veredicto": [
+        {
+          "perfil": "Quieres luces que se enciendan solo de noche, o usas iPhone y Apple Home",
+          "producto": "aqara-motion-sensor-p1",
+          "motivo": "Trae sensor de luz, sensibilidad ajustable y espera de 1 a 200 s; requiere un hub Aqara."
+        },
+        {
+          "perfil": "Quieres el sensor más barato para varios cuartos",
+          "producto": "sonoff-snzb-03p",
+          "motivo": "Cuesta menos, usa una sola pila y funciona con varios coordinadores Zigbee 3.0."
+        },
+        {
+          "perfil": "Usas Home Assistant con un coordinador Zigbee USB",
+          "producto": "sonoff-snzb-03p",
+          "motivo": "Los dos sirven sin nube, pero el Sonoff sale más barato y no necesitas un hub de marca."
+        }
+      ],
+      "faq": [
+        {
+          "p": "¿Necesito un hub para estos sensores?",
+          "r": "Sí. Los dos son Zigbee y necesitan un hub o coordinador. El Aqara P1 requiere un hub Aqara para el tiempo de espera y el sensor de luz; el Sonoff funciona con varios coordinadores Zigbee 3.0."
+        },
+        {
+          "p": "¿Sirven en 110 V y en 220 V?",
+          "r": "Sí, van a pilas y no dependen del voltaje de tu país."
+        },
+        {
+          "p": "¿Detectan a una persona sentada y quieta?",
+          "r": "No de forma fiable: los sensores PIR detectan cambios de calor en movimiento. Para presencia continua busca un sensor de presencia."
+        },
+        {
+          "p": "¿Puedo mezclar marcas en la misma casa?",
+          "r": "Sí con un coordinador abierto como Home Assistant (ZHA o Zigbee2MQTT). Con un hub de marca, lo más seguro es quedarte en esa marca."
+        }
+      ]
     }
   ]
 }
