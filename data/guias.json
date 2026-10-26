@@ -2185,6 +2185,235 @@
           "url": "https://us.shelly.com/products/shelly-1-gen4"
         }
       ]
+    },
+    {
+      "slug": "comprar-domotica-amazon-aliexpress-latinoamerica",
+      "etiqueta": "🛒 Guía de compra",
+      "titulo": "Comprar domótica en Amazon o AliExpress desde Latinoamérica: versión, envío, aduana y garantía (2026)",
+      "tituloCorto": "Comprar domótica en Amazon o AliExpress desde Latam",
+      "descripcion": "Cómo comprar enchufes y focos inteligentes en Amazon o AliExpress desde Latinoamérica: versión correcta, impuestos de importación, devoluciones y garantía.",
+      "publicado": "2026-10-26",
+      "actualizado": "2026-10-26",
+      "intro": [
+        "Ves un enchufe inteligente a buen precio en Amazon o AliExpress y te surge la duda de siempre: ¿llega a mi país?, ¿llega con la **clavija y el voltaje correctos**?, ¿pago impuestos al recibirlo?, ¿quién responde si falla? Con la domótica, el ahorro de la tienda extranjera desaparece rápido si compras la versión equivocada.",
+        "En esta guía revisamos las páginas oficiales de Amazon, AliExpress, TP-Link y Sonoff y las convertimos en una lista práctica: qué comprobar en el anuncio, cómo funcionan las tasas de importación, qué te protege si algo sale mal y cuándo conviene mejor una tienda local. No damos cifras de impuestos por país porque cambian y dependen de cada aduana."
+      ],
+      "secciones": [
+        {
+          "titulo": "Antes de pagar: la versión correcta del producto",
+          "bloques": [
+            {
+              "p": "El error más caro no es el envío, es recibir un aparato que no sirve en tu casa. TP-Link lo avisa en sus páginas de soporte: la disponibilidad de modelos y versiones de hardware **varía según la región**. El mismo nombre comercial puede esconder versiones distintas para Estados Unidos, Europa o Reino Unido."
+            },
+            {
+              "h3": "Lista de revisión en el anuncio"
+            },
+            {
+              "lista": [
+                "**Voltaje de la red:** 110–127 V (México, Centroamérica, Colombia, Ecuador, Venezuela) o 220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay); Brasil usa 127 V o 220 V según la zona.",
+                "**Clavija:** busca la letra o el código de la versión (por ejemplo, en el Sonoff S26R2: TPB, TPN, TPI, TPL o TPF).",
+                "**Rosca del foco:** E26 o E27, y el voltaje que soporta el foco.",
+                "**Corriente máxima:** 10 A o 16 A según el modelo; no conectes aparatos que superen ese límite.",
+                "**WiFi de 2,4 GHz:** casi todos los enchufes y focos económicos lo exigen; mira [la guía del problema de conexión](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi) si tu router mezcla bandas."
+              ]
+            },
+            {
+              "nota": "Si dudas, escribe al vendedor y pide el código exacto del modelo y la versión de clavija. Una respuesta vaga es mala señal. Más detalle en nuestra guía sobre [voltaje, clavija y rosca](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica)."
+            },
+            {
+              "oferta": "sonoff-s26r2",
+              "motivo": "Es un buen ejemplo de producto con una versión distinta por país: eliges la clavija de tu país y evitas adaptadores."
+            }
+          ]
+        },
+        {
+          "titulo": "Amazon: envío internacional e impuestos",
+          "bloques": [
+            {
+              "p": "La página de ayuda de Amazon sobre envíos internacionales lista, entre los países de destino de las Américas, a Argentina, Bolivia, Brasil, Chile, Colombia, Costa Rica, República Dominicana, Ecuador, El Salvador, Guatemala, Honduras, México, Panamá, Paraguay, Perú, Uruguay y Venezuela, entre otros. La misma página advierte tres cosas que conviene leer antes de pagar:"
+            },
+            {
+              "lista": [
+                "Los envíos pueden estar sujetos a **tasas aduaneras e impuestos de importación** del país de destino.",
+                "Las líneas de producto, tarifas y cargos disponibles **pueden variar según la dirección** de entrega.",
+                "Puede haber **límites para los vendedores externos** (Marketplace) que envían al extranjero."
+              ]
+            },
+            {
+              "h3": "Quién paga los impuestos"
+            },
+            {
+              "p": "En su página sobre aduanas, Amazon explica que los impuestos y tasas de importación varían según la normativa del país de destino, que **el destinatario es el importador** y que algunos países no cobran nada por debajo de un valor mínimo. Para saber qué pasa con tu paquete, la propia Amazon remite a la aduana de tu país."
+            },
+            {
+              "aviso": "Cuenta el total, no el precio de la lista: producto + envío + impuestos. Si el aparato es barato, los cargos pueden eliminar el ahorro frente a una tienda local. Revisa siempre el resumen final del pedido antes de confirmar."
+            }
+          ]
+        },
+        {
+          "titulo": "AliExpress: protección y plazos",
+          "bloques": [
+            {
+              "p": "La página oficial de Protección al Comprador de AliExpress indica que puedes pedir reembolso si el artículo no llega, llega dañado o no coincide con la descripción, siempre dentro del periodo de protección. Para artículos distintos, dañados o incompletos, el plazo es de **15 días desde que los recibes**; para pedidos perdidos o retrasados, depende de la fecha de entrega garantizada que aparece en el detalle del pedido. Se solicita desde Mis pedidos, en el detalle del pedido, en Devolución/reembolso."
+            },
+            {
+              "h3": "Cosas que hay que saber"
+            },
+            {
+              "lista": [
+                "Si devuelves por cambio de opinión, el costo del envío de la devolución lo pagas tú.",
+                "Hay artículos excluidos de la política de devoluciones (por ejemplo, ropa interior, alimentos, **baterías** y productos personalizados).",
+                "Antes de comprar, mira las valoraciones con fotos reales y el código exacto de la versión."
+              ]
+            },
+            {
+              "nota": "Los enchufes y focos genéricos que venden decenas de marcas con la misma app (Tuya / Smart Life) son baratos, pero la calidad varía entre vendedores. Comprueba voltaje, clavija y corriente máxima en cada anuncio."
+            },
+            {
+              "oferta": "enchufe-tuya-wifi",
+              "motivo": "Es el tipo de producto que más se encuentra en AliExpress: existe para cualquier clavija, pero exige revisar el anuncio con cuidado."
+            }
+          ]
+        },
+        {
+          "titulo": "Garantía: quién responde si falla",
+          "bloques": [
+            {
+              "p": "La garantía depende de **dónde y a quién compras**. Sonoff, por ejemplo, indica en sus páginas de política para Estados Unidos y Europa una garantía de 2 años contra defectos de fabricación para productos vendidos por Sonoff o revendedores autorizados, y explica que lo comprado en otros canales solo tiene reparación o cambio, sin reembolso. Son páginas por región: no hemos encontrado una política específica para Latinoamérica, así que **confírmala con el vendedor** antes de comprar."
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Canal",
+                  "Ventaja",
+                  "Riesgo"
+                ],
+                "filas": [
+                  [
+                    "Tienda oficial del fabricante o revendedor autorizado",
+                    "Es el canal al que se refiere la política de garantía del fabricante",
+                    "Puede no enviar a tu país"
+                  ],
+                  [
+                    "Amazon (vendido por Amazon)",
+                    "Un solo punto de contacto y seguimiento del paquete",
+                    "Pagas impuestos de importación como destinatario"
+                  ],
+                  [
+                    "Vendedor externo en Amazon o AliExpress",
+                    "Más variedad y precios más bajos",
+                    "Límites de envío y garantía menos clara; usa la protección de la plataforma"
+                  ],
+                  [
+                    "Tienda local de tu país",
+                    "Versión correcta y devolución cercana",
+                    "Suele costar más"
+                  ]
+                ]
+              }
+            },
+            {
+              "p": "Guarda siempre la factura o el comprobante de compra y el código del modelo: sin eso, un reclamo de garantía puede rechazarse."
+            },
+            {
+              "oferta": "tapo-l530e",
+              "motivo": "Es una bombilla pensada para redes de 220–240 V: ejemplo de por qué conviene comprar la versión que corresponde a tu red y no la que aparece primero."
+            }
+          ]
+        },
+        {
+          "titulo": "Seguridad y señales de alerta",
+          "bloques": [
+            {
+              "lista": [
+                "Desconfía de enchufes sin marca que no indican voltaje ni corriente máxima.",
+                "No uses un adaptador de clavija para un aparato de otro voltaje: el adaptador cambia la forma, no el voltaje.",
+                "Los relés e interruptores se instalan en la red eléctrica de la casa: **si no tienes experiencia, contrata a un electricista**."
+              ]
+            },
+            {
+              "aviso": "Un aparato de 110–127 V conectado a una red de 220 V puede dañarse o provocar un incendio. Verifica el rango de voltaje impreso en el producto antes de enchufarlo."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Más variedad:** hay modelos y versiones que no se consiguen en tiendas locales.",
+        "**Precios más bajos:** en productos básicos como enchufes y focos suele haber ahorro, aunque debes sumar envío e impuestos.",
+        "**Protección de la plataforma:** AliExpress y Amazon ofrecen vías de reclamo si el pedido no llega o no coincide con lo anunciado."
+      ],
+      "desventajas": [
+        "**Riesgo de versión equivocada:** un voltaje o una clavija distintos pueden dejar el producto inservible.",
+        "**Costos extra:** los impuestos de importación se suman al total y dependen de tu país.",
+        "**Garantía poco clara:** las políticas del fabricante suelen estar definidas por región.",
+        "**Devoluciones lentas y costosas:** devolver al extranjero rara vez es práctico."
+      ],
+      "faq": [
+        {
+          "p": "¿Amazon envía productos de domótica a mi país?",
+          "r": "Amazon lista numerosos países de las Américas entre los destinos de envío internacional, pero los productos y cargos varían según la dirección. Compruébalo en el carrito con tu dirección."
+        },
+        {
+          "p": "¿Tengo que pagar impuestos al recibir el paquete?",
+          "r": "Puede ser. Amazon indica que el destinatario es el importador y que algunos países no cobran por debajo de un valor mínimo. Consulta la aduana de tu país."
+        },
+        {
+          "p": "¿Cuánto tiempo tengo para reclamar en AliExpress?",
+          "r": "Para artículos dañados, incompletos o distintos a la descripción, 15 días desde que los recibes, según su página de Protección al Comprador. Para pedidos que no llegan, depende de la fecha de entrega garantizada del pedido."
+        },
+        {
+          "p": "¿Puedo usar un adaptador de clavija?",
+          "r": "Solo si el aparato admite el voltaje de tu red. El adaptador cambia la forma de la clavija, no el voltaje."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: dónde comprar según tu perfil",
+        "intro": "Elige según cuánto riesgo y cuánto ahorro buscas:",
+        "perfiles": [
+          {
+            "perfil": "Quiero ahorrar y acepto revisar cada detalle del anuncio",
+            "texto": "Un enchufe genérico de AliExpress, comprobando voltaje, clavija y corriente.",
+            "producto": "enchufe-tuya-wifi"
+          },
+          {
+            "perfil": "Prefiero una marca con versiones por país",
+            "texto": "Un enchufe con código de modelo por clavija.",
+            "producto": "sonoff-s26r2"
+          },
+          {
+            "perfil": "Vivo en un país de 220 V y quiero iluminación inteligente",
+            "texto": "Una bombilla pensada para 220–240 V con rosca E27.",
+            "producto": "tapo-l530e"
+          }
+        ],
+        "alternativa": "si el producto cuesta poco y no quieres lidiar con impuestos, una tienda local suele salir igual o mejor. Empieza con [los primeros 5 dispositivos](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica)."
+      },
+      "fuentes": [
+        {
+          "texto": "Amazon: países de destino de AmazonGlobal / envío internacional",
+          "url": "https://digprjsurvey.amazon.com/csad/help/node/GCBBSZMUXA6U2P8R"
+        },
+        {
+          "texto": "Amazon: aduanas, impuestos y tasas",
+          "url": "https://digprjsurvey.amazon.com/csad/help/node/G26L6NHEDGERVR8W"
+        },
+        {
+          "texto": "AliExpress: Protección al Comprador",
+          "url": "https://www.aliexpress.com/p/buyerprotection/index.html"
+        },
+        {
+          "texto": "TP-Link: versiones de hardware por región (Tapo P100)",
+          "url": "https://www.tp-link.com/ae/support/download/tapo-p100/v1/"
+        },
+        {
+          "texto": "Sonoff: política de devoluciones y garantía (Estados Unidos)",
+          "url": "https://sonoff.tech/en-us/pages/return-refund-us"
+        },
+        {
+          "texto": "Sonoff: política de devoluciones y garantía (Europa)",
+          "url": "https://sonoff.tech/en-us/pages/return-refund-europe"
+        }
+      ]
     }
   ]
 }
