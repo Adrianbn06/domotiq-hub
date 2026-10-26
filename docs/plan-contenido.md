@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T011 Guía: comprar domótica en Amazon o AliExpress desde Latinoamérica — versión correcta, envío, aduana y garantía
 - [ ] T012 Guía: cortes de luz: cómo reaccionan los enchufes, focos y relés inteligentes al volver la energía, y cómo protegerlos (estado tras el corte, UPS)
 - [ ] T013 Reescribir guía antigua: Alexa vs Google Home vs Apple HomeKit, verificando cada dato y la disponibilidad en Latinoamérica (mantener la URL)
 - [ ] T014 Guía: cómo medir el consumo eléctrico de tus electrodomésticos con enchufes inteligentes
@@ -147,6 +146,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-10-26) T011 Guía: comprar domótica en Amazon o AliExpress desde Latinoamérica — versión correcta, envío, aduana y garantía
 - [x] (2026-10-23) T010 Comparativa: sensores de movimiento Aqara Motion P1 vs Sonoff SNZB-03P
 - [x] (2026-10-21) SEO: descripción de la portada dentro de los 155 caracteres (Google la mostraba cortada con "…")
 - [x] (2026-10-19) T008 Productos nuevos: 3 sensores — Aqara Motion Sensor P1, Sonoff SNZB-05P (fuga de agua) y Sonoff SNZB-01P (botón)
