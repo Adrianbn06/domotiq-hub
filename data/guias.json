@@ -2414,6 +2414,222 @@
           "url": "https://sonoff.tech/en-us/pages/return-refund-europe"
         }
       ]
+    },
+    {
+      "slug": "cortes-de-luz-enchufes-focos-reles-inteligentes",
+      "etiqueta": "🧭 Guía práctica",
+      "titulo": "Cortes de luz y casa inteligente: qué hacen tus enchufes, focos y relés al volver la energía (2026)",
+      "tituloCorto": "Cortes de luz: cómo reaccionan enchufes, focos y relés",
+      "descripcion": "Qué pasa con enchufes, focos y relés inteligentes cuando vuelve la luz, cómo elegir si quedan encendidos o apagados y cómo proteger tu casa.",
+      "publicado": "2026-10-28",
+      "actualizado": "2026-10-28",
+      "intro": [
+        "Se va la luz, vuelve a los diez minutos y, de pronto, la lámpara de la sala está encendida a máxima potencia o el enchufe de la estufa quedó prendido sin que nadie lo ordenara. En Latinoamérica los cortes y los picos de tensión son frecuentes, así que conviene saber **qué hace cada dispositivo cuando regresa la energía**.",
+        "En esta guía revisamos la documentación de Shelly, TP-Link Tapo, Philips Hue y eWeLink (Sonoff) para explicar el comportamiento «al volver la energía», qué ajuste buscar en cada app y qué hábitos protegen tu instalación."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué ocurre cuando se va y vuelve la luz",
+          "bloques": [
+            {
+              "p": "Un dispositivo inteligente no tiene botón de «recordar cómo estaba» por magia: cuando se corta la corriente se apaga del todo, y al volver arranca de nuevo. Lo que hace en ese arranque lo decide un ajuste de **estado al encender** (en inglés, *power-on state* o *power-on behavior*) que el fabricante puede ofrecer o no."
+            },
+            {
+              "h3": "Las tres respuestas posibles"
+            },
+            {
+              "lista": [
+                "**Encendido:** el dispositivo se activa solo al volver la energía.",
+                "**Apagado:** se queda apagado hasta que le des la orden.",
+                "**Último estado:** vuelve a como estaba antes del corte."
+              ]
+            },
+            {
+              "p": "Que existan esas tres opciones depende de la marca y del modelo. Por eso la mejor práctica es **revisar el ajuste en la app apenas instalas el dispositivo**, y no descubrirlo en el primer apagón."
+            },
+            {
+              "aviso": "Si conectas a un enchufe inteligente una estufa, plancha o cualquier aparato que genere calor, configura el estado al encender en **apagado**. Un aparato que se prende solo al volver la luz puede ser un riesgo, sobre todo si no hay nadie en casa."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo se comporta cada tipo de dispositivo",
+          "bloques": [
+            {
+              "p": "Resumimos lo que dicen las fuentes del fabricante y marcamos lo que no pudimos confirmar. Confirma siempre tu modelo exacto: la oferta de ajustes cambia con la versión del firmware."
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Dispositivo",
+                  "Ajuste al volver la energía",
+                  "Lo que hay que saber"
+                ],
+                "filas": [
+                  [
+                    "Relé Shelly 1 Gen4",
+                    "Encender, apagar o restaurar el último estado (acción al encender)",
+                    "Según la guía oficial, «restaurar» deja la salida como estaba antes del corte"
+                  ],
+                  [
+                    "Enchufe TP-Link Tapo P115",
+                    "Estado anterior (predeterminado), apagado o encendido",
+                    "Lo indica la página oficial de Tapo; se elige en la app"
+                  ],
+                  [
+                    "Foco Philips Hue",
+                    "Comportamiento al encender configurable en la app de Hue",
+                    "Existe desde finales de 2018; sin ajuste, el foco enciende a plena luz"
+                  ],
+                  [
+                    "Dispositivos Sonoff con eWeLink",
+                    "Encendido, apagado o mantener (STAY), en algunos modelos",
+                    "eWeLink avisa que la función no está disponible en todos los modelos"
+                  ]
+                ]
+              }
+            },
+            {
+              "h3": "Relés e interruptores (Shelly y Sonoff)"
+            },
+            {
+              "p": "En el Shelly 1 Gen4, la guía oficial de su interfaz web describe la opción «Acción al encender» con tres valores: encender, apagar o **restaurar el último estado conocido** de la salida antes del corte. Para una luz de pasillo que quieres que sea predecible, «restaurar» o «apagar» suelen ser razonables; para una bomba o un portón, **apagado** es lo más prudente."
+            },
+            {
+              "p": "En la comunidad de eWeLink se explica que la aplicación permite fijar el estado al encender en ON, OFF o STAY (igual que antes del corte), pero **no todos los modelos lo soportan**. En ese mismo foro hay reportes de usuarios con enchufes que, a pesar de la configuración, siempre regresan apagados; son opiniones de usuarios, no una especificación del fabricante."
+            },
+            {
+              "h3": "Enchufes (Tapo)"
+            },
+            {
+              "p": "La página oficial del Tapo P115 dice que, al volver la energía o la conexión, el enchufe puede quedar en el estado anterior (el valor predeterminado), apagado o encendido, y sugiere «apagado» para una estufa. En foros de TP-Link hay mensajes antiguos de usuarios sobre otros enchufes Tapo (como el P100) que quedaban apagados tras un corte; no son una especificación oficial. Si tienes un modelo distinto, busca el ajuste en la app y actualiza el firmware."
+            },
+            {
+              "h3": "Focos inteligentes (Philips Hue)"
+            },
+            {
+              "p": "Philips Hue añadió en diciembre de 2018 un ajuste de comportamiento al encender: los focos pueden volver con su estado anterior en lugar de encender con la luz predeterminada. Los artículos de prensa que lo cubrieron lo describen en la app de Hue; no confirmamos en la ficha oficial si hace falta el Hue Bridge ni qué ocurre tras cortes muy largos, así que pruébalo con tu equipo."
+            },
+            {
+              "nota": "Muchos focos baratos de otras marcas no ofrecen este ajuste o solo permiten «encender». Si tu lámpara de la habitación se prende de madrugada tras un corte, la causa casi siempre es el foco, no la lámpara."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo proteger tu instalación en Latinoamérica",
+          "bloques": [
+            {
+              "lista": [
+                "**Revisa el ajuste en cada dispositivo nuevo:** elige apagado para calefactores, planchas, bombas y portones; elige último estado para luces y cargadores de uso cotidiano.",
+                "**Usa un regulador o protector de tensión:** los regresos de energía con picos dañan los fuentes de poder. Compra uno con la clavija y el voltaje de tu país (110–127 V o 220 V).",
+                "**Un UPS (respaldo con batería) para el router y el hub:** mantiene la red mientras dura la falla, así las automatizaciones locales no se detienen. Dimensiona la capacidad según el consumo de lo que conectes.",
+                "**Mantén el interruptor de pared como plan B:** un relé instalado detrás del interruptor deja que la luz se encienda a mano aunque falle todo.",
+                "**Evita automatizaciones críticas que dependan de una orden en la nube** durante un apagado: sin energía, no hay red."
+              ]
+            },
+            {
+              "aviso": "Los relés e interruptores se instalan en la red eléctrica de la casa. Si no tienes experiencia, **contrata a un electricista**: un error puede causar descargas o incendios."
+            },
+            {
+              "p": "Si quieres saber qué sigue funcionando cuando solo falla el internet (no la luz), lee [qué pasa con tu casa inteligente sin internet](/articulos-editoriales/casa-inteligente-sin-internet-que-funciona-en-local). Y antes de comprar, confirma la tensión con la guía de [voltaje, clavija y rosca](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica)."
+            }
+          ]
+        },
+        {
+          "titulo": "Tres productos del catálogo con ajuste al volver la energía",
+          "bloques": [
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Enchufe con medición de consumo; según Tapo, puedes elegir estado anterior, apagado o encendido al volver la energía. Es para redes de 110–120 V (100–125 V según la ficha)."
+            },
+            {
+              "oferta": "shelly-1-gen4",
+              "motivo": "Relé con la opción «acción al encender» (encender, apagar o restaurar). Acepta 110–240 V, pero necesita neutro y una instalación hecha por un electricista si no tienes experiencia."
+            },
+            {
+              "oferta": "philips-hue-white-color-a19",
+              "motivo": "Foco con ajuste de comportamiento al encender dentro de la app de Hue. La versión A19 E26 es de 120 V; en países de 220 V busca la versión E27 europea."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Menos sorpresas tras un apagón:** eliges si cada dispositivo vuelve encendido, apagado o como estaba.",
+        "**Más seguridad con aparatos que dan calor:** el estado «apagado» evita que se prendan solos.",
+        "**Luces predecibles:** «último estado» evita que todo encienda a plena luz de madrugada."
+      ],
+      "desventajas": [
+        "**No todos los modelos ofrecen el ajuste:** en eWeLink, por ejemplo, la propia comunidad dice que no está en todos los modelos.",
+        "**Hay reportes de que el ajuste no siempre se respeta:** conviene probarlo desconectando el dispositivo.",
+        "**El ajuste no protege contra picos de tensión:** para eso hace falta un regulador o protector.",
+        "**Sin energía no hay red:** si el router se apaga, los dispositivos de nube no responden hasta que vuelva."
+      ],
+      "faq": [
+        {
+          "p": "¿Qué hace un enchufe inteligente cuando vuelve la luz?",
+          "r": "Depende del modelo y del ajuste. Algunos, como el Tapo P115, permiten elegir estado anterior, apagado o encendido; otros siempre quedan apagados o siempre encendidos."
+        },
+        {
+          "p": "¿Cómo evito que mi estufa se prenda sola tras un corte?",
+          "r": "Configura el estado al encender del enchufe en apagado y, mejor aún, no uses estufas con enchufes inteligentes que no estén pensados para esa carga."
+        },
+        {
+          "p": "¿Un UPS sirve para los dispositivos inteligentes?",
+          "r": "Sirve para mantener el router y el hub encendidos durante el corte; en la mayoría de los casos no hace falta conectar focos o enchufes."
+        },
+        {
+          "p": "¿Los focos inteligentes se encienden solos tras un apagón?",
+          "r": "Algunos sí: sin un ajuste de comportamiento al encender, muchos focos vuelven encendidos con la luz predeterminada. Philips Hue permite elegir el comportamiento desde su app."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué elegir según tu perfil",
+        "intro": "Elige según lo que quieras controlar al volver la energía:",
+        "perfiles": [
+          {
+            "perfil": "Quiero un enchufe para un electrodoméstico y decidir si queda apagado tras un corte",
+            "texto": "Un enchufe con estado al encender configurable.",
+            "producto": "tapo-p115"
+          },
+          {
+            "perfil": "Quiero controlar la luz o un portón y que, tras el corte, vuelva como yo decida",
+            "texto": "Un relé con acción al encender, instalado por un electricista.",
+            "producto": "shelly-1-gen4"
+          },
+          {
+            "perfil": "Quiero un foco con color y que no encienda a plena luz de madrugada",
+            "texto": "Un foco con comportamiento al encender configurable.",
+            "producto": "philips-hue-white-color-a19"
+          }
+        ],
+        "alternativa": "si tus dispositivos no permiten elegir, un interruptor de pared normal y un protector de tensión siguen siendo una buena base; revisa los [primeros 5 dispositivos](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica)."
+      },
+      "fuentes": [
+        {
+          "texto": "Shelly: guía de la interfaz web del Shelly 1 Gen4 (acción al encender)",
+          "url": "https://www.shelly.com/blogs/documentation/shelly-1-gen4-web-interface-guide"
+        },
+        {
+          "texto": "TP-Link Tapo: página del Tapo P115 (estado predeterminado al volver la energía)",
+          "url": "https://www.tapo.com/it/product/smart-plug/tapo-p115/"
+        },
+        {
+          "texto": "eWeLink: foro, qué es el estado al encender (no disponible en todos los modelos)",
+          "url": "https://forum.ewelink.cc/t/preset-the-device-status-when-the-power-is-on/128"
+        },
+        {
+          "texto": "Foro de eWeLink: reporte de un enchufe que ignora el ajuste (opinión de usuario)",
+          "url": "https://forum.ewelink.cc/t/sonoff-iplug-s40tpb-power-on-state-ignored-always-stays-off/1012"
+        },
+        {
+          "texto": "T3: Philips Hue añade el comportamiento al encender (2018)",
+          "url": "https://www.t3.com/us/news/philips-hue-update-fixes-one-of-the-biggest-bugbears-with-the-smart-bulbs"
+        },
+        {
+          "texto": "Thurrott: Philips Hue permite controlar el comportamiento al encender (2018)",
+          "url": "https://www.thurrott.com/?p=195170"
+        }
+      ]
     }
   ]
 }
