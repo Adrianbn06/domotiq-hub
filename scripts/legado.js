@@ -15,7 +15,6 @@ import { cabecera, pie, SPRITE, DATOS_PAISES } from './catalogo.js';
 // [archivo, sección activa en el menú]
 const PAGINAS = [
   ['public/glosario.html', '/glosario'],
-  ['public/alexa-vs-google-home-vs-homekit.html', '/articulos-editoriales/'],
 ];
 
 const INICIO = '<!-- plantilla: inicio -->';

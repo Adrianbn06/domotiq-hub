@@ -2630,6 +2630,229 @@
           "url": "https://www.thurrott.com/?p=195170"
         }
       ]
+    },
+    {
+      "slug": "alexa-vs-google-home-vs-homekit",
+      "etiqueta": "🎙️ Comparativa de ecosistemas",
+      "titulo": "Alexa vs Google Home vs Apple Home: cuál elegir para tu casa inteligente en Latinoamérica",
+      "tituloCorto": "Alexa vs Google Home vs Apple Home: cuál elegir",
+      "descripcion": "Cómo funcionan Alexa, Google Home y Apple Home por dentro, qué necesita cada uno (hub, Thread, Matter) y cuál conviene según tu país y tu celular.",
+      "publicado": "2026-03-15",
+      "actualizado": "2026-10-30",
+      "intro": [
+        "Quieres controlar focos y enchufes con la voz o desde el celular, pero te topas con tres nombres: **Alexa**, **Google Home** y **Apple Home** (antes conocido como HomeKit). Cada uno funciona distinto y no todos llegan igual a cada país de Latinoamérica.",
+        "En esta guía analizamos cómo trabaja cada ecosistema por debajo (nube, equipo central, Matter y Thread), qué piden para funcionar fuera de casa y qué cambia según tu país. Revisamos cada dato en las páginas de Apple, Amazon y Google, y lo que no pudimos confirmar lo marcamos como tal."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué hace cada ecosistema por debajo",
+          "bloques": [
+            {
+              "p": "Los tres cumplen el mismo trabajo: recibir tu orden (voz o app), decidir qué aparato la ejecuta y enviarla. La diferencia está en **dónde** pasa eso y **qué equipo** tiene que estar encendido en casa."
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Ecosistema",
+                  "Qué lo mueve",
+                  "Equipo central en casa"
+                ],
+                "filas": [
+                  [
+                    "Alexa",
+                    "Parlantes y pantallas Echo",
+                    "El Echo es el administrador Matter, según la documentación de Amazon para desarrolladores"
+                  ],
+                  [
+                    "Google Home",
+                    "Parlantes y pantallas Nest y la app Google Home",
+                    "Nest Mini, Nest Audio o Nest Hub sirven de centro Matter; con Thread, solo algunos (ver abajo)"
+                  ],
+                  [
+                    "Apple Home",
+                    "iPhone, iPad y la app Casa",
+                    "HomePod, HomePod mini o Apple TV hacen de central de la casa"
+                  ]
+                ]
+              }
+            },
+            {
+              "p": "Sobre el papel, los tres son compatibles con **Matter**, el estándar que permite que un aparato certificado funcione con varias plataformas (lo explicamos en la [guía de Matter](/articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026))."
+            },
+            {
+              "h3": "Apple Home: pide una central para casi todo"
+            },
+            {
+              "p": "Según Apple, el HomePod mini y el HomePod se convierten automáticamente en centrales de la casa al configurarlos, y el Apple TV lo hace al agregarlo a una habitación en la app Casa. La central permite el **control remoto**, compartir el control y las **automatizaciones**. Además, Apple indica que debes configurar una central para agregar accesorios Matter, y que los de Thread necesitan una central con Thread, como el HomePod mini o un Apple TV 4K compatible."
+            },
+            {
+              "aviso": "Si usas iPhone y quieres automatizaciones o control fuera de casa, cuenta con comprar una central (HomePod mini o Apple TV). Sin ella, Apple Home queda muy limitado."
+            },
+            {
+              "h3": "Alexa: el Echo como administrador Matter"
+            },
+            {
+              "p": "Amazon explica que el Echo es el administrador Matter que descubre y conecta los aparatos. Su lista de equipos Matter incluye desde el Echo y Echo Dot de 2.ª generación en adelante hasta pantallas Echo Show. Lo que **no** pudimos confirmar en su página es cuáles de ellos hacen de hub Zigbee o de Thread Border Router, así que revisa la ficha exacta del modelo antes de comprar si ese es tu objetivo."
+            },
+            {
+              "h3": "Google Home: Matter por WiFi o por WiFi y Thread"
+            },
+            {
+              "p": "Google detalla dos grupos. Con Matter solo por WiFi: Google Home Speaker, Nest Audio, Nest Mini, Google Home Mini y Nest Hub (1.ª gen.). Con Matter por WiFi y Thread: Nest Hub (2.ª gen.), Nest Hub Max, Nest Wifi Pro, Google TV Streamer (4K) y el Google Home Speaker (2026). Si quieres sensores Thread, el Nest Mini no te sirve de puente."
+            }
+          ]
+        },
+        {
+          "titulo": "Disponibilidad en Latinoamérica: la parte que más cambia",
+          "bloques": [
+            {
+              "p": "Aquí está la diferencia práctica que casi nadie cuenta. Los asistentes con inteligencia artificial generativa llegan por país y por idioma, y hoy solo pudimos confirmar México:"
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Ecosistema",
+                  "Qué confirmamos para Latinoamérica",
+                  "Qué no pudimos confirmar"
+                ],
+                "filas": [
+                  [
+                    "Alexa",
+                    "Alexa+ llegó a México en acceso anticipado el 22 de enero de 2026, en español mexicano, y viene incluida con Prime, según Xataka México",
+                    "Fechas para el resto de países"
+                  ],
+                  [
+                    "Google Home",
+                    "Gemini para Home ya funciona en español y México se sumó a Estados Unidos y Canadá en la lista de países compatibles (Thurrott, 31 de marzo de 2026)",
+                    "Otros países latinoamericanos y qué modelos Nest exactos lo reciben"
+                  ],
+                  [
+                    "Apple Home",
+                    "La página de Apple México describe accesorios compatibles con HomeKit, Matter o la app Casa",
+                    "Idiomas de Siri por país"
+                  ]
+                ]
+              }
+            },
+            {
+              "nota": "El asistente no cambia la electricidad de tu casa. Aunque elijas Alexa, Google o Apple, el foco o enchufe sigue necesitando la versión de **110–127 V** o de **220 V** de tu país. Revisa la [guía de voltaje y clavija](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica) antes de comprar."
+            },
+            {
+              "p": "Hay otro tema: la privacidad. Amazon eliminó el **28 de marzo de 2025** la opción de no enviar grabaciones de voz a la nube, que solo existía en el Echo Dot de 4.ª generación, el Echo Show 10 y el Echo Show 15; los demás Echo ya enviaban sus órdenes a la nube. Si te importa que tus órdenes se queden en casa, revisa la [guía de casa inteligente sin internet](/articulos-editoriales/casa-inteligente-sin-internet-que-funciona-en-local)."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo elegir según tu celular y tus aparatos",
+          "bloques": [
+            {
+              "lista": [
+                "**Tienes iPhone:** Apple Home es la opción natural, pero suma el costo de una central (HomePod mini o Apple TV).",
+                "**Tienes Android:** Google Home y Alexa son los más naturales; ambos tienen asistente en español en México (ver tabla anterior).",
+                "**Quieres no depender de una sola marca:** compra aparatos con **Matter**; podrás cambiar de plataforma sin tirarlos.",
+                "**Ya tienes aparatos Tuya o Smart Life:** en el catálogo figuran compatibles con Alexa y Google; para Apple Home revisa en cada ficha si tienen Matter."
+              ]
+            },
+            {
+              "p": "En nuestro catálogo, los aparatos con compatibilidad confirmada por los tres ecosistemas son pocos; por eso conviene fijarse en la ficha antes de comprar."
+            },
+            {
+              "oferta": "tapo-l535e",
+              "motivo": "Foco de 120 V con Alexa y Google, y con Apple Home a través de Matter, según la ficha del catálogo. No sirve para redes de 220 V."
+            },
+            {
+              "oferta": "aqara-hub-m3",
+              "motivo": "Hub con compatibilidad confirmada para Alexa, Google Home, Apple Home y Matter, para quien quiere usar sensores Zigbee con cualquiera de los tres."
+            },
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Enchufe económico para quien usa Alexa o Google; el catálogo no confirma compatibilidad con Apple Home. Es para redes de 110–125 V."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Alexa:** el Echo actúa como administrador Matter y la lista de Echo compatibles es amplia, según Amazon.",
+        "**Google Home:** Matter ya integrado en sus parlantes y pantallas Nest, y asistente con Gemini disponible en español.",
+        "**Apple Home:** integración directa con el iPhone y la app Casa.",
+        "**Matter:** reduce el riesgo de quedar atado a una sola marca."
+      ],
+      "desventajas": [
+        "**Alexa:** Amazon retiró la opción de no enviar grabaciones a la nube, y Alexa+ solo está confirmada en México.",
+        "**Google Home:** no confirmamos la llegada de Gemini para Home fuera de México en Latinoamérica.",
+        "**Apple Home:** exige una central (HomePod o Apple TV) para automatizaciones, control remoto y Matter.",
+        "**Los tres:** el asistente no resuelve el voltaje ni la clavija de tu país."
+      ],
+      "faq": [
+        {
+          "p": "¿Puedo usar Alexa y Google Home a la vez?",
+          "r": "Sí, la mayoría de focos y enchufes WiFi funcionan con ambos, y con Matter un mismo aparato puede estar en varios ecosistemas a la vez."
+        },
+        {
+          "p": "¿Necesito un HomePod para usar Apple Home?",
+          "r": "Para controlar fuera de casa, usar automatizaciones y agregar accesorios Matter necesitas una central: HomePod, HomePod mini o Apple TV, según Apple."
+        },
+        {
+          "p": "¿El Nest Mini sirve como puente para sensores Thread?",
+          "r": "No. Google lo lista entre los equipos con Matter solo por WiFi; para Thread necesitas, por ejemplo, un Nest Hub de 2.ª generación."
+        },
+        {
+          "p": "¿Alexa+ está disponible en toda Latinoamérica?",
+          "r": "Solo confirmamos México, donde llegó en acceso anticipado el 22 de enero de 2026. Para otros países no encontramos fechas oficiales."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué ecosistema elegir según tu perfil",
+        "intro": "No hay un ganador absoluto; depende de tu celular y de tu país:",
+        "perfiles": [
+          {
+            "perfil": "Tengo iPhone y quiero un sistema ordenado, sin importar gastar en una central",
+            "texto": "Apple Home, con un hub que Apple Home reconozca (el Aqara M3 figura como compatible en el catálogo) si usas sensores Aqara.",
+            "producto": "aqara-hub-m3"
+          },
+          {
+            "perfil": "Tengo Android y quiero empezar barato con luces",
+            "texto": "Google Home o Alexa con un foco WiFi de 120 V; con Matter, el foco queda listo para cambiar de plataforma.",
+            "producto": "tapo-l535e"
+          },
+          {
+            "perfil": "Quiero medir y apagar un electrodoméstico con la voz",
+            "texto": "Alexa o Google Home con un enchufe de medición de consumo.",
+            "producto": "tapo-p115"
+          }
+        ],
+        "alternativa": "si no quieres depender de ningún asistente, revisa la [guía de hubs domóticos](/articulos-editoriales/que-es-un-hub-domotico-cuando-lo-necesitas) y la opción de control local."
+      },
+      "fuentes": [
+        {
+          "texto": "Apple Soporte: configurar una central de la casa (HomePod, Apple TV, Matter y Thread)",
+          "url": "https://support.apple.com/es-lamr/102557"
+        },
+        {
+          "texto": "Apple México: accesorios compatibles con la app Casa",
+          "url": "https://www.apple.com/mx/home-app/accessories/"
+        },
+        {
+          "texto": "Amazon Developer: soporte de Matter en dispositivos Echo",
+          "url": "https://developer.amazon.com/en-US/docs/alexa/smarthome/matter-support.html"
+        },
+        {
+          "texto": "Google Home: prepara tu casa para Matter (equipos con Matter por WiFi y Thread)",
+          "url": "https://support.google.com/googlehome/answer/12391458"
+        },
+        {
+          "texto": "Xataka México: Alexa+ llega a México (22 de enero de 2026)",
+          "url": "https://www.xataka.com.mx/home/alexa-plus-llega-a-mexico-su-mejor-caracteristica-que-habla-mexicano-precios-planes/amp"
+        },
+        {
+          "texto": "Thurrott: Gemini for Home añade español y llega a México (31 de marzo de 2026)",
+          "url": "https://www.thurrott.com/a-i/334400/google-gemini-for-home-adds-spanish-support-and-launches-in-mexico"
+        },
+        {
+          "texto": "The Register: Amazon elimina el procesamiento local de Alexa (28 de marzo de 2025)",
+          "url": "https://www.theregister.com/2025/03/17/amazon_kills_on_device_alexa/"
+        }
+      ]
     }
   ]
 }

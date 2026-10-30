@@ -41,7 +41,7 @@ const FOCOS = { 110: 'tapo-l535e', 220: 'tapo-l530e' };
 const GUIAS = [
   'articulos-editoriales/que-es-la-domotica-como-empezar-menos-50.html',
   'articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026.html',
-  'alexa-vs-google-home-vs-homekit.html',
+  'articulos-editoriales/alexa-vs-google-home-vs-homekit.html',
   'articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026.html',
 ];
 
