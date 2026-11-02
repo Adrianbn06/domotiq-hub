@@ -2853,6 +2853,219 @@
           "url": "https://www.theregister.com/2025/03/17/amazon_kills_on_device_alexa/"
         }
       ]
+    },
+    {
+      "slug": "medir-consumo-electrodomesticos-enchufe-inteligente",
+      "etiqueta": "🧭 Guía práctica",
+      "titulo": "Cómo medir el consumo eléctrico de tus electrodomésticos con un enchufe inteligente (2026)",
+      "tituloCorto": "Medir el consumo de tus aparatos con un enchufe inteligente",
+      "descripcion": "Aprende a medir cuántos vatios y kWh gasta cada aparato con un enchufe inteligente, qué modelo elegir según tu voltaje y qué límites tiene.",
+      "publicado": "2026-11-02",
+      "actualizado": "2026-11-02",
+      "intro": [
+        "Llega el recibo de la luz y no sabes qué lo subió: ¿la nevera, el televisor que queda en espera, el calefactor del cuarto? Un **enchufe inteligente con medición de consumo** se conecta entre el tomacorriente y el aparato y te muestra, desde el celular, cuántos vatios usa en cada momento y cuántos kWh acumula.",
+        "En esta guía revisamos las páginas oficiales de Sonoff, TP-Link Tapo y Kasa para explicar qué miden estos enchufes, cómo convertir los números en dinero, qué modelo sirve según el voltaje de tu país y qué límites debes respetar."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué mide realmente un enchufe con medición de consumo",
+          "bloques": [
+            {
+              "p": "El enchufe trabaja como intermediario: la corriente pasa por él antes de llegar al aparato, y un circuito interno mide lo que circula. Lo que verás en la app depende del modelo, pero lo habitual es esto:"
+            },
+            {
+              "lista": [
+                "**Potencia en tiempo real (vatios, W):** cuánto está gastando el aparato en este momento. Según Tapo, la app refresca el valor cada 5 segundos.",
+                "**Energía acumulada (kWh):** la cantidad que cobra la compañía eléctrica. Tapo indica una resolución de 0,001 kWh y muestra el consumo de hoy y de los últimos 30 días.",
+                "**Voltaje y corriente:** el Sonoff S31 los muestra; en Tapo, la propia página dice que solo algunos modelos los muestran.",
+                "**Historial:** el Sonoff S31 guarda hasta 100 días de consumo en su app eWeLink; Tapo ofrece gráficas de 7 días, 3 meses y 12 meses."
+              ]
+            },
+            {
+              "h3": "Cómo se conecta por debajo"
+            },
+            {
+              "p": "Los tres enchufes que citamos (Sonoff S31, Tapo P115 y Kasa EP25) usan **WiFi de 2,4 GHz** y no necesitan hub. Eso significa que el enchufe habla con tu router y la app consulta los datos a través de internet o, según el modelo y la integración, por la red local. Por eso, si el WiFi de tu casa es inestable, las lecturas pueden tardar en aparecer. Si tu red te da problemas, revisa antes [qué hacer cuando un enchufe no se conecta al WiFi](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi)."
+            },
+            {
+              "nota": "Ninguna de las páginas oficiales que revisamos publica la precisión de la medición. Úsalo para comparar aparatos entre sí y detectar los que más gastan, no como un instrumento de laboratorio."
+            }
+          ]
+        },
+        {
+          "titulo": "De vatios a dinero: cómo leer los números",
+          "bloques": [
+            {
+              "p": "Tu recibo se mide en **kilovatios-hora (kWh)**. La conversión es aritmética sencilla: **vatios × horas de uso ÷ 1000 = kWh**. Un aparato que gasta 100 W y está encendido 10 horas consume 1 kWh. Multiplica por el precio del kWh de tu recibo y tendrás el costo."
+            },
+            {
+              "p": "Muchas apps hacen ese cálculo por ti: la de Tapo permite escribir la tarifa de tu electricidad y estima el costo de cada dispositivo, y el Sonoff S31 ofrece una previsión del recibo mensual. En ambos casos son estimaciones; tu recibo real puede incluir tramos, subsidios o cargos fijos que la app no conoce."
+            },
+            {
+              "h3": "Un método práctico en 4 pasos"
+            },
+            {
+              "lista": [
+                "**Conecta** el enchufe al tomacorriente y el aparato al enchufe, y vincúlalo en la app.",
+                "**Mide el aparato en uso normal** durante varios días, no solo unos minutos: la nevera, por ejemplo, arranca y se detiene en ciclos.",
+                "**Mira también la potencia en reposo:** apaga el aparato con su control remoto y observa si el enchufe sigue marcando vatios.",
+                "**Escribe la tarifa** de tu recibo en la app (si la tiene) o multiplica tú los kWh del mes."
+              ]
+            },
+            {
+              "nota": "Lo que más suele sorprender es la suma de muchos aparatos pequeños encendidos todo el día. Medir uno por uno te dice dónde conviene actuar primero."
+            }
+          ]
+        },
+        {
+          "titulo": "Qué modelo elegir según el voltaje de tu país",
+          "bloques": [
+            {
+              "p": "Aquí es donde más se equivocan los compradores en Latinoamérica: los tres enchufes más conocidos con medición que tenemos en el catálogo son **versiones para 100–125 V con clavija estilo EE.UU.** Úsalos en México, Centroamérica, Colombia, Ecuador o Venezuela. En países de 220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay) **no los conectes**; busca una versión con el voltaje y la clavija de tu país. Más detalle en la guía de [voltaje, clavija y rosca](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica). Brasil usa 127/220 V según la región, así que confirma el tuyo."
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Enchufe",
+                  "Voltaje según el fabricante",
+                  "Carga máxima",
+                  "Qué mide"
+                ],
+                "filas": [
+                  [
+                    "Sonoff S31",
+                    "120 V, 60 Hz",
+                    "15 A",
+                    "Potencia, corriente, voltaje, historial de 100 días y previsión del recibo"
+                  ],
+                  [
+                    "TP-Link Tapo P115",
+                    "100–125 V, 50/60 Hz",
+                    "15 A / 1800 W",
+                    "Potencia en vivo, historial y estimación de costo con tu tarifa"
+                  ],
+                  [
+                    "TP-Link Kasa EP25",
+                    "100–120 V, 50/60 Hz",
+                    "15 A / 1,8 kW a 120 V",
+                    "Consumo en tiempo real e histórico"
+                  ]
+                ]
+              }
+            },
+            {
+              "p": "Para 220 V, la opción más fácil de encontrar son los enchufes genéricos de la app Smart Life / Tuya, que existen para casi todas las clavijas y voltajes y **en muchos modelos** incluyen medición. La calidad varía por vendedor: confirma en el anuncio el voltaje, la clavija, la corriente máxima y que diga expresamente «medición de energía». Antes de comprar, lee [cómo comprar domótica en Amazon o AliExpress](/articulos-editoriales/comprar-domotica-amazon-aliexpress-latinoamerica)."
+            },
+            {
+              "aviso": "Conectar un enchufe de 120 V a una red de 220 V puede dañarlo y provocar un incendio. Comprueba el voltaje del modelo antes de enchufarlo."
+            }
+          ]
+        },
+        {
+          "titulo": "Límites y precauciones",
+          "bloques": [
+            {
+              "lista": [
+                "**Respeta la carga máxima.** Los tres modelos citados admiten 15 A. TP-Link advierte en la página del Kasa EP25 que aparatos con corrientes irregulares pueden dañar el enchufe aunque su potencia esté por debajo del máximo.",
+                "**Aparatos de calor** (plancha, calefactor, secador): usan mucha potencia continua. Si los controlas con un enchufe, configura que queden apagados al volver la luz; lo explicamos en la guía de [cortes de luz](/articulos-editoriales/cortes-de-luz-enchufes-focos-reles-inteligentes).",
+                "**No sirve para medir toda la casa.** Mide un aparato a la vez. Para el tablero general se usa otro tipo de medidor, que se instala en el tablero y requiere un electricista.",
+                "**Privacidad y nube:** las estadísticas de Tapo y Kasa dependen de su aplicación en la nube; si prefieres datos locales, el Sonoff S31 se integra con Home Assistant."
+              ]
+            },
+            {
+              "aviso": "Los enchufes inteligentes no sustituyen a un electricista. Para instalar medidores en el tablero, cambiar tomacorrientes o cargas fijas como aires acondicionados grandes, contrata a un electricista."
+            }
+          ]
+        },
+        {
+          "titulo": "Tres enchufes del catálogo para empezar a medir",
+          "bloques": [
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Mide potencia en vivo e historial, y estima el costo con tu tarifa. Para redes de 100–125 V; muy compacto."
+            },
+            {
+              "oferta": "sonoff-s31",
+              "motivo": "Muestra potencia, corriente y voltaje, y guarda 100 días de historial. Solo 120 V con clavija estilo EE.UU.; se integra con Home Assistant."
+            },
+            {
+              "oferta": "enchufe-tuya-wifi",
+              "motivo": "Para países de 220 V: existen versiones por clavija y, en muchos modelos, con medición. Comprueba cada dato en el anuncio."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Datos reales en lugar de suposiciones:** ves cuánto gasta cada aparato y cuál conviene cambiar o apagar.",
+        "**Sin obras ni hub:** se enchufa y se configura desde el celular.",
+        "**Combinas medición y control:** puedes programar el apagado de un aparato que se queda en espera.",
+        "**Precio de entrada bajo:** los modelos citados están en el rango 1 o 2 del catálogo (menos de 40 USD, orientativo)."
+      ],
+      "desventajas": [
+        "**Mide un solo aparato por enchufe:** para una casa entera necesitas varios enchufes o un medidor de tablero.",
+        "**Precisión no publicada:** los fabricantes que revisamos no dan la tolerancia de la medición.",
+        "**El enchufe también consume algo:** al ser un dispositivo WiFi siempre conectado, añade un pequeño gasto propio; no encontramos la cifra oficial, así que no la damos.",
+        "**Dependencia de WiFi 2,4 GHz y de la nube** en varias apps; sin internet, algunas estadísticas no se actualizan.",
+        "**Las versiones comunes son de 120 V:** en 220 V debes buscar un modelo específico."
+      ],
+      "faq": [
+        {
+          "p": "¿Cuántos kWh gasta un aparato según su potencia?",
+          "r": "Multiplica los vatios por las horas de uso y divide entre 1000. Por ejemplo, 100 W durante 10 horas son 1 kWh."
+        },
+        {
+          "p": "¿Un enchufe inteligente sirve para medir el refrigerador?",
+          "r": "Sí, siempre que el voltaje y la carga del enchufe sean compatibles. Mide varios días porque la nevera trabaja por ciclos."
+        },
+        {
+          "p": "¿Puedo usar un enchufe de 120 V en un país de 220 V?",
+          "r": "No. Debes buscar un modelo hecho para 220 V con la clavija de tu país; de lo contrario puedes dañarlo y crear un riesgo de incendio."
+        },
+        {
+          "p": "¿Las cifras de costo de la app coinciden con mi recibo?",
+          "r": "Son estimaciones. Tapo las llama «solo de referencia», y tu compañía puede cobrar tramos o cargos que la app no incluye."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué enchufe elegir según tu perfil",
+        "intro": "Elige según el voltaje de tu país y cuánto quieres integrar:",
+        "perfiles": [
+          {
+            "perfil": "Vivo en un país de 110–127 V y quiero medir con un presupuesto ajustado",
+            "texto": "Un enchufe compacto con estimación de costo en la app.",
+            "producto": "tapo-p115"
+          },
+          {
+            "perfil": "Uso Home Assistant o quiero ver voltaje, corriente y un historial largo",
+            "texto": "Un enchufe con más datos y flasheable con ESPHome.",
+            "producto": "sonoff-s31"
+          },
+          {
+            "perfil": "Vivo en un país de 220 V",
+            "texto": "Un enchufe genérico de la app Smart Life con la clavija de tu país y medición confirmada en el anuncio.",
+            "producto": "enchufe-tuya-wifi"
+          }
+        ],
+        "alternativa": "si ya tienes un hub Aqara o Zigbee, el [Aqara Smart Plug](/productos/aqara-smart-plug) también mide consumo y repite la señal; además revisa los [primeros 5 dispositivos para tu casa inteligente](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica)."
+      },
+      "fuentes": [
+        {
+          "texto": "TP-Link: funciones de monitoreo de energía en Tapo (potencia, kWh, calculadora de costo)",
+          "url": "https://www.tp-link.com/us/support/faq/3490/"
+        },
+        {
+          "texto": "ITEAD: página oficial del Sonoff S31 (120 V, 15 A, historial de 100 días)",
+          "url": "https://itead.cc/product/sonoff-s31/"
+        },
+        {
+          "texto": "TP-Link: página oficial del Tapo P115 (100–125 V, 15 A / 1800 W)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-plug/tapo-p115/"
+        },
+        {
+          "texto": "TP-Link: página oficial del Kasa EP25 (100–120 V, 1,8 kW, advertencia de cargas irregulares)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-plug/ep25p4/"
+        }
+      ]
     }
   ]
 }
