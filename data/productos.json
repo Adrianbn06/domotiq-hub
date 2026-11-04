@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-10-19",
+  "actualizado": "2026-11-04",
   "categorias": {
     "enchufe": {
       "nombre": "Enchufes inteligentes",
@@ -439,6 +439,135 @@
       "idealPara": "Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay.",
       "notaLatam": "Usa rosca E27 y 220–240 V. No la instales en redes de 110–120 V.",
       "busqueda": "tapo l530e"
+    },
+    {
+      "slug": "wiz-a60-color-e27",
+      "nombre": "WiZ A60 Color (E27, 220–240 V)",
+      "marca": "WiZ (Signify)",
+      "categoria": "bombilla",
+      "protocolos": [
+        "WiFi 2.4 GHz",
+        "Bluetooth"
+      ],
+      "hub": "No necesita",
+      "app": "WiZ",
+      "voltaje": "220–240 V, 50–60 Hz",
+      "voltajes": [
+        "220"
+      ],
+      "rosca": "E27",
+      "lumenes": "806 lm (60 W equivalentes)",
+      "color": "16 millones de colores + blancos regulables 2200–6500 K",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "sin-confirmar",
+        "matter": "sin-confirmar",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración WiZ.",
+      "precio": 1,
+      "resumen": "La versión de 220–240 V con rosca E27 de la bombilla de color de WiZ (Signify). Se conecta directo al WiFi de 2,4 GHz, sin hub, y se maneja con la app WiZ o con la voz.",
+      "pros": [
+        "Pensada para redes de 220–240 V con rosca E27",
+        "No necesita hub ni puente",
+        "Luz de color y blancos de cálido a frío",
+        "Funciona con Alexa y Google Home"
+      ],
+      "contras": [
+        "Depende del WiFi del hogar: muchas bombillas WiFi pueden saturar un router básico",
+        "Su compatibilidad con Matter y Apple Home depende del modelo y no pudimos confirmarla para esta versión",
+        "No sirve en redes de 110–120 V"
+      ],
+      "idealPara": "Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay: iluminación de color sin hub y a buen precio.",
+      "notaLatam": "Es de 220–240 V con rosca E27. En México, Centroamérica, Colombia, Ecuador y Venezuela (110–127 V, rosca E26) usa la versión A19 de la ficha de WiZ A19 Color. En Brasil (127/220 V) confirma que el voltaje del empaque coincida con el de tu red.",
+      "busqueda": "wiz a60 e27 color smart bulb"
+    },
+    {
+      "slug": "philips-hue-white-color-a60-e27",
+      "nombre": "Philips Hue White and Color Ambiance A60 (E27, 220–240 V)",
+      "marca": "Philips Hue",
+      "categoria": "bombilla",
+      "protocolos": [
+        "Zigbee",
+        "Bluetooth"
+      ],
+      "hub": "Opcional (Hue Bridge recomendado)",
+      "app": "Philips Hue",
+      "voltaje": "220–240 V",
+      "voltajes": [
+        "220"
+      ],
+      "rosca": "E27",
+      "lumenes": "Hasta 1100 lm (75 W equivalentes)",
+      "color": "Color + blancos regulables",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Integración Hue (local, con el Bridge) o ZHA/Zigbee2MQTT.",
+      "precio": 3,
+      "resumen": "La versión europea (A60, E27, 220–240 V) de la bombilla de color de Hue. Usa Zigbee y Bluetooth; funciona sin WiFi y, con el Hue Bridge, se integra con Alexa, Google Home, Apple Home y Matter.",
+      "pros": [
+        "Pensada para redes de 220–240 V",
+        "Zigbee: no ocupa WiFi del router",
+        "Hasta 1100 lm, muy luminosa",
+        "Compatible con Alexa, Google, Apple Home y Matter (con Hue Bridge)"
+      ],
+      "contras": [
+        "Es de las opciones más caras",
+        "Para la voz y las automatizaciones necesitas el Hue Bridge",
+        "No sirve en redes de 110–120 V"
+      ],
+      "idealPara": "Quien vive en un país de 220 V y quiere una iluminación fiable y duradera, y no le importa pagar más.",
+      "notaLatam": "Es de 220–240 V con rosca E27. Para países de 110–127 V usa la versión A19 (E26). Los 1100 lm son el máximo (con luz blanca fría); en tonos cálidos y de color emite menos.",
+      "busqueda": "philips hue white and color ambiance a60 e27"
+    },
+    {
+      "slug": "foco-tuya-wifi-220v",
+      "nombre": "Foco WiFi Tuya / Smart Life E27 de 220 V (genérico)",
+      "marca": "Genérico (Tuya)",
+      "categoria": "bombilla",
+      "generico": true,
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "Smart Life / Tuya",
+      "voltaje": "Normalmente 220–240 V (confirma en el anuncio)",
+      "voltajes": [
+        "220"
+      ],
+      "rosca": "E27",
+      "lumenes": "Según modelo (muchos de 9 W anuncian entre 780 y 930 lm)",
+      "color": "Según modelo (RGB + blancos, o solo blancos)",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "no",
+        "matter": "algunos-modelos",
+        "homeAssistant": "parcial"
+      },
+      "notaHA": "Integración Tuya (en la nube); control local requiere integraciones de la comunidad.",
+      "precio": 1,
+      "resumen": "Muchas marcas venden focos E27 de 220–240 V con el mismo sistema Tuya y la misma app Smart Life. Son de los más baratos y, al ser WiFi, no necesitan hub.",
+      "pros": [
+        "Muy económicos",
+        "No necesitan hub",
+        "Se controlan desde Smart Life y funcionan con Alexa y Google"
+      ],
+      "contras": [
+        "La calidad y los datos reales (lúmenes, voltaje, color) varían mucho entre vendedores",
+        "Dependen de la nube de Tuya",
+        "Solo conectan a WiFi de 2,4 GHz",
+        "No sirven si el anuncio es de 110–120 V y tu red es de 220 V, ni al revés"
+      ],
+      "idealPara": "Probar la iluminación inteligente con el mínimo gasto en países de 220 V.",
+      "notaLatam": "Antes de comprar revisa en el anuncio que diga 220–240 V (o un rango amplio que incluya el de tu red) y la rosca E27. Prefiere vendedores con muchas valoraciones y fotos reales.",
+      "busqueda": "foco inteligente wifi tuya smart life e27 220v"
     },
     {
       "slug": "aqara-sensor-puerta-t1",

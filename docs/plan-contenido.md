@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T015 Productos nuevos: 3 focos o bombillas para redes de 220–240 V (versiones E27 de WiZ y Philips Hue, y un foco Tuya / Smart Life de 220 V)
 - [ ] T016 Comparativa: focos WiFi baratos vs focos Zigbee de marca
 - [ ] T017 Guía: cómo instalar un relé o interruptor inteligente con y sin neutro (con aviso de electricista)
 - [ ] T018 Comparativa: relés con neutro — Shelly 1 Gen4 vs Sonoff MINIR4 (productos ya en el catálogo)
@@ -143,6 +142,7 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-11-04) T015 Productos nuevos: 3 focos para redes de 220–240 V (WiZ A60 E27, Philips Hue A60 E27 y foco Tuya / Smart Life genérico)
 - [x] (2026-11-02) T014 Guía: cómo medir el consumo eléctrico de tus electrodomésticos con enchufes inteligentes
 - [x] (2026-10-30) T013 Reescribir guía antigua: Alexa vs Google Home vs Apple HomeKit, verificando cada dato y la disponibilidad en Latinoamérica (mantener la URL)
 - [x] (2026-10-28) T012 Guía: cortes de luz: cómo reaccionan los enchufes, focos y relés inteligentes al volver la energía, y cómo protegerlos (estado tras el corte, UPS)
