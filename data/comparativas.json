@@ -619,6 +619,96 @@
           "r": "Sí con un coordinador abierto como Home Assistant (ZHA o Zigbee2MQTT). Con un hub de marca, lo más seguro es quedarte en esa marca."
         }
       ]
+    },
+    {
+      "slug": "focos-wifi-baratos-vs-zigbee-hue",
+      "titulo": "Focos WiFi baratos vs focos Zigbee de marca: ¿cuál conviene en tu casa?",
+      "tituloCorto": "Focos WiFi baratos vs Zigbee de marca",
+      "descripcion": "Foco WiFi genérico Tuya, Tapo L530E y Philips Hue Zigbee: hub, WiFi, nube, Matter y voltaje de 220 V. Cuándo ahorrar y cuándo pagar más.",
+      "actualizado": "2026-11-06",
+      "productos": [
+        "foco-tuya-wifi-220v",
+        "tapo-l530e",
+        "philips-hue-white-color-a60-e27"
+      ],
+      "intro": [
+        "Comprar un foco inteligente parece sencillo hasta que ves la diferencia de precio: unos cuestan una fracción de otros. La pregunta real no es solo cuánto pagas hoy, sino **qué pasa cuando tienes cinco, diez o quince focos en la casa**.",
+        "Comparamos tres opciones para redes de 220–240 V con rosca E27: un **foco WiFi genérico Tuya / Smart Life**, el **TP-Link Tapo L530E** (WiFi con marca) y el **Philips Hue White and Color Ambiance A60** (Zigbee con marca). Las diferencias están en el tipo de conexión, el hub, la nube y el precio, y también te contamos los contras de cada uno."
+      ],
+      "secciones": [
+        {
+          "titulo": "Voltaje y rosca: lo primero que debes revisar",
+          "parrafos": [
+            "Los tres de esta comparativa son de **220–240 V con rosca E27**, pensados para Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay. En México, Centroamérica, Colombia, Ecuador y Venezuela (110–127 V, rosca E26) necesitas otras versiones, como el [Philips Hue A19](/productos/philips-hue-white-color-a19) o el [Tapo L535E](/productos/tapo-l535e). En Brasil (127/220 V) confirma que el voltaje del empaque coincida con el de tu red.",
+            "En el foco genérico es donde más debes fijarte: la calidad de los datos del anuncio varía entre vendedores, así que verifica que diga 220–240 V (o un rango que incluya el de tu red) y la rosca E27. Instalar un foco es cambiar una bombilla, pero **apaga el interruptor antes** y, si tienes dudas con la instalación eléctrica, consulta a un electricista."
+          ]
+        },
+        {
+          "titulo": "Cómo se conectan: WiFi directo o red Zigbee",
+          "parrafos": [
+            "El foco **Tuya y el Tapo L530E se conectan directo al WiFi de 2,4 GHz** y no necesitan hub. Según TP-Link, el Tapo L530E funciona solo en la banda de 2,4 GHz. Es la ruta más simple: lo enciendes, lo agregas en la app y listo.",
+            "El **Hue usa Zigbee y Bluetooth**. Según Philips, el Hue Bridge conecta las luces por Zigbee, una red en malla en la que las luces actúan como repetidores. Sin el Bridge, Bluetooth permite hasta 10 luces, con el celular a menos de 10 metros y con funciones limitadas. Con el Bridge, hasta 50 luces y 12 accesorios.",
+            "En la práctica: con 2 o 3 focos WiFi no notarás nada. Con muchos, cada foco cuenta como un dispositivo más en tu router, y los routers básicos pueden saturarse. Con Zigbee, las luces no ocupan conexiones WiFi; hablan con el Bridge, que sí se conecta a tu router por cable de red."
+          ]
+        },
+        {
+          "titulo": "Voz, nube y Apple Home",
+          "parrafos": [
+            "El Tapo L530E funciona con Alexa y Google Assistant, según TP-Link. En nuestro catálogo no figura compatibilidad con Matter ni Apple Home para este modelo. El foco Tuya funciona con Alexa y Google Home; algunos modelos de Tuya admiten Matter, pero hay que revisar cada anuncio.",
+            "El Hue con Bridge funciona con Alexa, Google Home, Apple Home, SmartThings y Matter, según Philips. Sin Bridge, solo con Alexa y Google Home y con comandos limitados. También el control fuera de casa necesita el Bridge: por Bluetooth no hay acceso remoto.",
+            "Una diferencia menos visible: los focos Tuya dependen de la nube de Tuya para gran parte de su funcionamiento, y con Home Assistant el control local requiere integraciones de la comunidad. Si la nube falla, algunas funciones pueden dejar de responder."
+          ]
+        },
+        {
+          "titulo": "Luz, color y calidad",
+          "parrafos": [
+            "El Tapo L530E declara **806 lúmenes** y 25 000 horas de vida, con color y blancos de 2500 a 6500 K. El Hue A60 llega a **1100 lúmenes** como máximo, con luz blanca fría; en tonos cálidos y de color emite menos.",
+            "En el foco genérico, los lúmenes anunciados en muchos modelos de 9 W van de 780 a 930, pero los datos reales varían según el vendedor y no los pudimos confirmar en una ficha única de fabricante. Tómalos como orientativos."
+          ]
+        },
+        {
+          "titulo": "Precio y costo real a largo plazo",
+          "parrafos": [
+            "En el catálogo, el foco Tuya y el Tapo están en el rango más económico (menos de 15 USD, orientativo) y el Hue en el más alto (más de 40 USD). Además, el Hue requiere un Bridge si quieres el ecosistema completo, que es un gasto adicional.",
+            "Para uno o dos focos, el WiFi es más barato. Si vas a iluminar toda la casa, el costo del Bridge se reparte entre muchos focos y la estabilidad de Zigbee compensa. Los precios cambian por país, tienda e impuestos de importación."
+          ]
+        }
+      ],
+      "veredicto": [
+        {
+          "perfil": "Quieres probar con el menor gasto y tienes 1 a 3 focos",
+          "producto": "foco-tuya-wifi-220v",
+          "motivo": "Es el más barato y no necesita hub, aunque la calidad varía según el vendedor y depende de la nube de Tuya."
+        },
+        {
+          "perfil": "Quieres WiFi sin hub con una marca conocida, en un país de 220 V",
+          "producto": "tapo-l530e",
+          "motivo": "Datos de fabricante claros, Alexa y Google, y precio bajo; no es compatible con Matter ni Apple Home."
+        },
+        {
+          "perfil": "Vas a poner muchos focos, usas Apple Home o quieres lo más estable",
+          "producto": "philips-hue-white-color-a60-e27",
+          "motivo": "Zigbee no carga tu WiFi y es compatible con Matter y Apple Home con el Bridge. Es el más caro."
+        }
+      ],
+      "faq": [
+        {
+          "p": "¿Necesito un hub para los focos Hue?",
+          "r": "No para empezar: por Bluetooth controlas hasta 10 luces con el celular cerca. Para voz completa, control remoto, Matter y Apple Home sí necesitas el Hue Bridge, según Philips."
+        },
+        {
+          "p": "¿Los focos WiFi saturan el router?",
+          "r": "Con pocos focos no suele pasar. Con muchos dispositivos WiFi, un router básico puede tener problemas; Zigbee evita ese efecto porque las luces no se conectan al router."
+        },
+        {
+          "p": "¿Estos focos sirven en 110 V?",
+          "r": "No. Los tres son de 220–240 V con rosca E27. Para 110–127 V busca versiones E26, como el Hue A19 o el Tapo L535E."
+        },
+        {
+          "p": "¿Se pueden mezclar focos WiFi y Zigbee?",
+          "r": "Sí, con una app de asistente de voz o con Home Assistant puedes controlar ambos tipos en las mismas escenas, aunque cada marca se configura en su propia app."
+        }
+      ]
     }
   ]
 }
