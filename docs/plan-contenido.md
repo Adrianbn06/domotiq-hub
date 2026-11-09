@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T017 Guía: cómo instalar un relé o interruptor inteligente con y sin neutro (con aviso de electricista)
 - [ ] T018 Comparativa: relés con neutro — Shelly 1 Gen4 vs Sonoff MINIR4 (productos ya en el catálogo)
 - [ ] T019 Guía: Smart Life vs Tuya vs eWeLink: qué app usar y si se pueden mezclar marcas
 - [ ] T021 Guía: mitos y verdades de los focos inteligentes (consumo en espera, interruptor de pared, WiFi)
@@ -168,3 +167,4 @@ Cómo leer la lista:
 - [x] (2026-10-02) SEO: quitar de las guías antiguas las "ofertas" con precios inventados, fusionar 2 guías duplicadas (301), fechas reales en el sitemap y etiquetas para compartir
 - [x] (2026-10-21) T009 Guía: qué pasa con tu casa inteligente cuando se cae el internet, y alternativas que funcionan en local
 - [x] (2026-11-06) T016 Comparativa: focos WiFi baratos vs focos Zigbee de marca
+- [x] (2026-11-09) T017 Guía: cómo instalar un relé o interruptor inteligente con y sin neutro
