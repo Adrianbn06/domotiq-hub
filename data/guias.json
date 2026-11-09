@@ -3066,6 +3066,222 @@
           "url": "https://www.tp-link.com/us/home-networking/smart-plug/ep25p4/"
         }
       ]
+    },
+    {
+      "slug": "instalar-rele-interruptor-inteligente-con-sin-neutro",
+      "etiqueta": "🧭 Guía práctica",
+      "titulo": "Cómo instalar un relé o interruptor inteligente con y sin neutro (2026)",
+      "tituloCorto": "Instalar un relé inteligente con y sin neutro",
+      "descripcion": "Qué es el cable neutro, cómo saber si tu caja de pared lo tiene y qué relé inteligente elegir con o sin neutro. Con aviso de seguridad eléctrica.",
+      "publicado": "2026-11-09",
+      "actualizado": "2026-11-09",
+      "intro": [
+        "Quieres encender las luces con la voz o con una rutina, pero no quieres cambiar el interruptor de pared ni abrir paredes. La solución más usada es un **relé inteligente**: una pieza diminuta que se esconde en la caja del interruptor, queda en serie con la lámpara y conserva tu interruptor de siempre. El problema aparece al comprar: unos modelos **exigen cable neutro** en la caja y otros no.",
+        "En esta guía revisamos las páginas oficiales de Sonoff y Shelly para explicar qué es el neutro, cómo averiguar si lo tienes, qué relé sirve en cada caso y qué precauciones tomar. Es un trabajo con la corriente de la casa: si no tienes experiencia, **llama a un electricista**."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué hace un relé y por qué importa el cable neutro",
+          "bloques": [
+            {
+              "p": "Un relé es un interruptor que se controla por radio. Se conecta al cable de **fase** (el que lleva la corriente) y a la lámpara; cuando recibe la orden desde la app, abre o cierra el circuito. Pero el relé también es un aparato electrónico con WiFi o Zigbee dentro, y necesita energía propia para funcionar siempre, incluso con la luz apagada."
+            },
+            {
+              "p": "Los relés con neutro toman esa energía entre fase y **neutro**, el cable de retorno. Los relés «sin neutro» están diseñados para funcionar con la caja que solo tiene fase: Sonoff presenta el ZBMINI-L2 como un interruptor Zigbee que **no necesita cable neutro** y lo recomienda para casas antiguas. Por el contrario, el Shelly 1 Gen4 y el Sonoff MINIR4 se alimentan con fase y neutro."
+            },
+            {
+              "h3": "Los tres modelos del catálogo, lado a lado"
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Relé",
+                  "Neutro",
+                  "Voltaje de entrada",
+                  "Carga máxima",
+                  "Conexión"
+                ],
+                "filas": [
+                  [
+                    "Sonoff MINIR4",
+                    "Sí (según nuestro catálogo)",
+                    "100–240 V, 50/60 Hz",
+                    "10 A de carga resistiva",
+                    "WiFi 2,4 GHz"
+                  ],
+                  [
+                    "Sonoff ZBMINI-L2",
+                    "No lo necesita",
+                    "100–240 V",
+                    "6 A",
+                    "Zigbee 3.0 (necesita hub o coordinador)"
+                  ],
+                  [
+                    "Shelly 1 Gen4",
+                    "Sí, con alimentación de CA",
+                    "110–240 V CA (también 24–48 V CC o 12 V CC)",
+                    "16 A / 240 V, contacto seco",
+                    "WiFi, Zigbee, Matter y Bluetooth"
+                  ]
+                ]
+              }
+            },
+            {
+              "nota": "Dato práctico: los tres aceptan un rango de voltaje que cubre tanto 110–127 V como 220 V, así que sirven en cualquier país de la región. Aun así, la clavija no importa aquí (se instalan en la caja), pero la **carga máxima** sí: con 120 V las lámparas LED tienen un tope más bajo en el ZBMINI-L2."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo saber si tu caja de pared tiene neutro",
+          "bloques": [
+            {
+              "p": "Antes de comprar nada, abre la caja del interruptor y mira qué cables hay. Esto se hace **con el térmico (breaker) del circuito apagado** y comprobando con un detector de voltaje sin contacto que no hay corriente."
+            },
+            {
+              "lista": [
+                "**Solo dos cables (fase que llega y cable que va a la lámpara):** no hay neutro. Es lo más común en instalaciones antiguas. Necesitas un relé sin neutro, como el ZBMINI-L2.",
+                "**Hay un tercer cable (o un manojo de cables empalmados al fondo de la caja):** puede ser el neutro. Un electricista o un medidor debe confirmar que lo es.",
+                "**No te fíes solo del color del cable:** los colores cambian según el país y la edad de la instalación. Confirma con un medidor o con un profesional."
+              ]
+            },
+            {
+              "aviso": "Si dudas de qué cable es cuál, no sigas. Un error de conexión puede dañar el relé, apagar el circuito o causar una descarga. Esta es una tarea para un electricista si no tienes experiencia."
+            }
+          ]
+        },
+        {
+          "titulo": "Instalación paso a paso",
+          "bloques": [
+            {
+              "p": "Los pasos generales son los mismos para los tres modelos; los terminales exactos (fase, neutro, entrada del interruptor, salida a la lámpara) están en el diagrama del manual de cada fabricante, y debes seguirlos al pie de la letra."
+            },
+            {
+              "lista": [
+                "**Apaga el térmico** del circuito y verifica con un detector que no llega corriente a la caja.",
+                "**Fotografía el cableado actual** antes de desconectar nada.",
+                "**Lee el diagrama del manual** de tu modelo y comprueba que la carga de tu lámpara no supera la máxima del relé.",
+                "**Conecta el relé** a fase, neutro (si lo requiere), la salida a la lámpara y los terminales para el interruptor de pared. Sonoff indica que el ZBMINI-L2 usa los terminales S1/S2 para un interruptor mecánico, y que el MINIR4 acepta interruptores de pulso, de recorrido, de vaivén y hasta sensores de contacto seco.",
+                "**Cierra la caja, sube el térmico** y vincula el relé en la app (eWeLink para Sonoff; Shelly Smart Control para Shelly).",
+                "**Prueba** con el interruptor de pared y desde el celular antes de dejar la tapa definitiva."
+              ]
+            },
+            {
+              "h3": "El modo «detach relay» del MINIR4"
+            },
+            {
+              "p": "El MINIR4 incluye un modo «detach relay» en el que el interruptor de pared y el relé quedan separados: pulsar el interruptor ya no enciende la lámpara por sí solo, sino que sirve como botón para disparar escenas. Es útil si quieres que la luz solo se controle por la app, pero cuidado: si te vas de vacaciones y la app falla, el interruptor no encenderá nada en ese modo."
+            }
+          ]
+        },
+        {
+          "titulo": "Límites, riesgos y qué no hacer",
+          "bloques": [
+            {
+              "lista": [
+                "**Respeta la carga máxima.** El MINIR4 soporta hasta 10 A de carga resistiva y Sonoff pide evitar motores que superen la potencia nominal. El ZBMINI-L2 es de 6 A. El Shelly 1 Gen4 llega a 16 A, con contacto seco.",
+                "**Sin neutro, las lámparas muy pequeñas pueden dar problemas.** Sonoff indica que el ZBMINI-L2 funciona con lámparas de baja potencia desde 3 W, y que no admite módulos antiparpadeo externos: conectarlos puede dañarlo.",
+                "**No es para exteriores ni humedad.** Sonoff aclara que el MINIR4 no es impermeable y no debe usarse en ambientes húmedos sin protección.",
+                "**Shelly recomienda protección externa:** un interruptor termomagnético con curva B o C de máximo 16 A.",
+                "**El ZBMINI-L2 no repite la señal Zigbee:** Sonoff lo clasifica como dispositivo final, no como router."
+              ]
+            },
+            {
+              "aviso": "En un relé la seguridad eléctrica es lo primero. Si la caja es antigua, hay cables quemados o empalmes confusos, o simplemente no te sientes cómodo, contrata a un electricista."
+            }
+          ]
+        },
+        {
+          "titulo": "Tres relés del catálogo para empezar",
+          "bloques": [
+            {
+              "p": "Elige según lo que ya tienes en la pared, no según el precio."
+            },
+            {
+              "oferta": "sonoff-zbmini-l2",
+              "motivo": "Es el único de los tres que no pide neutro, el caso típico en casas antiguas. Necesita un hub o coordinador Zigbee y tiene un tope de 6 A."
+            },
+            {
+              "oferta": "sonoff-minir4",
+              "motivo": "Relé WiFi muy pequeño con un rango de 100–240 V; no necesita hub, pero sí neutro en la caja."
+            },
+            {
+              "oferta": "shelly-1-gen4",
+              "motivo": "El más versátil: WiFi, Zigbee, Matter y contacto seco de 16 A. También requiere neutro con alimentación de CA y cuesta más."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Conservas el interruptor de pared:** la familia y las visitas siguen usándolo como siempre.",
+        "**No hay obras:** el relé cabe en la caja existente, según los fabricantes en la mayoría de las cajas estándar.",
+        "**Hay opción sin neutro:** el ZBMINI-L2 resuelve las casas antiguas.",
+        "**Voltaje amplio:** los tres aceptan de 100 a 240 V y valen en toda Latinoamérica."
+      ],
+      "desventajas": [
+        "**Hay que manipular cables de la instalación:** si no tienes experiencia, cuesta una visita de electricista.",
+        "**Con neutro, no todas las cajas sirven:** en muchas instalaciones antiguas habrá que elegir el relé sin neutro.",
+        "**Cargas limitadas:** 6 A, 10 A o 16 A según el modelo, y distintas para LED y para motores.",
+        "**El sin neutro tiene sus peros:** carga mínima de 3 W y no admite módulos antiparpadeo; además no repite la señal Zigbee.",
+        "**Dependencia de WiFi o de un hub** para el control remoto; el interruptor de pared sigue funcionando si lo conectas bien."
+      ],
+      "faq": [
+        {
+          "p": "¿Puedo instalar yo mismo un relé inteligente?",
+          "r": "Solo si sabes trabajar con la instalación eléctrica: apagar el térmico, comprobar que no hay corriente e identificar fase y neutro. Si tienes dudas, contrata a un electricista."
+        },
+        {
+          "p": "¿Qué hago si mi caja no tiene cable neutro?",
+          "r": "Busca un relé diseñado para funcionar sin neutro, como el Sonoff ZBMINI-L2, que además necesita un hub o coordinador Zigbee."
+        },
+        {
+          "p": "¿Sirven estos relés en 110 V y en 220 V?",
+          "r": "Sí. Sonoff indica 100–240 V para el MINIR4 y el ZBMINI-L2, y Shelly indica 110–240 V CA para el Shelly 1 Gen4. Comprueba siempre que tu carga no supere la máxima."
+        },
+        {
+          "p": "¿El interruptor de pared sigue funcionando?",
+          "r": "Sí, en los tres modelos se puede conectar un interruptor de pared. En el MINIR4, el modo «detach relay» separa el interruptor del relé, así que ahí ya no enciende la luz directamente."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué relé elegir según tu caja",
+        "intro": "Todo empieza por saber si tu caja tiene neutro:",
+        "perfiles": [
+          {
+            "perfil": "Mi casa es antigua y la caja no tiene neutro",
+            "texto": "Un relé Zigbee sin neutro, con un hub o coordinador Zigbee.",
+            "producto": "sonoff-zbmini-l2"
+          },
+          {
+            "perfil": "Tengo neutro y quiero lo más sencillo y barato, sin hub",
+            "texto": "Un relé WiFi pequeño que se vincula directamente al router.",
+            "producto": "sonoff-minir4"
+          },
+          {
+            "perfil": "Tengo neutro y quiero Matter, control local y contacto seco",
+            "texto": "El relé más completo, incluso para portones o calderas.",
+            "producto": "shelly-1-gen4"
+          }
+        ],
+        "alternativa": "si prefieres no tocar la instalación, empieza con un [enchufe inteligente](/productos) o con focos inteligentes; y revisa antes la guía de [voltaje y clavija](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica)."
+      },
+      "fuentes": [
+        {
+          "texto": "Sonoff: página oficial del MINIR4 (100–240 V, 10 A, tipos de interruptor, detach relay, no impermeable)",
+          "url": "https://sonoff.tech/product/diy-smart-switches/minir4/"
+        },
+        {
+          "texto": "Sonoff: página oficial del ZBMINIL2 (sin neutro, 100–240 V, 6 A, S1/S2, dispositivo final, sin módulos antiparpadeo)",
+          "url": "https://sonoff.tech/product/diy-smart-switches/zbmini-l2/"
+        },
+        {
+          "texto": "Shelly: base de conocimiento del Shelly 1 Gen4 (110–240 V CA, 16 A, protección B/C, Neutral not needed: No)",
+          "url": "https://kb.shelly.cloud/knowledge-base/shelly-1-gen4"
+        },
+        {
+          "texto": "Shelly: página oficial del Shelly 1 Gen4 (WiFi, Zigbee, Matter, contacto seco)",
+          "url": "https://www.shelly.com/products/shelly-1-gen4"
+        }
+      ]
     }
   ]
 }
