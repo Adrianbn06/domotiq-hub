@@ -45,7 +45,8 @@ function toUrl(file) {
 // Fecha real del contenido (dateModified o datePublished del JSON-LD). La fecha del archivo
 // cambia en cada build y Google deja de fiarse de un lastmod que siempre es "hoy"; sin fecha, se omite.
 function contentDate(html) {
-  const m = html.match(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})/) || html.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})/);
+  const m = html.match(/<meta property="og:updated_time" content="(\d{4}-\d{2}-\d{2})/)
+    || html.match(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})/) || html.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})/);
   return m ? m[1] : null;
 }
 
@@ -84,6 +85,27 @@ function comprobarFormato() {
   }
 }
 
+// ─── ENLACES INTERNOS ─────────────────────────────────────────────────────────
+// Cada enlace interno debe llevar a una página que existe y con su dirección exacta: un enlace a
+// /productos (sin la barra final) o a /glosario.html funciona, pero pasa por una redirección, y uno
+// mal escrito da 404. Las dos cosas le restan a la página ante Google: mejor fallar aquí.
+function comprobarEnlaces() {
+  const archivos = listHtmlFiles(PUBLIC_DIR);
+  const rutas = new Set(archivos.map((f) => toUrl(f).slice(SITE_URL.length)));
+  const malos = [];
+  for (const file of archivos) {
+    const html = fs.readFileSync(file, 'utf8').replace(/<script\b[\s\S]*?<\/script>/g, '');
+    for (const m of html.matchAll(/<a\b[^>]*\bhref="(\/[^"]*)"/g)) {
+      const ruta = m[1].replace(/&amp;/g, '&').split('#')[0].split('?')[0];
+      if (rutas.has(ruta)) continue;
+      if (fs.existsSync(path.join(PUBLIC_DIR, ruta)) && fs.statSync(path.join(PUBLIC_DIR, ruta)).isFile()) continue;
+      const pista = rutas.has(`${ruta}/`) ? ` (¿quisiste decir ${ruta}/ ?)` : rutas.has(ruta.replace(/\.html$/, '')) ? ' (sin .html)' : '';
+      malos.push(`${path.relative(PUBLIC_DIR, file)}: ${m[1]}${pista}`);
+    }
+  }
+  if (malos.length) throw new Error(`Enlaces internos rotos o con redirección:\n  ${[...new Set(malos)].join('\n  ')}`);
+}
+
 generarCatalogo(ROOT);
 generarComparativas(ROOT);
 generarGuias(ROOT);
@@ -91,4 +113,5 @@ actualizarLegado(ROOT);
 generarPaginas(ROOT);
 generarPortada(ROOT);
 comprobarFormato();
+comprobarEnlaces();
 generateSitemap();

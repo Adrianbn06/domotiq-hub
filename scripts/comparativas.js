@@ -11,7 +11,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, fmt, plano, pagina, fichaTecnica, fichaCompat, PRECIO, AVISO_AFILIADOS, tituloSeo, icono, tarjetaProducto, fila, pila } from './catalogo.js';
+import { esc, fmt, plano, pagina, fichaTecnica, fichaCompat, PRECIO, AVISO_AFILIADOS, tituloSeo, icono, tarjetaProducto, fila, pila, masAfines, sigueLeyendo, guiaAfin, comparativaAfin } from './catalogo.js';
 
 const SITE_URL = 'https://www.ofertasdomoticas.com';
 
@@ -39,7 +39,15 @@ ${cuerpo}
 <p class="legend"><span></span>Filas resaltadas: los productos se diferencian en esa característica.</p>`;
 }
 
-function paginaComparativa(c, porSlug, cats) {
+function paginaComparativa(c, porSlug, cats, guias, comparativas) {
+  const err = (m) => { throw new Error(`Comparativa ${c.slug}: ${m}`); };
+  for (const k of ['slug', 'titulo', 'tituloCorto', 'descripcion', 'actualizado']) if (!c[k]) err(`falta "${k}"`);
+  // Google corta el título a ~60 caracteres y la descripción a ~155: mejor fallar que publicarla cortada
+  if (c.tituloCorto.length > 60) err(`tituloCorto tiene ${c.tituloCorto.length} caracteres (máximo 60)`);
+  if (c.descripcion.length > 155) err(`descripcion tiene ${c.descripcion.length} caracteres (máximo 155)`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(c.actualizado)) err('"actualizado" en formato AAAA-MM-DD');
+  const afinesGuias = masAfines(c.productos, guias.map(guiaAfin), 3, porSlug);
+  const afinesComp = masAfines(c.productos, comparativas.filter((o) => o.slug !== c.slug).map(comparativaAfin), 2, porSlug);
   const prods = c.productos.map((s) => {
     if (!porSlug[s]) throw new Error(`Comparativa ${c.slug}: el producto "${s}" no existe`);
     return porSlug[s];
@@ -67,7 +75,7 @@ ${prods.map((p) => tarjetaProducto(p, cats)).join('\n')}
 
 <h2>Tabla comparativa</h2>
 ${tablaComparativa(prods)}
-<p class="links-list"><a class="btn secondary" href="/comparar?p=${esc(enComparador)}">${icono('columnas')}Abrir en el comparador interactivo</a></p>
+<p class="links-list"><a class="btn secondary" href="/comparar#p=${esc(enComparador)}">${icono('columnas')}Abrir en el comparador interactivo</a></p>
 
 ${c.secciones.map((s) => `<h2>${fmt(s.titulo)}</h2>\n${s.parrafos.map((t) => `<p>${fmt(t)}</p>`).join('\n')}`).join('\n\n')}
 
@@ -78,27 +86,45 @@ ${c.veredicto.map((v) => `<div class="card"><div class="card-body"><p class="eye
 
 <h2>Preguntas frecuentes</h2>
 ${c.faq.map((f) => `<details class="faq"><summary>${fmt(f.p)}</summary><p>${fmt(f.r)}</p></details>`).join('\n')}
+
+${sigueLeyendo([
+    ...afinesGuias.map((g) => fila({ href: `/articulos-editoriales/${g.slug}`, antetitulo: 'Guía', titulo: g.titulo, icono: 'libro' })),
+    ...afinesComp.map((o) => fila({ href: `/comparativas/${o.slug}`, antetitulo: 'Comparativa', titulo: o.titulo, icono: 'balanza' })),
+  ])}
 </article>
 ${AVISO_AFILIADOS}`;
 
-  const ld = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: c.titulo,
-    description: c.descripcion,
-    dateModified: c.actualizado,
-    inLanguage: 'es',
-    mainEntityOfPage: `${SITE_URL}/comparativas/${c.slug}`,
-    publisher: { '@type': 'Organization', name: 'OfertasDomoticas.com', url: SITE_URL },
-  };
+  const organizacion = { '@type': 'Organization', name: 'OfertasDomoticas.com', url: SITE_URL };
+  const ld = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: c.titulo,
+      description: c.descripcion,
+      datePublished: c.publicado || c.actualizado,
+      dateModified: c.actualizado,
+      inLanguage: 'es',
+      image: `${SITE_URL}/og-image.png`,
+      author: organizacion,
+      publisher: organizacion,
+      mainEntityOfPage: `${SITE_URL}/comparativas/${c.slug}`,
+    },
+    {
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      mainEntity: c.faq.map((f) => ({ '@type': 'Question', name: plano(f.p), acceptedAnswer: { '@type': 'Answer', text: plano(f.r) } })),
+    },
+  ].map((o) => `  <script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`).join('\n');
 
   return pagina({
     title: tituloSeo(c.tituloCorto),
     description: c.descripcion,
     canonical: `/comparativas/${c.slug}`,
     breadcrumbs: [['Inicio', '/'], ['Comparativas', '/comparativas/'], [c.tituloCorto, `/comparativas/${c.slug}`]],
+    tipo: 'article',
+    publicado: c.publicado || c.actualizado,
+    modificado: c.actualizado,
     body,
-  }).replace('</head>', `  <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>\n</head>`);
+  }).replace('</head>', `${ld}\n</head>`);
 }
 
 function paginaIndice(comparativas, porSlug) {
@@ -114,6 +140,7 @@ ${AVISO_AFILIADOS}`;
     title: tituloSeo('Comparativas de domótica para Latinoamérica'),
     description: 'Sonoff vs Tuya, hubs Zigbee, relés con o sin neutro y focos inteligentes: comparativas pensadas para el voltaje y las tiendas de Latinoamérica.',
     canonical: '/comparativas/',
+    modificado: comparativas.map((c) => c.actualizado).sort().pop(),
     breadcrumbs: [['Inicio', '/'], ['Comparativas', '/comparativas/']],
     body,
   });
@@ -126,8 +153,10 @@ export function generarComparativas(root) {
   const outDir = path.join(root, 'public', 'comparativas');
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
+  const fGuias = path.join(root, 'data', 'guias.json');
+  const guias = fs.existsSync(fGuias) ? JSON.parse(fs.readFileSync(fGuias, 'utf8')).guias : [];
   for (const c of comparativas) {
-    fs.writeFileSync(path.join(outDir, `${c.slug}.html`), paginaComparativa(c, porSlug, categorias), 'utf8');
+    fs.writeFileSync(path.join(outDir, `${c.slug}.html`), paginaComparativa(c, porSlug, categorias, guias, comparativas), 'utf8');
   }
   fs.writeFileSync(path.join(outDir, 'index.html'), paginaIndice(comparativas, porSlug), 'utf8');
   console.log(`⚖️  Comparativas: ${comparativas.length} artículos`);

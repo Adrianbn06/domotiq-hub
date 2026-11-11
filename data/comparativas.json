@@ -4,7 +4,7 @@
       "slug": "sonoff-vs-tuya-enchufe-inteligente",
       "titulo": "Sonoff vs Tuya (Smart Life): ¿qué enchufe inteligente comprar en Latinoamérica?",
       "tituloCorto": "Sonoff vs Tuya: ¿qué enchufe comprar?",
-      "descripcion": "Comparamos los enchufes Sonoff S26R2 y S31 con los enchufes genéricos Tuya / Smart Life: voltaje y clavija por país, funcionamiento sin internet, medición de consumo y Home Assistant.",
+      "descripcion": "Enchufes Sonoff S26R2 y S31 frente a los genéricos Tuya / Smart Life: voltaje y clavija por país, uso sin internet, medición de consumo y Home Assistant.",
       "actualizado": "2026-10-02",
       "productos": ["sonoff-s26r2", "sonoff-s31", "enchufe-tuya-wifi"],
       "intro": [
@@ -63,7 +63,7 @@
       "slug": "interruptor-inteligente-sin-neutro-zbmini-l2-vs-minir4-vs-shelly",
       "titulo": "Interruptor inteligente con o sin neutro: Sonoff ZBMINI-L2 vs MINIR4 vs Shelly 1 Gen4",
       "tituloCorto": "Relés con o sin neutro: ZBMINI-L2 vs MINIR4 vs Shelly",
-      "descripcion": "¿Tu caja de interruptor no tiene cable neutro? Comparamos el Sonoff ZBMINI-L2 (sin neutro), el Sonoff MINIR4 y el Shelly 1 Gen4 para automatizar luces en Latinoamérica: carga, voltaje, hub y control local.",
+      "descripcion": "¿Tu caja de interruptor no tiene neutro? Comparamos Sonoff ZBMINI-L2 (sin neutro), Sonoff MINIR4 y Shelly 1 Gen4: carga, voltaje, hub y control local.",
       "actualizado": "2026-10-02",
       "productos": ["sonoff-zbmini-l2", "sonoff-minir4", "shelly-1-gen4"],
       "intro": [
@@ -116,7 +116,7 @@
       "slug": "hub-zigbee-aqara-m2-vs-m3-vs-sonoff-zbbridge-p",
       "titulo": "¿Qué hub Zigbee comprar? Aqara Hub M2 vs Hub M3 vs Sonoff ZBBridge-P",
       "tituloCorto": "¿Qué hub Zigbee comprar? Aqara vs Sonoff",
-      "descripcion": "Comparamos los hubs Zigbee Aqara Hub M2, Aqara Hub M3 y Sonoff Zigbee Bridge Pro: compatibilidad con otras marcas, Apple Home, Matter, Thread, infrarrojo para el aire acondicionado y precio.",
+      "descripcion": "Hubs Zigbee Aqara M2, Aqara M3 y Sonoff Zigbee Bridge Pro: compatibilidad con otras marcas, Apple Home, Matter, Thread e infrarrojo para el aire.",
       "actualizado": "2026-10-02",
       "productos": ["sonoff-zbbridge-p", "aqara-hub-m2", "aqara-hub-m3"],
       "intro": [
@@ -173,7 +173,7 @@
       "slug": "focos-inteligentes-wiz-vs-tapo-vs-philips-hue",
       "titulo": "Focos inteligentes: WiZ vs Tapo vs Philips Hue (versiones de 110 V y 220 V)",
       "tituloCorto": "Focos inteligentes: WiZ vs Tapo vs Philips Hue",
-      "descripcion": "Comparamos los focos inteligentes WiZ A19, Tapo L535E (110 V), Tapo L530E (220 V) y Philips Hue: brillo, voltaje y rosca, Matter, si necesitan hub y cuál conviene según tu país.",
+      "descripcion": "Focos inteligentes WiZ A19, Tapo L535E (110 V), Tapo L530E (220 V) y Philips Hue: brillo, voltaje, rosca, Matter, hub y cuál conviene en tu país.",
       "actualizado": "2026-10-07",
       "productos": ["wiz-a19-color", "tapo-l535e", "tapo-l530e", "philips-hue-white-color-a19"],
       "intro": [

@@ -62,7 +62,7 @@
     barText.textContent = sel.length === 1
       ? '1 seleccionado: elige al menos otro'
       : `${sel.length} seleccionados (máximo ${MAX})`;
-    go.href = `/comparar?p=${sel.map(encodeURIComponent).join(',')}`;
+    go.href = `/comparar#p=${sel.map(encodeURIComponent).join(',')}`;
     go.setAttribute('aria-disabled', String(sel.length < 2));
     checks.forEach((c) => { c.disabled = !c.checked && sel.length >= MAX; });
   }

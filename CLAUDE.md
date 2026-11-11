@@ -62,7 +62,10 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
   `actualizado` (AAAA-MM-DD), `productos` (2–4 slugs que existan en el catálogo), `intro`, `secciones`,
   `veredicto` (perfil → producto del catálogo → motivo) y `faq`. Unas 900–1300 palabras.
   `tituloCorto` se usa como título para Google: máximo 60 caracteres. `descripcion`: máximo 155 caracteres
-  (la plantilla recorta lo que pase de ahí, pero es mejor escribirla completa dentro del límite).
+  (el build falla si se pasan, igual que en las guías).
+  Enlaces internos: escribe la dirección exacta (`/productos/`, `/comparativas/` y `/articulos-editoriales/`
+  con barra final; el resto sin `.html`). El build falla si un enlace interno no lleva a una página que existe.
+  Los enlaces al comparador se escriben `/comparar#p=slug1,slug2` (con `#`, no con `?`).
   En `intro`, `secciones`, `veredicto` y `faq` se puede usar `**negrita**` y `[texto](/ruta)`, como en las guías.
   El build falla si queda formato sin convertir en cualquier página (se vería tal cual en la web).
 - `scripts/paginas.js` — aviso legal, privacidad, nosotros, contacto y 404 (textos fijos).
