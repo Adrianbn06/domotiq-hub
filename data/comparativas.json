@@ -709,6 +709,91 @@
           "r": "Sí, con una app de asistente de voz o con Home Assistant puedes controlar ambos tipos en las mismas escenas, aunque cada marca se configura en su propia app."
         }
       ]
+    },
+    {
+      "slug": "shelly-1-gen4-vs-sonoff-minir4-reles-con-neutro",
+      "titulo": "Shelly 1 Gen4 vs Sonoff MINIR4: ¿qué relé con neutro te conviene?",
+      "tituloCorto": "Shelly 1 Gen4 vs Sonoff MINIR4: relés con neutro",
+      "descripcion": "Shelly 1 Gen4 o Sonoff MINIR4: carga, voltaje, Matter, Zigbee, control local y tamaño. Cuál elegir si tu caja de interruptor tiene neutro.",
+      "actualizado": "2026-11-11",
+      "productos": [
+        "shelly-1-gen4",
+        "sonoff-minir4"
+      ],
+      "intro": [
+        "Si tu caja de interruptor **sí tiene cable neutro**, puedes automatizar la luz sin cambiar el interruptor de pared con un relé pequeño. Dos de las opciones más buscadas son el **Shelly 1 Gen4** y el **Sonoff MINIR4**. Se parecen en lo básico, pero se diferencian en protocolos, carga y en cómo funcionan cuando no hay internet.",
+        "Los comparamos con datos de los fabricantes y de reseñas técnicas, y te contamos también los contras. Si no sabes si tienes neutro, empieza por la guía [cómo instalar un relé con y sin neutro](/articulos-editoriales/instalar-rele-interruptor-inteligente-con-sin-neutro) y, si tu caja no lo tiene, mira la [comparativa de relés con y sin neutro](/comparativas/interruptor-inteligente-sin-neutro-zbmini-l2-vs-minir4-vs-shelly)."
+      ],
+      "secciones": [
+        {
+          "titulo": "Lo que tienen en común: neutro y voltaje",
+          "parrafos": [
+            "Los dos **necesitan cable neutro** cuando se alimentan con corriente alterna. Según Shelly, el Shelly 1 Gen4 requiere neutro con alimentación de 110–240 V, y según la reseña técnica de CNX Software, el MINIR4 también lo necesita, algo que en muchas casas antiguas no existe.",
+            "En voltaje no hay problema para Latinoamérica: el MINIR4 acepta 100–240 V a 50/60 Hz y el Shelly 1 Gen4 acepta 110–240 V de corriente alterna. Sirven en la red de 110–127 V (México, Centroamérica, Colombia, Ecuador, Venezuela), en la de 220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay) y en Brasil (127/220 V). Son módulos que se instalan dentro de la caja, así que no hay clavija que revisar.",
+            "Es un trabajo con la corriente de la casa. **Si no tienes experiencia, contrata a un electricista** y trabaja siempre con el disyuntor (breaker) apagado."
+          ]
+        },
+        {
+          "titulo": "Conexión: solo WiFi o WiFi, Zigbee y Matter",
+          "parrafos": [
+            "El **MINIR4 es solo WiFi de 2,4 GHz**, según Sonoff. No necesita hub y se maneja desde la app eWeLink. Existe una versión aparte con Matter, el MINIR4M, pero es otro producto.",
+            "El **Shelly 1 Gen4 combina WiFi (802.11 b/g/n/ax), Zigbee 3.0, Bluetooth 5 y Matter**. Según Shelly, Matter es el perfil de fábrica y se puede cambiar a Zigbee. Es decir, usas uno u otro modo, no los dos a la vez. Con Matter se integra con Alexa, Google Home y Apple Home sin pasar por la nube de un fabricante concreto.",
+            "En la práctica: si tu casa ya usa Apple Home o planeas un sistema Matter, el Shelly te da ese camino sin comprar otro modelo. Si solo quieres Alexa o Google con WiFi, el MINIR4 cumple."
+          ]
+        },
+        {
+          "titulo": "Carga máxima y qué puedes conectar",
+          "parrafos": [
+            "El MINIR4 soporta **10 A con carga resistiva** (hasta 2400 W a 240 V, según Sonoff). Para luces de una habitación sobra, pero para motores o cargas grandes conviene ser prudente.",
+            "El Shelly 1 Gen4 tiene un relé de **contacto seco** de 16 A a 240 V CA (10 A a 30 V CC), según su ficha. Contacto seco significa que no entrega corriente por sí mismo: solo abre y cierra un circuito, y por eso sirve también para el pulsador de un portón o para encender una caldera. Además de alimentarse con 110–240 V CA, admite 24–48 V CC o 12 V CC."
+          ]
+        },
+        {
+          "titulo": "Control local, tamaño e instalación",
+          "parrafos": [
+            "Según Shelly, el Gen4 funciona en la red local, con interfaz web propia, scripts y MQTT, algo muy valorado por quienes usan Home Assistant. Sonoff describe el control LAN del MINIR4 como comunicación directa entre la app y el dispositivo por el mismo router, sin pasar por la nube, pero **solo permite encender y apagar** por esa vía. Para horarios, escenas y control remoto sigues dependiendo de eWeLink.",
+            "En tamaño, el MINIR4 mide 39,5 × 33 × 16,8 mm y el Shelly 1 Gen4 mide 37 × 42 × 16 mm. Ambos son pequeños; el MINIR4 es algo más compacto y una reseña técnica lo describe como un ajuste justo en la caja.",
+            "Para el interruptor de pared, el MINIR4 tiene dos entradas (S1 y S2) y el Shelly 1 Gen4 una entrada de interruptor. Según la ayuda de Sonoff, S1 y S2 no deben conectarse a neutro ni a tierra. Revisa el esquema de tu caso antes de comprar, sobre todo con interruptores de escalera."
+          ]
+        },
+        {
+          "titulo": "Contras que debes conocer",
+          "parrafos": [
+            "El MINIR4 no tiene Matter, Zigbee ni Apple Home en este modelo, y su control web en eWeLink es de pago, según la reseña de CNX Software. El Shelly 1 Gen4 suele costar más y su configuración tiene más opciones, lo que puede abrumar a un principiante.",
+            "Ambos usan WiFi de 2,4 GHz, así que si tienes muchos dispositivos WiFi en un router básico, revisa la guía de [WiFi que se cae](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi). Los precios varían por país, tienda e impuestos; en el catálogo el MINIR4 está en el rango más bajo (menos de 15 USD, orientativo) y el Shelly en el medio (15–40 USD, orientativo)."
+          ]
+        }
+      ],
+      "veredicto": [
+        {
+          "perfil": "Tienes neutro, quieres lo más económico y solo usas Alexa o Google",
+          "producto": "sonoff-minir4",
+          "motivo": "WiFi sin hub, 100–240 V y 10 A a un precio bajo, aunque sin Matter y con control local limitado a encender y apagar."
+        },
+        {
+          "perfil": "Quieres Matter, Apple Home, Home Assistant o automatizar un portón",
+          "producto": "shelly-1-gen4",
+          "motivo": "Matter o Zigbee, control local con scripts y MQTT y contacto seco de 16 A. Cuesta más y es más técnico."
+        }
+      ],
+      "faq": [
+        {
+          "p": "¿El Shelly 1 Gen4 y el MINIR4 funcionan sin neutro?",
+          "r": "No. Los dos necesitan neutro con alimentación de corriente alterna. Si tu caja no lo tiene, mira la comparativa de relés sin neutro con el Sonoff ZBMINI-L2."
+        },
+        {
+          "p": "¿Sirven en 110 V y en 220 V?",
+          "r": "Sí. El MINIR4 acepta 100–240 V y el Shelly 1 Gen4 110–240 V de corriente alterna, así que sirven en toda Latinoamérica."
+        },
+        {
+          "p": "¿Puedo usar Zigbee y Matter a la vez en el Shelly 1 Gen4?",
+          "r": "No. Según Shelly, Matter es el perfil de fábrica y el dispositivo se puede cambiar a Zigbee, pero se usa uno u otro."
+        },
+        {
+          "p": "¿Lo puedo instalar yo?",
+          "r": "Solo si tienes experiencia con instalaciones eléctricas. Siempre con el disyuntor apagado y, si dudas, con un electricista."
+        }
+      ]
     }
   ]
 }
