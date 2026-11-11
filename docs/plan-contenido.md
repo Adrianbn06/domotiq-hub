@@ -140,6 +140,8 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-11-11) SEO: descripciones que ya no salen cortadas (22 fichas, 4 comparativas, catálogo, comparador y privacidad), bloque "Sigue leyendo" en guías y comparativas, "Guías donde lo recomendamos" en las fichas, las 6 guías más recientes en la portada, el comparador como una sola dirección para Google (`/comparar#p=`), fechas reales en el sitemap para 56 de 61 páginas, y el build ahora falla con enlaces internos rotos o descripciones de comparativas de más de 155 caracteres
+
 - [x] (2026-11-04) T015 Productos nuevos: 3 focos para redes de 220–240 V (WiZ A60 E27, Philips Hue A60 E27 y foco Tuya / Smart Life genérico)
 - [x] (2026-11-02) T014 Guía: cómo medir el consumo eléctrico de tus electrodomésticos con enchufes inteligentes
 - [x] (2026-10-30) T013 Reescribir guía antigua: Alexa vs Google Home vs Apple HomeKit, verificando cada dato y la disponibilidad en Latinoamérica (mantener la URL)

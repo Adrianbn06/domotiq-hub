@@ -9,6 +9,7 @@ import fs from 'fs';
 import path from 'path';
 import { esc, pagina, AVISO_AFILIADOS, icono, ilustracion, focoColgante, tarjetaProducto, fila, pila, recortar, PAISES } from './catalogo.js';
 import { leerComparativas } from './comparativas.js';
+import { leerGuias } from './guias.js';
 
 // ─── CONTENIDO EDITABLE ───────────────────────────────────────────────────────
 const SELECCION = [
@@ -38,21 +39,22 @@ const RUTAS = [
 // El foco del escenario nocturno: uno por cada red (pais.js cambia al de 220 V si tu país lo es)
 const FOCOS = { 110: 'tapo-l535e', 220: 'tapo-l530e' };
 
-const GUIAS = [
-  'articulos-editoriales/que-es-la-domotica-como-empezar-menos-50.html',
-  'articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026.html',
-  'articulos-editoriales/alexa-vs-google-home-vs-homekit.html',
-  'articulos-editoriales/matter-1-4-estandar-unifica-smart-home-2026.html',
-];
+// Guías de la portada: primero las fijas (la de inicio) y después las más recientes, hasta el máximo.
+// Así cada guía nueva recibe un enlace desde la página más importante del sitio sin tocar nada aquí.
+const GUIAS_FIJAS = ['que-es-la-domotica-como-empezar-menos-50'];
+const GUIAS_EN_PORTADA = 6;
 
 // ─── UTILIDADES ───────────────────────────────────────────────────────────────
-function leerGuia(root, rel) {
-  const html = fs.readFileSync(path.join(root, 'public', rel), 'utf8');
-  const dec = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
-  const titulo = dec((html.match(/<title>([^<]*)<\/title>/) || [])[1] || rel)
-    .replace(/\s*[|—–]\s*OfertasDomoticas(\.com)?\s*$/i, '').trim();
-  const desc = dec((html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '');
-  return { url: '/' + rel.replace(/\.html$/, ''), titulo, desc };
+function guiasDePortada(todas) {
+  const fijas = GUIAS_FIJAS.map((slug) => {
+    const g = todas.find((x) => x.slug === slug);
+    if (!g) throw new Error(`Portada: la guía fija "${slug}" no existe en data/guias.json`);
+    return g;
+  });
+  const recientes = todas.filter((g) => !GUIAS_FIJAS.includes(g.slug))
+    .sort((a, b) => b.actualizado.localeCompare(a.actualizado) || b.publicado.localeCompare(a.publicado));
+  return [...fijas, ...recientes].slice(0, GUIAS_EN_PORTADA)
+    .map((g) => ({ url: `/articulos-editoriales/${g.slug}`, titulo: g.tituloCorto, desc: g.descripcion }));
 }
 
 const cabezaSeccion = (titulo, texto, enlace) => `<div class="sec-head">
@@ -69,7 +71,9 @@ export function generarPortada(root) {
     return porSlug[slug];
   };
   const comparativasArt = leerComparativas(root);
-  const guias = GUIAS.map((rel) => leerGuia(root, rel));
+  const todasLasGuias = leerGuias(root);
+  const guias = guiasDePortada(todasLasGuias);
+  const ultimaFecha = [data.actualizado, ...todasLasGuias.map((g) => g.actualizado), ...comparativasArt.map((c) => c.actualizado)].sort().pop();
   const foco = usar(FOCOS[110]);
   const foco220 = usar(FOCOS[220]);
   const nombreFoco = (p) => `${p.nombre.replace(/\s*\(.*?\)/g, '')}: blancos de 2500 a 6500 K`;
@@ -88,7 +92,7 @@ export function generarPortada(root) {
 
   const comparaciones = COMPARATIVAS.map(([titulo, slugs]) => {
     const prods = slugs.map(usar);
-    return fila({ href: `/comparar?p=${slugs.join(',')}`, titulo, sub: prods.map((p) => p.nombre).join(' vs '), inicio: pila(prods.map((p) => p.categoria)) });
+    return fila({ href: `/comparar#p=${slugs.join(',')}`, titulo, sub: prods.map((p) => p.nombre).join(' vs '), inicio: pila(prods.map((p) => p.categoria)) });
   }).join('\n');
 
   const articulos = comparativasArt.map((c) => fila({
@@ -129,7 +133,7 @@ export function generarPortada(root) {
     <dl class="strip">
       <div><dt>Productos</dt><dd>${data.productos.length}</dd></div>
       <div><dt>Comparativas</dt><dd>${comparativasArt.length}</dd></div>
-      <div><dt>Guías</dt><dd>${guias.length}</dd></div>
+      <div><dt>Guías</dt><dd>${todasLasGuias.length}</dd></div>
       <div><dt>Países</dt><dd>${PAISES.length}</dd></div>
     </dl>
   </div>
@@ -216,16 +220,32 @@ ${AVISO_AFILIADOS}`;
     title: 'OfertasDomoticas.com: domótica práctica para Latinoamérica',
     description: `Elige enchufes, focos, sensores y hubs que funcionen en tu país (110 V o 220 V): ${data.productos.length} productos verificados, comparador y guías de domótica en español.`,
     canonical: '/',
+    modificado: ultimaFecha,
     body,
   });
-  // JSON-LD del sitio (solo datos, no se ejecuta)
+  // JSON-LD del sitio (solo datos, no se ejecuta): el sitio y quién lo publica
+  const sitio = 'https://www.ofertasdomoticas.com/';
   const ld = `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'OfertasDomoticas.com',
-    url: 'https://www.ofertasdomoticas.com/',
-    inLanguage: 'es',
-    description: 'Domótica práctica para Latinoamérica: catálogo, comparador y guías.',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${sitio}#sitio`,
+        name: 'OfertasDomoticas.com',
+        alternateName: 'Ofertas Domóticas',
+        url: sitio,
+        inLanguage: 'es',
+        description: 'Domótica práctica para Latinoamérica: catálogo, comparador y guías.',
+        publisher: { '@id': `${sitio}#organizacion` },
+      },
+      {
+        '@type': 'Organization',
+        '@id': `${sitio}#organizacion`,
+        name: 'OfertasDomoticas.com',
+        url: sitio,
+        logo: `${sitio}apple-touch-icon.png`,
+      },
+    ],
   })}</script>`;
   fs.writeFileSync(path.join(root, 'public', 'index.html'), html.replace('</head>', `  ${ld}\n</head>`), 'utf8');
   console.log('🏠 Portada generada');

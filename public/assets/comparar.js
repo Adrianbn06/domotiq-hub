@@ -98,7 +98,8 @@
     const n = String(Math.max(prods.length, 1));
     raiz.style.setProperty('--n', n);
     fija.style.setProperty('--n', n);
-    history.replaceState(null, '', prods.length ? `?p=${sel.join(',')}` : location.pathname);
+    // La selección va en el #: para Google es una sola página (/comparar), no una por combinación
+    history.replaceState(null, '', location.pathname + (prods.length ? `#p=${sel.join(',')}` : ''));
     document.querySelectorAll('.preset[data-preset]').forEach((b) => {
       const s = b.getAttribute('data-preset').split(',');
       b.setAttribute('aria-pressed', String(s.length === sel.length && s.every((x) => sel.includes(x))));
@@ -239,8 +240,11 @@
     .then((r) => r.json())
     .then((d) => {
       datos = d;
-      sel = (new URLSearchParams(location.search).get('p') || '').split(',')
+      // #p=a,b (actual) o ?p=a,b (enlaces antiguos que ya circulan)
+      const elegidos = () => (new URLSearchParams(location.hash.slice(1)).get('p') || new URLSearchParams(location.search).get('p') || '').split(',')
         .filter((s, i, a) => s && a.indexOf(s) === i && porSlug(s)).slice(0, MAX);
+      sel = elegidos();
+      window.addEventListener('hashchange', () => { const n = elegidos(); if (n.length) { sel = n; pintar(); } });
       if (!sel.length) {
         const primero = document.querySelector('.preset[data-preset]');
         if (primero) sel = primero.getAttribute('data-preset').split(',');

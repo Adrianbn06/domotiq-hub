@@ -53,7 +53,7 @@ const PAGINAS = {
 
   privacidad: {
     title: tituloSeo('Política de privacidad y cookies'),
-    description: 'Qué datos recoge OfertasDomoticas.com, cómo usamos Google Analytics (solo con tu consentimiento), Cloudflare y los enlaces de afiliado, y cuáles son tus derechos.',
+    description: 'Qué datos recoge OfertasDomoticas.com, cómo usamos Google Analytics (solo con tu consentimiento), Cloudflare y los enlaces de afiliado.',
     body: `<div class="bc"><a href="/">Inicio</a> › Privacidad</div>
 <article class="article">
 <h1>Política de privacidad y cookies</h1>

@@ -19,7 +19,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { esc, fmt, plano, pagina, badges, AVISO_AFILIADOS, tituloSeo, recortar, icono, ilustracion, fila } from './catalogo.js';
+import { esc, fmt, plano, pagina, badges, AVISO_AFILIADOS, tituloSeo, recortar, icono, ilustracion, fila, productosDeGuia, masAfines, sigueLeyendo, guiaAfin, comparativaAfin } from './catalogo.js';
 
 // La etiqueta de una guía puede traer un emoji delante: el diseño usa iconos, no emojis
 const sinEmoji = (t) => String(t).replace(/^[\p{Extended_Pictographic}️‍\s]+/u, '');
@@ -103,8 +103,11 @@ function minutosLectura(g) {
   return Math.max(1, Math.round(palabras / 200));
 }
 
-function paginaGuia(g, porSlug) {
+function paginaGuia(g, porSlug, guias, comparativas) {
   validar(g, porSlug);
+  const misProductos = productosDeGuia(g);
+  const afinesGuias = masAfines(misProductos, guias.filter((o) => o.slug !== g.slug).map(guiaAfin), 3, porSlug);
+  const afinesComp = masAfines(misProductos, comparativas.map(comparativaAfin), 2, porSlug);
   const indice = [
     ...g.secciones.map((s) => [idDe(s.titulo), s.titulo]),
     ['ventajas-y-desventajas', 'Ventajas y desventajas'],
@@ -165,6 +168,11 @@ ${g.fuentes?.length ? `<h2 id="fuentes">Fuentes</h2>
 ${g.fuentes.map((f) => `<li><a href="${esc(f.url)}" rel="noopener nofollow">${esc(f.texto)}</a></li>`).join('\n')}
 </ul>` : ''}
 
+${sigueLeyendo([
+    ...afinesGuias.map((o) => fila({ href: `/${DIR}/${o.slug}`, antetitulo: 'Guía', titulo: o.titulo, icono: 'libro' })),
+    ...afinesComp.map((o) => fila({ href: `/comparativas/${o.slug}`, antetitulo: 'Comparativa', titulo: o.titulo, icono: 'balanza' })),
+  ])}
+
 <div class="cta-box">
   <p>¿Quieres ver más opciones con voltaje, clavija y compatibilidad revisados?</p>
   <div class="links-list"><a href="/productos/" class="btn">Ver el catálogo</a><a href="/comparar" class="btn secondary">${icono('columnas')}Comparar productos</a></div>
@@ -178,6 +186,7 @@ ${AVISO_AFILIADOS}`;
       '@context': 'https://schema.org', '@type': 'Article',
       headline: g.titulo, description: g.descripcion,
       datePublished: g.publicado, dateModified: g.actualizado, inLanguage: 'es',
+      image: `${SITE_URL}/og-image.png`,
       author: { '@type': 'Organization', name: 'OfertasDomoticas.com', url: SITE_URL },
       publisher: { '@type': 'Organization', name: 'OfertasDomoticas.com', url: SITE_URL },
       mainEntityOfPage: url,
@@ -193,6 +202,9 @@ ${AVISO_AFILIADOS}`;
     description: g.descripcion,
     canonical: `/${DIR}/${g.slug}`,
     breadcrumbs: [['Inicio', '/'], ['Guías', `/${DIR}/`], [g.tituloCorto, `/${DIR}/${g.slug}`]],
+    tipo: 'article',
+    publicado: g.publicado,
+    modificado: g.actualizado,
     body,
   }).replace('</head>', `${ld}\n</head>`);
 }
@@ -206,11 +218,14 @@ function resumenDe(file) {
   return { titulo, desc };
 }
 
-function paginaIndice(dir) {
+function paginaIndice(dir, guias) {
+  // Las más recientes primero: el lector (y Google) ven arriba lo nuevo. Un artículo escrito a mano
+  // que no esté en data/guias.json no tiene fecha y va al final.
+  const fecha = Object.fromEntries(guias.map((g) => [g.slug, g.actualizado]));
   const items = fs.readdirSync(dir)
     .filter((f) => f.endsWith('.html') && f !== 'index.html')
-    .sort()
-    .map((f) => ({ slug: f.replace(/\.html$/, ''), ...resumenDe(path.join(dir, f)) }));
+    .map((f) => ({ slug: f.replace(/\.html$/, ''), ...resumenDe(path.join(dir, f)) }))
+    .sort((a, b) => (fecha[b.slug] || '').localeCompare(fecha[a.slug] || '') || a.slug.localeCompare(b.slug));
   const body = `<div class="bc"><a href="/">Inicio</a> › Guías</div>
 <p class="eyebrow">Guías</p>
 <h1>Guías de domótica para Latinoamérica</h1>
@@ -223,6 +238,7 @@ ${AVISO_AFILIADOS}`;
     title: tituloSeo('Guías de domótica para Latinoamérica'),
     description: 'Guías prácticas de domótica para Latinoamérica: cómo empezar, voltaje y clavija, protocolos y qué comprar, con datos verificados.',
     canonical: `/${DIR}/`,
+    modificado: guias.map((g) => g.actualizado).sort().pop(),
     breadcrumbs: [['Inicio', '/'], ['Guías', `/${DIR}/`]],
     body,
   });
@@ -234,12 +250,14 @@ export function generarGuias(root) {
   const porSlug = Object.fromEntries(productos.map((p) => [p.slug, p]));
   const dir = path.join(root, 'public', DIR);
   fs.mkdirSync(dir, { recursive: true });
+  const fComp = path.join(root, 'data', 'comparativas.json');
+  const comparativas = fs.existsSync(fComp) ? JSON.parse(fs.readFileSync(fComp, 'utf8')).comparativas : [];
   const slugs = new Set();
   for (const g of guias) {
     if (slugs.has(g.slug)) throw new Error(`Guía duplicada: ${g.slug}`);
     slugs.add(g.slug);
-    fs.writeFileSync(path.join(dir, `${g.slug}.html`), paginaGuia(g, porSlug), 'utf8');
+    fs.writeFileSync(path.join(dir, `${g.slug}.html`), paginaGuia(g, porSlug, guias, comparativas), 'utf8');
   }
-  fs.writeFileSync(path.join(dir, 'index.html'), paginaIndice(dir), 'utf8');
+  fs.writeFileSync(path.join(dir, 'index.html'), paginaIndice(dir, guias), 'utf8');
   console.log(`📖 Guías: ${guias.length} generadas (índice con ${fs.readdirSync(dir).filter((f) => f.endsWith('.html')).length - 1} artículos)`);
 }

@@ -241,8 +241,15 @@ export function recortar(texto, max = 155) {
 
 export const FUENTES = '<link rel="preconnect" href="https://fonts.googleapis.com">\n  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">';
 
-export function pagina({ title, description, canonical, body, scripts = [], breadcrumbs, robots = 'index, follow' }) {
+// tipo: 'website' o 'article'. publicado / modificado (AAAA-MM-DD): fecha real del contenido; el
+// sitemap usa "modificado" como lastmod (scripts/build.js), así que no pongas la fecha del build.
+export function pagina({ title, description, canonical, body, scripts = [], breadcrumbs, robots = 'index, follow', tipo = 'website', publicado, modificado }) {
   description = recortar(description);
+  const fechas = [
+    tipo === 'article' && publicado ? `<meta property="article:published_time" content="${esc(publicado)}">` : '',
+    tipo === 'article' && modificado ? `<meta property="article:modified_time" content="${esc(modificado)}">` : '',
+    modificado ? `<meta property="og:updated_time" content="${esc(modificado)}">` : '',
+  ].filter(Boolean).map((m) => `\n  ${m}`).join('');
   const ld = breadcrumbs ? `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -259,7 +266,7 @@ export function pagina({ title, description, canonical, body, scripts = [], brea
   <link rel="canonical" href="${SITE_URL}${canonical}">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="${tipo}">${fechas}
   <meta property="og:url" content="${SITE_URL}${canonical}">
   <meta property="og:image" content="${SITE_URL}/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -417,8 +424,9 @@ ${AVISO_AFILIADOS}`;
 
   return pagina({
     title: tituloSeo('Catálogo de domótica para Latinoamérica'),
-    description: `Compara ${productos.length} productos de domótica (Sonoff, Aqara, Tapo, Shelly, WiZ, Hue y Tuya) por voltaje, protocolo y compatibilidad con Alexa, Google, Apple Home y Home Assistant.`,
+    description: `${productos.length} productos de domótica (Sonoff, Aqara, Tapo, Shelly, WiZ, Hue y Tuya) con filtros por voltaje, protocolo y compatibilidad con Alexa, Google y Apple Home.`,
     canonical: '/productos/',
+    modificado: data.actualizado,
     scripts: ['/assets/catalogo.js'],
     breadcrumbs: [['Inicio', '/'], ['Productos', '/productos/']],
     body,
@@ -432,8 +440,56 @@ ${filas.map((f) => `<div class="dato"><dt>${esc(f.label)}</dt><dd>${f.cls ? esta
 </dl>`;
 }
 
-function paginaProducto(p, data, tiendas, comparativas = []) {
+// Productos del catálogo que recomienda una guía (bloques "oferta" y veredicto por perfil)
+export function productosDeGuia(g) {
+  return [...new Set([
+    ...(g.secciones || []).flatMap((s) => s.bloques || []).map((b) => b.oferta),
+    ...(g.veredicto?.perfiles || []).map((x) => x.producto),
+  ].filter(Boolean))];
+}
+
+// ─── ENLACES ENTRE ARTÍCULOS ──────────────────────────────────────────────────
+// Guías y comparativas terminan con un bloque "Sigue leyendo" hacia los artículos más afines: así
+// ninguna página queda enlazada solo desde su índice (Google reparte la importancia por los enlaces).
+// candidatos: [{ productos: [slugs], fecha: 'AAAA-MM-DD', ... }]. Gana quien comparte más productos;
+// después, quien comparte más categorías; después, el más reciente.
+export function masAfines(slugs, candidatos, max, porSlug) {
+  const cats = (lista) => [...new Set(lista.map((s) => porSlug[s]?.categoria).filter(Boolean))];
+  const mias = cats(slugs);
+  const puntos = (c) => c.productos.filter((s) => slugs.includes(s)).length * 10 + cats(c.productos).filter((k) => mias.includes(k)).length;
+  return [...candidatos].sort((a, b) => puntos(b) - puntos(a) || b.fecha.localeCompare(a.fecha)).slice(0, max);
+}
+
+export function sigueLeyendo(filas) {
+  return filas.length ? `<h2 id="sigue-leyendo">Sigue leyendo</h2>
+<div class="group">
+${filas.join('\n')}
+</div>` : '';
+}
+
+// Lo que necesita masAfines de cada guía y de cada comparativa
+export const guiaAfin = (g) => ({ slug: g.slug, titulo: g.tituloCorto, productos: productosDeGuia(g), fecha: g.actualizado });
+export const comparativaAfin = (c) => ({ slug: c.slug, titulo: c.tituloCorto, productos: c.productos, fecha: c.actualizado });
+
+// Descripción para Google: la primera frase del resumen y, si cabe en 155 caracteres, qué más trae
+// la ficha. Así nunca sale cortada con "…" ni con doble punto.
+const COLAS_DESCRIPCION = [
+  ' Voltaje, protocolo y compatibilidad con Alexa, Google, Apple Home y Home Assistant.',
+  ' Voltaje, protocolo y compatibilidad con Alexa, Google y Apple Home.',
+  ' Voltaje, protocolo y compatibilidad.',
+];
+export function descripcionProducto(p) {
+  let frase = p.resumen.split('. ')[0].replace(/[.\s]+$/, '');
+  // Una primera frase demasiado larga se corta en su última coma, no a mitad de palabra
+  if (frase.length > 154 && frase.lastIndexOf(', ', 154) > 60) frase = frase.slice(0, frase.lastIndexOf(', ', 154));
+  const cola = COLAS_DESCRIPCION.find((c) => frase.length + 1 + c.length <= 155) || '';
+  return `${frase}.${cola}`;
+}
+
+function paginaProducto(p, data, tiendas, comparativas = [], guias = []) {
   const enComparativas = comparativas.filter((c) => c.productos.includes(p.slug));
+  const enGuias = guias.filter((g) => productosDeGuia(g).includes(p.slug))
+    .sort((a, b) => b.actualizado.localeCompare(a.actualizado)).slice(0, 4);
   const cat = data.categorias[p.categoria];
   const otros = data.productos.filter((o) => o.categoria === p.categoria && o.slug !== p.slug);
   const compat = fichaCompat(p);
@@ -475,12 +531,17 @@ ${enComparativas.length ? `<h2>Aparece en estas comparativas</h2>
 <div class="group">
 ${enComparativas.map((c) => fila({ href: `/comparativas/${c.slug}`, titulo: c.tituloCorto, icono: 'balanza' })).join('\n')}
 </div>` : ''}
+${enGuias.length ? `<h2>Guías donde lo recomendamos</h2>
+<div class="group">
+${enGuias.map((g) => fila({ href: `/articulos-editoriales/${g.slug}`, titulo: g.tituloCorto, icono: 'libro' })).join('\n')}
+</div>` : ''}
 <h2>¿Para quién es?</h2>
 <p>${esc(p.idealPara)}</p>
 ${otros.length ? `<h2>Compáralo con otros ${esc(cat.nombre.toLowerCase())}</h2>
 <div class="group">
-${otros.map((o) => fila({ href: `/comparar?p=${p.slug},${o.slug}`, titulo: `vs ${o.nombre}`, inicio: pila([o.categoria]) })).join('\n')}
-</div>` : ''}
+${otros.map((o) => fila({ href: `/comparar#p=${p.slug},${o.slug}`, titulo: `vs ${o.nombre}`, inicio: pila([o.categoria]) })).join('\n')}
+</div>
+<p class="small">Fichas de otros ${esc(cat.nombre.toLowerCase())}: ${otros.map((o) => `<a href="/productos/${esc(o.slug)}">${esc(o.nombre.replace(/\s*\(.*?\)/g, ''))}</a>`).join(' · ')}.</p>` : ''}
 <p class="muted small nota-datos">Datos actualizados el ${esc(data.actualizado)} a partir de las especificaciones del fabricante.</p>
 ${AVISO_AFILIADOS}
 </div>
@@ -488,8 +549,9 @@ ${tiendasP.length ? `<div class="buybar" hidden><span class="num">${esc(PRECIO[p
 
   return pagina({
     title: tituloSeo(`${p.nombre.replace(/\s*\(.*?\)/g, '')}: ficha técnica`),
-    description: `${p.resumen.split('. ')[0]}. Voltaje, protocolo, compatibilidad con Alexa, Google, Apple Home y Home Assistant.`.slice(0, 300),
+    description: descripcionProducto(p),
     canonical: `/productos/${p.slug}`,
+    modificado: data.actualizado,
     scripts: ['/assets/ficha.js'],
     breadcrumbs: [['Inicio', '/'], ['Productos', '/productos/'], [p.nombre, `/productos/${p.slug}`]],
     body,
@@ -499,7 +561,7 @@ ${tiendasP.length ? `<div class="buybar" hidden><span class="num">${esc(PRECIO[p
 // ─── COMPARADOR ───────────────────────────────────────────────────────────────
 function paginaComparar(data) {
   const cat = (s) => data.productos.find((p) => p.slug === s).categoria;
-  const presets = PRESETS_COMPARADOR.map(([texto, slugs]) => `<a class="preset" href="/comparar?p=${slugs.join(',')}" data-preset="${slugs.join(',')}">${pila(slugs.map(cat), 'chica')}${esc(texto)}</a>`).join('\n');
+  const presets = PRESETS_COMPARADOR.map(([texto, slugs]) => `<a class="preset" href="/comparar#p=${slugs.join(',')}" data-preset="${slugs.join(',')}">${pila(slugs.map(cat), 'chica')}${esc(texto)}</a>`).join('\n');
   const body = `<div class="bc"><a href="/">Inicio</a> › Comparar</div>
 <p class="eyebrow">Comparador</p>
 <h1>Compara productos de domótica</h1>
@@ -514,8 +576,9 @@ ${Object.keys(ILUSTRACIONES).map((c) => `<template id="ill-${c}">${ilustracion(c
 ${AVISO_AFILIADOS}`;
   return pagina({
     title: tituloSeo('Comparador de productos de domótica'),
-    description: 'Compara hasta 3 productos de domótica: voltaje, protocolo (WiFi, Zigbee, Matter), si necesitan hub y compatibilidad con Alexa, Google, Apple Home y Home Assistant.',
+    description: 'Compara hasta 3 productos de domótica lado a lado: voltaje, protocolo (WiFi, Zigbee, Matter), si necesitan hub y compatibilidad con Alexa, Google y Apple.',
     canonical: '/comparar',
+    modificado: data.actualizado,
     scripts: ['/assets/comparar.js'],
     breadcrumbs: [['Inicio', '/'], ['Comparar', '/comparar']],
     body,
@@ -528,6 +591,8 @@ export function generarCatalogo(root) {
   const { tiendas } = JSON.parse(fs.readFileSync(path.join(root, 'data', 'tiendas.json'), 'utf8'));
   const fComp = path.join(root, 'data', 'comparativas.json');
   const comparativas = fs.existsSync(fComp) ? JSON.parse(fs.readFileSync(fComp, 'utf8')).comparativas : [];
+  const fGuias = path.join(root, 'data', 'guias.json');
+  const guias = fs.existsSync(fGuias) ? JSON.parse(fs.readFileSync(fGuias, 'utf8')).guias : [];
   const outDir = path.join(root, 'public', 'productos');
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
@@ -546,7 +611,7 @@ export function generarCatalogo(root) {
       if (!COMPAT[p.compat?.[key]]) throw new Error(`Compatibilidad "${key}" inválida en ${p.slug}`);
     }
     if (!PRECIO[p.precio]) throw new Error(`Precio inválido en ${p.slug}`);
-    fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaProducto(p, data, tiendas, comparativas), 'utf8');
+    fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaProducto(p, data, tiendas, comparativas, guias), 'utf8');
   }
   fs.writeFileSync(path.join(outDir, 'index.html'), paginaCatalogo(data), 'utf8');
   fs.writeFileSync(path.join(root, 'public', 'comparar.html'), paginaComparar(data), 'utf8');
