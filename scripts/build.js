@@ -20,6 +20,7 @@ import { generarComparativas } from './comparativas.js';
 import { generarPaginas } from './paginas.js';
 import { generarGuias } from './guias.js';
 import { actualizarLegado } from './legado.js';
+import { comprobarSeguridad } from './seguridad.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
@@ -114,4 +115,5 @@ generarPaginas(ROOT);
 generarPortada(ROOT);
 comprobarFormato();
 comprobarEnlaces();
+comprobarSeguridad(PUBLIC_DIR);
 generateSitemap();
