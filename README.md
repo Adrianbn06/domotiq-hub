@@ -17,7 +17,9 @@ Sitio 100 % estático publicado en Cloudflare Workers (static assets): cada merg
 | `scripts/portada.js` | Genera la portada. La selección de productos y las comparativas destacadas se editan al principio del archivo. |
 | `scripts/build.js` | Build completo: catálogo + portada + `sitemap.xml`. |
 | `public/` | Lo que se publica. `public/index.html`, `public/productos/`, `public/comparativas/`, `public/comparar.html` y `public/data/` se generan en el build. |
-| `public/_headers` | Cabeceras de seguridad (CSP estricta en portada, catálogo y comparador). |
+| `public/_headers` | Cabeceras de seguridad para todo el sitio (CSP estricta: sin scripts ni estilos en línea). |
+| `scripts/seguridad.js` | Comprobación de seguridad del build: falla si una página lleva scripts o estilos en línea, enlaces inseguros o si la CSP deja de cubrir todo el sitio. |
+| `public/.well-known/security.txt` | A quién avisar si alguien encuentra un fallo de seguridad (renovar la fecha `Expires` una vez al año). |
 | `public/_redirects` | Redirecciones 301 de las páginas antiguas retiradas. |
 | `wrangler.jsonc` | Configuración de Cloudflare Workers. |
 

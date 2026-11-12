@@ -25,12 +25,12 @@ export const esc = (s) => String(s ?? '')
 export function fmt(t) {
   return esc(t)
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '<a href="$2">$1</a>');
+    .replace(/\[([^\]]+)\]\((\/(?!\/)[^)\s]*)\)/g, '<a href="$2">$1</a>');
 }
 
 // El mismo texto sin formato, para JSON-LD, resúmenes y contar palabras
 export function plano(t) {
-  return String(t).replace(/\*\*(.+?)\*\*/g, '$1').replace(/\[([^\]]+)\]\((\/[^)\s]*)\)/g, '$1');
+  return String(t).replace(/\*\*(.+?)\*\*/g, '$1').replace(/\[([^\]]+)\]\((\/(?!\/)[^)\s]*)\)/g, '$1');
 }
 
 // ─── ICONOS ───────────────────────────────────────────────────────────────────
