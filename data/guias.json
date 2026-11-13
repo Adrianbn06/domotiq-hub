@@ -3282,6 +3282,213 @@
           "url": "https://www.shelly.com/products/shelly-1-gen4"
         }
       ]
+    },
+    {
+      "slug": "smart-life-vs-tuya-vs-ewelink-que-app-usar",
+      "etiqueta": "🧭 Guía práctica",
+      "titulo": "Smart Life vs Tuya vs eWeLink: qué app usar y si puedes mezclar marcas (2026)",
+      "tituloCorto": "Smart Life vs Tuya vs eWeLink: qué app usar",
+      "descripcion": "Smart Life y Tuya Smart son la misma plataforma; eWeLink es la de Sonoff. Qué app elegir, cómo mezclar marcas sin lío y qué pasa si se cae internet.",
+      "publicado": "2026-11-13",
+      "actualizado": "2026-11-13",
+      "intro": [
+        "Compraste un enchufe barato y te pide descargar **Smart Life**. Otro viene con **Tuya Smart**. Y tu relé Sonoff funciona con **eWeLink**. ¿Son tres apps distintas? ¿Hay que instalarlas todas? ¿Se pueden mezclar?",
+        "Revisamos la documentación pública de Tuya, de eWeLink y de Home Assistant para explicarte en qué se parecen, qué cambia en la práctica y cómo unir todo en un solo punto de control sin volverte loco con tres apps."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué son Smart Life, Tuya Smart y eWeLink",
+          "bloques": [
+            {
+              "p": "**Smart Life y Tuya Smart** son apps de la misma plataforma: Tuya describe que ambas se construyen sobre la misma plataforma Tuya IoT y ofrecen funciones centrales similares. Cualquier dispositivo con firmware Tuya, aunque lo venda otra marca, suele funcionar con ellas. Por eso decenas de fabricantes genéricos mandan al comprador a una de las dos."
+            },
+            {
+              "p": "**eWeLink** es la app de la plataforma de Sonoff. Según su propia ficha, no fabrica dispositivos con su nombre: es una plataforma a la que se conectan fabricantes, y declara más de 2000 fabricantes y 20 millones de dispositivos. Es un ecosistema aparte de Tuya: un dispositivo Tuya no se agrega a eWeLink ni al revés."
+            },
+            {
+              "h3": "Lado a lado"
+            },
+            {
+              "tabla": {
+                "columnas": [
+                  "Aspecto",
+                  "Smart Life / Tuya Smart",
+                  "eWeLink"
+                ],
+                "filas": [
+                  [
+                    "Quién está detrás",
+                    "Tuya (plataforma Tuya IoT)",
+                    "eWeLink (plataforma usada por Sonoff y otros fabricantes)"
+                  ],
+                  [
+                    "Dispositivos típicos",
+                    "Enchufes, focos y gateways genéricos de AliExpress y tiendas locales",
+                    "Sonoff y otras marcas «eWeLink Support»"
+                  ],
+                  [
+                    "Alexa y Google Assistant",
+                    "Sí, a través de la nube de Tuya",
+                    "Sí, a través de la nube de eWeLink"
+                  ],
+                  [
+                    "Home Assistant",
+                    "Integración oficial que solo usa la nube de Tuya",
+                    "Complemento oficial de código abierto para control local, según eWeLink"
+                  ],
+                  [
+                    "Control sin internet",
+                    "No con la interfaz estándar de Smart Life; algunos dispositivos nuevos lo permiten",
+                    "Posible con modo LAN en equipos compatibles, a través de integraciones locales"
+                  ]
+                ]
+              }
+            },
+            {
+              "nota": "Tuya Smart y Smart Life no son rivales: la diferencia principal es la marca de la app. Elige una sola y úsala para todos tus dispositivos Tuya."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo se conectan por debajo: nube, voz y control local",
+          "bloques": [
+            {
+              "p": "Los tres sistemas funcionan igual en lo básico: el dispositivo se conecta al WiFi de **2,4 GHz**, se registra en la nube del fabricante y la app habla con esa nube. Cuando le dices «Alexa, enciende la luz», la orden pasa por **dos nubes**: la de Amazon y la del fabricante. Tuya lo reconoce: la integración funciona, pero suma latencia frente al control directo desde la app."
+            },
+            {
+              "p": "Para Alexa, eWeLink pide activar la skill «eWeLink Smart Home», iniciar sesión y pedir «descubrir dispositivos». No necesita hub para los equipos WiFi, pero sí internet: Alexa no controla estos dispositivos sin conexión. Los equipos Zigbee necesitan un puente compatible y su integración con Alexa puede ser limitada."
+            },
+            {
+              "h3": "Home Assistant: el punto de unión"
+            },
+            {
+              "p": "Si quieres **todo en una sola app**, la salida más común es Home Assistant. Su integración oficial con Tuya funciona con dispositivos añadidos en Tuya Smart o Smart Life, pero se comunica solo con la nube de Tuya. Para eWeLink hay un complemento oficial de código abierto, según la propia eWeLink. Ten en cuenta que las integraciones locales que menciona la comunidad (como LocalTuya o SonoffLAN) las mantienen terceros, no los fabricantes."
+            },
+            {
+              "aviso": "Mezclar marcas multiplica las nubes: cada una es un punto que puede fallar o cambiar sus condiciones. Revisa también la guía sobre [qué funciona sin internet](/articulos-editoriales/casa-inteligente-sin-internet-que-funciona-en-local)."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo mezclar marcas sin complicarte",
+          "bloques": [
+            {
+              "p": "No hace falta que todo sea de una misma marca. La regla práctica es **una app por ecosistema y un asistente por encima**:"
+            },
+            {
+              "lista": [
+                "**Dispositivos Tuya** (enchufes y focos genéricos, gateway Zigbee): todos en la misma app, Smart Life o Tuya Smart, no repartidos entre las dos.",
+                "**Dispositivos Sonoff:** en eWeLink.",
+                "**Un asistente común:** vincula ambas apps a Alexa o Google Home y crea ahí las rutinas que mezclan marcas. Consulta la comparación de [Alexa, Google Home y HomeKit](/articulos-editoriales/alexa-vs-google-home-vs-homekit).",
+                "**Si quieres control local y automatizaciones avanzadas:** Home Assistant, con más trabajo de configuración."
+              ]
+            },
+            {
+              "h3": "Voltaje y clavija: no dependen de la app"
+            },
+            {
+              "p": "La app no decide si el aparato sirve en tu casa. Los genéricos Tuya existen en versiones de 110 V y de 220 V, y hay que verificar voltaje, clavija y corriente en cada anuncio; el MINIR4 de Sonoff acepta 100–240 V. Revisa la guía de [voltaje y clavija](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica) antes de comprar."
+            },
+            {
+              "aviso": "Los relés como el MINIR4 se instalan en la caja de pared, con la corriente de la casa. Si no tienes experiencia, **llama a un electricista**."
+            }
+          ]
+        },
+        {
+          "titulo": "Tres productos del catálogo para cada caso",
+          "bloques": [
+            {
+              "p": "Estas son las opciones del catálogo según el ecosistema que quieras:"
+            },
+            {
+              "oferta": "enchufe-tuya-wifi",
+              "motivo": "La puerta de entrada al ecosistema Tuya: barato y con versiones para casi cualquier clavija. Comprueba voltaje y corriente en el anuncio, porque varían entre vendedores."
+            },
+            {
+              "oferta": "gateway-tuya-zigbee",
+              "motivo": "Para sumar sensores Zigbee a la app Smart Life. Depende de la nube de Tuya y la calidad cambia según el vendedor."
+            },
+            {
+              "oferta": "sonoff-minir4",
+              "motivo": "El camino eWeLink: relé WiFi de 100–240 V con control local (LAN). Necesita cable neutro y una instalación segura."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Smart Life y Tuya Smart sirven para miles de dispositivos** de marcas distintas con el mismo firmware.",
+        "**Todo en una app por ecosistema:** menos aplicaciones que mantener.",
+        "**Alexa y Google** funcionan con ambas plataformas.",
+        "**Con Home Assistant** puedes unir ambas plataformas en un solo lugar."
+      ],
+      "desventajas": [
+        "**Dependencia de la nube:** sin internet, el control por voz de Alexa no funciona con eWeLink y Smart Life no ofrece control local estándar.",
+        "**Dos nubes al usar voz:** más latencia que desde la app del fabricante.",
+        "**Tres plataformas, tres cuentas:** hay que mantener cada una.",
+        "**Las integraciones locales las mantiene la comunidad:** pueden dejar de funcionar tras una actualización."
+      ],
+      "faq": [
+        {
+          "p": "¿Smart Life y Tuya Smart son lo mismo?",
+          "r": "Son apps de la misma plataforma Tuya IoT con funciones similares. La principal diferencia es la marca. Home Assistant admite dispositivos añadidos en cualquiera de las dos."
+        },
+        {
+          "p": "¿Puedo usar un dispositivo Sonoff en Smart Life?",
+          "r": "No. Sonoff usa eWeLink, que es otra plataforma. Para unirlos usa Alexa, Google Home o Home Assistant."
+        },
+        {
+          "p": "¿Funcionan estos dispositivos si se cae internet?",
+          "r": "Depende. Alexa necesita internet para controlar equipos eWeLink, y Smart Life no ofrece control local en su interfaz estándar. Con Home Assistant y modo LAN, algunos equipos Sonoff pueden controlarse localmente."
+        },
+        {
+          "p": "¿Necesito un hub?",
+          "r": "Para los equipos WiFi, no. Para los sensores Zigbee sí necesitas un gateway o coordinador Zigbee."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué app y qué producto elegir",
+        "intro": "Según lo que quieras:",
+        "perfiles": [
+          {
+            "perfil": "Quiero empezar barato y probar",
+            "texto": "Un enchufe Tuya con la app Smart Life.",
+            "producto": "enchufe-tuya-wifi"
+          },
+          {
+            "perfil": "Quiero sensores Zigbee baratos dentro de Smart Life",
+            "texto": "Un gateway Zigbee Tuya, sabiendo que depende de la nube.",
+            "producto": "gateway-tuya-zigbee"
+          },
+          {
+            "perfil": "Quiero control local y automatizar luces con mi interruptor de pared",
+            "texto": "Un relé Sonoff con eWeLink y, si te interesa, Home Assistant.",
+            "producto": "sonoff-minir4"
+          }
+        ],
+        "alternativa": "si no quieres manejar varias apps, compra todo de un solo ecosistema y revisa la guía de [primeros dispositivos](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica)."
+      },
+      "fuentes": [
+        {
+          "texto": "Tuya: qué es la app Smart Life y su relación con Tuya Smart (misma plataforma Tuya IoT, nube, Alexa y Google, latencia)",
+          "url": "https://www.tuya.com/industry-details/smart-life-app-what-it-is-how-it-works-and-what-it-means-for-smart-home-users"
+        },
+        {
+          "texto": "eWeLink: qué es eWeLink (plataforma, fabricantes, no vende dispositivos)",
+          "url": "https://forum.ewelink.cc/t/what-is-ewelink/80"
+        },
+        {
+          "texto": "eWeLink: ecosistemas compatibles (Alexa, Google, SmartThings, IFTTT, Home Assistant)",
+          "url": "https://ewelink.cc/ewelink-support-diversified-ecosystems/"
+        },
+        {
+          "texto": "Sonoff: vincular eWeLink con Alexa (skill, sin hub, internet necesario, límites de Zigbee)",
+          "url": "https://help.sonoff.tech/docs/work-with-alexa/"
+        },
+        {
+          "texto": "Home Assistant: integración oficial de Tuya (solo nube; Tuya Smart y Smart Life)",
+          "url": "https://www.home-assistant.io/integrations/tuya/"
+        }
+      ]
     }
   ]
 }

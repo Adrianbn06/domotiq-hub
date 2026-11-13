@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T019 Guía: Smart Life vs Tuya vs eWeLink: qué app usar y si se pueden mezclar marcas
 - [ ] T021 Guía: mitos y verdades de los focos inteligentes (consumo en espera, interruptor de pared, WiFi)
 - [ ] T022 Productos nuevos: 3 interruptores — Sonoff MINIR4M (Matter), un interruptor táctil de pared Zigbee Tuya/MOES y un relé de 2 canales
 - [ ] T023 Guía: domótica en departamentos alquilados: instalaciones sin obras
@@ -170,3 +169,4 @@ Cómo leer la lista:
 - [x] (2026-11-06) T016 Comparativa: focos WiFi baratos vs focos Zigbee de marca
 - [x] (2026-11-09) T017 Guía: cómo instalar un relé o interruptor inteligente con y sin neutro
 - [x] (2026-11-11) T018 Comparativa: relés con neutro — Shelly 1 Gen4 vs Sonoff MINIR4
+- [x] (2026-11-13) T019 Guía: Smart Life vs Tuya vs eWeLink: qué app usar y si se pueden mezclar marcas
