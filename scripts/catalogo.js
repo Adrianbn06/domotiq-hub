@@ -76,12 +76,23 @@ const ICONOS = {
 // Voltaje y clavijas habituales (IEC). Varía en algunas zonas: confírmalo en tu casa.
 // [país, código, voltaje, clavijas, grupo: 110 | 220 | br (depende de la ciudad)]
 // Única fuente: la portada los muestra y public/assets/pais.js los lee de cada página.
+// Después van los datos de las páginas por país (scripts/paises.js):
+// [..., dirección (/paises/<slug>), voltaje nominal, frecuencia en Hz, frecuencia Z-Wave: us | au | null]
+// Clavijas, voltaje nominal y frecuencia: WorldStandards (plug-voltage-by-country), revisado el 2026-11-15.
+// Z-Wave: Silicon Labs (global-regions), la misma fuente de la guía de Zigbee vs Z-Wave vs WiFi.
 export const PAISES = [
-  ['México', 'MX', '127', 'A, B', '110'], ['Centroamérica y Rep. Dominicana', 'CA', '120', 'A, B', '110'],
-  ['Colombia', 'CO', '120', 'A, B', '110'], ['Venezuela', 'VE', '120', 'A, B', '110'], ['Ecuador', 'EC', '120', 'A, B', '110'],
-  ['Perú', 'PE', '220', 'A, B, C', '220'], ['Bolivia', 'BO', '220', 'A, B, C', '220'], ['Chile', 'CL', '220', 'C, L', '220'],
-  ['Argentina', 'AR', '220', 'C, I', '220'], ['Uruguay', 'UY', '220', 'C, F, I, L', '220'], ['Paraguay', 'PY', '220', 'C', '220'],
-  ['Brasil', 'BR', '127/220', 'C, N', 'br'],
+  ['México', 'MX', '127', 'A, B', '110', 'mexico', '127', '60', 'us'],
+  ['Centroamérica y Rep. Dominicana', 'CA', '120', 'A, B', '110', 'centroamerica-y-republica-dominicana', '120', '60', null],
+  ['Colombia', 'CO', '120', 'A, B', '110', 'colombia', '110', '60', 'us'],
+  ['Venezuela', 'VE', '120', 'A, B', '110', 'venezuela', '120', '60', 'au'],
+  ['Ecuador', 'EC', '120', 'A, B', '110', 'ecuador', '120', '60', 'au'],
+  ['Perú', 'PE', '220', 'A, B, C', '220', 'peru', '230', '60', 'au'],
+  ['Bolivia', 'BO', '220', 'A, B, C', '220', 'bolivia', '230', '50', 'us'],
+  ['Chile', 'CL', '220', 'C, L', '220', 'chile', '230', '50', 'au'],
+  ['Argentina', 'AR', '220', 'I', '220', 'argentina', '230', '50', 'us'],
+  ['Uruguay', 'UY', '220', 'C, F, L', '220', 'uruguay', '230', '50', 'au'],
+  ['Paraguay', 'PY', '220', 'A, B, C, N', '220', 'paraguay', '230', '50', 'au'],
+  ['Brasil', 'BR', '127/220', 'C, N', 'br', 'brasil', '127 o 220', '60', 'au'],
 ];
 
 // Bloque de datos (no se ejecuta: la CSP lo permite) que lee public/assets/pais.js
@@ -323,7 +334,7 @@ export function pie() {
     <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada">${MARCA}<span class="wm">ofertas <span>domóticas</span></span></a>
     <p class="pie-lema">Domótica práctica para Latinoamérica: fichas verificadas, comparativas y guías para redes de 110 V y 220 V.</p>
     <nav aria-label="Secciones">
-      <a href="/productos/">Catálogo</a><a href="/comparativas/">Comparativas</a><a href="/comparar">Comparar</a><a href="/articulos-editoriales/">Guías</a><a href="/glosario">Glosario</a>
+      <a href="/productos/">Catálogo</a><a href="/comparativas/">Comparativas</a><a href="/comparar">Comparar</a><a href="/articulos-editoriales/">Guías</a><a href="/paises/">Países</a><a href="/glosario">Glosario</a>
     </nav>
     <nav aria-label="Información">
       <a href="/nosotros">Nosotros</a><a href="/contacto">Contacto</a><a href="/aviso-legal">Aviso legal</a><a href="/privacidad">Privacidad</a><a href="/privacidad#cookies" data-cookies>Configurar cookies</a>
@@ -418,7 +429,7 @@ ${bloques}
   <span id="compare-text">0 seleccionados</span>
   <span class="compare-acciones"><button type="button" class="btn sm secondary" id="compare-clear">Limpiar</button><a class="btn sm" id="compare-go" href="/comparar">Comparar${icono('chev-r')}</a></span>
 </div>
-<div class="callout info">${icono('globo')}<p>¿Qué voltaje usa tu país? <strong>110–120 V:</strong> México, Centroamérica, Colombia, Ecuador y Venezuela. <strong>220–240 V:</strong> Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay. En Brasil depende de la ciudad (127 V o 220 V).</p></div>
+<div class="callout info">${icono('globo')}<p>¿Qué voltaje usa tu país? <strong>110–120 V:</strong> México, Centroamérica, Colombia, Ecuador y Venezuela. <strong>220–240 V:</strong> Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay. En Brasil depende de la ciudad (127 V o 220 V). Mira el detalle de <a href="/paises/">tu país</a>.</p></div>
 <p class="muted small nota-datos">Datos actualizados el ${esc(data.actualizado)}.</p>
 ${AVISO_AFILIADOS}`;
 

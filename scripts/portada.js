@@ -108,8 +108,8 @@ export function generarPortada(root) {
   <div class="dibujo">${ilustracion(dibujo)}</div>
 </article>`).join('\n');
 
-  const mapa = PAISES.map(([pais, codigo, v, clavijas, g]) => {
-    const href = g === 'br' ? '/productos/' : `/productos/?volt=${g}`;
+  const mapa = PAISES.map(([pais, codigo, v, clavijas, g, slug]) => {
+    const href = `/paises/${slug}`;
     return `<a class="vt" href="${href}" data-elegir-pais="${codigo}"><span class="n"><i class="dot g${g}"></i>${esc(pais)}</span><span><span class="cifra${g === 'br' ? ' sm' : ''}">${esc(v)}<small> V</small></span><span class="pl">Clavija ${esc(clavijas)}${g === 'br' ? ' · según la ciudad' : ''}</span></span></a>`;
   }).join('\n');
 
@@ -199,7 +199,7 @@ ${listaGuias}
 </section>
 
 <section class="sec" aria-labelledby="h-paises">
-<div class="sec-head"><div><h2 id="h-paises">Voltaje y clavija por país</h2><p>Lo primero que hay que mirar antes de comprar un enchufe, foco o relé. Son los valores habituales: confírmalos en tu casa.</p></div></div>
+<div class="sec-head"><div><h2 id="h-paises">Voltaje y clavija por país</h2><p>Lo primero que hay que mirar antes de comprar un enchufe, foco o relé. Son los valores habituales: confírmalos en tu casa. Toca tu país para ver qué productos funcionan allí, o mira <a href="/paises/">todos los países</a>.</p></div></div>
 <div class="leyenda"><span><i class="dot g110"></i>110–127 V</span><span><i class="dot g220"></i>220 V</span><span><i class="dot gbr"></i>Depende de la ciudad</span></div>
 <div class="vmap">
 ${mapa}

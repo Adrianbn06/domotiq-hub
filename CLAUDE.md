@@ -68,6 +68,9 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
   Los enlaces al comparador se escriben `/comparar#p=slug1,slug2` (con `#`, no con `?`).
   En `intro`, `secciones`, `veredicto` y `faq` se puede usar `**negrita**` y `[texto](/ruta)`, como en las guías.
   El build falla si queda formato sin convertir en cualquier página (se vería tal cual en la web).
+- `scripts/paises.js` — páginas por país (`/paises/<país>`): red eléctrica, clavijas y qué productos del catálogo
+  funcionan allí. No llevan texto a mano: salen de `PAISES` (`scripts/catalogo.js`, datos de WorldStandards y
+  Silicon Labs) y de `voltajes` / `voltaje` de cada producto, así que se actualizan solas al añadir productos.
 - `scripts/paginas.js` — aviso legal, privacidad, nosotros, contacto y 404 (textos fijos).
 - `public/analytics.js` — aviso de cookies: Google Analytics solo se carga si el visitante acepta. No añadas
   etiquetas de Google Analytics directamente en las páginas.
