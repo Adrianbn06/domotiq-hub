@@ -10,6 +10,7 @@ public/productos/
 public/comparar.html
 public/index.html
 public/comparativas/
+public/paises/
 
 # Configuración local de Claude Code (no se sube). Excepción: .claude/settings.json, que quita
 # las firmas automáticas también en la tarea programada de la nube.
