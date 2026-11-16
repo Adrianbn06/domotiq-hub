@@ -3489,6 +3489,207 @@
           "url": "https://www.home-assistant.io/integrations/tuya/"
         }
       ]
+    },
+    {
+      "slug": "mitos-verdades-focos-inteligentes",
+      "etiqueta": "🧭 Guía práctica",
+      "titulo": "Mitos y verdades de los focos inteligentes: consumo en espera, interruptor de pared y WiFi",
+      "tituloCorto": "Focos inteligentes: mitos y verdades antes de comprar",
+      "descripcion": "¿Gastan luz apagados? ¿Sirve el interruptor de pared? ¿Saturan el WiFi? Revisamos los mitos de los focos inteligentes con datos de los fabricantes.",
+      "publicado": "2026-11-16",
+      "actualizado": "2026-11-16",
+      "intro": [
+        "Un foco inteligente promete mucho: encenderse con la voz, cambiar de color, programarse. También arrastra rumores: que consume aunque esté apagado, que se pierde el control si alguien toca el interruptor de pared o que llenan el WiFi de la casa. Algunos son ciertos, otros se exageran.",
+        "En esta guía analizamos cada mito con la documentación de TP-Link (Tapo) y de Philips Hue, y explicamos por debajo cómo funciona un foco inteligente para que entiendas **por qué** pasa lo que pasa. Si apenas empiezas, antes puedes ver [qué es la domótica y cómo empezar](/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50)."
+      ],
+      "secciones": [
+        {
+          "titulo": "Cómo funciona un foco inteligente por dentro",
+          "bloques": [
+            {
+              "p": "Un foco LED normal solo convierte electricidad en luz. Uno inteligente añade un **módulo de radio** (WiFi, Zigbee o Bluetooth) que debe estar encendido para recibir órdenes. Eso explica casi todos los mitos: si el foco tiene que \"escuchar\" tu celular o tu asistente, necesita corriente de forma permanente, aunque la luz esté apagada."
+            },
+            {
+              "h3": "WiFi, Zigbee y Bluetooth: tres formas de escuchar"
+            },
+            {
+              "lista": [
+                "**WiFi 2,4 GHz:** el foco se conecta directo al router, sin hub. Es el caso de los Tapo; la ficha de TP-Link del L530E indica que solo usa la banda de 2,4 GHz.",
+                "**Zigbee:** el foco habla con un puente (en Hue, el Hue Bridge) y no ocupa un lugar en el WiFi del router. Lo explicamos en [Zigbee vs Z-Wave vs WiFi](/articulos-editoriales/zigbee-vs-zwave-vs-wifi-2026).",
+                "**Bluetooth:** alcance corto, útil para empezar sin puente, pero con menos funciones."
+              ]
+            },
+            {
+              "nota": "Los tres necesitan corriente continua. Lo que cambia es por dónde viajan las órdenes, y eso decide si el foco satura el router o si sigue funcionando cuando falla el internet (revisa [casa inteligente sin internet](/articulos-editoriales/casa-inteligente-sin-internet-que-funciona-en-local))."
+            }
+          ]
+        },
+        {
+          "titulo": "Mito 1: «Apagado no consume nada»",
+          "bloques": [
+            {
+              "p": "**Falso, pero el consumo es pequeño.** Como el módulo de radio sigue activo, el foco gasta energía en espera. TP-Link indica en la página del Tapo L530E (versión de 220–240 V) un consumo en espera de **0,4 W**, frente a un máximo de 8,3 W encendido. La ayuda de Costco sobre consumo en espera dice que una bombilla Philips Hue gasta de 0 a 0,3 W apagada."
+            },
+            {
+              "p": "Para dimensionarlo: 0,4 W durante las 24 horas del día son unos **3,5 kWh al año por foco** (0,4 × 24 × 365 ÷ 1000). Con 10 focos, unos 35 kWh. Es un gasto real pero bajo; el costo en dinero depende de la tarifa de tu país, así que haz la cuenta con tu recibo."
+            },
+            {
+              "aviso": "El consumo en espera cambia según modelo y versión: TP-Link publica 0,4 W en la ficha del L530E para 220–240 V y otros documentos del mismo foco muestran cifras distintas según la región. Revisa la ficha técnica del modelo exacto que compres."
+            },
+            {
+              "h3": "Lo que sí cuenta: el foco LED eficiente en sí"
+            },
+            {
+              "p": "El L530E entrega 806 lúmenes (equivalente a un foco incandescente de 60 W, según TP-Link) con un máximo de 8,3 W. Es decir, aunque la espera consuma algo, cambiar un foco incandescente por uno LED inteligente baja el consumo total cuando está encendido."
+            }
+          ]
+        },
+        {
+          "titulo": "Mito 2: «Puedo seguir usando el interruptor de pared como siempre»",
+          "bloques": [
+            {
+              "p": "**Casi siempre es falso.** Si apagas el interruptor de pared, cortas la corriente al foco y su radio se apaga. Según la explicación de Senic sobre Hue, el puente marca el foco como \"no alcanzable\" en la app y se pierden horarios y escenas; además, tras volver la luz, el estado del foco depende de su configuración de encendido, y un corte breve puede encenderlo a tope de noche."
+            },
+            {
+              "p": "Hay cuatro formas de resolverlo, de más simple a más técnica:"
+            },
+            {
+              "lista": [
+                "**Dejar el interruptor siempre encendido** y manejar el foco por app, voz o un botón inalámbrico.",
+                "**Un control inalámbrico a batería** (por ejemplo, un botón o regulador del mismo ecosistema) pegado junto a la puerta.",
+                "**Un módulo de interruptor de pared** que mantiene la corriente al foco. Philips lo vende como Hue Wall Switch Module: requiere el Hue Bridge, existe en versión a batería (CR2450, de al menos 5 años según Philips, sin neutro) y en versión cableada que sí necesita neutro.",
+                "**Un relé inteligente** detrás del interruptor, que cambia el cableado. Lo vemos en [relés con y sin neutro](/articulos-editoriales/instalar-rele-interruptor-inteligente-con-sin-neutro)."
+              ]
+            },
+            {
+              "aviso": "Los módulos y relés se conectan a la corriente de la casa. Si no tienes experiencia en instalaciones eléctricas, **contrata a un electricista**. Philips advierte que la normativa local puede prohibir hacerlo uno mismo y que antes se debe bajar el breaker."
+            },
+            {
+              "oferta": "philips-hue-white-color-a19",
+              "motivo": "Es la opción con puente Zigbee (Hue Bridge) y accesorios como el Wall Switch Module para quien no quiere perder el interruptor de pared. Esta ficha es la versión A19 E26 de 120 V; en países de 220 V existe la versión A60 E27."
+            }
+          ]
+        },
+        {
+          "titulo": "Mito 3: «Los focos WiFi saturan el router»",
+          "bloques": [
+            {
+              "p": "**Es verdad a medias.** Cada foco WiFi es un cliente más del router. TP-Link, en un artículo sobre cuántos dispositivos soporta un router, cuenta los focos y enchufes inteligentes como dispositivos conectados y estima que los routers de operador \"suelen manejar unos 20 dispositivos antes de que la calidad se degrade\"; un Wi-Fi 5 estándar rinde mejor con unos 25 dispositivos simultáneos. Es una guía de TP-Link para Filipinas, así que sirve como orden de magnitud, no como regla."
+            },
+            {
+              "p": "Una casa con celulares, TV y 10 focos WiFi puede acercarse a ese tope. Los síntomas son desconexiones y focos que aparecen \"sin conexión\". Si te pasa, revisa la guía de [conexión WiFi de enchufes y focos](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi) y valora Zigbee o un router mejor para la iluminación."
+            },
+            {
+              "nota": "Una buena práctica: mira la lista de dispositivos de la app de tu router. TP-Link comenta que muchos hogares descubren de 5 a 10 aparatos que no esperaban."
+            },
+            {
+              "oferta": "tapo-l530e",
+              "motivo": "Foco WiFi de color sin hub, para redes de 220–240 V (Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay). Para pocos focos es práctico; con muchos, pesa en el router."
+            }
+          ]
+        },
+        {
+          "titulo": "Mito 4: «Siempre necesitas un hub» y «dura lo mismo que un LED normal»",
+          "bloques": [
+            {
+              "h3": "¿Necesito un hub?"
+            },
+            {
+              "p": "**Depende del foco.** Los WiFi (Tapo, y muchos Tuya) se conectan directo al router y no requieren hub; los Zigbee sí piden un puente. La ventaja del WiFi es el precio y la sencillez; la del Zigbee, no cargar el router. Lo detallamos en la comparativa de [focos WiFi vs Zigbee](/comparativas/focos-wifi-baratos-vs-zigbee-hue)."
+            },
+            {
+              "h3": "¿Duran más o menos?"
+            },
+            {
+              "p": "TP-Link indica una vida útil de **25.000 horas** para el L530E. Es una cifra del fabricante, no una prueba nuestra: la duración real depende del calor del portalámparas y de la calidad de la red eléctrica. Un foco inteligente tiene además más electrónica que uno normal, lo que añade posibles puntos de fallo."
+            },
+            {
+              "h3": "Voltaje y rosca: el \"mito\" que más sale caro"
+            },
+            {
+              "p": "Un foco de 120 V en una red de 220 V se daña. Los modelos para 110–127 V suelen ser E26 y los de 220 V, E27. Revisa el empaque antes de comprar; lo vemos en [voltaje, clavija y rosca](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica) y en [comparativa de focos WiZ, Tapo y Hue](/comparativas/focos-inteligentes-wiz-vs-tapo-vs-philips-hue)."
+            },
+            {
+              "oferta": "tapo-l535e",
+              "motivo": "Versión de 120 V (E26) del Tapo para países de 110–127 V como México, Colombia o Centroamérica. En redes de 220 V no sirve: ahí corresponde la L530E."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Control cómodo:** horarios, escenas, voz y color desde el celular.",
+        "**Consumo total bajo:** un foco LED de unos 8 W da luz equivalente a un incandescente de 60 W, según TP-Link.",
+        "**Los de WiFi no necesitan hub**, y los de Zigbee no cargan el router."
+      ],
+      "desventajas": [
+        "**Consumen en espera** (del orden de 0,2 a 0,5 W por foco según el modelo), aunque la luz esté apagada.",
+        "**El interruptor de pared los deja sin control** si cortas la corriente: hay que cambiar el hábito o añadir un módulo.",
+        "**Muchos focos WiFi pueden saturar un router básico.**",
+        "**Precio mayor** que un LED normal y más electrónica que puede fallar.",
+        "**Riesgo eléctrico en los módulos de pared:** requieren electricista si no tienes experiencia."
+      ],
+      "faq": [
+        {
+          "p": "¿Un foco inteligente gasta luz cuando está apagado?",
+          "r": "Sí, un poco. TP-Link indica 0,4 W en espera para el Tapo L530E de 220–240 V. Con un foco, son unos 3,5 kWh al año; con 10, unos 35 kWh."
+        },
+        {
+          "p": "¿Puedo apagar el interruptor de pared de un foco inteligente?",
+          "r": "Se puede, pero el foco pierde la conexión y dejas de controlarlo por app o voz hasta que vuelvas a encenderlo. Lo mejor es dejarlo encendido y usar un botón inalámbrico o un módulo de pared."
+        },
+        {
+          "p": "¿Cuántos focos WiFi aguanta mi router?",
+          "r": "No hay una cifra fija. TP-Link orienta con unos 20–25 dispositivos para routers básicos, contando celulares, TV y focos. Si ves desconexiones, revisa la lista de equipos conectados."
+        },
+        {
+          "p": "¿Los focos inteligentes sirven en todos los países?",
+          "r": "No. Hay versiones de 110–127 V (E26) y de 220–240 V (E27). Confirma el voltaje y la rosca en el empaque antes de comprar."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué foco elegir según tu caso",
+        "intro": "Según lo que busques:",
+        "perfiles": [
+          {
+            "perfil": "Vivo en un país de 220 V y quiero probar sin hub",
+            "texto": "Un foco WiFi de color como el Tapo L530E, con el aviso de que muchos focos cargan el router.",
+            "producto": "tapo-l530e"
+          },
+          {
+            "perfil": "Vivo en México, Colombia o Centroamérica (110–127 V) y quiero sin hub",
+            "texto": "El Tapo L535E de 120 V con rosca E26.",
+            "producto": "tapo-l535e"
+          },
+          {
+            "perfil": "Quiero no perder el interruptor de pared ni cargar el router",
+            "texto": "Un sistema Zigbee con puente, como Hue, con accesorios para la pared.",
+            "producto": "philips-hue-white-color-a19"
+          }
+        ],
+        "alternativa": "si dudas, empieza con 2 o 3 focos y compáralos con tu consumo real usando un [enchufe con medidor](/articulos-editoriales/medir-consumo-electrodomesticos-enchufe-inteligente)."
+      },
+      "fuentes": [
+        {
+          "texto": "TP-Link: Tapo L530E (consumo en espera 0,4 W, máximo 8,3 W, 220–240 V, E27, 806 lm, solo 2,4 GHz, 25.000 horas)",
+          "url": "https://www.tp-link.com/uk/products/details/tapo-l530e.html"
+        },
+        {
+          "texto": "Philips Hue: módulos de interruptor de pared (versión a batería y cableada, Hue Bridge, neutro, advertencias eléctricas)",
+          "url": "https://www.philips-hue.com/en-us/support/article/wall-switch-modules/000016"
+        },
+        {
+          "texto": "Senic: por qué dejar encendidos los interruptores de Hue (foco no alcanzable, horarios que fallan, estado tras el corte)",
+          "url": "https://www.senic.com/en/blogs/magazine/philips-hue-lichtschalter-immer-an-lassen-warum-das-notig-ist-und-wie-es-eleganter-geht"
+        },
+        {
+          "texto": "TP-Link: cuántos dispositivos soporta un router (referencia de Filipinas; focos y enchufes cuentan como dispositivos)",
+          "url": "https://www.tp-link.com/ph/blog/2461/"
+        },
+        {
+          "texto": "Costco: consumo en espera de dispositivos inteligentes (Philips Hue, 0 a 0,3 W apagada)",
+          "url": "https://productsupport.costco.com/customer/article/standbymodeexplainedhowmuchpowerdosmartdevicesuse"
+        }
+      ]
     }
   ]
 }
