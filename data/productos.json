@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-04",
+  "actualizado": "2026-11-18",
   "categorias": {
     "enchufe": {
       "nombre": "Enchufes inteligentes",
@@ -1164,6 +1164,132 @@
       "idealPara": "Un interruptor extra junto a la cama o la puerta para escenas como «buenas noches».",
       "notaLatam": "Funciona a pilas: no depende del voltaje de tu país.",
       "busqueda": "sonoff snzb-01p"
+    },
+    {
+      "slug": "sonoff-minir4m",
+      "nombre": "Sonoff MINIR4M (MINI Extreme Matter)",
+      "marca": "Sonoff",
+      "categoria": "interruptor",
+      "protocolos": [
+        "WiFi 2.4 GHz",
+        "Matter"
+      ],
+      "hub": "No necesita",
+      "app": "eWeLink",
+      "voltaje": "100–240 V, 50/60 Hz",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "cargaMax": "10 A (unos 2400 W a 240 V)",
+      "neutro": "Sí, necesita neutro",
+      "compat": {
+        "alexa": "via-matter",
+        "google": "via-matter",
+        "homekit": "via-matter",
+        "matter": "si",
+        "homeAssistant": "via-matter"
+      },
+      "notaMatter": "Sonoff lo anuncia compatible con Matter (Apple Home, Google Home, Alexa, SmartThings).",
+      "precio": 1,
+      "resumen": "Relé WiFi de un canal y 10 A que se esconde en la caja del interruptor. Es la versión con Matter del MINIR4: se agrega a Alexa, Google Home, Apple Home o SmartThings sin depender de una sola marca.",
+      "pros": [
+        "Matter: sirve con varios asistentes a la vez",
+        "Acepta 100–240 V: vale en toda la región",
+        "Muy pequeño (39,5 × 33 × 16,8 mm)",
+        "Admite interruptor de pared de un punto o de dos puntos (de escalera)"
+      ],
+      "contras": [
+        "Necesita cable neutro en la caja",
+        "Requiere instalación eléctrica",
+        "Solo WiFi de 2,4 GHz"
+      ],
+      "idealPara": "Quien quiere automatizar luces sin quedar atado a un solo asistente y tiene neutro en la caja.",
+      "notaLatam": "Acepta de 100 a 240 V: vale para cualquier país de la región. Si no tienes experiencia con cables, contrata a un electricista.",
+      "busqueda": "sonoff minir4m"
+    },
+    {
+      "slug": "moes-zs-eub",
+      "nombre": "MOES ZS-EUB (interruptor de pared Zigbee)",
+      "marca": "MOES",
+      "categoria": "interruptor",
+      "protocolos": [
+        "Zigbee"
+      ],
+      "hub": "Coordinador Zigbee o hub Zigbee de Tuya",
+      "app": "Tuya / Smart Life",
+      "voltaje": "100–250 V, 50/60 Hz (según una reseña; confirma en la etiqueta de tu modelo)",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "cargaMax": "10 A; LED/CFL 3–120 W; incandescente 3–300 W a 110 V o 3–600 W a 220 V",
+      "neutro": "Neutro opcional (sin neutro algunos focos pueden fallar)",
+      "compat": {
+        "alexa": "sin-confirmar",
+        "google": "sin-confirmar",
+        "homekit": "sin-confirmar",
+        "matter": "sin-confirmar",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Funciona con ZHA, Zigbee2MQTT y deCONZ.",
+      "precio": 1,
+      "resumen": "Interruptor de pared Zigbee que reemplaza al que ya tienes (existe en versiones de 1, 2 o 3 botones). Puede instalarse con o sin neutro, aunque sin neutro algunos focos LED fallan.",
+      "pros": [
+        "Reemplaza el interruptor completo: se ve y se usa como uno normal",
+        "Funciona con o sin neutro",
+        "Funciona con Home Assistant (ZHA, Zigbee2MQTT)"
+      ],
+      "contras": [
+        "No actúa como repetidor Zigbee, ni con neutro",
+        "Sin neutro, algunos focos LED parpadean o no funcionan bien",
+        "Hay reportes de fallos de estado en algunas unidades",
+        "Hay versiones por país: revisa la que compras"
+      ],
+      "idealPara": "Quien quiere cambiar el interruptor entero y ya usa un coordinador Zigbee.",
+      "notaLatam": "El tamaño de la placa y la caja varían por país: confirma que el modelo que compras encaje en tu caja y revisa el voltaje en la etiqueta. Si no tienes experiencia, contrata a un electricista.",
+      "busqueda": "moes zigbee wall switch zs-eub"
+    },
+    {
+      "slug": "sonoff-dualr3-lite",
+      "nombre": "Sonoff DUALR3 Lite (2 canales)",
+      "marca": "Sonoff",
+      "categoria": "interruptor",
+      "protocolos": [
+        "WiFi 2.4 GHz"
+      ],
+      "hub": "No necesita",
+      "app": "eWeLink",
+      "voltaje": "100–240 V, 50/60 Hz",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "cargaMax": "10 A por canal; 15 A en total (motor: 1 A)",
+      "neutro": "Sí, necesita neutro",
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "sin-confirmar",
+        "matter": "sin-confirmar",
+        "homeAssistant": "sin-confirmar"
+      },
+      "precio": 1,
+      "resumen": "Relé WiFi de dos canales independientes en una sola caja: sirve para dos luces o para subir y bajar una cortina. Admite control local (LAN) además de la nube.",
+      "pros": [
+        "Dos circuitos con un solo módulo",
+        "Acepta 100–240 V: vale en toda la región",
+        "Control local por LAN (solo encender y apagar)"
+      ],
+      "contras": [
+        "Necesita cable neutro",
+        "Sin medición de consumo (la versión DUALR3 normal sí la tiene)",
+        "Para motores, solo 1 A por canal",
+        "Requiere instalación eléctrica"
+      ],
+      "idealPara": "Cajas con dos luces o un motor de cortina que necesitan dos salidas.",
+      "notaLatam": "Acepta de 100 a 240 V: vale para cualquier país de la región. Si no tienes experiencia con cables, contrata a un electricista.",
+      "busqueda": "sonoff dualr3 lite"
     }
   ]
 }
