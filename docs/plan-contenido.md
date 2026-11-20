@@ -24,7 +24,6 @@ Cómo leer la lista:
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
 - [ ] T022 Productos nuevos: 3 interruptores — Sonoff MINIR4M (Matter), un interruptor táctil de pared Zigbee Tuya/MOES y un relé de 2 canales
-- [ ] T023 Guía: domótica en departamentos alquilados: instalaciones sin obras
 - [ ] T024 Comparativa: Home Assistant con coordinador USB (Sonoff ZBDongle-E) vs hub Sonoff ZBBridge-P
 - [ ] T026 Guía: crea tu primera rutina en Alexa desde cero
 - [ ] T027 Productos nuevos: 2–3 enchufes con Matter (por ejemplo Tapo P125M o equivalentes verificados)
@@ -172,3 +171,4 @@ Cómo leer la lista:
 - [x] (2026-11-09) T017 Guía: cómo instalar un relé o interruptor inteligente con y sin neutro
 - [x] (2026-11-11) T018 Comparativa: relés con neutro — Shelly 1 Gen4 vs Sonoff MINIR4
 - [x] (2026-11-13) T019 Guía: Smart Life vs Tuya vs eWeLink: qué app usar y si se pueden mezclar marcas
+- [x] (2026-11-20) T023 Guía: domótica en departamentos alquilados: instalaciones sin obras
