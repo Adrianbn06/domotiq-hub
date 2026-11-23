@@ -794,6 +794,97 @@
           "r": "Solo si tienes experiencia con instalaciones eléctricas. Siempre con el disyuntor apagado y, si dudas, con un electricista."
         }
       ]
+    },
+    {
+      "slug": "zbdongle-e-home-assistant-vs-sonoff-zbbridge-p",
+      "titulo": "Sonoff ZBDongle-E vs ZBBridge-P: ¿coordinador USB con Home Assistant o hub listo para usar?",
+      "tituloCorto": "Sonoff ZBDongle-E vs ZBBridge-P: USB o hub Zigbee",
+      "descripcion": "Coordinador USB ZBDongle-E con Home Assistant o hub Sonoff ZBBridge-P: control local, nube, compatibilidad, dificultad y qué conviene a cada perfil.",
+      "actualizado": "2026-11-23",
+      "productos": [
+        "sonoff-zbdongle-e",
+        "sonoff-zbbridge-p"
+      ],
+      "intro": [
+        "Para armar una red Zigbee en casa necesitas un **coordinador**: el aparato que une los sensores, relés y focos Zigbee a tu red. Sonoff vende dos formas de hacerlo. El **ZBDongle-E** es una llave USB que se conecta a un equipo con Home Assistant. El **ZBBridge-P** es un hub completo que se enchufa y se maneja desde la app eWeLink.",
+        "No son competidores directos: resuelven el mismo problema con filosofías opuestas. Comparamos los dos con datos de Sonoff, de la documentación de Home Assistant y de Zigbee2MQTT, y de reseñas técnicas, y te contamos también los contras. Si dudas entre hubs de marcas distintas, mira antes la [comparativa de hubs Zigbee Aqara y Sonoff](/comparativas/hub-zigbee-aqara-m2-vs-m3-vs-sonoff-zbbridge-p)."
+      ],
+      "secciones": [
+        {
+          "titulo": "La diferencia de fondo: una llave USB frente a un hub completo",
+          "parrafos": [
+            "El **ZBDongle-E** no hace nada por sí solo. Es solo la radio Zigbee: necesita un equipo encendido las 24 horas con Home Assistant (una Raspberry Pi, un mini PC o similar) y un programa que la maneje, como ZHA o Zigbee2MQTT. Según la reseña técnica de CNX Software, usa el chip Silicon Labs EFR32MG21 con radio de +20 dBm y conector SMA para la antena, y se alimenta por USB (5 V, 100 mA).",
+            "El **ZBBridge-P** es un aparato cerrado: lo conectas a un cargador USB, lo enlazas a tu WiFi de 2,4 GHz y lo manejas desde la app eWeLink. Según Sonoff y CNX Software, funciona con Zigbee 3.0, se alimenta con 5 V / 1 A por Micro USB y admite hasta 128 subdispositivos (con repetidores).",
+            "Dicho simple: el dongle te da libertad, pero tú pones el cerebro; el hub trae el cerebro incluido, pero también sus límites."
+          ]
+        },
+        {
+          "titulo": "Control local y dependencia de la nube",
+          "parrafos": [
+            "Con el dongle y Home Assistant, las automatizaciones corren en tu propio equipo. La documentación de Home Assistant clasifica ZHA como integración de tipo «Local Polling», es decir, se comunica con tus dispositivos desde tu red. Si se cae internet, tus sensores y luces Zigbee siguen funcionando entre sí.",
+            "El ZBBridge-P se apoya en la nube de eWeLink para el control remoto y para vincularse con Alexa o Google. Según CNX Software, incluye un reloj interno (RTC) que mantiene la hora y las escenas locales cuando la red falla, así que algunas escenas básicas entre dispositivos Zigbee no dependen de internet. Aun así, la experiencia completa depende de la app y de la cuenta de Sonoff.",
+            "Esto pesa en Latinoamérica, donde los cortes de internet y de luz son comunes. Con cualquiera de los dos, conviene que el equipo esté conectado a una regleta o a un UPS pequeño; revisa también la guía sobre [cortes de luz y dispositivos inteligentes](/articulos-editoriales/cortes-de-luz-enchufes-focos-reles-inteligentes)."
+          ]
+        },
+        {
+          "titulo": "Compatibilidad: Home Assistant, Alexa, Google y Apple",
+          "parrafos": [
+            "El ZBDongle-E aparece en la documentación de Home Assistant como dispositivo con detección automática por USB («Zigbee 3.0 USB Dongle Plus V2», variante EFR32MG21). Zigbee2MQTT también lo lista entre sus adaptadores USB compatibles, con dos advertencias de su documentación: solo admite control de flujo por software y debes instalar un firmware NCP versión 7.4.4 o más reciente, porque el que enlaza el PDF antiguo de Sonoff está desactualizado.",
+            "El dongle no habla con Alexa, Google ni Apple Home por sí mismo. Para eso necesitas Home Assistant y, según el caso, un puente hacia esos asistentes.",
+            "El ZBBridge-P, en cambio, funciona directamente con Alexa y Google Home, según Sonoff. No es compatible con Apple Home ni con Matter. Acepta dispositivos Zigbee de otras marcas, aunque Sonoff solo garantiza sus propios sensores y conviene revisar la lista de compatibilidad antes de comprar productos de terceros."
+          ]
+        },
+        {
+          "titulo": "Dificultad, instalación y mantenimiento",
+          "parrafos": [
+            "El hub gana en facilidad. Lo enchufas, lo enlazas desde el celular y añades sensores en minutos. No hay que instalar software ni pensar en actualizaciones del sistema.",
+            "El dongle exige más: necesitas un equipo con Home Assistant, elegir entre ZHA y Zigbee2MQTT, actualizar el firmware del dongle si hace falta y hacer copias de seguridad. Es muy práctico para quien disfruta aprendiendo, pero frustrante para quien solo quiere que la luz se encienda."
+          ]
+        },
+        {
+          "titulo": "Voltaje y clavija en Latinoamérica",
+          "parrafos": [
+            "Ninguno de los dos depende de la red eléctrica de tu país. El ZBBridge-P se alimenta con 5 V / 1 A por USB y el ZBDongle-E toma su energía del puerto USB del equipo. Sirven igual en 110–127 V (México, Centroamérica, Colombia, Ecuador, Venezuela), en 220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay) y en Brasil (127/220 V). Solo necesitas un cargador USB con la clavija de tu país. Ninguno requiere trabajo dentro de la instalación eléctrica."
+          ]
+        },
+        {
+          "titulo": "Contras que debes conocer",
+          "parrafos": [
+            "Del ZBDongle-E: no tiene app, necesita un equipo siempre encendido, y si ese equipo falla se cae toda tu red Zigbee. Además, el ritmo de soporte depende de las comunidades de Home Assistant y Zigbee2MQTT.",
+            "Del ZBBridge-P: sin Apple Home ni Matter, dependencia de la nube de eWeLink para el uso remoto y la integración con asistentes, y libertad limitada con dispositivos de otras marcas. Los precios varían por país, tienda e impuestos; en el catálogo ambos están en el rango medio (15–40 USD, orientativo), pero el dongle exige además el equipo donde corre Home Assistant."
+          ]
+        }
+      ],
+      "veredicto": [
+        {
+          "perfil": "Quieres Home Assistant, control local y Zigbee de varias marcas",
+          "producto": "sonoff-zbdongle-e",
+          "motivo": "Radio con antena externa y control sin nube. Necesitas un equipo siempre encendido y ganas de configurar."
+        },
+        {
+          "perfil": "Quieres sensores Zigbee con Alexa o Google sin complicarte",
+          "producto": "sonoff-zbbridge-p",
+          "motivo": "Se enchufa y se maneja desde la app eWeLink. Sin Apple Home ni Matter y con dependencia de la nube."
+        }
+      ],
+      "faq": [
+        {
+          "p": "¿El ZBDongle-E funciona solo, sin Home Assistant?",
+          "r": "No. Es solo la radio Zigbee y necesita un equipo con Home Assistant u otro programa compatible, como Zigbee2MQTT."
+        },
+        {
+          "p": "¿Puedo tener los dos a la vez?",
+          "r": "Sí, pero cada dispositivo Zigbee se enlaza a un solo coordinador a la vez. Tendrías dos redes separadas y cada sensor estaría en una sola."
+        },
+        {
+          "p": "¿Necesito internet para que funcione el dongle?",
+          "r": "No para las automatizaciones locales de Home Assistant. Sí para el control remoto desde fuera de casa, salvo que configures un acceso propio."
+        },
+        {
+          "p": "¿Cuál conviene si recién empiezo?",
+          "r": "El ZBBridge-P, por su facilidad. Si más adelante quieres pasar a Home Assistant, el dongle te espera, aunque tendrás que volver a enlazar tus sensores."
+        }
+      ]
     }
   ]
 }
