@@ -24,7 +24,6 @@ Cómo leer la lista:
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
 - [ ] T023 Guía: domótica en departamentos alquilados: instalaciones sin obras
-- [ ] T024 Comparativa: Home Assistant con coordinador USB (Sonoff ZBDongle-E) vs hub Sonoff ZBBridge-P
 - [ ] T026 Guía: crea tu primera rutina en Alexa desde cero
 - [ ] T027 Productos nuevos: 2–3 enchufes con Matter (por ejemplo Tapo P125M o equivalentes verificados)
 - [ ] T028 Comparativa: enchufes con Matter vs enchufes WiFi clásicos (requiere T027)
@@ -140,6 +139,7 @@ Cómo leer la lista:
 
 - [x] (2026-11-11) SEO: descripciones que ya no salen cortadas (22 fichas, 4 comparativas, catálogo, comparador y privacidad), bloque "Sigue leyendo" en guías y comparativas, "Guías donde lo recomendamos" en las fichas, las 6 guías más recientes en la portada, el comparador como una sola dirección para Google (`/comparar#p=`), fechas reales en el sitemap para 56 de 61 páginas, y el build ahora falla con enlaces internos rotos o descripciones de comparativas de más de 155 caracteres
 
+- [x] (2026-11-23) T024 Comparativa: Home Assistant con coordinador USB (Sonoff ZBDongle-E) vs hub Sonoff ZBBridge-P
 - [x] (2026-11-16) T021 Guía: mitos y verdades de los focos inteligentes (consumo en espera, interruptor de pared, WiFi)
 - [x] (2026-11-04) T015 Productos nuevos: 3 focos para redes de 220–240 V (WiZ A60 E27, Philips Hue A60 E27 y foco Tuya / Smart Life genérico)
 - [x] (2026-11-02) T014 Guía: cómo medir el consumo eléctrico de tus electrodomésticos con enchufes inteligentes
