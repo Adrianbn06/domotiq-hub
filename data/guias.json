@@ -3690,6 +3690,207 @@
           "url": "https://productsupport.costco.com/customer/article/standbymodeexplainedhowmuchpowerdosmartdevicesuse"
         }
       ]
+    },
+    {
+      "slug": "domotica-departamento-alquilado-sin-obras",
+      "etiqueta": "🧭 Guía práctica",
+      "titulo": "Domótica en un departamento alquilado: qué instalar sin obras ni taladro",
+      "tituloCorto": "Domótica en departamento alquilado: sin obras",
+      "descripcion": "Enchufes, focos y sensores con adhesivo que se instalan sin obras y se llevan al mudarte. Qué sí, qué no y qué pedirle al dueño del departamento.",
+      "publicado": "2026-11-20",
+      "actualizado": "2026-11-20",
+      "intro": [
+        "Si alquilas, probablemente no puedes abrir paredes, cambiar interruptores ni agujerear el marco de la puerta. Tampoco quieres gastar en algo que dejarás al mudarte. La buena noticia: gran parte de la domótica práctica **se enchufa, se enrosca o se pega**, y se desmonta en minutos.",
+        "En esta guía analizamos qué categorías de dispositivos no necesitan obras, cómo funcionan por debajo (WiFi, Zigbee y hub) y dónde sí conviene detenerse. Si apenas empiezas, antes puedes ver [qué es la domótica y cómo empezar](/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50)."
+      ],
+      "secciones": [
+        {
+          "titulo": "La regla de oro: todo lo que se quita sin dejar huella",
+          "bloques": [
+            {
+              "p": "Un departamento alquilado impone una condición simple: al entregar las llaves, todo debe quedar como estaba. Por eso clasificamos los dispositivos en tres niveles:"
+            },
+            {
+              "lista": [
+                "**Se enchufa o se enrosca:** enchufes inteligentes y focos. No tocan la instalación; los quitas y te los llevas.",
+                "**Se pega:** sensores de puerta y botones inalámbricos a pila, con adhesivo. No requieren herramientas, aunque conviene probar el adhesivo en una zona discreta antes de pegarlos.",
+                "**Se cablea:** relés e interruptores de pared. Aquí sí se interviene la instalación eléctrica y hace falta permiso del propietario y, si no tienes experiencia, un electricista."
+              ]
+            },
+            {
+              "aviso": "No abras cajas de interruptores ni cambies cables en un departamento ajeno. Además del riesgo eléctrico, puedes incumplir tu contrato. Si quieres relés o interruptores inteligentes, pídele permiso por escrito al dueño y contrata a un electricista."
+            },
+            {
+              "p": "Qué se permite exactamente depende del contrato y de la ley de cada país, así que revisa tu contrato antes de pegar o cambiar algo."
+            }
+          ]
+        },
+        {
+          "titulo": "Cómo funciona por debajo: WiFi directo o Zigbee con hub",
+          "bloques": [
+            {
+              "p": "Para un departamento pequeño, la decisión técnica más importante es cómo se comunican los dispositivos. Hay dos caminos:"
+            },
+            {
+              "h3": "WiFi directo: lo más simple para alquilar"
+            },
+            {
+              "p": "Los enchufes y focos WiFi se conectan al router sin hub. El Tapo P115, por ejemplo, según TP-Link **no necesita hub**: el Bluetooth solo se usa para la configuración y el WiFi es de 2,4 GHz (IEEE 802.11 b/g/n). Es el camino que menos cosas te deja instaladas."
+            },
+            {
+              "h3": "Zigbee con hub: más sensores sin cargar el router"
+            },
+            {
+              "p": "Los sensores pequeños a pila, como el Sonoff SNZB-04P de puerta, hablan Zigbee y necesitan un **coordinador Zigbee**; el manual de Sonoff indica que el primer paso es añadir una pasarela Zigbee en la app eWeLink. Ese puente se enchufa en un tomacorriente y también se lleva al mudarte (mira [qué es un hub y cuándo lo necesitas](/articulos-editoriales/que-es-un-hub-domotico-cuando-lo-necesitas))."
+            },
+            {
+              "nota": "Si tu contrato de internet lo gestiona el dueño o el edificio, confirma que puedes usar tu propio router o que el WiFi permite conectar dispositivos. Muchos dispositivos baratos solo funcionan en 2,4 GHz; si te falla la configuración, lee [por qué no se conecta al WiFi](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi)."
+            }
+          ]
+        },
+        {
+          "titulo": "Qué instalar sin obras, paso a paso",
+          "bloques": [
+            {
+              "h3": "1. Enchufes inteligentes: el punto de partida"
+            },
+            {
+              "p": "Un enchufe inteligente convierte una lámpara, un ventilador o una cafetera simple en un aparato con horario y control remoto. El Tapo P115 admite según TP-Link 15 A / 1800 W en carga resistiva, mide consumo, permite horarios y tiene un \"modo ausente\" que enciende y apaga luces a horas aleatorias para simular que hay alguien en casa. Mide 60 × 38 × 40 mm."
+            },
+            {
+              "p": "Ojo con el voltaje: el P115 es de **100–125 V**, pensado para México, Centroamérica, Colombia, Ecuador o Venezuela. En países de 220 V no lo uses; busca el modelo local y revisa la clavija antes de comprar (ver [voltaje y clavija antes de comprar](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica))."
+            },
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Enchufe WiFi sin hub con medidor de consumo y modo ausente, para redes de 100–125 V (México, Centroamérica, Colombia, Ecuador, Venezuela). Solo sirve en 110–120 V."
+            },
+            {
+              "aviso": "No conectes aparatos que calientan mucho (estufas, calentadores) a un enchufe inteligente sin comprobar su potencia. TP-Link indica 8 A para cargas incandescentes y motores pequeños; respeta siempre el límite del modelo."
+            },
+            {
+              "h3": "2. Focos inteligentes: luz sin tocar la instalación"
+            },
+            {
+              "p": "Cambiar el foco o bombilla es lo más reversible que existe: al irte, devuelves el original. El Tapo L530E, por ejemplo, funciona con 220–240 V, rosca E27 y solo en 2,4 GHz según TP-Link. Recuerda que en países de 110–127 V corresponde la versión de 120 V y rosca E26 (L535E)."
+            },
+            {
+              "oferta": "tapo-l530e",
+              "motivo": "Foco WiFi de color sin hub para redes de 220–240 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay), con rosca E27. En 110–127 V corresponde la versión L535E."
+            },
+            {
+              "p": "El gran inconveniente en alquiler: el interruptor de pared sigue cortando la corriente y el foco deja de responder. Lo analizamos en [mitos y verdades de los focos inteligentes](/articulos-editoriales/mitos-verdades-focos-inteligentes). Una solución sin obras es un botón inalámbrico adhesivo, como el Sonoff SNZB-01P, que funciona con una pila CR2477 y se puede pegar en cualquier superficie plana; necesita coordinador Zigbee."
+            },
+            {
+              "h3": "3. Sensores adhesivos: seguridad y automatizaciones"
+            },
+            {
+              "p": "El Sonoff SNZB-04P se fija con adhesivo 3M (no hay que taladrar), usa una pila CR2477 y debe quedar con una separación de **menos de 20 mm** entre sensor e imán con la puerta cerrada. Sonoff aclara que es solo para interiores. Sirve para saber si la puerta se abrió o para encender una luz al entrar."
+            },
+            {
+              "oferta": "sonoff-snzb-04p",
+              "motivo": "Sensor de puerta a pila con adhesivo 3M, sin taladro. Necesita un coordinador Zigbee y es solo para interiores."
+            },
+            {
+              "h3": "4. Lo que NO conviene sin permiso"
+            },
+            {
+              "lista": [
+                "**Relés e interruptores de pared:** requieren abrir la caja eléctrica. Pide permiso al propietario y que lo haga un electricista. Si en la caja no hay cable neutro, el [instalar relés con y sin neutro](/articulos-editoriales/instalar-rele-interruptor-inteligente-con-sin-neutro) explica las opciones.",
+                "**Cerraduras o timbres cableados:** modifican la puerta o la instalación del edificio; consulta antes con el dueño o la administración.",
+                "**Cualquier cosa que tape o desvíe el tablero eléctrico.**"
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Llevarte la casa inteligente cuando te mudas",
+          "bloques": [
+            {
+              "p": "Una ventaja de esta estrategia es que **todo es portátil**. Antes de mudarte:"
+            },
+            {
+              "lista": [
+                "Quita los sensores con cuidado y guarda el imán junto al sensor.",
+                "Desvincula o resetea los dispositivos que vendas o regales, para que no queden asociados a tu cuenta.",
+                "Si tu nuevo lugar tiene otro voltaje, revisa antes si enchufes y focos sirven (en la mudanza entre países los de 110–127 V no sirven en 220 V).",
+                "Reconfigura el WiFi: casi todos los dispositivos hay que volver a emparejarlos con la red nueva."
+              ]
+            },
+            {
+              "nota": "Etiqueta cada dispositivo con la habitación donde estaba. Al instalarlos de nuevo ahorrarás tiempo."
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Sin obras ni taladro:** enchufes, focos y sensores adhesivos se instalan y se retiran sin dañar el departamento.",
+        "**Portátil:** todo se lleva a la próxima casa, así que la inversión no se pierde.",
+        "**Empiezas poco a poco:** puedes comprar un enchufe o un foco y ampliar después."
+      ],
+      "desventajas": [
+        "**El interruptor de pared sigue mandando:** si lo apagas, el foco pierde la conexión.",
+        "**Límites sin cableado:** no puedes automatizar lámparas fijas de pared ni persianas sin intervenir la instalación.",
+        "**Adhesivos:** pueden despegarse o marcar la pintura; el sensor SNZB-04P es solo para interiores.",
+        "**Sensores Zigbee necesitan hub:** es un gasto y un aparato más enchufado."
+      ],
+      "faq": [
+        {
+          "p": "¿Puedo poner domótica si alquilo?",
+          "r": "Sí, si usas dispositivos que se enchufan, se enroscan o se pegan, como enchufes, focos y sensores adhesivos. Para relés o interruptores hace falta permiso del propietario y un electricista."
+        },
+        {
+          "p": "¿Los sensores adhesivos dañan la pared?",
+          "r": "Sonoff indica que el SNZB-04P se fija con adhesivo 3M, sin tornillos. Prueba en una zona discreta; el efecto sobre la pintura depende de la superficie."
+        },
+        {
+          "p": "¿Necesito hub para empezar en un departamento alquilado?",
+          "r": "No. Los enchufes y focos WiFi, como los Tapo, funcionan sin hub según TP-Link. El hub solo hace falta si añades sensores Zigbee."
+        },
+        {
+          "p": "¿Qué hago si me mudo a otro país?",
+          "r": "Revisa el voltaje y la clavija: un enchufe de 100–125 V como el Tapo P115 no sirve en una red de 220 V."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: qué comprar primero si alquilas",
+        "intro": "Según tu situación:",
+        "perfiles": [
+          {
+            "perfil": "Vivo en un país de 110–127 V y quiero empezar con lo mínimo",
+            "texto": "Un enchufe con medidor y modo ausente, que no requiere hub.",
+            "producto": "tapo-p115"
+          },
+          {
+            "perfil": "Vivo en un país de 220 V y quiero cambiar la luz sin tocar nada",
+            "texto": "Un foco WiFi de color sin hub, con aviso del interruptor de pared.",
+            "producto": "tapo-l530e"
+          },
+          {
+            "perfil": "Quiero saber cuándo se abre una puerta",
+            "texto": "Un sensor adhesivo Zigbee, pensando en que necesitarás un coordinador.",
+            "producto": "sonoff-snzb-04p"
+          }
+        ],
+        "alternativa": "si no estás seguro, empieza con un solo enchufe inteligente y sigue con [los primeros 5 dispositivos para tu casa inteligente](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica)."
+      },
+      "fuentes": [
+        {
+          "texto": "TP-Link: Tapo P115 (sin hub, 100–125 V, 15 A / 1800 W, medición de consumo, modo ausente, 2,4 GHz, Alexa y Google, 60×38×40 mm)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-plug/tapo-p115/"
+        },
+        {
+          "texto": "Sonoff: guía del SNZB-04P (adhesivo 3M, pila CR2477, uso en interiores, separación menor de 20 mm, pasarela Zigbee)",
+          "url": "https://help.sonoff.tech/docs/snzb-04p/"
+        },
+        {
+          "texto": "Sonoff: guía del SNZB-01P (pila CR2477)",
+          "url": "https://help.sonoff.tech/docs/snzb-01p/"
+        },
+        {
+          "texto": "TP-Link: Tapo L530E (220–240 V, E27, solo 2,4 GHz)",
+          "url": "https://www.tp-link.com/uk/products/details/tapo-l530e.html"
+        }
+      ]
     }
   ]
 }
