@@ -23,7 +23,6 @@ Cómo leer la lista:
 
 ### Bloque 1 — Lo básico para Latinoamérica (prioridad alta)
 
-- [ ] T026 Guía: crea tu primera rutina en Alexa desde cero
 - [ ] T027 Productos nuevos: 2–3 enchufes con Matter (por ejemplo Tapo P125M o equivalentes verificados)
 - [ ] T028 Comparativa: enchufes con Matter vs enchufes WiFi clásicos (requiere T027)
 - [ ] T029 Guía: Thread y los Border Routers explicados
@@ -172,3 +171,4 @@ Cómo leer la lista:
 - [x] (2026-11-13) T019 Guía: Smart Life vs Tuya vs eWeLink: qué app usar y si se pueden mezclar marcas
 - [x] (2026-11-18) T022 Productos nuevos: 3 interruptores — Sonoff MINIR4M (Matter), MOES ZS-EUB (Zigbee) y Sonoff DUALR3 Lite (2 canales)
 - [x] (2026-11-20) T023 Guía: domótica en departamentos alquilados: instalaciones sin obras
+- [x] (2026-11-25) T026 Guía: crea tu primera rutina en Alexa desde cero
