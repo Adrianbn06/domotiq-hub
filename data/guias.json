@@ -3891,6 +3891,208 @@
           "url": "https://www.tp-link.com/uk/products/details/tapo-l530e.html"
         }
       ]
+    },
+    {
+      "slug": "primera-rutina-alexa-desde-cero",
+      "etiqueta": "🧭 Guía práctica",
+      "titulo": "Tu primera rutina en Alexa desde cero: paso a paso (2026)",
+      "tituloCorto": "Primera rutina en Alexa desde cero: paso a paso",
+      "descripcion": "Cómo crear una rutina en la app de Alexa: eventos, acciones, ejemplos con enchufes y focos, y qué revisar si no se ejecuta. Sin hub ni código.",
+      "publicado": "2026-11-25",
+      "actualizado": "2026-11-25",
+      "intro": [
+        "Tienes un enchufe o un foco inteligente y Alexa lo enciende cuando se lo pides, pero sigues haciéndolo a mano. Una **rutina** resuelve eso: un solo evento (una frase, una hora, la salida del sol) dispara varias acciones sin que muevas un dedo.",
+        "En esta guía revisamos cómo se arma una rutina en la app de Alexa, qué tipos de evento existen, cómo se comporta por debajo y qué errores evitar. Si aún no tienes dispositivos, empieza por [los primeros 5 dispositivos para tu casa inteligente](/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica)."
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué es una rutina y cómo funciona por debajo",
+          "bloques": [
+            {
+              "p": "Según la documentación para desarrolladores de Amazon, una rutina es un conjunto de acciones que Alexa ejecuta automáticamente cuando ocurre un evento (el \"disparador\"). Amazon describe estos tipos de evento: **horario** (por ejemplo, el amanecer o el atardecer), **ubicación** (por ejemplo, cuando alguien llega a casa), **voz** (frases concretas) y **detección de sonidos** (por ejemplo, ronquidos). Otra página de Amazon indica que una rutina también se puede activar con un dispositivo inteligente."
+            },
+            {
+              "p": "Piensa en la lógica como un \"si pasa esto, haz aquello\": un evento y una o varias acciones. En la app, Amazon confirma que puedes agregar varias acciones a una misma rutina, como controlar dispositivos inteligentes, reproducir música o dar el pronóstico del tiempo."
+            },
+            {
+              "h3": "Dónde se ejecuta cada cosa"
+            },
+            {
+              "p": "Quien decide cuándo se dispara la rutina es Alexa, en la nube de Amazon; la orden llega después al dispositivo por WiFi o por el hub Zigbee que tengas vinculado. Esto tiene una consecuencia práctica: si se cae el internet, las rutinas dependen de ese servicio y pueden fallar (lo analizamos en [qué funciona en local cuando se cae el internet](/articulos-editoriales/casa-inteligente-sin-internet-que-funciona-en-local))."
+            },
+            {
+              "nota": "Este punto lo deducimos de cómo está diseñado el servicio, no de una declaración puntual de Amazon. Si tu casa no puede depender del internet, prueba tus rutinas con el router desconectado antes de confiar en ellas."
+            }
+          ]
+        },
+        {
+          "titulo": "Antes de empezar: lo que necesitas",
+          "bloques": [
+            {
+              "lista": [
+                "**La app de Alexa** instalada en el celular y con tu cuenta de Amazon iniciada.",
+                "**Al menos un dispositivo vinculado** (enchufe, foco o un parlante Echo). Si no se conecta al WiFi, revisa [por qué no se conecta](/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi).",
+                "**Un nombre claro para cada dispositivo**, como \"lámpara sala\". Nombres parecidos confunden a Alexa y a ti.",
+                "**Voltaje correcto:** en países de 110–127 V (México, Centroamérica, Colombia, Ecuador, Venezuela) y de 220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay) los modelos son distintos; mira [voltaje y clavija antes de comprar](/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica)."
+              ]
+            },
+            {
+              "aviso": "Una rutina solo controla lo que ya funciona. Si el enchufe se conecta a un aparato que calienta, como una estufa o una plancha, comprueba la potencia máxima del enchufe y no lo dejes programado sin supervisión. Si necesitas controlar la instalación fija de la casa, pídele a un electricista que instale el interruptor o relé."
+            }
+          ]
+        },
+        {
+          "titulo": "Crear tu primera rutina, paso a paso",
+          "bloques": [
+            {
+              "p": "Los pasos que indica Amazon en su ayuda para la app son estos:"
+            },
+            {
+              "lista": [
+                "Abre la app de Alexa y toca **Más**, luego **Rutinas**.",
+                "Toca el icono **+** (más).",
+                "Toca **Agregar un evento** y sigue las indicaciones para elegir qué inicia la rutina.",
+                "Toca **Agregar una acción** y elige qué hará. Puedes añadir varias.",
+                "Toca **Guardar**."
+              ]
+            },
+            {
+              "nota": "Los nombres exactos de los menús pueden variar según el idioma y la versión de la app. Si no ves \"Más\", busca el apartado Rutinas en el menú principal."
+            },
+            {
+              "h3": "Ejemplo 1: apagar una lámpara con una frase"
+            },
+            {
+              "p": "Evento: una frase de voz, por ejemplo \"Alexa, buenas noches\". Acciones: apagar la lámpara de la sala y el enchufe del ventilador. Es el mejor primer ejemplo porque se prueba al instante."
+            },
+            {
+              "oferta": "tapo-p115",
+              "motivo": "Enchufe WiFi sin hub con medidor de consumo, compatible con Alexa. Para redes de 100–125 V (México, Centroamérica, Colombia, Ecuador, Venezuela); no sirve en 220 V."
+            },
+            {
+              "h3": "Ejemplo 2: luz exterior al atardecer"
+            },
+            {
+              "p": "Evento: horario, con la opción de atardecer. Acción: encender el foco del portón o del patio. Como el atardecer cambia durante el año, ahorras reajustar la hora cada mes. Para esto es útil un foco WiFi de color o de luz blanca que recuerde su estado tras un corte de luz (más en [cortes de luz y dispositivos inteligentes](/articulos-editoriales/cortes-de-luz-enchufes-focos-reles-inteligentes))."
+            },
+            {
+              "oferta": "tapo-l530e",
+              "motivo": "Foco WiFi de color sin hub, compatible con Alexa, para redes de 220–240 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay), rosca E27. En 110–127 V corresponde la versión L535E."
+            },
+            {
+              "h3": "Ejemplo 3: avisarte o encender una luz al abrir una puerta"
+            },
+            {
+              "p": "Algunos sensores se pueden usar como evento si Alexa los reconoce. El Sonoff SNZB-04P es Zigbee y necesita un coordinador compatible con Alexa; no se conecta directo al WiFi. Antes de comprarlo, revisa [qué es un hub y cuándo lo necesitas](/articulos-editoriales/que-es-un-hub-domotico-cuando-lo-necesitas)."
+            },
+            {
+              "oferta": "sonoff-snzb-04p",
+              "motivo": "Sensor de puerta a pila que puede servir de evento en una rutina si tu hub o Echo lo vincula con Alexa. Necesita coordinador Zigbee y es solo para interiores."
+            }
+          ]
+        },
+        {
+          "titulo": "Ajustes que casi nadie revisa",
+          "bloques": [
+            {
+              "lista": [
+                "**Condiciones:** al elegir un evento o una acción, Amazon indica que pueden aparecer ajustes extra, como limitar cuándo puede ejecutarse la acción o qué dispositivo se usa.",
+                "**Perfil:** según la ayuda de Amazon, una rutina puede aplicarse a toda la casa o a un perfil de Alexa concreto. Si alguien tiene Voice ID, la rutina puede empezar cuando Alexa lo reconoce diciendo la frase.",
+                "**Orden de las acciones:** pon primero lo importante. Si una acción falla, revisa si el dispositivo estaba apagado o sin WiFi."
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Si la rutina no se ejecuta",
+          "bloques": [
+            {
+              "lista": [
+                "Comprueba que el dispositivo responde si se lo pides directamente a Alexa.",
+                "Revisa el WiFi: la mayoría de enchufes y focos baratos solo usan la banda de 2,4 GHz.",
+                "Si el foco depende de un interruptor de pared, el interruptor debe estar encendido; ver [mitos y verdades de los focos inteligentes](/articulos-editoriales/mitos-verdades-focos-inteligentes)."
+              ]
+            }
+          ]
+        }
+      ],
+      "ventajas": [
+        "**Gratis y sin código:** se arma desde la app de Alexa, sin comprar nada extra si ya tienes dispositivos compatibles.",
+        "**Varias acciones con un solo evento:** una frase puede apagar luces, enchufes y otros aparatos.",
+        "**Se ajusta solo al atardecer o amanecer:** no tienes que cambiar la hora cada mes."
+      ],
+      "desventajas": [
+        "**Depende de internet y de la nube de Amazon:** si el servicio falla, tus rutinas pueden fallar.",
+        "**Un solo ecosistema:** una rutina de Alexa no sirve si luego cambias a Google Home o Apple Home.",
+        "**Los menús cambian:** Amazon actualiza la app y los nombres de los botones varían según idioma y versión.",
+        "**No sustituye la seguridad eléctrica:** un horario no protege contra una sobrecarga en el enchufe."
+      ],
+      "faq": [
+        {
+          "p": "¿Necesito un Echo para crear rutinas en Alexa?",
+          "r": "La ayuda de Amazon explica los pasos desde la app de Alexa. Para que una acción de voz o de música funcione necesitas un dispositivo con Alexa; no hemos podido confirmar en la fuente qué rutinas funcionan solo con el celular."
+        },
+        {
+          "p": "¿Puedo poner más de una acción en una rutina?",
+          "r": "Sí. Amazon indica en su ayuda que puedes agregar varias acciones a la misma rutina."
+        },
+        {
+          "p": "¿Las rutinas funcionan sin internet?",
+          "r": "No lo podemos asegurar. Alexa decide en la nube de Amazon cuándo disparar la rutina, así que conviene probarlas con el router desconectado."
+        },
+        {
+          "p": "¿Qué eventos puede tener una rutina?",
+          "r": "Amazon menciona voz, horario (como amanecer o atardecer), ubicación, detección de sonidos y dispositivos inteligentes. Qué opciones ves en tu país puede variar."
+        }
+      ],
+      "veredicto": {
+        "titulo": "Veredicto: con qué dispositivo hacer tu primera rutina",
+        "intro": "Según tu casa:",
+        "perfiles": [
+          {
+            "perfil": "Vivo en un país de 110–127 V y quiero una rutina de buenas noches",
+            "texto": "Un enchufe WiFi para la lámpara o el ventilador, sin hub.",
+            "producto": "tapo-p115"
+          },
+          {
+            "perfil": "Vivo en un país de 220 V y quiero luz automática al atardecer",
+            "texto": "Un foco WiFi sin hub, con rosca E27.",
+            "producto": "tapo-l530e"
+          },
+          {
+            "perfil": "Quiero que se encienda una luz cuando se abre una puerta",
+            "texto": "Un sensor adhesivo Zigbee, sabiendo que necesitas un coordinador compatible.",
+            "producto": "sonoff-snzb-04p"
+          }
+        ],
+        "alternativa": "si usas Google o Apple, mira [Alexa vs Google Home vs HomeKit](/articulos-editoriales/alexa-vs-google-home-vs-homekit) antes de armar muchas rutinas en un solo sistema."
+      },
+      "fuentes": [
+        {
+          "texto": "Amazon: Crear una rutina de Alexa en la app (pasos, varias acciones, perfiles, Voice ID)",
+          "url": "https://digprjsurvey.amazon.com/csad/help/node/G2PYLKJN3XVZ55EQ"
+        },
+        {
+          "texto": "Amazon Alexa developer: tipos de evento de rutinas (horario, ubicación, voz, sonido)",
+          "url": "https://developer.amazon.com/en-US/docs/alexa/routines/introduction-to-custom-trigger-for-routines.html"
+        },
+        {
+          "texto": "Amazon Alexa developer: rutinas con dispositivo inteligente o voz",
+          "url": "https://developer.amazon.com/en-US/alexa/alexa-haus/routines"
+        },
+        {
+          "texto": "TP-Link: Tapo P115 (sin hub, 100–125 V, Alexa)",
+          "url": "https://www.tp-link.com/us/home-networking/smart-plug/tapo-p115/"
+        },
+        {
+          "texto": "TP-Link: Tapo L530E (220–240 V, E27, 2,4 GHz)",
+          "url": "https://www.tp-link.com/uk/products/details/tapo-l530e.html"
+        },
+        {
+          "texto": "Sonoff: guía del SNZB-04P (Zigbee, pasarela)",
+          "url": "https://help.sonoff.tech/docs/snzb-04p/"
+        }
+      ]
     }
   ]
 }

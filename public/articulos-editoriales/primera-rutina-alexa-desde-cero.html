@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Primera rutina en Alexa desde cero: paso a paso</title>
+  <meta name="description" content="Cómo crear una rutina en la app de Alexa: eventos, acciones, ejemplos con enchufes y focos, y qué revisar si no se ejecuta. Sin hub ni código.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.ofertasdomoticas.com/articulos-editoriales/primera-rutina-alexa-desde-cero">
+  <meta property="og:title" content="Primera rutina en Alexa desde cero: paso a paso">
+  <meta property="og:description" content="Cómo crear una rutina en la app de Alexa: eventos, acciones, ejemplos con enchufes y focos, y qué revisar si no se ejecuta. Sin hub ni código.">
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2026-11-25">
+  <meta property="article:modified_time" content="2026-11-25">
+  <meta property="og:updated_time" content="2026-11-25">
+  <meta property="og:url" content="https://www.ofertasdomoticas.com/articulos-editoriales/primera-rutina-alexa-desde-cero">
+  <meta property="og:image" content="https://www.ofertasdomoticas.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="es_LA">
+  <meta property="og:site_name" content="OfertasDomoticas.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f6f6f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/catalogo.css">
+  <script src="/analytics.js" defer></script>
+  <script src="/assets/pais.js" defer></script>
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://www.ofertasdomoticas.com/"},{"@type":"ListItem","position":2,"name":"Guías","item":"https://www.ofertasdomoticas.com/articulos-editoriales/"},{"@type":"ListItem","position":3,"name":"Primera rutina en Alexa desde cero: paso a paso","item":"https://www.ofertasdomoticas.com/articulos-editoriales/primera-rutina-alexa-desde-cero"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Tu primera rutina en Alexa desde cero: paso a paso (2026)","description":"Cómo crear una rutina en la app de Alexa: eventos, acciones, ejemplos con enchufes y focos, y qué revisar si no se ejecuta. Sin hub ni código.","datePublished":"2026-11-25","dateModified":"2026-11-25","inLanguage":"es","image":"https://www.ofertasdomoticas.com/og-image.png","author":{"@type":"Organization","name":"OfertasDomoticas.com","url":"https://www.ofertasdomoticas.com"},"publisher":{"@type":"Organization","name":"OfertasDomoticas.com","url":"https://www.ofertasdomoticas.com"},"mainEntityOfPage":"https://www.ofertasdomoticas.com/articulos-editoriales/primera-rutina-alexa-desde-cero"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Necesito un Echo para crear rutinas en Alexa?","acceptedAnswer":{"@type":"Answer","text":"La ayuda de Amazon explica los pasos desde la app de Alexa. Para que una acción de voz o de música funcione necesitas un dispositivo con Alexa; no hemos podido confirmar en la fuente qué rutinas funcionan solo con el celular."}},{"@type":"Question","name":"¿Puedo poner más de una acción en una rutina?","acceptedAnswer":{"@type":"Answer","text":"Sí. Amazon indica en su ayuda que puedes agregar varias acciones a la misma rutina."}},{"@type":"Question","name":"¿Las rutinas funcionan sin internet?","acceptedAnswer":{"@type":"Answer","text":"No lo podemos asegurar. Alexa decide en la nube de Amazon cuándo disparar la rutina, así que conviene probarlas con el router desconectado."}},{"@type":"Question","name":"¿Qué eventos puede tener una rutina?","acceptedAnswer":{"@type":"Answer","text":"Amazon menciona voz, horario (como amanecer o atardecer), ubicación, detección de sonidos y dispositivos inteligentes. Qué opciones ves en tu país puede variar."}}]}</script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="g-plastico" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E3E6EB"/></linearGradient>
+<linearGradient id="g-metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A3A8B0"/><stop offset=".45" stop-color="#F1F2F4"/><stop offset="1" stop-color="#989DA6"/></linearGradient>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+<symbol id="i-chev-r" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+<symbol id="i-chev-d" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+<symbol id="i-alerta" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-verificado" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-ayuda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-prohibido" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></symbol>
+<symbol id="i-enchufe" viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></symbol>
+<symbol id="i-bombilla" viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
+<symbol id="i-sensor" viewBox="0 0 24 24"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></symbol>
+<symbol id="i-hub" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6.01 18H6"/><path d="M10.01 18H10"/><path d="M15 10v4"/><path d="M17.84 7.17a4 4 0 0 0-5.66 0"/><path d="M20.66 4.34a8 8 0 0 0-11.31 0"/></symbol>
+<symbol id="i-interruptor" viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="6"/><circle cx="16" cy="12" r="2"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></symbol>
+<symbol id="i-red" viewBox="0 0 24 24"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></symbol>
+<symbol id="i-casa" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="i-columnas" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 3v18"/></symbol>
+<symbol id="i-libro" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="i-balanza" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+<symbol id="i-brujula" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/></symbol>
+<symbol id="i-externo" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+<symbol id="i-globo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+<symbol id="i-lapiz" viewBox="0 0 24 24"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol>
+<symbol id="i-calendario" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+<symbol id="i-actualizado" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+<symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="i-bolsa" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+<symbol id="i-rayo" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+<symbol id="i-ubicacion" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-cambiar" viewBox="0 0 24 24"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></symbol>
+<symbol id="i-mas" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+<symbol id="i-buscar" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+</defs></svg>
+<script type="application/json" id="od-paises">[{"nombre":"México","codigo":"MX","v":"127","clavijas":"A, B","grupo":"110"},{"nombre":"Centroamérica y Rep. Dominicana","codigo":"CA","v":"120","clavijas":"A, B","grupo":"110"},{"nombre":"Colombia","codigo":"CO","v":"120","clavijas":"A, B","grupo":"110"},{"nombre":"Venezuela","codigo":"VE","v":"120","clavijas":"A, B","grupo":"110"},{"nombre":"Ecuador","codigo":"EC","v":"120","clavijas":"A, B","grupo":"110"},{"nombre":"Perú","codigo":"PE","v":"220","clavijas":"A, B, C","grupo":"220"},{"nombre":"Bolivia","codigo":"BO","v":"220","clavijas":"A, B, C","grupo":"220"},{"nombre":"Chile","codigo":"CL","v":"220","clavijas":"C, L","grupo":"220"},{"nombre":"Argentina","codigo":"AR","v":"220","clavijas":"I","grupo":"220"},{"nombre":"Uruguay","codigo":"UY","v":"220","clavijas":"C, F, L","grupo":"220"},{"nombre":"Paraguay","codigo":"PY","v":"220","clavijas":"A, B, C, N","grupo":"220"},{"nombre":"Brasil","codigo":"BR","v":"127/220","clavijas":"C, N","grupo":"br"}]</script>
+<header class="top">
+  <div class="top-in">
+    <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada"><span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7.5" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><rect x="14.1" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><path d="M9.6 17.5a2.4 2.4 0 0 1 4.8 0v1.6H9.6z" fill="currentColor"/></svg></span><span class="wm">ofertas <span>domóticas</span></span></a>
+    <button type="button" class="chip-pais" data-abrir-pais aria-expanded="false" hidden><svg class="i" aria-hidden="true" focusable="false"><use href="#i-ubicacion"/></svg><span data-chip-pais>Tu país</span></button>
+    <nav aria-label="Principal">
+      <a href="/productos/">Catálogo</a>
+      <a href="/comparativas/">Comparativas</a>
+      <a href="/comparar">Comparar</a>
+      <a href="/articulos-editoriales/" aria-current="page">Guías</a>
+    </nav>
+  </div>
+</header>
+<main>
+<div class="w">
+<div class="bc"><a href="/">Inicio</a> › <a href="/articulos-editoriales/">Guías</a> › Primera rutina en Alexa desde cero: paso a paso</div>
+<article class="article guia">
+<span class="article-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-brujula"/></svg>Guía práctica · 2026</span>
+<h1>Tu primera rutina en Alexa desde cero: paso a paso (2026)</h1>
+<div class="meta">
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-lapiz"/></svg>Equipo OfertasDomoticas</span>
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-calendario"/></svg>25 de noviembre de 2026</span>
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-actualizado"/></svg>Actualizado el 25 de noviembre de 2026</span>
+  <span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg>6 min de lectura</span>
+</div>
+<p class="lead">Tienes un enchufe o un foco inteligente y Alexa lo enciende cuando se lo pides, pero sigues haciéndolo a mano. Una <strong>rutina</strong> resuelve eso: un solo evento (una frase, una hora, la salida del sol) dispara varias acciones sin que muevas un dedo.</p>
+<p class="lead">En esta guía revisamos cómo se arma una rutina en la app de Alexa, qué tipos de evento existen, cómo se comporta por debajo y qué errores evitar. Si aún no tienes dispositivos, empieza por <a href="/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica">los primeros 5 dispositivos para tu casa inteligente</a>.</p>
+
+<nav class="toc" aria-label="Tabla de contenidos">
+  <p class="toc-title">Tabla de contenidos</p>
+  <ol>
+    <li><a href="#que-es-una-rutina-y-como-funciona-por-debajo">Qué es una rutina y cómo funciona por debajo</a></li>
+    <li><a href="#antes-de-empezar-lo-que-necesitas">Antes de empezar: lo que necesitas</a></li>
+    <li><a href="#crear-tu-primera-rutina-paso-a-paso">Crear tu primera rutina, paso a paso</a></li>
+    <li><a href="#ajustes-que-casi-nadie-revisa">Ajustes que casi nadie revisa</a></li>
+    <li><a href="#si-la-rutina-no-se-ejecuta">Si la rutina no se ejecuta</a></li>
+    <li><a href="#ventajas-y-desventajas">Ventajas y desventajas</a></li>
+    <li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li>
+    <li><a href="#veredicto">Veredicto: con qué dispositivo hacer tu primera rutina</a></li>
+  </ol>
+</nav>
+
+<h2 id="que-es-una-rutina-y-como-funciona-por-debajo">Qué es una rutina y cómo funciona por debajo</h2>
+<p>Según la documentación para desarrolladores de Amazon, una rutina es un conjunto de acciones que Alexa ejecuta automáticamente cuando ocurre un evento (el &quot;disparador&quot;). Amazon describe estos tipos de evento: <strong>horario</strong> (por ejemplo, el amanecer o el atardecer), <strong>ubicación</strong> (por ejemplo, cuando alguien llega a casa), <strong>voz</strong> (frases concretas) y <strong>detección de sonidos</strong> (por ejemplo, ronquidos). Otra página de Amazon indica que una rutina también se puede activar con un dispositivo inteligente.</p>
+<p>Piensa en la lógica como un &quot;si pasa esto, haz aquello&quot;: un evento y una o varias acciones. En la app, Amazon confirma que puedes agregar varias acciones a una misma rutina, como controlar dispositivos inteligentes, reproducir música o dar el pronóstico del tiempo.</p>
+<h3>Dónde se ejecuta cada cosa</h3>
+<p>Quien decide cuándo se dispara la rutina es Alexa, en la nube de Amazon; la orden llega después al dispositivo por WiFi o por el hub Zigbee que tengas vinculado. Esto tiene una consecuencia práctica: si se cae el internet, las rutinas dependen de ese servicio y pueden fallar (lo analizamos en <a href="/articulos-editoriales/casa-inteligente-sin-internet-que-funciona-en-local">qué funciona en local cuando se cae el internet</a>).</p>
+<div class="highlight con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bombilla"/></svg><div>Este punto lo deducimos de cómo está diseñado el servicio, no de una declaración puntual de Amazon. Si tu casa no puede depender del internet, prueba tus rutinas con el router desconectado antes de confiar en ellas.</div></div>
+
+<h2 id="antes-de-empezar-lo-que-necesitas">Antes de empezar: lo que necesitas</h2>
+<ul>
+<li><strong>La app de Alexa</strong> instalada en el celular y con tu cuenta de Amazon iniciada.</li>
+<li><strong>Al menos un dispositivo vinculado</strong> (enchufe, foco o un parlante Echo). Si no se conecta al WiFi, revisa <a href="/articulos-editoriales/enchufe-foco-inteligente-no-conecta-wifi">por qué no se conecta</a>.</li>
+<li><strong>Un nombre claro para cada dispositivo</strong>, como &quot;lámpara sala&quot;. Nombres parecidos confunden a Alexa y a ti.</li>
+<li><strong>Voltaje correcto:</strong> en países de 110–127 V (México, Centroamérica, Colombia, Ecuador, Venezuela) y de 220 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay) los modelos son distintos; mira <a href="/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica">voltaje y clavija antes de comprar</a>.</li>
+</ul>
+<div class="warning con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-alerta"/></svg><div>Una rutina solo controla lo que ya funciona. Si el enchufe se conecta a un aparato que calienta, como una estufa o una plancha, comprueba la potencia máxima del enchufe y no lo dejes programado sin supervisión. Si necesitas controlar la instalación fija de la casa, pídele a un electricista que instale el interruptor o relé.</div></div>
+
+<h2 id="crear-tu-primera-rutina-paso-a-paso">Crear tu primera rutina, paso a paso</h2>
+<p>Los pasos que indica Amazon en su ayuda para la app son estos:</p>
+<ul>
+<li>Abre la app de Alexa y toca <strong>Más</strong>, luego <strong>Rutinas</strong>.</li>
+<li>Toca el icono <strong>+</strong> (más).</li>
+<li>Toca <strong>Agregar un evento</strong> y sigue las indicaciones para elegir qué inicia la rutina.</li>
+<li>Toca <strong>Agregar una acción</strong> y elige qué hará. Puedes añadir varias.</li>
+<li>Toca <strong>Guardar</strong>.</li>
+</ul>
+<div class="highlight con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bombilla"/></svg><div>Los nombres exactos de los menús pueden variar según el idioma y la versión de la app. Si no ves &quot;Más&quot;, busca el apartado Rutinas en el menú principal.</div></div>
+<h3>Ejemplo 1: apagar una lámpara con una frase</h3>
+<p>Evento: una frase de voz, por ejemplo &quot;Alexa, buenas noches&quot;. Acciones: apagar la lámpara de la sala y el enchufe del ventilador. Es el mejor primer ejemplo porque se prueba al instante.</p>
+<div class="product-card">
+  <a class="stage pc-stage k-enchufe" href="/productos/tapo-p115" tabindex="-1" aria-hidden="true"><svg class="ill" viewBox="0 0 200 230" aria-hidden="true" focusable="false"><rect x="38" y="22" width="124" height="180" rx="40" fill="url(#g-plastico)" stroke="#D3D7DE" stroke-width="1.5"/><rect x="56" y="62" width="88" height="104" rx="28" fill="#F4F5F8" stroke="#E0E3E8" stroke-width="1.5"/><rect x="79" y="88" width="9" height="30" rx="3" fill="#2E3138"/><rect x="112" y="88" width="9" height="30" rx="3" fill="#2E3138"/><path d="M92 146a8 8 0 0 1 16 0v8h-16z" fill="#2E3138"/><circle cx="100" cy="42" r="4.5" fill="#34D399"/><rect x="160" y="96" width="6" height="32" rx="3" fill="#C9CDD4"/></svg></a>
+  <div class="pc-body">
+    <span class="product-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bolsa"/></svg>En nuestro catálogo</span>
+    <p class="product-name"><a href="/productos/tapo-p115">TP-Link Tapo P115</a></p>
+    <div class="badges"><span class="badge">WiFi 2.4 GHz</span><span class="badge">Bluetooth (solo configuración)</span><span class="badge volt">110–120 V</span></div>
+    <p>Enchufe WiFi sin hub con medidor de consumo, compatible con Alexa. Para redes de 100–125 V (México, Centroamérica, Colombia, Ecuador, Venezuela); no sirve en 220 V.</p>
+  </div>
+  <a href="/productos/tapo-p115" class="btn sm">Ver ficha y dónde comprar<svg class="i" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+</div>
+<h3>Ejemplo 2: luz exterior al atardecer</h3>
+<p>Evento: horario, con la opción de atardecer. Acción: encender el foco del portón o del patio. Como el atardecer cambia durante el año, ahorras reajustar la hora cada mes. Para esto es útil un foco WiFi de color o de luz blanca que recuerde su estado tras un corte de luz (más en <a href="/articulos-editoriales/cortes-de-luz-enchufes-focos-reles-inteligentes">cortes de luz y dispositivos inteligentes</a>).</p>
+<div class="product-card">
+  <a class="stage pc-stage k-bombilla" href="/productos/tapo-l530e" tabindex="-1" aria-hidden="true"><svg class="ill" viewBox="0 0 200 230" aria-hidden="true" focusable="false"><path class="glass" d="M72 160C72 140 36 126 36 88A64 64 0 1 1 164 88C164 126 128 140 128 160Z"/><ellipse cx="74" cy="72" rx="9" ry="21" transform="rotate(28 74 72)" fill="#FFFFFF" opacity=".7"/><rect x="70" y="158" width="60" height="13" rx="4" fill="#E6E8EC"/><path d="M74 171h52v30a9 9 0 0 1-9 9H83a9 9 0 0 1-9-9z" fill="url(#g-metal)"/><path d="M74 180l52-4M74 190l52-4M74 200l52-4" stroke="#8C919A" stroke-width="2.4" stroke-linecap="round"/><path d="M90 209h20l-4 9h-12z" fill="#33363D"/></svg></a>
+  <div class="pc-body">
+    <span class="product-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bolsa"/></svg>En nuestro catálogo</span>
+    <p class="product-name"><a href="/productos/tapo-l530e">TP-Link Tapo L530E (E27, 220–240 V)</a></p>
+    <div class="badges"><span class="badge">WiFi 2.4 GHz</span><span class="badge volt">220–240 V</span></div>
+    <p>Foco WiFi de color sin hub, compatible con Alexa, para redes de 220–240 V (Perú, Chile, Argentina, Bolivia, Uruguay, Paraguay), rosca E27. En 110–127 V corresponde la versión L535E.</p>
+  </div>
+  <a href="/productos/tapo-l530e" class="btn sm">Ver ficha y dónde comprar<svg class="i" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+</div>
+<h3>Ejemplo 3: avisarte o encender una luz al abrir una puerta</h3>
+<p>Algunos sensores se pueden usar como evento si Alexa los reconoce. El Sonoff SNZB-04P es Zigbee y necesita un coordinador compatible con Alexa; no se conecta directo al WiFi. Antes de comprarlo, revisa <a href="/articulos-editoriales/que-es-un-hub-domotico-cuando-lo-necesitas">qué es un hub y cuándo lo necesitas</a>.</p>
+<div class="product-card">
+  <a class="stage pc-stage k-sensor" href="/productos/sonoff-snzb-04p" tabindex="-1" aria-hidden="true"><svg class="ill" viewBox="0 0 200 230" aria-hidden="true" focusable="false"><rect x="52" y="28" width="64" height="172" rx="15" fill="url(#g-plastico)" stroke="#D3D7DE" stroke-width="1.5"/><circle cx="84" cy="54" r="4.5" fill="#5C95FF"/><rect x="66" y="178" width="36" height="4" rx="2" fill="#DDE0E6"/><rect x="128" y="64" width="30" height="102" rx="11" fill="url(#g-plastico)" stroke="#D3D7DE" stroke-width="1.5"/></svg></a>
+  <div class="pc-body">
+    <span class="product-badge"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bolsa"/></svg>En nuestro catálogo</span>
+    <p class="product-name"><a href="/productos/sonoff-snzb-04p">Sonoff SNZB-04P</a></p>
+    <div class="badges"><span class="badge">Zigbee 3.0</span></div>
+    <p>Sensor de puerta a pila que puede servir de evento en una rutina si tu hub o Echo lo vincula con Alexa. Necesita coordinador Zigbee y es solo para interiores.</p>
+  </div>
+  <a href="/productos/sonoff-snzb-04p" class="btn sm">Ver ficha y dónde comprar<svg class="i" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+</div>
+
+<h2 id="ajustes-que-casi-nadie-revisa">Ajustes que casi nadie revisa</h2>
+<ul>
+<li><strong>Condiciones:</strong> al elegir un evento o una acción, Amazon indica que pueden aparecer ajustes extra, como limitar cuándo puede ejecutarse la acción o qué dispositivo se usa.</li>
+<li><strong>Perfil:</strong> según la ayuda de Amazon, una rutina puede aplicarse a toda la casa o a un perfil de Alexa concreto. Si alguien tiene Voice ID, la rutina puede empezar cuando Alexa lo reconoce diciendo la frase.</li>
+<li><strong>Orden de las acciones:</strong> pon primero lo importante. Si una acción falla, revisa si el dispositivo estaba apagado o sin WiFi.</li>
+</ul>
+
+<h2 id="si-la-rutina-no-se-ejecuta">Si la rutina no se ejecuta</h2>
+<ul>
+<li>Comprueba que el dispositivo responde si se lo pides directamente a Alexa.</li>
+<li>Revisa el WiFi: la mayoría de enchufes y focos baratos solo usan la banda de 2,4 GHz.</li>
+<li>Si el foco depende de un interruptor de pared, el interruptor debe estar encendido; ver <a href="/articulos-editoriales/mitos-verdades-focos-inteligentes">mitos y verdades de los focos inteligentes</a>.</li>
+</ul>
+
+<h2 id="ventajas-y-desventajas">Ventajas y desventajas</h2>
+<div class="proscons">
+  <div><h3>Ventajas</h3><div class="group">
+<div class="fila"><span class="ib ok"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span class="fila-t"><strong><strong>Gratis y sin código:</strong> se arma desde la app de Alexa, sin comprar nada extra si ya tienes dispositivos compatibles.</strong></span></div>
+<div class="fila"><span class="ib ok"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span class="fila-t"><strong><strong>Varias acciones con un solo evento:</strong> una frase puede apagar luces, enchufes y otros aparatos.</strong></span></div>
+<div class="fila"><span class="ib ok"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></span><span class="fila-t"><strong><strong>Se ajusta solo al atardecer o amanecer:</strong> no tienes que cambiar la hora cada mes.</strong></span></div>
+  </div></div>
+  <div><h3>Desventajas</h3><div class="group">
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Depende de internet y de la nube de Amazon:</strong> si el servicio falla, tus rutinas pueden fallar.</strong></span></div>
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Un solo ecosistema:</strong> una rutina de Alexa no sirve si luego cambias a Google Home o Apple Home.</strong></span></div>
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>Los menús cambian:</strong> Amazon actualiza la app y los nombres de los botones varían según idioma y versión.</strong></span></div>
+<div class="fila"><span class="ib bad"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></span><span class="fila-t"><strong><strong>No sustituye la seguridad eléctrica:</strong> un horario no protege contra una sobrecarga en el enchufe.</strong></span></div>
+  </div></div>
+</div>
+
+<h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
+<details class="faq"><summary>¿Necesito un Echo para crear rutinas en Alexa?</summary><p>La ayuda de Amazon explica los pasos desde la app de Alexa. Para que una acción de voz o de música funcione necesitas un dispositivo con Alexa; no hemos podido confirmar en la fuente qué rutinas funcionan solo con el celular.</p></details>
+<details class="faq"><summary>¿Puedo poner más de una acción en una rutina?</summary><p>Sí. Amazon indica en su ayuda que puedes agregar varias acciones a la misma rutina.</p></details>
+<details class="faq"><summary>¿Las rutinas funcionan sin internet?</summary><p>No lo podemos asegurar. Alexa decide en la nube de Amazon cuándo disparar la rutina, así que conviene probarlas con el router desconectado.</p></details>
+<details class="faq"><summary>¿Qué eventos puede tener una rutina?</summary><p>Amazon menciona voz, horario (como amanecer o atardecer), ubicación, detección de sonidos y dispositivos inteligentes. Qué opciones ves en tu país puede variar.</p></details>
+
+<h2 id="veredicto">Veredicto: con qué dispositivo hacer tu primera rutina</h2>
+<p>Según tu casa:</p>
+<div class="profile-grid">
+  <div class="profile-card">
+    <p class="profile-title">Vivo en un país de 110–127 V y quiero una rutina de buenas noches</p>
+    <p>Un enchufe WiFi para la lámpara o el ventilador, sin hub.</p>
+    <a href="/productos/tapo-p115">Ver TP-Link Tapo P115</a>
+  </div>
+  <div class="profile-card">
+    <p class="profile-title">Vivo en un país de 220 V y quiero luz automática al atardecer</p>
+    <p>Un foco WiFi sin hub, con rosca E27.</p>
+    <a href="/productos/tapo-l530e">Ver TP-Link Tapo L530E (E27, 220–240 V)</a>
+  </div>
+  <div class="profile-card">
+    <p class="profile-title">Quiero que se encienda una luz cuando se abre una puerta</p>
+    <p>Un sensor adhesivo Zigbee, sabiendo que necesitas un coordinador compatible.</p>
+    <a href="/productos/sonoff-snzb-04p">Ver Sonoff SNZB-04P</a>
+  </div>
+</div>
+<div class="highlight con-icono"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-bombilla"/></svg><div><strong>Mejor alternativa:</strong> si usas Google o Apple, mira <a href="/articulos-editoriales/alexa-vs-google-home-vs-homekit">Alexa vs Google Home vs HomeKit</a> antes de armar muchas rutinas en un solo sistema.</div></div>
+
+<h2 id="fuentes">Fuentes</h2>
+<ul class="small">
+<li><a href="https://digprjsurvey.amazon.com/csad/help/node/G2PYLKJN3XVZ55EQ" rel="noopener nofollow">Amazon: Crear una rutina de Alexa en la app (pasos, varias acciones, perfiles, Voice ID)</a></li>
+<li><a href="https://developer.amazon.com/en-US/docs/alexa/routines/introduction-to-custom-trigger-for-routines.html" rel="noopener nofollow">Amazon Alexa developer: tipos de evento de rutinas (horario, ubicación, voz, sonido)</a></li>
+<li><a href="https://developer.amazon.com/en-US/alexa/alexa-haus/routines" rel="noopener nofollow">Amazon Alexa developer: rutinas con dispositivo inteligente o voz</a></li>
+<li><a href="https://www.tp-link.com/us/home-networking/smart-plug/tapo-p115/" rel="noopener nofollow">TP-Link: Tapo P115 (sin hub, 100–125 V, Alexa)</a></li>
+<li><a href="https://www.tp-link.com/uk/products/details/tapo-l530e.html" rel="noopener nofollow">TP-Link: Tapo L530E (220–240 V, E27, 2,4 GHz)</a></li>
+<li><a href="https://help.sonoff.tech/docs/snzb-04p/" rel="noopener nofollow">Sonoff: guía del SNZB-04P (Zigbee, pasarela)</a></li>
+</ul>
+
+<h2 id="sigue-leyendo">Sigue leyendo</h2>
+<div class="group">
+<a class="fila" href="/articulos-editoriales/domotica-departamento-alquilado-sin-obras"><span class="ib"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-libro"/></svg></span><span class="fila-t"><span class="eyebrow">Guía</span><strong>Domótica en departamento alquilado: sin obras</strong></span><svg class="i chev" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+<a class="fila" href="/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica"><span class="ib"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-libro"/></svg></span><span class="fila-t"><span class="eyebrow">Guía</span><strong>5 primeros dispositivos para tu casa inteligente</strong></span><svg class="i chev" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+<a class="fila" href="/articulos-editoriales/que-es-la-domotica-como-empezar-menos-50"><span class="ib"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-libro"/></svg></span><span class="fila-t"><span class="eyebrow">Guía</span><strong>Qué es la domótica y cómo empezar con poco (2026)</strong></span><svg class="i chev" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+<a class="fila" href="/comparativas/focos-wifi-baratos-vs-zigbee-hue"><span class="ib"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-balanza"/></svg></span><span class="fila-t"><span class="eyebrow">Comparativa</span><strong>Focos WiFi baratos vs Zigbee de marca</strong></span><svg class="i chev" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+<a class="fila" href="/comparativas/focos-inteligentes-wiz-vs-tapo-vs-philips-hue"><span class="ib"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-balanza"/></svg></span><span class="fila-t"><span class="eyebrow">Comparativa</span><strong>Focos inteligentes: WiZ vs Tapo vs Philips Hue</strong></span><svg class="i chev" aria-hidden="true" focusable="false"><use href="#i-chev-r"/></svg></a>
+</div>
+
+<div class="cta-box">
+  <p>¿Quieres ver más opciones con voltaje, clavija y compatibilidad revisados?</p>
+  <div class="links-list"><a href="/productos/" class="btn">Ver el catálogo</a><a href="/comparar" class="btn secondary"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-columnas"/></svg>Comparar productos</a></div>
+</div>
+</article>
+<p class="disclosure">Algunos enlaces de compra pueden ser de afiliado: si compras a través de ellos podemos recibir una pequeña comisión, sin coste extra para ti. No mostramos precios exactos porque cambian a diario; el rango es orientativo. En calidad de afiliado de Amazon, OfertasDomoticas.com obtiene ingresos por las compras adscritas que cumplen los requisitos aplicables.</p>
+</div>
+</main>
+<footer class="pie">
+  <div class="w pie-in">
+    <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada"><span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7.5" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><rect x="14.1" y="5.5" width="2.4" height="7" rx="1" fill="currentColor"/><path d="M9.6 17.5a2.4 2.4 0 0 1 4.8 0v1.6H9.6z" fill="currentColor"/></svg></span><span class="wm">ofertas <span>domóticas</span></span></a>
+    <p class="pie-lema">Domótica práctica para Latinoamérica: fichas verificadas, comparativas y guías para redes de 110 V y 220 V.</p>
+    <nav aria-label="Secciones">
+      <a href="/productos/">Catálogo</a><a href="/comparativas/">Comparativas</a><a href="/comparar">Comparar</a><a href="/articulos-editoriales/">Guías</a><a href="/paises/">Países</a><a href="/glosario">Glosario</a>
+    </nav>
+    <nav aria-label="Información">
+      <a href="/nosotros">Nosotros</a><a href="/contacto">Contacto</a><a href="/aviso-legal">Aviso legal</a><a href="/privacidad">Privacidad</a><a href="/privacidad#cookies" data-cookies>Configurar cookies</a>
+    </nav>
+    <small>© 2026 OfertasDomoticas.com</small>
+  </div>
+</footer>
+</body>
+</html>
