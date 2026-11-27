@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-18",
+  "actualizado": "2026-11-27",
   "categorias": {
     "enchufe": {
       "nombre": "Enchufes inteligentes",
@@ -1290,6 +1290,91 @@
       "idealPara": "Cajas con dos luces o un motor de cortina que necesitan dos salidas.",
       "notaLatam": "Acepta de 100 a 240 V: vale para cualquier país de la región. Si no tienes experiencia con cables, contrata a un electricista.",
       "busqueda": "sonoff dualr3 lite"
+    },
+    {
+      "slug": "tapo-p125m",
+      "nombre": "TP-Link Tapo P125M (Matter)",
+      "marca": "TP-Link Tapo",
+      "categoria": "enchufe",
+      "protocolos": [
+        "WiFi 2.4 GHz",
+        "Matter",
+        "Bluetooth (solo configuración)"
+      ],
+      "hub": "No necesita",
+      "app": "Tapo",
+      "voltaje": "100–125 V, 50/60 Hz",
+      "voltajes": [
+        "110"
+      ],
+      "clavija": "Versión para EE.UU. (certificación UL/FCC); confirma la clavija del modelo de tu país",
+      "cargaMax": "15 A / 1800 W",
+      "medicionConsumo": false,
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "si",
+        "homeAssistant": "sin-confirmar"
+      },
+      "precio": 1,
+      "resumen": "Mini enchufe WiFi con certificación Matter: se puede añadir a Apple Home, Alexa, Google Home o SmartThings sin depender de una sola app. Es solo de encendido y apagado: no mide consumo.",
+      "pros": [
+        "Certificado Matter: funciona con Apple Home, Alexa, Google Home y SmartThings",
+        "No necesita hub",
+        "Compacto y con carga de hasta 1800 W"
+      ],
+      "contras": [
+        "No mide el consumo eléctrico (para eso, el Tapo P115 del catálogo)",
+        "Solo 100–125 V",
+        "Solo WiFi de 2,4 GHz"
+      ],
+      "idealPara": "Quien usa Apple Home u otro ecosistema Matter y quiere un enchufe sencillo sin hub.",
+      "notaLatam": "Para países de 110–120 V. TP-Link lo ofrece en versiones por región: revisa que el modelo que compres tenga la clavija de tu país.",
+      "busqueda": "tapo p125m matter"
+    },
+    {
+      "slug": "eve-energy-matter",
+      "nombre": "Eve Energy (Matter)",
+      "marca": "Eve",
+      "categoria": "enchufe",
+      "protocolos": [
+        "Thread",
+        "Matter sobre Thread"
+      ],
+      "hub": "Router de borde Thread con controlador Matter (por ejemplo un HomePod mini o un parlante/pantalla compatible)",
+      "app": "Eve",
+      "voltaje": "100–240 V, 50/60 Hz",
+      "voltajes": [
+        "110",
+        "220"
+      ],
+      "clavija": "Versión por país: EE.UU./Canadá (A y B), Europa (C, E y F), Reino Unido (G), Suiza (J) y Australia (I). Confirma que exista la de tu país",
+      "cargaMax": "15 A / 1800 W en la versión de EE.UU. y Canadá",
+      "medicionConsumo": true,
+      "compat": {
+        "alexa": "si",
+        "google": "si",
+        "homekit": "si",
+        "matter": "si",
+        "homeAssistant": "si"
+      },
+      "notaHA": "Según el fabricante funciona con Home Assistant; necesita un router de borde Thread.",
+      "precio": 3,
+      "resumen": "Enchufe Matter sobre Thread con medición de consumo. No usa tu WiFi: se conecta por Thread a través de un router de borde, por lo que es más ligero para la red del hogar.",
+      "pros": [
+        "Mide el consumo y permite ver el costo con tu tarifa en la app Eve",
+        "Matter sobre Thread: no recarga el WiFi",
+        "Funciona con Apple Home, Alexa, Google Home, SmartThings y Home Assistant"
+      ],
+      "contras": [
+        "Necesita un router de borde Thread: sin él no funciona",
+        "Más caro que un enchufe WiFi",
+        "Las versiones del fabricante no cubren todas las clavijas de Latinoamérica"
+      ],
+      "idealPara": "Quien ya tiene un router de borde Thread y quiere medir consumo con un enchufe estable.",
+      "notaLatam": "El fabricante lo vende con clavija A/B (EE.UU. y Canadá), C/E/F, G, J e I; no lista las clavijas L (Chile e Italia) ni N (Brasil). En países con clavija A/B de 110–127 V sirve la versión de EE.UU.",
+      "busqueda": "eve energy matter smart plug"
     }
   ]
 }
