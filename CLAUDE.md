@@ -68,6 +68,12 @@ técnico pero fácil de entender, pensado para ayudar al lector a decidir qué c
   Los enlaces al comparador se escriben `/comparar#p=slug1,slug2` (con `#`, no con `?`).
   En `intro`, `secciones`, `veredicto` y `faq` se puede usar `**negrita**` y `[texto](/ruta)`, como en las guías.
   El build falla si queda formato sin convertir en cualquier página (se vería tal cual en la web).
+- `data/mejores.json` — guías de compra por red eléctrica (`/mejores/<slug>`, por ejemplo "Mejores enchufes
+  inteligentes para 110 V"). Las genera `scripts/mejores.js`. Cada página tiene `categoria`, `red` (`110` o `220`),
+  intro, `seleccion` (perfil → producto del catálogo → motivo), secciones y `faq`; la tabla con todos los modelos que
+  sirven en esa red y la lista de los que no salen solas del catálogo. El build falla si un producto elegido no existe,
+  no es de esa categoría o no sirve en esa red. Cada dato de los motivos tiene que estar ya en la ficha del producto.
+  Al añadir un producto de enchufe o foco, revisa si merece entrar en la selección de su red y cambia `actualizado`.
 - `scripts/paises.js` — páginas por país (`/paises/<país>`): red eléctrica, clavijas y qué productos del catálogo
   funcionan allí. No llevan texto a mano: salen de `PAISES` (`scripts/catalogo.js`, datos de WorldStandards y
   Silicon Labs) y de `voltajes` / `voltaje` de cada producto, así que se actualizan solas al añadir productos.

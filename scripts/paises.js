@@ -15,6 +15,7 @@
 import fs from 'fs';
 import path from 'path';
 import { esc, pagina, tituloSeo, icono, fila, pila, tarjetaProducto, tipoRed, PAISES, AVISO_AFILIADOS } from './catalogo.js';
+import { leerMejores } from './mejores.js';
 
 const DIR = 'paises';
 
@@ -85,7 +86,9 @@ function preguntas(p, cuenta) {
   return faq;
 }
 
-function paginaPais(p, todos, data, comparativas) {
+function paginaPais(p, todos, data, comparativas, mejores = []) {
+  // Guías de compra de la red del país (Brasil: las de las dos redes)
+  const deMiRed = mejores.filter((m) => p.grupo === 'br' || m.red === p.grupo);
   const { productos, categorias } = data;
   const por = (v) => productos.filter((x) => veredicto(x, p) === v);
   const sirven = por('sirve');
@@ -172,6 +175,7 @@ ${faq.map(([q, r]) => `<details class="faq"><summary>${esc(q)}</summary><p>${esc
 
 <h2 id="sigue-leyendo">Sigue leyendo</h2>
 <div class="group">
+${deMiRed.map((m) => fila({ href: `/mejores/${m.slug}`, antetitulo: 'Guía de compra', titulo: m.tituloCorto, icono: 'bolsa' })).join('\n')}
 ${fila({ href: '/articulos-editoriales/voltaje-clavija-rosca-antes-de-comprar-domotica-latinoamerica', antetitulo: 'Guía', titulo: '110–127 V o 220 V: qué revisar antes de comprar domótica', icono: 'libro' })}
 ${fila({ href: '/articulos-editoriales/comprar-domotica-amazon-aliexpress-latinoamerica', antetitulo: 'Guía', titulo: 'Comprar domótica en Amazon o AliExpress desde Latinoamérica', icono: 'libro' })}
 ${fila({ href: '/articulos-editoriales/primeros-5-dispositivos-casa-inteligente-latinoamerica', antetitulo: 'Guía', titulo: 'Los primeros 5 dispositivos para tu casa inteligente', icono: 'libro' })}
@@ -240,7 +244,7 @@ export function generarPaises(root) {
   const outDir = path.join(root, 'public', DIR);
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
-  for (const p of todos) fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaPais(p, todos, data, comparativas), 'utf8');
+  for (const p of todos) fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaPais(p, todos, data, comparativas, leerMejores(root)), 'utf8');
   fs.writeFileSync(path.join(outDir, 'index.html'), paginaIndice(todos, data), 'utf8');
   console.log(`🌎 Países: ${todos.length} páginas`);
 }
