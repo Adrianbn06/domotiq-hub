@@ -27,7 +27,7 @@ const sinEmoji = (t) => String(t).replace(/^[\p{Extended_Pictographic}️‍\s]+
 const SITE_URL = 'https://www.ofertasdomoticas.com';
 const DIR = 'articulos-editoriales';
 const OFERTAS_POR_GUIA = 3;
-const PROHIBIDAS = ['en conclusión', 'en el vertiginoso mundo', 'hoy en día', 'en resumen'];
+export const PROHIBIDAS = ['en conclusión', 'en el vertiginoso mundo', 'hoy en día', 'en resumen'];
 const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
 export function leerGuias(root) {

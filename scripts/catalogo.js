@@ -334,7 +334,7 @@ export function pie() {
     <a href="/" class="brand" aria-label="OfertasDomoticas.com, ir a la portada">${MARCA}<span class="wm">ofertas <span>domóticas</span></span></a>
     <p class="pie-lema">Domótica práctica para Latinoamérica: fichas verificadas, comparativas y guías para redes de 110 V y 220 V.</p>
     <nav aria-label="Secciones">
-      <a href="/productos/">Catálogo</a><a href="/comparativas/">Comparativas</a><a href="/comparar">Comparar</a><a href="/articulos-editoriales/">Guías</a><a href="/paises/">Países</a><a href="/glosario">Glosario</a>
+      <a href="/productos/">Catálogo</a><a href="/comparativas/">Comparativas</a><a href="/comparar">Comparar</a><a href="/articulos-editoriales/">Guías</a><a href="/mejores/">Qué comprar</a><a href="/paises/">Países</a><a href="/glosario">Glosario</a>
     </nav>
     <nav aria-label="Información">
       <a href="/nosotros">Nosotros</a><a href="/contacto">Contacto</a><a href="/aviso-legal">Aviso legal</a><a href="/privacidad">Privacidad</a><a href="/privacidad#cookies" data-cookies>Configurar cookies</a>
@@ -429,7 +429,7 @@ ${bloques}
   <span id="compare-text">0 seleccionados</span>
   <span class="compare-acciones"><button type="button" class="btn sm secondary" id="compare-clear">Limpiar</button><a class="btn sm" id="compare-go" href="/comparar">Comparar${icono('chev-r')}</a></span>
 </div>
-<div class="callout info">${icono('globo')}<p>¿Qué voltaje usa tu país? <strong>110–120 V:</strong> México, Centroamérica, Colombia, Ecuador y Venezuela. <strong>220–240 V:</strong> Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay. En Brasil depende de la ciudad (127 V o 220 V). Mira el detalle de <a href="/paises/">tu país</a>.</p></div>
+<div class="callout info">${icono('globo')}<p>¿Qué voltaje usa tu país? <strong>110–120 V:</strong> México, Centroamérica, Colombia, Ecuador y Venezuela. <strong>220–240 V:</strong> Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay. En Brasil depende de la ciudad (127 V o 220 V). Mira el detalle de <a href="/paises/">tu país</a> y las <a href="/mejores/">guías de compra por voltaje</a>.</p></div>
 <p class="muted small nota-datos">Datos actualizados el ${esc(data.actualizado)}.</p>
 ${AVISO_AFILIADOS}`;
 
@@ -497,8 +497,9 @@ export function descripcionProducto(p) {
   return `${frase}.${cola}`;
 }
 
-function paginaProducto(p, data, tiendas, comparativas = [], guias = []) {
+function paginaProducto(p, data, tiendas, comparativas = [], guias = [], mejores = []) {
   const enComparativas = comparativas.filter((c) => c.productos.includes(p.slug));
+  const enMejores = mejores.filter((m) => m.seleccion.some((s) => s.producto === p.slug));
   const enGuias = guias.filter((g) => productosDeGuia(g).includes(p.slug))
     .sort((a, b) => b.actualizado.localeCompare(a.actualizado)).slice(0, 4);
   const cat = data.categorias[p.categoria];
@@ -542,8 +543,9 @@ ${enComparativas.length ? `<h2>Aparece en estas comparativas</h2>
 <div class="group">
 ${enComparativas.map((c) => fila({ href: `/comparativas/${c.slug}`, titulo: c.tituloCorto, icono: 'balanza' })).join('\n')}
 </div>` : ''}
-${enGuias.length ? `<h2>Guías donde lo recomendamos</h2>
+${enGuias.length || enMejores.length ? `<h2>Guías donde lo recomendamos</h2>
 <div class="group">
+${enMejores.map((m) => fila({ href: `/mejores/${m.slug}`, antetitulo: 'Guía de compra', titulo: m.tituloCorto, sub: m.seleccion.find((s) => s.producto === p.slug).perfil, icono: 'bolsa' })).join('\n')}
 ${enGuias.map((g) => fila({ href: `/articulos-editoriales/${g.slug}`, titulo: g.tituloCorto, icono: 'libro' })).join('\n')}
 </div>` : ''}
 <h2>¿Para quién es?</h2>
@@ -604,6 +606,9 @@ export function generarCatalogo(root) {
   const comparativas = fs.existsSync(fComp) ? JSON.parse(fs.readFileSync(fComp, 'utf8')).comparativas : [];
   const fGuias = path.join(root, 'data', 'guias.json');
   const guias = fs.existsSync(fGuias) ? JSON.parse(fs.readFileSync(fGuias, 'utf8')).guias : [];
+  // Guías de compra (data/mejores.json): se leen aquí directamente para no crear una importación circular
+  const fMejores = path.join(root, 'data', 'mejores.json');
+  const mejores = fs.existsSync(fMejores) ? JSON.parse(fs.readFileSync(fMejores, 'utf8')).paginas : [];
   const outDir = path.join(root, 'public', 'productos');
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
@@ -622,7 +627,7 @@ export function generarCatalogo(root) {
       if (!COMPAT[p.compat?.[key]]) throw new Error(`Compatibilidad "${key}" inválida en ${p.slug}`);
     }
     if (!PRECIO[p.precio]) throw new Error(`Precio inválido en ${p.slug}`);
-    fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaProducto(p, data, tiendas, comparativas, guias), 'utf8');
+    fs.writeFileSync(path.join(outDir, `${p.slug}.html`), paginaProducto(p, data, tiendas, comparativas, guias, mejores), 'utf8');
   }
   fs.writeFileSync(path.join(outDir, 'index.html'), paginaCatalogo(data), 'utf8');
   fs.writeFileSync(path.join(root, 'public', 'comparar.html'), paginaComparar(data), 'utf8');

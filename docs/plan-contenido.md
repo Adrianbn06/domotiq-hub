@@ -132,6 +132,8 @@ Cómo leer la lista:
 
 (La tarea programada mueve aquí los temas terminados.)
 
+- [x] (2026-11-27) SEO: 4 guías de compra por red eléctrica (`/mejores/`): mejores enchufes y focos inteligentes para 110 V y para 220 V, con selección por uso, tabla de todos los modelos que sirven en esa red, los que no sirven, preguntas frecuentes y enlaces desde la portada, las fichas y las páginas por país
+
 - [x] (2026-11-27) T027 Productos nuevos: 2 enchufes con Matter (Tapo P125M y Eve Energy). El tercero (Meross MSS315) quedó fuera porque no se pudo confirmar su voltaje y clavija en la web del fabricante
 - [x] (2026-11-15) SEO: 12 páginas por país (`/paises/`), una por cada país del selector, con su red eléctrica (voltaje, frecuencia y clavijas según WorldStandards), los productos del catálogo que funcionan allí, los que tienen versiones y los que no sirven, la frecuencia Z-Wave y preguntas frecuentes. Clavijas de Argentina, Uruguay y Paraguay corregidas según la misma fuente
 

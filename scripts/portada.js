@@ -10,6 +10,7 @@ import path from 'path';
 import { esc, pagina, AVISO_AFILIADOS, icono, ilustracion, focoColgante, tarjetaProducto, fila, pila, recortar, PAISES } from './catalogo.js';
 import { leerComparativas } from './comparativas.js';
 import { leerGuias } from './guias.js';
+import { leerMejores } from './mejores.js';
 
 // ─── CONTENIDO EDITABLE ───────────────────────────────────────────────────────
 const SELECCION = [
@@ -72,6 +73,7 @@ export function generarPortada(root) {
   };
   const comparativasArt = leerComparativas(root);
   const todasLasGuias = leerGuias(root);
+  const guiasCompra = leerMejores(root);
   const guias = guiasDePortada(todasLasGuias);
   const ultimaFecha = [data.actualizado, ...todasLasGuias.map((g) => g.actualizado), ...comparativasArt.map((c) => c.actualizado)].sort().pop();
   const foco = usar(FOCOS[110]);
@@ -162,6 +164,10 @@ export function generarPortada(root) {
 ${rutas}
 </div>
 <div class="callout warn aviso-elec">${icono('alerta')}<p>Relés e interruptores van conectados a la instalación eléctrica de tu casa. Si no tienes experiencia, contrata a un electricista.</p></div>
+${guiasCompra.length ? `<div class="sub-h"><h3>¿Qué comprar para tu red?</h3><a class="mas" href="/mejores/">Todas las guías de compra${icono('chev-r')}</a></div>
+<div class="group">
+${guiasCompra.map((m) => fila({ href: `/mejores/${m.slug}`, antetitulo: m.red === '110' ? '110–127 V' : '220–240 V', titulo: m.tituloCorto, inicio: pila([m.categoria]) })).join('\n')}
+</div>` : ''}
 </section>
 
 <section class="sec" aria-labelledby="h-catalogo">

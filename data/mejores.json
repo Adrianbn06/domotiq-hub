@@ -1,0 +1,163 @@
+{
+  "_ayuda": "Guías de compra por red eléctrica (/mejores/<slug>). Las genera scripts/mejores.js. Cada producto de 'seleccion' debe existir en data/productos.json, ser de la 'categoria' de la página y servir en su 'red' (110 o 220). Cada dato de los textos tiene que estar en la ficha del producto (que ya tiene sus fuentes). Sin precios exactos y sin decir 'probamos'.",
+  "paginas": [
+    {
+      "slug": "enchufes-inteligentes-110v",
+      "categoria": "enchufe",
+      "red": "110",
+      "titulo": "Mejores enchufes inteligentes para 110–127 V en 2026: cuál elegir según tu uso",
+      "tituloCorto": "Mejores enchufes inteligentes para 110 V (2026)",
+      "descripcion": "Enchufes inteligentes para México, Centroamérica, Colombia, Ecuador y Venezuela: cuál mide consumo, cuál va con Apple Home o Matter y cuál cuesta menos.",
+      "actualizado": "2026-11-27",
+      "intro": [
+        "En México, Centroamérica, Colombia, Ecuador y Venezuela la red es de 110–127 V y el tomacorriente es de estilo EE.UU. (clavijas A y B). Eso juega a tu favor: muchos enchufes inteligentes se fabrican justo para esa red.",
+        "Aquí ordenamos los enchufes de nuestro catálogo que sirven para 110–127 V según lo que necesitas: **medir el consumo**, usarlos con **Apple Home o Matter**, controlarlos con **Home Assistant** o simplemente gastar lo mínimo. La selección sale de las especificaciones de cada fabricante, no de pruebas propias."
+      ],
+      "seleccion": [
+        { "perfil": "Para medir el consumo gastando poco", "producto": "tapo-p115", "motivo": "Mide el consumo, soporta 15 A (1800 W) y acepta 100–125 V a 50 o 60 Hz. Está en el rango de precio más bajo y se configura por Bluetooth desde la app Tapo. No funciona con Apple Home ni con Matter." },
+        { "perfil": "Para Home Assistant y control sin nube", "producto": "sonoff-s31", "motivo": "Mide potencia, corriente y voltaje, soporta 15 A y tiene integración en Home Assistant; además se puede flashear con ESPHome. Solo existe en 120 V con clavija estilo EE.UU." },
+        { "perfil": "Para iPhone y Siri, con medición de consumo", "producto": "kasa-ep25", "motivo": "Funciona con Apple Home de forma nativa, además de Alexa y Google, y mide el consumo. Para controlarlo con Apple Home fuera de casa necesitas un HomePod, un Apple TV o un iPad." },
+        { "perfil": "Para Matter, sin hub", "producto": "tapo-p125m", "motivo": "Certificado Matter: lo añades a Apple Home, Alexa, Google Home o SmartThings sin depender de una sola app. Es solo de encendido y apagado: no mide el consumo." },
+        { "perfil": "El más barato para encender y apagar", "producto": "sonoff-s26r2", "motivo": "Rango de precio bajo y control por red local aunque se caiga internet. Para 110–127 V compra la versión **TPB** (120 V, clavija estilo EE.UU.). No mide el consumo." },
+        { "perfil": "Si ya tienes una red Zigbee", "producto": "aqara-smart-plug", "motivo": "Mide el consumo y repite la señal Zigbee, así que refuerza la red de tus sensores de pilas. Necesita un hub Aqara o un coordinador Zigbee." }
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué mirar antes de comprar un enchufe inteligente para 110 V",
+          "parrafos": [
+            "**La carga máxima.** Casi todos los de esta lista soportan 15 A (1800 W) según su fabricante; los genéricos de Tuya van de 10 a 16 A según el modelo. Mira la potencia del aparato que vas a conectar (en vatios, en su etiqueta) y no superes la del enchufe.",
+            "**Si quieres medir el consumo.** El Sonoff S31, el Tapo P115, el Kasa EP25, el Aqara Smart Plug y el Eve Energy lo miden; el Sonoff S26R2 y el Tapo P125M no. Tienes los detalles en la guía para [medir el consumo de tus aparatos](/articulos-editoriales/medir-consumo-electrodomesticos-enchufe-inteligente).",
+            "**Tu ecosistema.** Para Apple Home sirven el Kasa EP25, el Tapo P125M y el Eve Energy, y el Aqara Smart Plug a través del hub Aqara. Con Matter, el Tapo P125M y el Eve Energy.",
+            "**WiFi, Zigbee o Thread.** Los WiFi no necesitan hub, pero solo conectan a la red de 2,4 GHz de tu router. El Aqara usa Zigbee y necesita un hub; el Eve Energy usa Thread y necesita un router de borde Thread. Si dudas, lee [qué es un hub y cuándo lo necesitas](/articulos-editoriales/que-es-un-hub-domotico-cuando-lo-necesitas)."
+          ]
+        }
+      ],
+      "faq": [
+        { "p": "¿Puedo usar en un país de 110 V un enchufe inteligente de 220 V?", "r": "No. Compra la versión de 100–125 V o un modelo de rango amplio (100–240 V). El voltaje siempre aparece en la ficha del fabricante y en el empaque." },
+        { "p": "¿Cuáles miden el consumo eléctrico?", "r": "De esta lista, el Sonoff S31, el Tapo P115, el Kasa EP25, el Aqara Smart Plug y el Eve Energy. El Sonoff S26R2 y el Tapo P125M solo encienden y apagan." },
+        { "p": "¿Necesito un hub?", "r": "Con los enchufes WiFi no (Sonoff S31 y S26R2, Kasa EP25, Tapo P115 y P125M, y los genéricos de Tuya). El Aqara Smart Plug necesita un hub Aqara o un coordinador Zigbee, y el Eve Energy un router de borde Thread." },
+        { "p": "¿Cuál funciona con Apple Home?", "r": "El Kasa EP25 de forma nativa, el Tapo P125M y el Eve Energy a través de Matter, y el Aqara Smart Plug a través del hub Aqara. Para controlar el EP25 con Apple Home fuera de casa necesitas un HomePod, un Apple TV o un iPad." }
+      ]
+    },
+    {
+      "slug": "enchufes-inteligentes-220v",
+      "categoria": "enchufe",
+      "red": "220",
+      "titulo": "Mejores enchufes inteligentes para 220 V en 2026: qué modelo y qué clavija elegir",
+      "tituloCorto": "Mejores enchufes inteligentes para 220 V (2026)",
+      "descripcion": "Enchufes inteligentes para Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay: qué versión comprar según la clavija de tu país y cuál mide el consumo.",
+      "actualizado": "2026-11-27",
+      "intro": [
+        "En los países de 220 V el problema no es solo el voltaje: cada país usa clavijas distintas (C, I, L…). Por eso hay menos opciones que en los países de 110 V, y casi siempre hay que elegir **la versión hecha para tu país**.",
+        "Aquí están los enchufes de nuestro catálogo que tienen versión para 220 V, ordenados por uso, y una tabla con la clavija de cada país. La selección sale de las especificaciones de cada fabricante, no de pruebas propias."
+      ],
+      "seleccion": [
+        { "perfil": "De marca, con versión para tu clavija", "producto": "sonoff-s26r2", "motivo": "Existe en versiones de 250 V con las clavijas de Brasil (**TPN**), Argentina (**TPI**) y Chile (**TPL**), y tiene control por red local aunque se caiga internet. No mide el consumo." },
+        { "perfil": "Para probar con lo mínimo", "producto": "enchufe-tuya-wifi", "motivo": "Se encuentran para casi cualquier clavija y voltaje, y muchos modelos miden el consumo. La calidad varía entre vendedores: revisa en el anuncio el voltaje, la clavija y la corriente máxima." },
+        { "perfil": "Para Matter y medir el consumo", "producto": "eve-energy-matter", "motivo": "Acepta de 100 a 240 V, mide el consumo y funciona con Apple Home, Alexa, Google Home y Home Assistant. Necesita un router de borde Thread, y el fabricante no lista versiones con clavija L (Chile) ni N (Brasil)." }
+      ],
+      "secciones": [
+        {
+          "titulo": "Elige por la clavija de tu país",
+          "parrafos": [
+            "Estas son las clavijas habituales según WorldStandards. Confírmalas mirando el tomacorriente de tu casa: en algunos países conviven varios tipos."
+          ],
+          "tabla": {
+            "columnas": ["País", "Clavijas", "Qué buscar"],
+            "filas": [
+              ["Perú y Bolivia", "A, B y C", "Un enchufe de **220–240 V**. Aunque la clavija sea de estilo EE.UU., los modelos pensados para EE.UU. son de 100–125 V y no sirven"],
+              ["Chile", "C y L", "Clavija C o L de 220–240 V. Del Sonoff S26R2, la versión **TPL**"],
+              ["Argentina", "I", "Clavija tipo I de 220–240 V. Del Sonoff S26R2, la versión **TPI**"],
+              ["Uruguay", "C, F y L", "Clavija C, F o L de 220–240 V"],
+              ["Paraguay", "A, B, C y N", "Un enchufe de **220–240 V** con la clavija de tu tomacorriente"]
+            ]
+          }
+        },
+        {
+          "titulo": "Qué mirar antes de comprar un enchufe inteligente para 220 V",
+          "parrafos": [
+            "**El voltaje, no la forma de la clavija.** En Perú, Bolivia y Paraguay hay tomacorrientes que aceptan la clavija de estilo EE.UU., pero la red es de 220 V. Que un enchufe entre no significa que sirva: la ficha tiene que decir 220–240 V o 100–240 V.",
+            "**Si quieres medir el consumo.** El Eve Energy lo mide, y muchos genéricos de Tuya también (compruébalo en el anuncio). El Sonoff S26R2 no. Más detalles en la guía para [medir el consumo de tus aparatos](/articulos-editoriales/medir-consumo-electrodomesticos-enchufe-inteligente).",
+            "**Brasil es un caso aparte.** Según la ciudad, la red es de 127 V o de 220 V, con clavijas C y N. Del Sonoff S26R2 existe la versión **TPN**: confirma el voltaje de tu ciudad antes de comprar. Lo explicamos en [domótica en Brasil](/paises/brasil)."
+          ]
+        }
+      ],
+      "faq": [
+        { "p": "¿Puedo usar en Perú un enchufe inteligente comprado en Amazon EE.UU.?", "r": "Aunque la clavija entre, los enchufes de nuestro catálogo pensados para EE.UU. (Tapo P115 y P125M, Kasa EP25, Sonoff S31) son de 100–125 V o de 120 V y no sirven para una red de 220 V. Usa uno de 220–240 V o de rango amplio (100–240 V)." },
+        { "p": "¿Qué versión del Sonoff S26R2 compro?", "r": "TPI para Argentina (clavija I), TPL para Chile (clavija L) y TPN para Brasil (clavija N). La TPB es de 120 V con clavija estilo EE.UU.: no es para redes de 220 V." },
+        { "p": "¿Cuáles miden el consumo eléctrico?", "r": "El Eve Energy y muchos enchufes genéricos de Tuya (revisa el anuncio). El Sonoff S26R2 solo enciende y apaga." },
+        { "p": "¿Por qué hay menos opciones que para 110 V?", "r": "Muchas marcas venden sus enchufes con clavija de EE.UU. o europea. Para 220 V en Latinoamérica hay que encontrar la versión con tu clavija, y solo añadimos al catálogo los modelos cuyas versiones podemos verificar." }
+      ]
+    },
+    {
+      "slug": "focos-inteligentes-110v",
+      "categoria": "bombilla",
+      "red": "110",
+      "titulo": "Mejores focos inteligentes para 110–127 V (rosca E26) en 2026",
+      "tituloCorto": "Mejores focos inteligentes para 110 V (2026)",
+      "descripcion": "Focos o bombillas inteligentes E26 para México, Centroamérica, Colombia, Ecuador y Venezuela: el más luminoso, el más barato con Matter y el más completo.",
+      "actualizado": "2026-11-27",
+      "intro": [
+        "En los países de 110–127 V los focos inteligentes tienen que ser de **120 V con rosca E26**, la misma de los focos comunes de estilo estadounidense. Hay buenas opciones sin hub y con Matter a precio bajo.",
+        "Aquí ordenamos los focos de nuestro catálogo que sirven para 110–127 V según lo que buscas: más luz, Matter y Apple Home, o el ecosistema más completo. La selección sale de las especificaciones de cada fabricante, no de pruebas propias."
+      ],
+      "seleccion": [
+        { "perfil": "El más luminoso con Matter a precio bajo", "producto": "tapo-l535e", "motivo": "Da 1100 lm, tiene buena reproducción de color (CRI ≥ 90) y certificación Matter, así que funciona con Apple Home. Está en el rango de precio más bajo y no necesita hub." },
+        { "perfil": "Barato, con Matter y de la empresa de Hue", "producto": "wiz-a19-color", "motivo": "800 lm, color y blancos regulables, compatible con Matter y sin hub. Lo fabrica Signify, la misma empresa de Philips Hue." },
+        { "perfil": "El más completo, si no te importa pagar más", "producto": "philips-hue-white-color-a19", "motivo": "Hasta 1100 lm, funciona con todos los asistentes y con Matter, y usa Zigbee, que no recarga el WiFi. Es la opción más cara y el Hue Bridge es casi obligatorio para sacarle partido." }
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué mirar antes de comprar un foco inteligente para 110 V",
+          "parrafos": [
+            "**Voltaje y rosca.** Busca 120 V (o un rango que lo incluya) y rosca E26. Un foco de 220–240 V con rosca E27 no es para tu red, aunque la rosca parezca igual.",
+            "**La luz.** 800 lm equivalen más o menos a un foco de 60 W, y 1100 lm a uno de 75 W, según los fabricantes. Para una sala o una cocina conviene el más luminoso.",
+            "**WiFi o Zigbee.** Los WiFi (Tapo, WiZ) no necesitan hub, pero muchos focos WiFi pueden saturar un router básico. Hue usa Zigbee y con el Hue Bridge no recarga tu WiFi. Lo comparamos en [focos WiFi baratos vs Zigbee de marca](/comparativas/focos-wifi-baratos-vs-zigbee-hue).",
+            "**Apple Home.** Los tres funcionan con Apple Home: Hue de forma directa, y el Tapo L535E y el WiZ A19 a través de Matter. Si dudas entre los tres, mira la [comparativa WiZ vs Tapo vs Philips Hue](/comparativas/focos-inteligentes-wiz-vs-tapo-vs-philips-hue)."
+          ]
+        }
+      ],
+      "faq": [
+        { "p": "¿Qué rosca necesito en un país de 110 V?", "r": "La E26, la habitual en los países de 110–127 V. Los tres focos de esta lista son E26." },
+        { "p": "¿Necesito un hub para estos focos?", "r": "El Tapo L535E y el WiZ A19 se conectan directo al WiFi de 2,4 GHz. El Philips Hue funciona sin hub por Bluetooth (hasta 10 focos), pero para automatizaciones y control remoto conviene el Hue Bridge." },
+        { "p": "¿Qué pasa si apago el interruptor de pared?", "r": "El foco se queda sin corriente y no se puede controlar desde el celular hasta que vuelvas a encenderlo. Si eso te molesta, mira cuándo conviene un [interruptor inteligente en vez de un foco](/comparativas/interruptor-inteligente-vs-foco-inteligente)." }
+      ]
+    },
+    {
+      "slug": "focos-inteligentes-220v",
+      "categoria": "bombilla",
+      "red": "220",
+      "titulo": "Mejores focos inteligentes para 220 V (rosca E27) en 2026",
+      "tituloCorto": "Mejores focos inteligentes para 220 V (2026)",
+      "descripcion": "Focos o bombillas inteligentes E27 para Perú, Chile, Argentina, Bolivia, Uruguay y Paraguay: el más barato de marca, el más luminoso y cuál tiene Matter.",
+      "actualizado": "2026-11-27",
+      "intro": [
+        "En los países de 220 V los focos inteligentes tienen que ser de **220–240 V con rosca E27**. Los focos pensados para EE.UU., como los de 120 V con rosca E26 de nuestro catálogo, no son para tu red.",
+        "Aquí ordenamos los focos de nuestro catálogo que sirven para 220 V según lo que buscas: gastar poco, más luz o Apple Home y Matter. La selección sale de las especificaciones de cada fabricante, no de pruebas propias."
+      ],
+      "seleccion": [
+        { "perfil": "El más barato de marca", "producto": "tapo-l530e", "motivo": "806 lm, color y blancos de 2500 a 6500 K, sin hub y en el rango de precio más bajo. Funciona con Alexa y Google Home, pero no tiene Matter ni Apple Home." },
+        { "perfil": "Barato, de Signify, con blancos más cálidos", "producto": "wiz-a60-color-e27", "motivo": "806 lm, color y blancos de 2200 a 6500 K, sin hub. Lo fabrica Signify, la empresa de Philips Hue. No pudimos confirmar su compatibilidad con Matter y Apple Home en esta versión." },
+        { "perfil": "El más luminoso y completo", "producto": "philips-hue-white-color-a60-e27", "motivo": "Hasta 1100 lm, Zigbee (no ocupa el WiFi del router) y, con el Hue Bridge, compatible con Alexa, Google Home, Apple Home y Matter. Es de las opciones más caras." },
+        { "perfil": "Para probar con lo mínimo", "producto": "foco-tuya-wifi-220v", "motivo": "Muy económico, sin hub y controlable con Smart Life, Alexa y Google. Los datos reales (lúmenes, color, voltaje) varían entre vendedores: revisa que el anuncio diga 220–240 V y rosca E27." }
+      ],
+      "secciones": [
+        {
+          "titulo": "Qué mirar antes de comprar un foco inteligente para 220 V",
+          "parrafos": [
+            "**Voltaje y rosca.** Busca 220–240 V (o un rango que lo incluya) y rosca E27. Un foco de 120 V no es para tu red.",
+            "**La luz.** El Tapo L530E y el WiZ A60 dan 806 lm; el Philips Hue A60, hasta 1100 lm con luz blanca fría (en tonos cálidos y de color emite menos).",
+            "**Si quieres Matter con Tapo.** TP-Link vende en otros mercados una versión de 220–240 V con rosca E27 del Tapo L535E, con Matter y 1055 lm. Todavía no está en nuestro catálogo; si la encuentras, revisa que el empaque diga 220–240 V.",
+            "**WiFi o Zigbee.** Los WiFi no necesitan hub, pero muchos focos WiFi pueden saturar un router básico; Hue usa Zigbee. Lo comparamos en [focos WiFi baratos vs Zigbee de marca](/comparativas/focos-wifi-baratos-vs-zigbee-hue)."
+          ]
+        }
+      ],
+      "faq": [
+        { "p": "¿Qué rosca necesito en un país de 220 V?", "r": "La E27, la habitual en los países de 220 V de Sudamérica. Los cuatro focos de esta lista son E27." },
+        { "p": "¿Puedo usar un foco inteligente de 120 V comprado en EE.UU.?", "r": "No. Los focos de 120 V con rosca E26 no son para redes de 220 V. Busca la versión de 220–240 V con rosca E27." },
+        { "p": "¿Cuál funciona con Apple Home?", "r": "El Philips Hue A60, a través del Hue Bridge. El Tapo L530E no es compatible, y en el WiZ A60 no pudimos confirmarlo para esta versión." },
+        { "p": "¿Y en Brasil?", "r": "Depende de la ciudad: la red es de 127 V o de 220 V. Confirma el voltaje de tu casa antes de elegir entre estos focos y los de 110 V. Más detalles en [domótica en Brasil](/paises/brasil)." }
+      ]
+    }
+  ]
+}
