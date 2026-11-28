@@ -18,7 +18,7 @@ explica los cambios en lenguaje sencillo.
 4. **Español neutro latinoamericano.** Usa "foco o bombilla", "enchufe o tomacorriente", "celular".
    Tono práctico y honesto: también di los contras.
 5. **Seguridad eléctrica.** En relés e interruptores, recomienda siempre un electricista si el lector no tiene experiencia.
-6. No toques `data/tiendas.json` (códigos de afiliado) ni la configuración de seguridad (`public/_headers`, `public/_redirects`, `wrangler.jsonc`) salvo que la tarea lo pida.
+6. No toques `data/tiendas.json` (códigos de afiliado), `public/ads.txt` (identificador de Google AdSense) ni la configuración de seguridad (`public/_headers`, `public/_redirects`, `wrangler.jsonc`) salvo que la tarea lo pida.
 
 ## Estilo editorial de las guías (prompt del dueño)
 
